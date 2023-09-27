@@ -1,45 +1,42 @@
-// "use client";
+import React, { useContext, useState } from "react";
+import { Context } from "./chart";
 
-// import React, { useState } from "react";
+export default function Question() {
+  const [random, setRandom] = useContext(Context);
 
-// function Question() {
-  // const [habits, setHabits] = useState([]);
-  // const [answer, setAnswer] = useState("");
+  const createNewElement = () => {
+    const newInputBox = document.createElement("input");
+    newInputBox.setAttribute("type", "text");
+    newInputBox.name = "newbox";
+    document.getElementById("newElementId").appendChild(newInputBox);
+  };
 
-  // function getInputValues() {
-  //   const inputFields = document.querySelectorAll("input[type='text']");
-  //   // for (let i = 0; i < inputFields.length; i++) {
-  //     setHabits([...habits, inputFields.value]);
-  //   // }
-  //   console.log(habits);
-  // }
+  function getInputValues() {
+    const inputFields = document.querySelectorAll("input[type='text']");
+    const inputValues = Array.from(inputFields).map((input) => input.value);
+    setRandom(inputValues);
+    console.log(random);
+  }
 
-  // const createNewElement = () => {
-  //   const newInputBox = document.createElement("div");
-  //   newInputBox.innerHTML =
-  //     "<input type='text' className={styles.newinputbox} name='newbox' >";
-  //   document.getElementById("newElementId").appendChild(newInputBox);
-  // };
+  return (
+    <div>
+      <p>What are some habits you would like to work on?</p>
+      <input
+        className="answer"
+        placeholder="i.e. drink more water"
+        type="text"
+        name="firstq"
+      />
+      <input
+        type="text"
+      />
+      <div id="newElementId" ></div>
+      <button className="but" onClick={createNewElement}>
+        + Add more
+      </button>
+      <button onClick={getInputValues}>Submit</button>
 
-  // return (
-  //   <section>
-  //     <div>
-  //       <p>What are some habits you would like to work on?</p>
-  //       <input
-  //         className="answer"
-  //         placeholder="i.e. drink more water"
-  //         type="text"
-  //         name="firstq"
-  //         onChange={handleAnswer} value={answer} 
-  //       />
-  //       <div id="newElementId"></div>
-  //       <button className="but" onClick={createNewElement}>
-  //         + Add more
-  //       </button>
-//         <input type="submit" onClick={getInputValues} />
-//       </div>
-//     </section>
-//   );
-// }
-
-// export default Question;
+      {/* <p>Random:{random}</p> */}
+    </div>
+  );
+}

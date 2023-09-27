@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Parent from "./Parent";
+import Chart from "./components/chart";
 
 function Tabs() {
   const [toggleState, setToggleState] = useState(1);
@@ -17,19 +17,19 @@ function Tabs() {
           className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
           onClick={() => toggleTab(1)}
         >
-          Tab 1
+          Home
         </button>
         <button
           className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
           onClick={() => toggleTab(2)}
         >
-          Tab 2
+          Chart
         </button>
         <button
           className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
           onClick={() => toggleTab(3)}
         >
-          Tab 3
+          Stats
         </button>
       </div>
 
@@ -42,7 +42,7 @@ function Tabs() {
         <div className={toggleState === 2 ? "active-content" : "content"}>
           <h2>Habit Chart</h2>
           <hr />
-          <Parent />
+          <Chart />
         </div>
 
         <div className={toggleState === 3 ? "active-content" : "content"}>
