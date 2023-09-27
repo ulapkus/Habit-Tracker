@@ -20,7 +20,7 @@ export default function Child() {
 
   return (
     <div>
-      <p>This is a child</p>
+      <p>What are some habits you would like to work on?</p>
       <input
         className="answer"
         placeholder="i.e. drink more water"

@@ -7,6 +7,7 @@
 // import Habits from "./form/chart/page";
 import Tabs from "./Tabs";
 import Parent from "./Parent";
+import Randomm from "./Random";
 export default function Home() {
   // const [name, setName] = useState("");
   // const [frequency, setFrequency] = useState("");
@@ -22,8 +23,9 @@ export default function Home() {
   return (
     <div>
       {/* <p>Hello world</p> */}
-      {/* <Tabs /> */}
-      <Parent />
+      <Tabs />
+      {/* <Randomm /> */}
+      {/* <Parent /> */}
       {/* <Form
         name={name}
         frequency={frequency}

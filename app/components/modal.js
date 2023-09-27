@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import Question from "./questions";
-
+// import Question from "./questions";
+import Child from "./child";
 
 export default function Modal() {
   useEffect(() => {
@@ -26,7 +26,7 @@ function exit() {
     <div id="myModal" className="modal">
       <div className="modal-content">
         <span onClick={exit} className="close">&times;</span>
-        <Question />
+        <Child />
       </div>
     </div>
   );

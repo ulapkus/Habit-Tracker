@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Child from "./components/child";
+import Modal from "./components/modal";
 
 export const Context = React.createContext();
 
@@ -19,7 +19,7 @@ export default function Parent() {
 
    
       <Context.Provider value={[random, setRandom]}>
-        <Child />
+        <Modal />
       </Context.Provider>
     </div>
   );
