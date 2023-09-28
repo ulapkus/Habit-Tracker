@@ -84,3 +84,43 @@
     text-decoration: none;
     cursor: pointer;
   }
+
+  .mainquestions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 1050px;
+    height: 700px;
+    background-color: #add8e6;
+    border-radius: 20px;
+    color: white;
+    /* border: 1px solid red; */
+  }
+
+  .border {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+     border: 1px solid black;
+     width:90%;
+     height: 90%;
+   }
+
+   /* .background {
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  } */
+
+  td {
+    border: 1px solid black;
+  }
+  
+  th {
+    border: 1px solid black;
+  }
+  

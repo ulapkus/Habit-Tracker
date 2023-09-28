@@ -17,13 +17,13 @@ function Tabs() {
           className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
           onClick={() => toggleTab(1)}
         >
-          Home
+          Chart
         </button>
         <button
           className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
           onClick={() => toggleTab(2)}
         >
-          Chart
+          Home
         </button>
         <button
           className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
@@ -35,14 +35,16 @@ function Tabs() {
 
       <div className="content-tabs">
         <div className={toggleState === 1 ? "active-content" : "content"}>
-          <h1>Home Page</h1>
+          <h1>Habit Chart</h1>
           <hr />
+          <Chart />
+          {/* SWITCH THIS WITH HOME PAGE IN TAB LATER */}
         </div>
 
         <div className={toggleState === 2 ? "active-content" : "content"}>
-          <h2>Habit Chart</h2>
+          <h2>Home Page</h2>
           <hr />
-          <Chart />
+           {/* SWITCH THIS WITH CHART LOCATION IN TAB LATER */}
         </div>
 
         <div className={toggleState === 3 ? "active-content" : "content"}>
