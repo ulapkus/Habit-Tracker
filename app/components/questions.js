@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "./chart";
 
-export default function Question() {
+export default function Child() {
   const [random, setRandom] = useContext(Context);
 
   const createNewElement = () => {
