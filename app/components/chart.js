@@ -13,10 +13,14 @@ export default function Chart() {
 
     if (event.target.tagName === "TD") {
       console.log(rowIndex);
+      console.log(document.getElementById("mytable").rows[0])
     }
     for (let i = 0; i <= 6; i++) {
       if (rowIndex === 1 && cellIndex === i) {
-        document.getElementsByTagName("TD")[i].style.backgroundColor = "red";
+        document.getElementById("mytable").rows[0].cells[i].style.backgroundColor = "red";
+      }
+       else if (rowIndex === 2 && cellIndex === i) {
+        document.getElementById("mytable").rows[1].cells[i].style.backgroundColor = "pink";
       }
     }
   };
@@ -52,8 +56,8 @@ export default function Chart() {
                 </tr>
               </thead>
 
-              <tbody className="habit-rows" id="mytable" onClick={location}>
-                <tr>
+              <tbody className="habit-rows" id="mytable">
+                <tr onClick={location} className="first-habit">
                   <td>row 1 box 1</td>
                   <td>row 1 box 2</td>
                   <td>box</td>
@@ -62,7 +66,7 @@ export default function Chart() {
                   <td>box</td>
                   <td>box</td>
                 </tr>
-                <tr>
+                <tr onClick={location} className="second-habit">
                   <td>row 2 box 1</td>
                   <td>row 2 box 2</td>
                   <td>box</td>
