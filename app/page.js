@@ -4,7 +4,7 @@ import Tabs from "./Tabs";
 
 export default function Home() {
   return (
-    <div>
+    <div className="main">
       <Tabs />
     </div>
   );

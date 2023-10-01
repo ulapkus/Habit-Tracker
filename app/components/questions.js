@@ -20,23 +20,29 @@ export default function Child() {
 
   return (
     <div>
-      <p>What are some habits you would like to work on?</p>
-      <input
-        className="answer"
-        placeholder="i.e. drink more water"
-        type="text"
-        name="firstq"
-      />
-      <input
-        type="text"
-      />
-      <div id="newElementId" ></div>
-      <button className="but" onClick={createNewElement}>
-        + Add more
-      </button>
-      <button onClick={getInputValues}>Submit</button>
-
-      {/* <p>Random:{random}</p> */}
+      <div className="habits-question-main">
+        <div className="question-plus-answer">
+          <h2 className="what-habits-q">
+            What are some habits you would like to work on?
+          </h2>
+          <div className="input-boxes">
+            <input
+              className="answer"
+              placeholder="i.e. drink more water"
+              type="text"
+              name="firstq"
+            />
+            <input type="text" />
+            <div id="newElementId"></div>
+          </div>
+        </div>
+        <div className="buttons-q">
+          <button className="add-more" onClick={createNewElement}>
+            + Add more
+          </button>
+          <button onClick={getInputValues} className="submit-q">Submit</button>
+        </div>
+      </div>
     </div>
   );
 }

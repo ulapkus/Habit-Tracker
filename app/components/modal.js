@@ -25,7 +25,8 @@ function exit() {
   return (
     <div id="myModal" className="modal">
       <div className="modal-content">
-        <span onClick={exit} className="close">&times;</span>
+        {/* <span onClick={exit} className="close">&times;</span> */}
+        {/* ^ X button */}
         <Question />
       </div>
     </div>

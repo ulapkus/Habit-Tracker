@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Chart from "./components/chart";
+import Home from "./components/home";
 
 function Tabs() {
   const [toggleState, setToggleState] = useState(1);
@@ -17,13 +18,13 @@ function Tabs() {
           className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
           onClick={() => toggleTab(1)}
         >
-          Chart
+          Home
         </button>
         <button
           className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
           onClick={() => toggleTab(2)}
         >
-          Home
+          Chart
         </button>
         <button
           className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
@@ -35,16 +36,14 @@ function Tabs() {
 
       <div className="content-tabs">
         <div className={toggleState === 1 ? "active-content" : "content"}>
-          <h1>Habit Chart</h1>
+          {/* <h1>Habit Chart</h1> */}
           <hr />
-          <Chart />
-          {/* SWITCH THIS WITH HOME PAGE IN TAB LATER */}
+         <Home /> 
         </div>
 
         <div className={toggleState === 2 ? "active-content" : "content"}>
-          <h2>Home Page</h2>
           <hr />
-           {/* SWITCH THIS WITH CHART LOCATION IN TAB LATER */}
+          <Chart />
         </div>
 
         <div className={toggleState === 3 ? "active-content" : "content"}>
