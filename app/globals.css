@@ -14,7 +14,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   background-color: beige;
 }
 
@@ -118,7 +118,7 @@ hr {
   justify-content: space-between;
   align-items: center;
   /* border: 1px solid red; */
-  height: 50vh;
+  height: 100%;
   width: 100%;
 }
 
@@ -130,6 +130,7 @@ input {
 
 .what-habits-q {
   text-align: center;
+  width: 100%;
 }
 
 .buttons-q {
@@ -157,14 +158,14 @@ input {
   /* border: 1px solid blue; */
 }
 
-h2 {
-  font-size: 30px;
-  width: 80%;
-}
-
 button {
   border-radius: 5px;
   background-color: white;
+}
+
+h3 {
+  font-size: 30px;
+  width: 80%;
 }
 
 .submit-q {
@@ -325,8 +326,8 @@ th {
 }
 
 h2 {
-  font-size: 5vh;
-  padding: 5vh 0 6vh 0;
+  font-size: 3vh;
+  padding: 3vh 0 4vh 0;
   margin: 0;
   /* border: 1px solid pink; */
   height: 100%;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Modal from "./modal";
+import Questions from "./questions";
 
 export const Context = React.createContext();
 
@@ -34,7 +34,7 @@ export default function Chart() {
       <div className="mainquestions">
         <section className="border">
           <Context.Provider value={[random, setRandom]}>
-            <Modal />
+            <Questions />
           </Context.Provider>
           <section className="habits">
             <h3 className="habit-heading">Habit</h3>
