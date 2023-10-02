@@ -28,6 +28,32 @@ export default function Chart() {
     }
   };
 
+  const createNewRow = () => {
+    const table = document.getElementById("mytable");
+    const newRow = table.insertRow();
+    const cell1 = newRow.insertCell(0);
+    cell1.className = "cell";
+    const cell2 = newRow.insertCell(1);
+    cell2.className = "cell";
+    const cell3 = newRow.insertCell(2);
+    cell3.className = "cell";
+    const cell4 = newRow.insertCell(3);
+    cell4.className = "cell";
+    const cell5 = newRow.insertCell(4);
+    cell5.className = "cell";
+    const cell6 = newRow.insertCell(5);
+    cell6.className = "cell";
+    const cell7 = newRow.insertCell(6);
+    cell7.className = "cell";
+
+    const habitInputBox = document.createElement("input");
+    habitInputBox.setAttribute("type", "text");
+    habitInputBox.name = "newbox";
+    habitInputBox.placeholder = "insert habit";
+    habitInputBox.classList.add("habit-input-box");
+    document.getElementById("newHabitId").appendChild(habitInputBox);
+  };
+
   return (
     <div className="background">
       <h1>My Habit Tracker</h1>
@@ -37,12 +63,13 @@ export default function Chart() {
             <Questions />
           </Context.Provider>
           <section className="habits">
-            <h3 className="habit-heading">Habit</h3>
+            <h4>Habit</h4>
             {random.map((item, index) => (
-              <p key={index} className="tablebody">
+              <p key={index} className="imported-habits">
                 {item}
               </p>
             ))}
+            <div id="newHabitId"></div>
           </section>
 
           <section>
@@ -58,29 +85,34 @@ export default function Chart() {
                   <td className="dayz">Day 7</td>
                 </tr>
               </tbody>
-              <tbody className="habit-rows" id="mytable">
-                <tr onClick={location} className="first-habit row">
-                  <td className="first-habit-cell"></td>
-                  <td className="first-habit-cell"></td>
-                  <td className="first-habit-cell"></td>
-                  <td className="first-habit-cell"></td>
-                  <td className="first-habit-cell"></td>
-                  <td className="first-habit-cell"></td>
-                  <td className="first-habit-cell"></td>
+              <tbody id="mytable">
+                <tr onClick={location}>
+                  <td className="first-habit-cell cell"></td>
+                  <td className="first-habit-cell cell"></td>
+                  <td className="first-habit-cell cell"></td>
+                  <td className="first-habit-cell cell"></td>
+                  <td className="first-habit-cell cell"></td>
+                  <td className="first-habit-cell cell"></td>
+                  <td className="first-habit-cell cell"></td>
                 </tr>
-                <tr onClick={location} className="second-habit row">
-                  <td className="second-habit-cell"></td>
-                  <td className="second-habit-cell"></td>
-                  <td className="second-habit-cell"></td>
-                  <td className="second-habit-cell"></td>
-                  <td className="second-habit-cell"></td>
-                  <td className="second-habit-cell"></td>
-                  <td className="second-habit-cell"></td>
+                <tr onClick={location}>
+                  <td className="second-habit-cell cell"></td>
+                  <td className="second-habit-cell cell"></td>
+                  <td className="second-habit-cell cell"></td>
+                  <td className="second-habit-cell cell"></td>
+                  <td className="second-habit-cell cell"></td>
+                  <td className="second-habit-cell cell"></td>
+                  <td className="second-habit-cell cell"></td>
                 </tr>
               </tbody>
             </table>
           </section>
         </section>
+        <div className="new-row">
+          <button onClick={createNewRow} className="add-row">
+            Add Row
+          </button>
+        </div>
       </div>
     </div>
   );
