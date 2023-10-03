@@ -15,6 +15,7 @@ export default function Child() {
     const newInputBox = document.createElement("input");
     newInputBox.setAttribute("type", "text");
     newInputBox.name = "newbox";
+    newInputBox.className = "answer";
     document.getElementById("newElementId").appendChild(newInputBox);
   };
 
@@ -40,7 +41,7 @@ export default function Child() {
                 type="text"
                 name="firstq"
               />
-              <input type="text" />
+              <input type="text" className="answer" />
               <div id="newElementId"></div>
             </div>
           </section>
