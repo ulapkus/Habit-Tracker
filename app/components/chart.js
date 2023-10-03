@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Questions from "./questions";
 
 export const Context = React.createContext();
 
 export default function Chart() {
   const [random, setRandom] = useState([]);
+  const [renderCount, setRenderCount] = useState(["", "", "", "", "", "", ""]);
+  const colors = ["red", "pink", "green"];
 
   const location = (event) => {
     const clickedCell = event.target;
@@ -26,6 +28,26 @@ export default function Chart() {
         ].style.backgroundColor = "pink";
       }
     }
+  };
+
+  const createNewerRow = () => {
+    const table = document.getElementById("mytable");
+    const newRow = table.insertRow();
+    const cell1 = newRow.insertCell(0);
+    cell1.className = "cell";
+    const cell2 = newRow.insertCell(1);
+    cell2.className = "cell";
+    const cell3 = newRow.insertCell(2);
+    cell3.className = "cell";
+    const cell4 = newRow.insertCell(3);
+    cell4.className = "cell";
+    const cell5 = newRow.insertCell(4);
+    cell5.className = "cell";
+    const cell6 = newRow.insertCell(5);
+    cell6.className = "cell";
+    const cell7 = newRow.insertCell(6);
+    cell7.className = "cell";
+    console.log(random.length);
   };
 
   const createNewRow = () => {
@@ -54,11 +76,6 @@ export default function Chart() {
     document.getElementById("newHabitId").appendChild(habitInputBox);
   };
 
-  // const deleteRow = () => {
-  // const table = document.getElementById("mytable");
-  // const deleteRow = table.removeRow();
-  // };
-
   function removeHabits() {
     for (let i = 0; i < random.length; i++) {
       const checkbox = document.createElement("input");
@@ -77,6 +94,49 @@ export default function Chart() {
 
     const oldChild = document.getElementById("child");
     parent.replaceChild(newChild, oldChild);
+  }
+
+  function changeColor() {
+    for (let i = 0; i < random.length; i++) {
+      const dropdown = document.createElement("select");
+
+      for (let j = 0; j <= colors.length; j++) {
+        const option = document.createElement('option');
+        option.text = colors[j];
+        dropdown.appendChild(option);
+      }
+
+      document.getElementById('checkbox-parent').appendChild(dropdown);
+
+
+      // document
+      //   .getElementById("checkbox-parent")
+      //   .appendChild(dropdown, random[i]);
+    }
+
+    // for (let i = 0; i <= 3; i++) {
+    //   const colorOptions = document.createElement("option");
+    //   document
+    //     .getElementById("color-options")
+    //     .appendChild(colorOptions, random[i]);
+    // }
+
+
+    /* <select className="chart-buttons-individual">
+<option>Choose Color</option>
+<option>pink</option>
+<option>pink</option>
+<option>green</option>
+</select> */
+
+    // const parent = document.getElementById("checkboxes-plus-submit");
+    // const newChild = document.createElement("button");
+    // // newChild.innerHTML = "Submit";
+    // newChild.onclick = checkIfSubmit;
+    // newChild.textContent = "Submit";
+
+    // const oldChild = document.getElementById("child");
+    // parent.replaceChild(newChild, oldChild);
   }
 
   const checkIfSubmit = () => {
@@ -104,7 +164,9 @@ export default function Chart() {
       <div className="mainquestions">
         <div className="checkboxes-plus-chart">
           <div id="checkboxes-plus-submit">
-            <div id="checkbox-parent"></div>
+            <div id="checkbox-parent">
+              <div id="dropdown-options"></div>
+            </div>
             <div id="child"></div>
           </div>
           <section className="border">
@@ -115,7 +177,7 @@ export default function Chart() {
               <h4>Habit</h4>
               <div id="habits-input-boxes">
                 {random.map((item, index) => (
-                  <p key={index} className="imported-habits habit-checkboxes">
+                  <p key={index} className="imported-habits">
                     {item}
                   </p>
                 ))}
@@ -137,24 +199,15 @@ export default function Chart() {
                   </tr>
                 </tbody>
                 <tbody id="mytable">
-                  <tr onClick={location} className="random-row">
-                    <td className="first-habit-cell cell"></td>
-                    <td className="first-habit-cell cell"></td>
-                    <td className="first-habit-cell cell"></td>
-                    <td className="first-habit-cell cell"></td>
-                    <td className="first-habit-cell cell"></td>
-                    <td className="first-habit-cell cell"></td>
-                    <td className="first-habit-cell cell"></td>
-                  </tr>
-                  <tr onClick={location} className="random-row">
-                    <td className="second-habit-cell cell"></td>
-                    <td className="second-habit-cell cell"></td>
-                    <td className="second-habit-cell cell"></td>
-                    <td className="second-habit-cell cell"></td>
-                    <td className="second-habit-cell cell"></td>
-                    <td className="second-habit-cell cell"></td>
-                    <td className="second-habit-cell cell"></td>
-                  </tr>
+                  {random.map((item, index) => (
+                    <tr key={index} className="random-row" onClick={location}>
+                      {renderCount.map((item, dindex) => (
+                        <td key={dindex} className="first-habit-cell cell">
+                          {item}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </section>
@@ -169,7 +222,9 @@ export default function Chart() {
           <button className="chart-buttons-individual" onClick={removeHabits}>
             - Remove habit
           </button>
-          <button className="chart-buttons-individual">Colors</button>
+          <button className="chart-buttons-individual" onClick={changeColor}>
+            Color
+          </button>
           <button className="chart-buttons-individual">Save</button>
           <button className="chart-buttons-individual">Other</button>
         </div>
@@ -177,3 +232,10 @@ export default function Chart() {
     </div>
   );
 }
+
+/* <select className="chart-buttons-individual">
+<option>Choose Color</option>
+<option>pink</option>
+<option>pink</option>
+<option>green</option>
+</select> */

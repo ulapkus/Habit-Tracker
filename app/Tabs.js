@@ -38,12 +38,12 @@ function Tabs() {
         <div className={toggleState === 1 ? "active-content" : "content"}>
           {/* <h1>Habit Chart</h1> */}
           <hr />
-         <Home /> 
+         <Chart /> 
         </div>
 
         <div className={toggleState === 2 ? "active-content" : "content"}>
           <hr />
-          <Chart />
+         <Home /> 
         </div>
 
         <div className={toggleState === 3 ? "active-content" : "content"}>

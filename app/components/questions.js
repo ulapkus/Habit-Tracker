@@ -26,6 +26,7 @@ export default function Child() {
     document.getElementById("myModal").style.display = "none";
   }
 
+
   return (
     <section id="myModal">
       <div className="modal-content">

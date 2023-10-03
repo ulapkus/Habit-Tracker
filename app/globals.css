@@ -323,13 +323,14 @@ table {
   justify-content: flex-start;
   align-items: center;
 
-  border: 1px solid black;
+  border: 1px solid blue;
   height: 9vw;
   width: 9vw;
   padding: 0;
   margin: 0;
   font-size: 3vh;
   white-space: normal;
+
 }
 
 td {
