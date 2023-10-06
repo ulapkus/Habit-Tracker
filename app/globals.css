@@ -490,3 +490,11 @@ footer {
   margin: 0;
   text-align: center;
 }
+
+.red {
+  background-color: blue;
+}
+
+/* #one {
+  color: blue;
+} */

@@ -6,49 +6,9 @@ export const Context = React.createContext();
 export default function Chart() {
   const [random, setRandom] = useState([]);
   const [renderCount, setRenderCount] = useState(["", "", "", "", "", "", ""]);
+  const [selectedOption, setSelectedOption] = useState("");
   const colors = ["red", "pink", "green"];
-
-  const location = (event) => {
-    const clickedCell = event.target;
-    const rowIndex = clickedCell.parentElement.rowIndex;
-    const cellIndex = clickedCell.cellIndex;
-
-    if (event.target.tagName === "TD") {
-      console.log(rowIndex);
-      console.log(document.getElementById("mytable").rows[0]);
-    }
-    for (let i = 0; i <= 6; i++) {
-      if (rowIndex === 1 && cellIndex === i) {
-        document.getElementById("mytable").rows[0].cells[
-          i
-        ].style.backgroundColor = "red";
-      } else if (rowIndex === 2 && cellIndex === i) {
-        document.getElementById("mytable").rows[1].cells[
-          i
-        ].style.backgroundColor = "pink";
-      }
-    }
-  };
-
-  const createNewerRow = () => {
-    const table = document.getElementById("mytable");
-    const newRow = table.insertRow();
-    const cell1 = newRow.insertCell(0);
-    cell1.className = "cell";
-    const cell2 = newRow.insertCell(1);
-    cell2.className = "cell";
-    const cell3 = newRow.insertCell(2);
-    cell3.className = "cell";
-    const cell4 = newRow.insertCell(3);
-    cell4.className = "cell";
-    const cell5 = newRow.insertCell(4);
-    cell5.className = "cell";
-    const cell6 = newRow.insertCell(5);
-    cell6.className = "cell";
-    const cell7 = newRow.insertCell(6);
-    cell7.className = "cell";
-    console.log(random.length);
-  };
+  const inputValues = [];
 
   const createNewRow = () => {
     const table = document.getElementById("mytable");
@@ -72,8 +32,68 @@ export default function Chart() {
     habitInputBox.setAttribute("type", "text");
     habitInputBox.name = "newbox";
     habitInputBox.placeholder = "Insert habit";
+    habitInputBox.id = "blahhh";
     habitInputBox.classList.add("habit-input-box");
+
+    habitInputBox.addEventListener("change", function () {
+      // const inputValue = event.target.value;
+      const inputElements = document.querySelectorAll("input");
+      for (let i = 2; i < inputElements.length; i++) {
+        inputValues.push(inputElements[i].value);
+        // console.log(inputElements[i].value);
+      }
+
+      //     setInputValues((prevInputValues) => [...prevInputValues, inputValue[i]]);
+    });
+
     document.getElementById("newHabitId").appendChild(habitInputBox);
+
+    const habitsubmit = document.createElement("button");
+    habitsubmit.textContent = "Submit";
+    // habitsubmit.id = "submitz";
+    habitsubmit.id = "input-box-submit";
+    habitsubmit.classList.add("habit-submit");
+
+    document.getElementById("child").appendChild(habitsubmit);
+
+    // habitsubmit.addEventListener("click", function () {
+    //   // const inputValue = event.target.value;
+
+    //   // setInputValues((prevInputValues) => [...prevInputValues, inputValue]);
+    //   console.log(inputValues);
+    // });
+
+    //   const habitsubmits = document.getElementById("submitz");
+    //   // const habitInputBoxes = document.getElementsByClassName("habit-submit")
+    //   habitsubmits.addEventListener("click", function (event) {
+    //     setInputValues(event.target.value);
+    //  console.log(inputValues);
+    //     // for (let i = 0; i < habitInputBoxes.length; i++) {
+    //     //   const newArray = [];
+    //     //   newArray.push(habitInputBoxes.value[i]);
+    //     //   // return newArray;
+    //     //   console.log(newArray);
+
+    //     // }
+    //   });
+  };
+
+  //   const habitsubmits = document.getElementById("submitz");
+  //   // const habitInputBoxes = document.getElementsByClassName("habit-submit")
+  //   habitsubmits.addEventListener("click", function (event) {
+  //     setInputValues(event.target.value);
+  //  console.log(inputValues);
+  //     // for (let i = 0; i < habitInputBoxes.length; i++) {
+  //     //   const newArray = [];
+  //     //   newArray.push(habitInputBoxes.value[i]);
+  //     //   // return newArray;
+  //     //   console.log(newArray);
+
+  //     // }
+  //   });
+
+  const handleChange = (event) => {
+    setInputValues(event.target.value);
   };
 
   function removeHabits() {
@@ -99,45 +119,49 @@ export default function Chart() {
   function changeColor() {
     for (let i = 0; i < random.length; i++) {
       const dropdown = document.createElement("select");
+      dropdown.id = "select";
 
       for (let j = 0; j <= colors.length; j++) {
-        const option = document.createElement('option');
+        const option = document.createElement("option");
+        option.className = "colorz";
+
+        // option.className = colors[j];
         option.text = colors[j];
+        option.value = colors[j];
+        option.id = "text";
+
         dropdown.appendChild(option);
       }
 
-      document.getElementById('checkbox-parent').appendChild(dropdown);
-
-
-      // document
-      //   .getElementById("checkbox-parent")
-      //   .appendChild(dropdown, random[i]);
+      document.getElementById("checkbox-parent").appendChild(dropdown);
     }
 
-    // for (let i = 0; i <= 3; i++) {
-    //   const colorOptions = document.createElement("option");
-    //   document
-    //     .getElementById("color-options")
-    //     .appendChild(colorOptions, random[i]);
-    // }
+    document.getElementById("select").addEventListener("change", handleColorSelection);
 
-
-    /* <select className="chart-buttons-individual">
-<option>Choose Color</option>
-<option>pink</option>
-<option>pink</option>
-<option>green</option>
-</select> */
-
-    // const parent = document.getElementById("checkboxes-plus-submit");
-    // const newChild = document.createElement("button");
-    // // newChild.innerHTML = "Submit";
-    // newChild.onclick = checkIfSubmit;
-    // newChild.textContent = "Submit";
-
-    // const oldChild = document.getElementById("child");
-    // parent.replaceChild(newChild, oldChild);
   }
+
+const handleColorSelection = (event) => {
+const cellsInFirstRow = document.querySelectorAll(".first-habit-cell");
+    const selectedColor = event.target.value;
+
+cellsInFirstRow.forEach((cell) => {
+  cell.addEventListener("click", (event) => {
+    switch (selectedColor) {
+      case "red":
+        event.target.style.backgroundColor = "red";
+        break;
+      case "green":
+        event.target.style.backgroundColor = "green";
+        break;
+      case "pink":
+        event.target.style.backgroundColor = "pink";
+        break;
+    }
+  });
+});}
+
+
+
 
   const checkIfSubmit = () => {
     const boxes = document.getElementsByClassName("checkboxes");
@@ -160,13 +184,15 @@ export default function Chart() {
 
   return (
     <div className="background">
-      <h1>My Habit Tracker</h1>
+      <h1 id="white">My Habit Tracker</h1>
+      <button id="submitz" onClick={() => console.log(inputValues[2].value)}>
+        submitz
+      </button>
+      {/* <button onClick={colorFul}>Hi</button> */}
       <div className="mainquestions">
         <div className="checkboxes-plus-chart">
           <div id="checkboxes-plus-submit">
-            <div id="checkbox-parent">
-              <div id="dropdown-options"></div>
-            </div>
+            <div id="checkbox-parent"></div>
             <div id="child"></div>
           </div>
           <section className="border">
@@ -189,7 +215,9 @@ export default function Chart() {
               <table>
                 <tbody>
                   <tr>
-                    <td className="dayz">Day 1</td>
+                    <td className="dayz" id="one">
+                      Day 1
+                    </td>
                     <td className="dayz">Day 2</td>
                     <td className="dayz">Day 3</td>
                     <td className="dayz">Day 4</td>
@@ -200,12 +228,16 @@ export default function Chart() {
                 </tbody>
                 <tbody id="mytable">
                   {random.map((item, index) => (
-                    <tr key={index} className="random-row" onClick={location}>
+                    <tr key={index} className="random-row">
                       {renderCount.map((item, dindex) => (
-                        <td key={dindex} className="first-habit-cell cell">
+                        <td
+                          key={dindex}
+                          className="first-habit-cell cell"
+                        >
                           {item}
                         </td>
                       ))}
+
                     </tr>
                   ))}
                 </tbody>
@@ -225,17 +257,10 @@ export default function Chart() {
           <button className="chart-buttons-individual" onClick={changeColor}>
             Color
           </button>
-          <button className="chart-buttons-individual">Save</button>
+          {/* <button className="chart-buttons-individual" onClick={save}>Save</button> */}
           <button className="chart-buttons-individual">Other</button>
         </div>
       </div>
     </div>
   );
 }
-
-/* <select className="chart-buttons-individual">
-<option>Choose Color</option>
-<option>pink</option>
-<option>pink</option>
-<option>green</option>
-</select> */
