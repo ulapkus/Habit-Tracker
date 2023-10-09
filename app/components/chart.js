@@ -75,7 +75,7 @@ export default function Chart() {
   };
 
   const createNewRow = () => {
-    const table = document.getElementById("mytable");
+    const table = document.getElementById("tempTable");
     const newRow = table.insertRow();
     const cell1 = newRow.insertCell(0);
     cell1.className = "cell";
@@ -115,10 +115,13 @@ export default function Chart() {
       setAddInputSubmitTwo(true);
 
       habitsubmit.addEventListener("click", function () {
+        document.getElementById("child").removeChild(habitsubmit);
         const inputElements = document.querySelectorAll("input");
         for (let i = 2; i < inputElements.length; i++) {
           inputValues.push(inputElements[i].value);
           console.log(inputValues);
+          setRandom((prevRandom) => [...prevRandom, inputElements[i].value]);
+          console.log(random);
 
           while (document.getElementById("newHabitId").firstChild) {
             document
@@ -126,17 +129,23 @@ export default function Chart() {
               .removeChild(document.getElementById("newHabitId").firstChild);
           }
 
-          for (let i = 0; i < inputValues.length; i++) {
-            const finalHabitBox = document.createElement("p");
-            finalHabitBox.classList.add("final-habit-box");
-
-            finalHabitBox.textContent = inputValues[i];
-            document.getElementById("newHabitId").appendChild(finalHabitBox);
+          while (document.getElementById("tempTable").firstChild) {
+            document
+              .getElementById("tempTable")
+              .removeChild(document.getElementById("tempTable").firstChild);
           }
+
+          // for (let i = 0; i < inputValues.length; i++) {
+          //   const finalHabitBox = document.createElement("p");
+          //   finalHabitBox.classList.add("final-habit-box");
+
+          //   finalHabitBox.textContent = inputValues[i];
+          //   document.getElementById("newHabitId").appendChild(finalHabitBox);
+          // }
         }
       });
     }
-  }, [addInputSubmit, addInputSubmitTwo, inputValues]);
+  }, [addInputSubmit, addInputSubmitTwo, inputValues, random]);
 
   function removeHabits() {
     for (let i = 0; i < random.length; i++) {
@@ -151,7 +160,8 @@ export default function Chart() {
     const parent = document.getElementById("checkboxes-plus-submit");
     const newChild = document.createElement("button");
     newChild.onclick = checkIfSubmit;
-    newChild.textContent = "Submit";
+    newChild.textContent = "Remove";
+    newChild.id = "remove-button";
 
     const oldChild = document.getElementById("child");
     parent.replaceChild(newChild, oldChild);
@@ -206,8 +216,9 @@ export default function Chart() {
 
     for (let i = 0; i < boxes.length; i++) {
       if (boxes[i].checked) {
-        random.splice(boxes[i], 1);
-        console.log(random[i]);
+        random.splice([i], 1);
+        // console.log(random)
+        //         console.log(random[i]);
 
         const tablee = document.getElementById("mytable");
         tablee.removeChild(document.getElementsByClassName("random-row")[i]);
@@ -218,6 +229,16 @@ export default function Chart() {
         );
       }
     }
+    document.getElementById("remove-button").remove();
+    while (document.getElementById("checkbox-parent").firstChild) {
+      document
+        .getElementById("checkbox-parent")
+        .removeChild(document.getElementById("checkbox-parent").firstChild);
+    }
+  };
+
+  const testt = () => {
+    console.log(random);
   };
 
   return (
@@ -271,6 +292,7 @@ export default function Chart() {
                     </tr>
                   ))}
                 </tbody>
+                <tbody id="tempTable"></tbody>
               </table>
             </section>
           </section>
@@ -287,33 +309,11 @@ export default function Chart() {
           </button>
           {/* onClick={() => setColorSubmit(true)} */}
           {/* <button className="chart-buttons-individual" onClick={save}>Save</button> */}
-          <button className="chart-buttons-individual">Other</button>
+          <button className="chart-buttons-individual" onClick={testt}>
+            Other
+          </button>
         </div>
       </div>
     </div>
   );
 }
-
-// const colors = ["Choose color", "red", "orange", "yellow", "green", "blue", "purple", "pink"];
-
-// case "red":
-//   event.target.style.backgroundColor = "red";
-//   break;
-// case "orange":
-//   event.target.style.backgroundColor = "orange";
-//   break;
-// case "yellow":
-//   event.target.style.backgroundColor = "yellow";
-//   break;
-// case "green":
-//   event.target.style.backgroundColor = "green";
-//   break;
-// case "blue":
-//   event.target.style.backgroundColor = "blue";
-//   break;
-// case "purple":
-//   event.target.style.backgroundColor = "purple";
-//   break;
-// case "pink":
-//   event.target.style.backgroundColor = "pink";
-//   break;
