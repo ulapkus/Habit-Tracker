@@ -60,6 +60,7 @@ hr {
   width: 63vw;
 }
 
+
 .tabs {
   border: 2px solid black;
   outline: none;
@@ -290,6 +291,9 @@ h3 {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  border: 1px solid green;
+
+
 }
 
 h1 {
@@ -424,6 +428,16 @@ h2:hover {
   cursor: pointer;
 }
 
+.final-habit-box {
+  border: 1px solid purple;
+  width: 9vw;
+  height: 9vw;
+  padding: 0 0 0 1vw;
+  margin: 0;
+  font-size: 2.5vh;
+
+}
+
 .habit-input-box {
   border: 1px solid black;
   height: 9vw;
@@ -490,11 +504,3 @@ footer {
   margin: 0;
   text-align: center;
 }
-
-.red {
-  background-color: blue;
-}
-
-/* #one {
-  color: blue;
-} */
