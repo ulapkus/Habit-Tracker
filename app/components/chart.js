@@ -31,11 +31,7 @@ export default function Chart() {
       const children = Array.from(event.target.parentElement.children);
       const childrenIndex = children.indexOf(event.target);
       selectedColors.splice(childrenIndex, 1, selectedColor);
-
-      // console.log(document.getElementsByTagName("select")[1])
     }
-    // console.log(selectedColors);
-    // console.log(getIndexOf(selectedColor));
 
     const table = document.getElementById("mytable");
 
@@ -109,14 +105,6 @@ export default function Chart() {
               .getElementById("tempTable")
               .removeChild(document.getElementById("tempTable").firstChild);
           }
-
-          // for (let i = 0; i < inputValues.length; i++) {
-          //   const finalHabitBox = document.createElement("p");
-          //   finalHabitBox.classList.add("final-habit-box");
-
-          //   finalHabitBox.textContent = inputValues[i];
-          //   document.getElementById("newHabitId").appendChild(finalHabitBox);
-          // }
         }
       });
     }
@@ -198,7 +186,6 @@ export default function Chart() {
         habitBox.removeChild(
           document.getElementsByClassName("imported-habits")[i]
         );
-
       }
     }
     document.getElementById("remove-button").remove();
@@ -206,7 +193,6 @@ export default function Chart() {
       document
         .getElementById("checkbox-parent")
         .removeChild(document.getElementById("checkbox-parent").firstChild);
-
     }
   };
 
@@ -280,7 +266,6 @@ export default function Chart() {
           <button className="chart-buttons-individual" onClick={chooseColor}>
             Color
           </button>
-          {/* onClick={() => setColorSubmit(true)} */}
           {/* <button className="chart-buttons-individual" onClick={save}>Save</button> */}
           <button className="chart-buttons-individual" onClick={testt}>
             Other
@@ -348,8 +333,7 @@ export default function Chart() {
 
 // habitsubmit.addEventListener("click", function () {
 //     document.getElementById("child").removeChild(document.getElementById("input-box-submit"));
-    
-    
+
 //     const inputElements = document.querySelectorAll(".habit-input-box");
 //     for (let i = 2; i < inputElements.length; i++) {
 //       inputValues.push(inputElements[i].value);
@@ -368,7 +352,6 @@ export default function Chart() {
 //           .getElementById("tempTable")
 //           .removeChild(document.getElementById("tempTable").firstChild);
 //       }
-
 
 //     }
 //   })
