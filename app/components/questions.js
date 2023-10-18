@@ -1,61 +1,138 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "./chart";
+import { OtherContext } from "./chart";
+import { ColorContext } from "./chart";
+import { ModalVisibilityContext } from "./chart";
+// import Chart from "./chart";
+
+// export const ModalVisibilityContext = React.createContext();
 
 export default function Child() {
-  const [random, setRandom] = useContext(Context);
+  const [habits, setHabits] = useContext(Context);
+  const [days, setDays] = useContext(OtherContext);
+  const [colors, setColors] = useContext(ColorContext);
+  const [modalVisibility, setModalVisibility] = useContext(
+    ModalVisibilityContext
+  );
+  const [random, setRandom] = useState([]);
+  const [firstInputFields, setFirstInputFields] = useState([[]]);
+  const [firstColors, setFirstColors] = useState([[]]);
+  const [colorFields, setColorFields] = useState([[]]);
 
-  useEffect(() => {
-    function onstartup() {
-      document.getElementById("myModal").style.display = "block";
-    }
-    onstartup();
-  }, []);
+  // useEffect(() => {
+  //   function onStartup() {
+  //     setModalVisibility(true);
+  //   }
+  //   onStartup();
+  // }, [setModalVisibility]);
 
   const createNewElement = () => {
-    const newInputBox = document.createElement("input");
-    newInputBox.setAttribute("type", "text");
-    newInputBox.name = "newbox";
-    newInputBox.className = "answer";
-    document.getElementById("newElementId").appendChild(newInputBox);
+    const addInput = [...firstInputFields, []];
+    setFirstInputFields(addInput);
+
+    const addColor = [...colorFields, []];
+    setColorFields(addColor);
   };
 
-  function getInputValues(event) {
+  function getInputValues() {
     const inputFields = document.querySelectorAll("input[type='text']");
     const inputValues = Array.from(inputFields).map((input) => input.value);
-    setRandom(inputValues);
-    document.getElementById("myModal").style.display = "none";
+
+    inputValues.map((inputValue, index) => {
+      const newArray = [true, false, false, false, false, false, true];
+      setDays((prevDays) => ({
+        ...prevDays,
+        [inputValues[index]]: newArray,
+      }));
+
+      inputValues.map((inputValue, index) => {
+        setColors((prevColor) => ({
+          ...prevColor,
+          [inputValues[index]]: colorFields[index],
+        }));
+      });
+
+      setHabits([...habits, inputValue]);
+    });
+
+    setModalVisibility(false);
   }
 
+  const handleInputChange = (onChangeValue, i) => {
+    const inputValue = [...firstInputFields];
+    inputValue[i] = onChangeValue.target.value;
+    setFirstInputFields(inputValue);
+  };
+
+  const handleColorChange = (value, i) => {
+    const colorValue = [...colorFields];
+    colorValue[i] = value.target.value;
+    setColorFields(colorValue);
+  };
+
+  const removeInput = (i) => {
+    const removeInput = [...firstInputFields];
+    removeInput.splice(i, 1);
+    setFirstInputFields(removeInput);
+
+    const removeColor = [...colorFields];
+    removeColor.splice(i, 1);
+    setColorFields(removeColor);
+  };
 
   return (
-    <section id="myModal">
-      <div className="modal-content">
-        <section className="question-main">
-          <section className="question-plus-answer">
-            <h3 className="what-habits-q">
-              What are some habits you would like to work on?
-            </h3>
-            <div className="input-boxes">
-              <input
-                className="answer"
-                placeholder="i.e. drink more water"
-                type="text"
-                name="firstq"
-              />
-              <input type="text" className="answer" />
-              <div id="newElementId"></div>
-            </div>
-          </section>
-          <section className="buttons-q">
-            <button className="add-more" onClick={createNewElement}>
-              + Add more
-            </button>
-            <button onClick={getInputValues} className="submit-q">
-              Submit
-            </button>
-          </section>
-        </section>
-      </div>
-    </section>
+    <div>
+      {modalVisibility && (
+        <div id="myModal" style={{ display: "block" }}>
+          <div className="modal-content">
+            <section className="question-main">
+              <section className="question-plus-answer">
+                <h3 className="what-habits-q">
+                  What are some habits you would like to work on?
+                </h3>
+                <div className="input-boxes">
+                  <div className="modal-habit-input">
+                    {firstInputFields.map((firstInputField, i) => {
+                      return (
+                        <div key={i}>
+                          <input
+                            value={firstInputField}
+                            onChange={(e) => handleInputChange(e, i)}
+                            placeholder="Habit"
+                            type="text"
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="modal-color-input">
+                    {colorFields.map((colorField, index) => {
+                      return (
+                        <div key={index} className="modal-color-plus-button">
+                          <input
+                            value={colorField}
+                            onChange={(e) => handleColorChange(e, index)}
+                            placeholder="Color"
+                          />
+                          <button onClick={() => removeInput(i)}>X</button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </section>
+              <section className="buttons-q">
+                <button className="add-more" onClick={createNewElement}>
+                  + Add more
+                </button>
+                <button onClick={getInputValues} className="submit-q">
+                  Submit
+                </button>
+              </section>
+            </section>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
