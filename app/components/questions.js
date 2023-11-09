@@ -3,9 +3,6 @@ import { Context } from "./chart";
 import { OtherContext } from "./chart";
 import { ColorContext } from "./chart";
 import { ModalVisibilityContext } from "./chart";
-// import Chart from "./chart";
-
-// export const ModalVisibilityContext = React.createContext();
 
 export default function Child() {
   const [habits, setHabits] = useContext(Context);
@@ -18,13 +15,6 @@ export default function Child() {
   const [firstInputFields, setFirstInputFields] = useState([[]]);
   const [firstColors, setFirstColors] = useState([[]]);
   const [colorFields, setColorFields] = useState([[]]);
-
-  // useEffect(() => {
-  //   function onStartup() {
-  //     setModalVisibility(true);
-  //   }
-  //   onStartup();
-  // }, [setModalVisibility]);
 
   const createNewElement = () => {
     const addInput = [...firstInputFields, []];

@@ -1,10 +1,7 @@
 "use client";
 
-import Image from "next/image";
-// import styles from "./page.module.css";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import Questions from "./questions";
-// import { ModalVisibilityContext } from "./questions";
 
 export const Context = React.createContext();
 export const OtherContext = React.createContext();
@@ -14,9 +11,9 @@ export const ModalVisibilityContext = React.createContext();
 export default function Chart() {
   const [habits, setHabits] = useState(["workout", "yoga", "water"]);
   const [days, setDays] = useState({
-    workout: [true, false, false, false, false, false, true],
-    yoga: [true, false, false, false, false, false, true],
-    water: [true, false, false, false, false, false, true],
+    workout: [true, false, true, true, false, false, true],
+    yoga: [true, true, false, false, true, false, false],
+    water: [false, true, false, true, false, false, true],
   });
 
   const [colors, setColors] = useState({
@@ -283,8 +280,6 @@ export default function Chart() {
       </div>
     );
   };
-
-  
 
   function getUpcomingMonthDates() {
     const today = new Date();
