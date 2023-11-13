@@ -98,18 +98,35 @@ export default function Chart() {
   //   };
 
   const dayClicked = (event, rowName, index) => {
-    const currentDate = subDays(new Date(), 7);
+    if (days[rowName][index] === "0") {
+      const currentDate = subDays(new Date(), 7);
 
-    setDays((prevDays) => {
-      return {
-        ...prevDays,
-        [rowName]: [
-          ...prevDays[rowName].slice(0, index),
-          format(addDays(currentDate, ((index + 1) + (7 * weekCount))), "y" + "-" + "MM" + "-" + "dd"),
-          ...prevDays[rowName].slice(index + 1),
-        ],
-      };
-    });
+      setDays((prevDays) => {
+        return {
+          ...prevDays,
+          [rowName]: [
+            ...prevDays[rowName].slice(0, index),
+            // days[rowName][index],
+            format(
+              addDays(currentDate, index + 1 + 7 * weekCount),
+              "y" + "-" + "MM" + "-" + "dd"
+            ),
+            ...prevDays[rowName].slice(index + 1),
+          ],
+        };
+      });
+    } else if (days[rowName][index] != "0") {
+      setDays((prevDays) => {
+        return {
+          ...prevDays,
+          [rowName]: [
+            ...prevDays[rowName].slice(0, index),
+            "0",
+            ...prevDays[rowName].slice(index + 1),
+          ],
+        };
+      });
+    }
   };
 
   console.log(days.workout);
