@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import Questions from "./questions";
 
+import { format, subDays, addDays } from "date-fns";
+
 export const Context = React.createContext();
 export const OtherContext = React.createContext();
 export const ColorContext = React.createContext();
@@ -10,11 +12,46 @@ export const ModalVisibilityContext = React.createContext();
 
 export default function Chart() {
   const [habits, setHabits] = useState(["workout", "yoga", "water"]);
+
+  // make application work with this
+  // const [completionDates, setCompletionDates = useState({
+  // workout: ['2023-11-11', '2023-11-13'],
+  // yoga: ['2023-11-12', '2023-11-15', '2023-11-16'],
+  // water: ['2023-11-12', '2023-11-14'],
+  // })
+
+  // make back and next buttons work
+
+  // const [displayStartDate, setDisplayStartDate] = useState('2023-10-01')
+
+  // this is week/month mode
+  // const [displayMode, setDisplayMode] = useState
+
+  // an array of all the dates showing - will be calculated from start date and display mode
+  // const displayedDates = []
+
+  // const displayCompletionData =
+
   const [days, setDays] = useState({
-    workout: [true, false, true, true, false, false, true],
-    yoga: [true, true, false, false, true, false, false],
-    water: [false, true, false, true, false, false, true],
+    workout: ["0", "2023-11-12", "0", "2023-11-13", "0", "0", "0"],
+    yoga: ["0", "2023-11-12", "0", "0", "0", "2023-11-15", "2023-11-16"],
+    water: ["0", "0", "0", "2023-11-13", "2023-11-14", "0", "0"],
   });
+
+  // console.log(days.workout[0])
+
+  // var date = new Date(days.workout[0]);
+  // var dayOfMonth = date.getDate();
+  // console.log(dayOfMonth);
+
+  // const result = getDayOfYear(new Date(2014, 6, 2))
+  // console.log(result)
+
+  // const [days, setDays] = useState({
+  //   workout: [true, false, true, true, false, false, true],
+  //   yoga: [true, true, false, false, true, false, false],
+  //   water: [false, true, false, true, false, false, true],
+  // });
 
   const [colors, setColors] = useState({
     workout: "purple",
@@ -37,24 +74,45 @@ export default function Chart() {
     setColorFields(addColor);
   };
 
+  // old way for t/f - works!
+
+  //   const dayClicked = (event, rowName, index) => {
+
+  //     setDays((prevDays) => {
+  //       return {
+  //         ...prevDays,
+  //         [rowName]: [
+  //           ...prevDays[rowName].slice(0, index),
+  //           !prevDays[rowName][index],
+  //           ...prevDays[rowName].slice(index + 1),
+  //         ],
+  //       };
+  //     });
+
+  // // dont think i need (but keep just in case for now)
+  //     // if (days[rowName][index]) {
+  //     //   event.target.style.backgroundColor = colors[rowName];
+  //     // } else {
+  //     //   event.target.style.backgroundColor = "white";
+  //     // }
+  //   };
+
   const dayClicked = (event, rowName, index) => {
+    const currentDate = subDays(new Date(), 7);
+
     setDays((prevDays) => {
       return {
         ...prevDays,
         [rowName]: [
           ...prevDays[rowName].slice(0, index),
-          !prevDays[rowName][index],
+          format(addDays(currentDate, ((index + 1) + (7 * weekCount))), "y" + "-" + "MM" + "-" + "dd"),
           ...prevDays[rowName].slice(index + 1),
         ],
       };
     });
-
-    if (days[rowName][index]) {
-      event.target.style.backgroundColor = colors[rowName];
-    } else {
-      event.target.style.backgroundColor = "white";
-    }
   };
+
+  console.log(days.workout);
 
   const handleInputChange = (onChangeValue, i) => {
     const inputValue = [...inputFields];
@@ -120,10 +178,18 @@ export default function Chart() {
     setDeleteHabit([]);
   };
 
-  const currentDate = new Date();
+  // const currentDate = new Date();
+  // console.log(currentDate)
   // const month = currentDate.getMonth() + 1;
   // const day = currentDate.getDate();
   // const year = currentDate.getFullYear();
+
+  // var getDate = require('date-fns/getDate')
+  // formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true })
+  // const result = getDate(new Date(2012, 1, 29))
+  // const result = getDate(new Date(2012, 1, 29))
+
+  // console.log(format(new Date(), "'Today is a' eeee"))
 
   function getUpcomingWeekDates() {
     const today = new Date();
@@ -132,7 +198,7 @@ export default function Chart() {
 
     for (let i = 0; i < 7; i++) {
       const date = new Date(today);
-      date.setDate(today.getDate() + i);
+      date.setDate(today.getDate() - 6 + i);
       nextWeekDates.push(date);
     }
 
@@ -179,10 +245,14 @@ export default function Chart() {
                 </ColorContext.Provider>
               </ModalVisibilityContext.Provider>
             </section>
-
-            <button onClick={back}>Back{"<--"}</button>
-            <button onClick={next}>Next{"-->"}</button>
-
+            <div className="nextAndBackButtons">
+              <button className="back" onClick={back}>
+                Back{"<--"}
+              </button>
+              <button className="next" onClick={next}>
+                Next{"-->"}
+              </button>
+            </div>
             <table>
               <thead>
                 <tr className="test-one">
@@ -203,10 +273,22 @@ export default function Chart() {
                         className="cell"
                         onClick={() => dayClicked(event, activity, index)}
                         key={index}
+                        // i have to make it for the backgroundColor below so that the color changes on the box where there is a
+                        // corresponding date in the array
+                        // ex: if it says 2023-10-01, then on the chart this day should change color
+
+                        // old:
+                        // style={{
+                        //   backgroundColor: days[activity][index]
+                        //     ? colors[activity]
+                        //     : "",
+                        // }}
+
                         style={{
-                          backgroundColor: days[activity][index]
-                            ? colors[activity]
-                            : "",
+                          backgroundColor:
+                            days[activity][index] !== "0"
+                              ? colors[activity]
+                              : "",
                         }}
                       ></td>
                     ))}
@@ -421,8 +503,12 @@ export default function Chart() {
 
   return (
     <div>
-      <button onClick={weekView}>Week View</button>
-      <button onClick={monthView}>Month View</button>
+      <button className="week-view" onClick={weekView}>
+        Week View
+      </button>
+      <button className="month-view" onClick={monthView}>
+        Month View
+      </button>
       {view === "week" ? renderWeekView() : renderMonthView()}
     </div>
   );

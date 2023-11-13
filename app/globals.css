@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap');
 * {
   box-sizing: border-box;
 }
@@ -347,6 +348,29 @@ td {
   border-radius: 20px;
 }
 
+.next, .back {
+  height: 4vh;
+  width: 5vw;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.nextAndBackButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  
+  /* border: 1px solid yellow; */
+}
+
+.week-view, .month-view {
+  height: 4vh;
+  width: 5vw;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
 .cell {
   display: flex;
   flex-direction: column;
@@ -357,6 +381,11 @@ td {
   font-size: 1.5vw;
   padding: 10px;
   margin: 10px;
+  background-color: #81c8e0;
+  font-size: 2vw;
+
+  font-family: 'Urbanist', sans-serif;
+  font-weight: bolder;
 }
 
 .month-cell {
@@ -380,6 +409,10 @@ td {
   text-align: center;
   font-weight: 500;
   width: 9vw;
+  background-color: #81c8e0;
+  
+  font-family: 'Urbanist', sans-serif;
+  font-weight: bolder;
 }
 
 .month-dayz {
@@ -408,6 +441,8 @@ h2 {
   /* border: 1px solid pink; */
   height: 9vh;
   width: 5vw;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: bolder;
 }
 
 h2:hover {
