@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap");
 * {
   box-sizing: border-box;
 }
@@ -15,8 +15,62 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid red; */
   background-color: beige;
+  margin: 0;
+  padding: 0;
+}
+
+.main-home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4vh;
+  /* border: 1px solid green; */
+  margin: 3vh 0 3vh 0;
+}
+
+.quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* border: 1px solid red; */
+  font-size: 4.5vh;
+  font-family: "Urbanist", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.author {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+  font-size: 2.5vh;
+  font-family: "Urbanist", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.quote-and-author {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1vh;
+  border: 1px solid purple;
+  background-color: lavender;
+  border-radius: 30px;
+  font-weight: bolder;
+  color: grey;
+  width: 70%;
+  height: 70%;
+  margin: 0;
+  padding: 8vh 1vw 8vh 1vw;
+
 }
 
 .container {
@@ -34,7 +88,6 @@ body {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  /* border: 1px solid red; */
   width: 50%;
   padding: 10vh 0 10vh 0;
 }
@@ -43,7 +96,20 @@ body {
   display: none;
   width: 100%;
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
+
+.content-tabs {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}
+
+/* .total-content-month {
+  width: 50vw;
+  border: 10px solid red;
+} */
 
 .content p {
   width: 100%;
@@ -113,7 +179,6 @@ hr {
   padding: 2vh 2vw 4vh 2vw;
   border: 1px solid #888;
   width: 30%;
-  /* height: 100%; */
   border-radius: 20px;
 }
 
@@ -122,7 +187,6 @@ hr {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  /* border: 1px solid red; */
   width: 100%;
 }
 
@@ -136,7 +200,6 @@ hr {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  /* border: 1px solid blue; */
   gap: 3vh;
 }
 
@@ -164,7 +227,6 @@ hr {
   gap: 1vh;
   padding: 0 0 2vh 0;
   margin: 0;
-  /* border: 1px solid blue; */
 }
 
 button {
@@ -199,7 +261,6 @@ h3 {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  /* border: 1px solid green; */
   height: 100%;
   padding: 0;
   margin: 0;
@@ -224,20 +285,33 @@ h3 {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 2vh;
-  padding: 5vh 3vw 3.5vh 3vw;
+  gap: 1vh;
+  padding: 0vh 1.5vw 3.2vh 1.5vw;
   background-color: #add8e6;
   border-radius: 20px;
   color: white;
-  width: 97%;
-  /* border: 1px solid red; */
+  width: 85%;
+ 
+  margin: 5vh 0 2.5vh 0;
+}
+
+.mainquestions-month {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1vh;
+  padding: 0 0 2vh 0;
+  background-color: #add8e6;
+  border-radius: 20px;
+  color: white;
+  width: 96%;
+  margin: 2.5vh 0 2.5vh 0;
 }
 
 #checkboxes-plus-submit {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* border: 1px solid red; */
   padding: 13vh 0 0 0;
   gap: 10vh;
 }
@@ -253,35 +327,17 @@ h3 {
 }
 
 #checkbox-parent {
-  /* border: 1px solid blue; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  /* align-items: center; */
   gap: 8vw;
   height: 100%;
-  /* padding: 13vh 0 0 0; */
-  /* margin: 4vw 0 0 0; */
 }
-/* 
-.border {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  border: 2px solid gray;
-  padding: 0;
-  margin: 0 0 0 0;
-  width: 72vw;
-} */
 
 .habits {
-  /* border: 1px solid pink; */
   width: 9vw;
   font-size: 9vw;
   padding: 0;
-  /* margin: 0 0 0 3vw; */
 }
 
 #newHabitId {
@@ -292,22 +348,25 @@ h3 {
 }
 
 h1 {
-  font-size: 5vh;
+  font-size: 6vh;
   text-align: center;
   width: 100%;
   padding: 3vh 0 3vh 0;
   margin: 0;
   color: gray;
-  /* border: 1px solid red; */
+  font-family: "Urbanist", sans-serif;
+font-weight: bold;
 }
 
 .background {
-  /* background-color: beige; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .test {
@@ -315,19 +374,89 @@ h1 {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid red; */
   height: 100%;
   width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: "Urbanist", sans-serif;
+}
+
+.month-cell-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  font-family: "Urbanist", sans-serif;
+}
+
+.test :first-child {
+  width: 14vw;
+}
+
+.test-one :first-child {
+  width: 14vw;
 }
 
 .test-one {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  /* border: 1px solid red; */
   height: 100%;
   width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.month-header-one {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  font-family: "Urbanist", sans-serif;
+  padding-left: 7vw;
+  padding-top: 0px;
+  margin: 0;
+  position: relative;
+  top: 3.3vh;
+}
+
+.month-header-two {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: "Urbanist", sans-serif;
+}
+
+.month-daysofweek,
+.month-dayz {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 1.63vw;
+  font-size: 1vw;
+  text-align: center;
+  width: 2.64vw;
+  background-color: #81c8e0;
+  margin: 2.2px;
+  border-radius: 5px;
+}
+
+thead {
+  border: 1px solid green;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 table {
@@ -337,22 +466,21 @@ table {
   margin: 0;
 }
 
-td {
-  /* flex: 1;
-  aspect-ratio: 1; */
-  /* height: 9vw;
-  width: 9vw; */
-  /* border: 20px solid red; */
-  background-color: #add8e6;
-
-  border-radius: 20px;
-}
-
-.next, .back {
+.back,
+.next {
   height: 4vh;
   width: 5vw;
   border: 1px solid black;
   border-radius: 10px;
+}
+.backMonth,
+.nextMonth {
+  height: 4vh;
+  width: 5vw;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 0;
+  padding: 0;
 }
 
 .nextAndBackButtons {
@@ -360,45 +488,35 @@ td {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  
-  /* border: 1px solid yellow; */
 }
 
-.week-view, .month-view {
-  height: 4vh;
-  width: 5vw;
-  border: 1px solid black;
-  border-radius: 10px;
+.month-nextAndBackButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .cell {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 9vw;
-  width: 9vw;
+  height: 8vw;
+  width: 8vw;
   text-align: center;
   font-size: 1.5vw;
   padding: 10px;
   margin: 10px;
   background-color: #81c8e0;
   font-size: 2vw;
-
-  font-family: 'Urbanist', sans-serif;
+  border-radius: 20px;
+  font-family: "Urbanist", sans-serif;
   font-weight: bolder;
 }
 
-.month-cell {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 4vw;
-  width: 4vw;
-  text-align: center;
-  font-size: 1vw;
-  padding: 10px;
-  margin: 10px;
-}
+
 
 .dayz {
   display: flex;
@@ -408,42 +526,88 @@ td {
   font-size: 2vw;
   text-align: center;
   font-weight: 500;
-  width: 9vw;
+  width: 8vw;
   background-color: #81c8e0;
-  
-  font-family: 'Urbanist', sans-serif;
+  border-radius: 20px;
+  font-family: "Urbanist", sans-serif;
   font-weight: bolder;
+  margin: 10px;
 }
 
-.month-dayz {
+.month-dayz-habits-word {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 3.5vw;
+  font-size: 2.3vh;
+  text-align: center;
+  font-weight: 500;
+  width: 7vw;
+  background-color: #81c8e0;
+  margin-bottom: 2.2px;
+  border-radius: 7px;
+}
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 2vw;
-    font-size: 1vw;
-    text-align: center;
-    font-weight: 500;
-    width: 4vw;
-  
+
+
+.month-cell-habit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 2.6vw;
+  width: 7vw;
+  text-align: center;
+  font-size: 2.3vh;
+  padding: 10px;
+  margin: 2px, 2px, 0, 0;
+  background-color: #81c8e0;
+  border-radius: 7px;
+}
+
+.month-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 2.64vw;
+  width: 2.64vw;
+  text-align: center;
+  font-size: 1vw;
+  padding: 5px;
+  margin: 2.2px;
+  background-color: #81c8e0;
+  border-radius: 6px;
+}
+
+.currentMonth {
+  font-size: 5vh;
+  color: grey;
+  font-family: "Urbanist", sans-serif;
+  font-weight: bolder;
 }
 
 tr {
   padding: 0;
-  margin: 0;
 }
 
-h2 {
+.no-data-message {
+  font-size: 5vh;
+  text-align: center;
+  font-family: "Urbanist", sans-serif;
+  font-weight: bolder;
+  padding: 5vh;
+}
+
+.about-us {
   font-size: 2vh;
   font-weight: 300;
   padding: 3vh 0 4vh 0;
   margin: 0;
-  /* border: 1px solid pink; */
   height: 9vh;
-  width: 5vw;
-  font-family: 'Urbanist', sans-serif;
-  font-weight: bolder;
+  width: 7vw;
+  font-family: "Urbanist", sans-serif;
+  /* border: 1px solid red; */
 }
+
 
 h2:hover {
   cursor: pointer;
@@ -454,7 +618,6 @@ h2:hover {
   flex-direction: row;
   justify-content: space-around;
   align-items: flex-start;
-  border: 2px solid white;
   border-radius: 15px;
   padding: 2vh 0 2vh 0;
   height: 100%;
@@ -469,7 +632,32 @@ h2:hover {
   border-radius: 10px;
 }
 
-.chart-buttons-individual:hover {
+.chart-buttons-month {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  /* border: 2px solid white; */
+  border-radius: 15px;
+  /* padding: 2vh 3vw 2vh 3vw; */
+  height: 100%;
+  width: 50vw;
+  margin: 0;
+}
+
+.chart-buttons-individual-month {
+  width: 6.4vw;
+  height: 3.5vh;
+  font-size: .7vw;
+  border: 1px solid black;
+  border-radius: 9px;
+}
+
+.chart-buttons-individual :hover {
+  cursor: pointer;
+}
+
+.chart-buttons-month :hover {
   cursor: pointer;
 }
 
@@ -481,12 +669,13 @@ input:focus {
   margin: 5vh 0 0 0;
 }
 
+
+
 footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid red; */
   padding: 0;
   margin: 0;
   text-align: center;
