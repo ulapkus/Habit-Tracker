@@ -167,7 +167,7 @@ export default function Home() {
 
   return (
     <div className="main-home">
-      <h1>Welcome back, Ula!</h1>
+      <h1>WELCOME BACK, ULA!</h1>
       <div className="quote-and-author">
         <p className="quote">&quot;{displayedQuote}&quot;</p>
         <p className="author">- {displayedAuthor}</p>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import Questions from "./questions";
 import {
   format,
@@ -290,7 +290,6 @@ export default function Chart() {
 
   const [inputFields, setInputFields] = useState([]);
   const [colorFields, setColorFields] = useState([]);
-  const [deleteHabit, setDeleteHabit] = useState([]);
   const [weekCount, setWeekCount] = useState(0);
   const [view, setView] = useState("week");
   const [modalVisibility, setModalVisibility] = useState(true);
@@ -310,7 +309,7 @@ export default function Chart() {
     );
 
     setDaysDifference(newDaysDifference);
-    setLastLogin(format(new Date(), "y-MM-dd"));
+    setLastLogin(format(new Date(), "y-MM-d"));
   };
 
   if (daysDifference > 0) {
@@ -336,85 +335,33 @@ export default function Chart() {
     }
   }, [runUpdateDays]);
 
+  // const handleInputChange = (onChangeValue, i) => {
+  //   const inputValue = [...inputFields];
+  //   inputValue[i] = onChangeValue.target.value;
+  //   setInputFields(inputValue);
+  // };
+
   const addHabit = () => {
+    //     inputFields.map((inputField, index) => {
+    //       setDays((prevDays) => ({
+    //         ...prevDays,
+    //         [inputFields[index]]: newArray,
+    //       }));
+    //     });
+    // setDays((prevDays) => {
+    //   const newDays = { ...prevDays };
+    //   newDays[rowName][firstDayOfWeek + index] = format(
+    //     addDays(currentDate, index + 1),
+    //     "y-MM-d"
+    //   );
+    //   return newDays;
+    // });
+
     const addInput = [...inputFields, []];
     setInputFields(addInput);
 
     const addColor = [...colorFields, []];
     setColorFields(addColor);
-  };
-
-  const dayClicked = (event, rowName, index) => {
-    const firstDayOfWeek = days[rowName].length - 7;
-
-    if (days[rowName][firstDayOfWeek + index] === "0") {
-      const currentDate = subDays(new Date(), 7);
-
-      setDays((prevDays) => {
-        const newDays = { ...prevDays };
-        newDays[rowName][firstDayOfWeek + index] = format(
-          addDays(currentDate, index + 1),
-          "y-MM-dd"
-        );
-        return newDays;
-      });
-    } else {
-      setDays((prevDays) => {
-        const newDays = { ...prevDays };
-        newDays[rowName][firstDayOfWeek + index] = "0";
-        return newDays;
-      });
-    }
-  };
-
-  const dayClickedMonth = (event, rowName, index) => {
-    const datee = new Date();
-    const result = sub(datee, {
-      months: -1 * monthCount,
-    });
-    const startofmonth = startOfMonth(result);
-    const endofmonth = endOfMonth(result);
-    const newlengthOfArray =
-      days[rowName].length + (differenceInDays(endofmonth, datee) - 1);
-    const newfirstDayOfMonthIndex =
-      newlengthOfArray - getDaysInMonth(new Date(result));
-    const firstDayOfMonthIndex = days[rowName].length - getDate(new Date());
-
-    if (monthCount === 0) {
-      if (days[rowName][firstDayOfMonthIndex + index] === "0") {
-        setDays((prevDays) => {
-          const newDays = { ...prevDays };
-          newDays[rowName][firstDayOfMonthIndex + index] = format(
-            addDays(startofmonth, index),
-            "y-MM-dd"
-          );
-          return newDays;
-        });
-      } else {
-        setDays((prevDays) => {
-          const newDays = { ...prevDays };
-          newDays[rowName][firstDayOfMonthIndex + index] = "0";
-          return newDays;
-        });
-      }
-    } else if (monthCount < 0) {
-      if (days[rowName][newfirstDayOfMonthIndex + index] === "0") {
-        setDays((prevDays) => {
-          const newDays = { ...prevDays };
-          newDays[rowName][newfirstDayOfMonthIndex + index] = format(
-            addDays(startofmonth, index),
-            "y-MM-dd"
-          );
-          return newDays;
-        });
-      } else {
-        setDays((prevDays) => {
-          const newDays = { ...prevDays };
-          newDays[rowName][newfirstDayOfMonthIndex + index] = "0";
-          return newDays;
-        });
-      }
-    }
   };
 
   const handleInputChange = (onChangeValue, i) => {
@@ -423,9 +370,10 @@ export default function Chart() {
     setInputFields(inputValue);
   };
 
-  const handleColorChange = (value, i) => {
+  const handleColorChange = (event, i) => {
     const colorValue = [...colorFields];
-    colorValue[i] = value.target.value;
+    colorValue[i] = event.target.value;
+
     setColorFields(colorValue);
   };
 
@@ -473,6 +421,8 @@ export default function Chart() {
     "0",
   ];
 
+  console.log(colorFields);
+
   const submit = () => {
     setHabits([...habits, ...inputFields]);
 
@@ -494,12 +444,78 @@ export default function Chart() {
     setColorFields([]);
   };
 
-  const removeHabit = () => {
-    const deletehabits = [...deleteHabit, []];
-    setDeleteHabit(deletehabits);
+  const dayClicked = (event, rowName, index) => {
+    const firstDayOfWeek = days[rowName].length - 7;
+
+    if (days[rowName][firstDayOfWeek + index] === "0") {
+      const currentDate = subDays(new Date(), 7);
+
+      setDays((prevDays) => {
+        const newDays = { ...prevDays };
+        newDays[rowName][firstDayOfWeek + index] = format(
+          addDays(currentDate, index + 1),
+          "y-MM-d"
+        );
+        return newDays;
+      });
+    } else {
+      setDays((prevDays) => {
+        const newDays = { ...prevDays };
+        newDays[rowName][firstDayOfWeek + index] = "0";
+        return newDays;
+      });
+    }
   };
 
-  console.log(deleteHabit);
+  const dayClickedMonth = (event, rowName, index) => {
+    const datee = new Date();
+    const result = sub(datee, {
+      months: -1 * monthCount,
+    });
+    const startofmonth = startOfMonth(result);
+    const endofmonth = endOfMonth(result);
+    const newlengthOfArray =
+      days[rowName].length + (differenceInDays(endofmonth, datee) - 1);
+    const newfirstDayOfMonthIndex =
+      newlengthOfArray - getDaysInMonth(new Date(result));
+    const firstDayOfMonthIndex = days[rowName].length - getDate(new Date());
+
+    if (monthCount === 0) {
+      if (days[rowName][firstDayOfMonthIndex + index] === "0") {
+        setDays((prevDays) => {
+          const newDays = { ...prevDays };
+          newDays[rowName][firstDayOfMonthIndex + index] = format(
+            addDays(startofmonth, index),
+            "y-MM-d"
+          );
+          return newDays;
+        });
+      } else {
+        setDays((prevDays) => {
+          const newDays = { ...prevDays };
+          newDays[rowName][firstDayOfMonthIndex + index] = "0";
+          return newDays;
+        });
+      }
+    } else if (monthCount < 0) {
+      if (days[rowName][newfirstDayOfMonthIndex + index] === "0") {
+        setDays((prevDays) => {
+          const newDays = { ...prevDays };
+          newDays[rowName][newfirstDayOfMonthIndex + index] = format(
+            addDays(startofmonth, index),
+            "y-MM-d"
+          );
+          return newDays;
+        });
+      } else {
+        setDays((prevDays) => {
+          const newDays = { ...prevDays };
+          newDays[rowName][newfirstDayOfMonthIndex + index] = "0";
+          return newDays;
+        });
+      }
+    }
+  };
 
   const eraseHabit = (activity, i) => {
     const removeFromHabits = [...habits];
@@ -509,10 +525,6 @@ export default function Chart() {
     const newDays = { ...days };
     delete newDays[activity];
     setDays(newDays);
-  };
-
-  const removeXs = () => {
-    setDeleteHabit([]);
   };
 
   function getUpcomingWeekDates() {
@@ -559,139 +571,173 @@ export default function Chart() {
     setModalVisibility(false);
   };
 
+  const currentWeekFirst = () => {
+    const firstDay = format(subDays(new Date(), 6), "EEEE, MM/d");
+    return firstDay;
+  };
+
+  const currentWeekSecond = () => {
+    const currentDay = format(new Date(), "EEEE, MM/d");
+    return currentDay;
+  };
+
+  console.log(colors);
   const renderWeekView = () => {
     return (
-      <div className="total-content-month">
-        <div className="background">
-          <div className="mainquestions">
-            <section className="border">
-              <ModalVisibilityContext.Provider
-                value={[modalVisibility, setModalVisibility]}
-              >
-                <ColorContext.Provider value={[colors, setColors]}>
-                  <Context.Provider value={[habits, setHabits]}>
-                    <OtherContext.Provider value={[days, setDays]}>
-                      <Questions />
-                    </OtherContext.Provider>
-                  </Context.Provider>
-                </ColorContext.Provider>
-              </ModalVisibilityContext.Provider>
-            </section>
-            {/* <div>{loginUpdate}</div> */}
-            <div className="nextAndBackButtons">
-              <button className="back" onClick={back}>
-                Back{"<--"}
-              </button>
-              <button className="next" onClick={next}>
-                Next{"-->"}
-              </button>
-            </div>
-            <table>
-              <thead>
-                <tr className="test-one">
-                  <td className="dayz">Habits</td>
-                  {nextWeekDates.map((date, index) => (
-                    <td className="dayz" key={index}>{`${
-                      date.getMonth() + 1
-                    }/${date.getDate()}`}</td>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {weekCount <= 0 ? (
-                  Object.keys(days).map((activity) => {
-                    const activityArray = days[activity];
-                    const firstDayOfWeek =
-                      days[activity].length - 7 + 7 * weekCount;
-                    const currentDay = days[activity].length + 7 * weekCount;
-                    const slicedArray = activityArray.slice(
-                      firstDayOfWeek,
-                      currentDay
-                    );
-                    return (
-                      <tr key={activity} className="test">
-                        <td className="cell">{activity}</td>
-                        {slicedArray.map((value, index) => (
-                          <td
-                            className="cell"
-                            onClick={() => dayClicked(event, activity, index)}
-                            key={index}
-                            style={{
-                              backgroundColor:
-                                days[activity][firstDayOfWeek + index] !== "0"
-                                  ? colors[activity]
-                                  : "",
-                            }}
-                          ></td>
-                        ))}
-                        {deleteHabit.map((i) => (
-                          <td key={i}>
-                            <button onClick={() => eraseHabit(activity)}>
-                              X
-                            </button>
-                          </td>
-                        ))}
-                      </tr>
-                    );
-                  })
-                ) : (
-                  <tr>
-                    <td className="no-data-message">No data here</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-            <div>
-              <div className="habit-input">
-                {inputFields.map((inputField, i) => {
-                  return (
-                    <div key={i}>
-                      <input
-                        value={inputField}
-                        onChange={(e) => handleInputChange(e, i)}
-                        placeholder="Habit"
-                      />
-                      <button onClick={() => removeInput(i)}>X</button>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="color-input">
-                {colorFields.map((colorField, index) => {
-                  return (
-                    <div key={index}>
-                      <input
-                        value={colorField}
-                        onChange={(e) => handleColorChange(e, index)}
-                        placeholder="Color"
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-          <div className="chart-buttons">
-            <button className="chart-buttons-individual" onClick={submit}>
-              Submit
-            </button>
-            <button
-              className="chart-buttons-individual"
-              onClick={() => addHabit()}
-            >
-              Add Habit
-            </button>
-            <button className="chart-buttons-individual" onClick={removeHabit}>
-              Remove Habit
-            </button>
+      <div className="background-week">
+        <div className="nextAndBackButtons">
+          <img
+            className="back"
+            onClick={back}
+            src="https://cdn-icons-png.flaticon.com/128/860/860790.png"
+          ></img>
 
-            <button className="chart-buttons-individual" onClick={removeXs}>
-              Done
-            </button>
-            <button className="chart-buttons-individual" onClick={monthView}>
-              Month View
-            </button>
+          <h4>
+            {currentWeekFirst()} - {currentWeekSecond()}
+          </h4>
+          <img
+            className="next"
+            onClick={next}
+            src="https://cdn-icons-png.flaticon.com/128/758/758778.png"
+          ></img>
+        </div>
+        <div className="mainquestions">
+          <section className="border">
+            <ModalVisibilityContext.Provider
+              value={[modalVisibility, setModalVisibility]}
+            >
+              <ColorContext.Provider value={[colors, setColors]}>
+                <Context.Provider value={[habits, setHabits]}>
+                  <OtherContext.Provider value={[days, setDays]}>
+                    <Questions />
+                  </OtherContext.Provider>
+                </Context.Provider>
+              </ColorContext.Provider>
+            </ModalVisibilityContext.Provider>
+          </section>
+          {/* <div>{loginUpdate}</div> */}
+          <div className="table-plus-x-week">
+            <div className="x-buttons">
+              {habits.map((activity, i) => (
+                <p
+                  key={i}
+                  className="x"
+                  onClick={() => eraseHabit(activity, i)}
+                >
+                  X
+                </p>
+              ))}
+            </div>
+
+            <div className="table-plus-add-more">
+              <table>
+                <thead>
+                  <tr className="test-one">
+                    <td className="dayz-habits-word">Habits</td>
+                    {nextWeekDates.map((date, index) => (
+                      <td className="dayz" key={index}>{`${
+                        date.getMonth() + 1
+                      }/${date.getDate()}`}</td>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {weekCount <= 0 ? (
+                    Object.keys(days).map((activity) => {
+                      const activityArray = days[activity];
+                      const firstDayOfWeek =
+                        days[activity].length - 7 + 7 * weekCount;
+                      const currentDay = days[activity].length + 7 * weekCount;
+                      const slicedArray = activityArray.slice(
+                        firstDayOfWeek,
+                        currentDay
+                      );
+
+                      return (
+                        <tr key={activity} className="test">
+                          <td className="cell">{activity}</td>
+                          {slicedArray.map((value, index) => (
+                            <td
+                              className="cell"
+                              onClick={() => dayClicked(event, activity, index)}
+                              key={index}
+                              style={{
+                                backgroundColor:
+                                  days[activity][firstDayOfWeek + index] !== "0"
+                                    ? colors[activity]
+                                    : "",
+                              }}
+                            ></td>
+                          ))}
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <tr>
+                      <td className="no-data-message">No data here</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
+
+          <table>
+            <tbody>
+              {inputFields.map((inputField, i) => {
+                return (
+                  <tr key={i} className="add-habit-row">
+                    <td className="cell-new-habit">
+                      <p
+                        className="add-habit-x-button"
+                        onClick={() => removeInput(i)}
+                      >
+                        X
+                      </p>
+                      <div className="add-habit-x-div">
+                        <input
+                          className="input-box-week"
+                          value={inputField}
+                          onChange={(e) => handleInputChange(e, i)}
+                          placeholder="Habit"
+                        />
+                        <select
+                          className="color-dropdown"
+                          onChange={(event) => handleColorChange(event, i)}
+                        >
+                          <option value="">Choose a color:</option>
+                          <option value="red">Red</option>
+                          <option value="orange">Orange</option>
+                          <option value="yellow">Yellow</option>
+                          <option value="green">Green</option>
+                          <option value="blue">Blue</option>
+                          <option value="purple">Purple</option>
+                        </select>
+                      </div>
+                    </td>
+                    <td className="cell"></td>
+                    <td className="cell"></td>
+                    <td className="cell"></td>
+                    <td className="cell"></td>
+                    <td className="cell"></td>
+                    <td className="cell"></td>
+                    <td className="cell"></td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          <p className="add-more" onClick={() => addHabit()}>
+            +
+          </p>
+        </div>
+        <div className="chart-buttons">
+          <button className="chart-buttons-individual" onClick={submit}>
+            Submit
+          </button>
+          <button className="chart-buttons-individual" onClick={monthView}>
+            Month View
+          </button>
         </div>
       </div>
     );
@@ -728,11 +774,25 @@ export default function Chart() {
   const theCurrentMonth = format(setMonth(new Date(), currentMonth), "MMMM");
   const nextMonthDates = getUpcomingMonthDates();
 
+  console.log(days);
+
   const renderMonthView = () => {
     return (
       <div>
-        <div className="background">
-          <div className="currentMonth">{theCurrentMonth}</div>
+        <div className="background-month">
+          <div className="month-nextAndBackButtons">
+            <img
+              className="backMonth"
+              onClick={backMonth}
+              src="https://cdn-icons-png.flaticon.com/128/860/860790.png"
+            ></img>
+            <div className="currentMonth">{theCurrentMonth}</div>
+            <img
+              className="nextMonth"
+              onClick={nextMonth}
+              src="https://cdn-icons-png.flaticon.com/128/758/758778.png"
+            ></img>
+          </div>
           <div className="mainquestions-month">
             <section className="border">
               <ModalVisibilityContext.Provider
@@ -747,132 +807,152 @@ export default function Chart() {
                 </ColorContext.Provider>
               </ModalVisibilityContext.Provider>
             </section>
-            <div className="month-nextAndBackButtons">
-              <button onClick={backMonth}>Back{"<--"}</button>
-              <button onClick={nextMonth}>Next{"-->"}</button>
-            </div>
-            <table>
-              <thead>
-                <tr className="month-header-one">
-                  {nextMonthDates.map((date, indexx) => (
-                    <td className="month-daysofweek" key={indexx}>{`${format(
-                      date,
-                      "EEEEE"
-                    )}`}</td>
-                  ))}
-                </tr>
-                <tr className="month-header-two">
-                  <td className="month-dayz-habits-word">Habits</td>
-                  {nextMonthDates.map((date, index) => (
-                    <td
-                      className="month-dayz"
-                      key={index}
-                    >{`${date.getDate()}`}</td>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(days).map((activity) => {
-                  const activityArray = days[activity];
-                  const datee = new Date();
+            <div className="table-plus-x-month">
+              <div className="x-buttons-month">
+                {habits.map((activity, i) => (
+                  <div key={i}>
+                    <p
+                      className="x-month"
+                      onClick={() => eraseHabit(activity, i)}
+                    >
+                      X
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="both-tables-month">
+                <table className="habit-table-month">
+                  <thead>
+                    <tr className="month-header-one">
+                      {nextMonthDates.map((date, indexx) => (
+                        <td
+                          className="month-daysofweek"
+                          key={indexx}
+                        >{`${format(date, "EEEEE")}`}</td>
+                      ))}
+                    </tr>
+                    <tr className="month-header-two">
+                      <td className="month-dayz-habits-word">Habits</td>
+                      {nextMonthDates.map((date, index) => (
+                        <td
+                          className="month-dayz"
+                          key={index}
+                        >{`${date.getDate()}`}</td>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(days).map((activity) => {
+                      const activityArray = days[activity];
+                      const datee = new Date();
 
-                  const firstDayOfMonthIndex =
-                    days[activity].length - getDate(datee);
-                  const lengthOfArray = days[activity].length;
-                  const slicedArrayy = days[activity].slice(
-                    firstDayOfMonthIndex,
-                    lengthOfArray
-                  );
+                      const firstDayOfMonthIndex =
+                        days[activity].length - getDate(datee);
+                      const lengthOfArray = days[activity].length;
+                      const slicedArrayy = days[activity].slice(
+                        firstDayOfMonthIndex,
+                        lengthOfArray
+                      );
 
-                  const result = sub(datee, {
-                    months: -1 * monthCount,
-                  });
-                  const endofmonth = endOfMonth(result);
-                  const newlengthOfArray =
-                    days[activity].length +
-                    (differenceInDays(endofmonth, datee) - 1);
-                  const newfirstDayOfMonthIndex =
-                    newlengthOfArray - getDaysInMonth(new Date(result));
-                  const newslicedArray = activityArray.slice(
-                    newfirstDayOfMonthIndex,
-                    newlengthOfArray
-                  );
-                  return (
-                    <tr key={activity} className="month-cell-row">
-                      <td className="month-cell-habit">{activity}</td>
-                      {monthCount === 0
-                        ? slicedArrayy.map((value, index) => (
-                            <td
-                              className="month-cell"
-                              onClick={() =>
-                                dayClickedMonth(event, activity, index)
-                              }
-                              key={index}
-                              style={{
-                                backgroundColor:
-                                  value !== "0" ? colors[activity] : "",
-                              }}
-                            ></td>
-                          ))
-                        : newslicedArray.map((value, index) => (
-                            <td
-                              className="month-cell"
-                              onClick={() =>
-                                dayClickedMonth(event, activity, index)
-                              }
-                              key={index}
-                              style={{
-                                backgroundColor:
-                                  value !== "0" ? colors[activity] : "",
-                              }}
-                            ></td>
-                          ))}
-                      {/* ) : (
+                      const result = sub(datee, {
+                        months: -1 * monthCount,
+                      });
+                      const endofmonth = endOfMonth(result);
+                      const newlengthOfArray =
+                        days[activity].length +
+                        (differenceInDays(endofmonth, datee) - 1);
+                      const newfirstDayOfMonthIndex =
+                        newlengthOfArray - getDaysInMonth(new Date(result));
+                      const newslicedArray = activityArray.slice(
+                        newfirstDayOfMonthIndex,
+                        newlengthOfArray
+                      );
+                      return (
+                        <tr key={activity} className="month-cell-row">
+                          <td className="month-cell-habit">{activity}</td>
+                          {monthCount === 0
+                            ? slicedArrayy.map((value, index) => (
+                                <td
+                                  className="month-cell"
+                                  onClick={() =>
+                                    dayClickedMonth(event, activity, index)
+                                  }
+                                  key={index}
+                                  style={{
+                                    backgroundColor:
+                                      value !== "0" ? colors[activity] : "",
+                                  }}
+                                ></td>
+                              ))
+                            : newslicedArray.map((value, index) => (
+                                <td
+                                  className="month-cell"
+                                  onClick={() =>
+                                    dayClickedMonth(event, activity, index)
+                                  }
+                                  key={index}
+                                  style={{
+                                    backgroundColor:
+                                      value !== "0" ? colors[activity] : "",
+                                  }}
+                                ></td>
+                              ))}
+                          {/* ) : (
                         <td className="cell">Invalid data structure</td>
                       ) */}
-                      {deleteHabit.map((i) => {
-                        return (
-                          <td key={i}>
-                            <button onClick={() => eraseHabit(activity)}>
-                              X
-                            </button>
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-            {/* <button>Choose color</button> */}
-            <div className="ran">
-              <div className="habit-input">
-                {inputFields.map((inputField, i) => {
-                  return (
-                    <div key={i}>
-                      <input
-                        value={inputField}
-                        onChange={(e) => handleInputChange(e, i)}
-                        placeholder="Habit"
-                      />
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
 
-                      <button onClick={() => removeInput(i)}>X</button>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="color-input">
-                {colorFields.map((colorField, index) => {
-                  return (
-                    <div key={index}>
-                      <input
-                        value={colorField}
-                        onChange={(e) => handleColorChange(e, index)}
-                        placeholder="Color"
-                      />
-                    </div>
-                  );
-                })}
+                <table className="add-habit-table">
+                  <tbody>
+                    {inputFields.map((inputField, i) => {
+                      return (
+                        <tr key={i} className="add-habit-row-month">
+                          <td className="month-cell-new-habit">
+                            <p
+                              className="add-habit-x-button-month"
+                              onClick={() => removeInput(i)}
+                            >
+                              X
+                            </p>
+                            <div className="add-habit-x-div-month">
+                              <input
+                                className="input-box-month"
+                                value={inputField}
+                                onChange={(e) => handleInputChange(e, i)}
+                                placeholder="Habit"
+                              />
+                              <select
+                                className="color-dropdown-month"
+                                onChange={(event) =>
+                                  handleColorChange(event, i)
+                                }
+                              >
+                                <option value="">Choose a color:</option>
+                                <option value="red">Red</option>
+                                <option value="orange">Orange</option>
+                                <option value="yellow">Yellow</option>
+                                <option value="green">Green</option>
+                                <option value="blue">Blue</option>
+                                <option value="purple">Purple</option>
+                              </select>
+                            </div>
+                          </td>
+                          {nextMonthDates.map((date, i) => (
+                            <td key={i} className="month-cell"></td>
+                          ))}
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+                <div className="add-more-month-div">
+                <p className="add-more-month" onClick={() => addHabit()}>
+            +
+          </p></div>
               </div>
             </div>
           </div>
@@ -880,24 +960,6 @@ export default function Chart() {
           <div className="chart-buttons-month">
             <button className="chart-buttons-individual-month" onClick={submit}>
               Submit
-            </button>
-            <button
-              className="chart-buttons-individual-month"
-              onClick={() => addHabit()}
-            >
-              Add Habit
-            </button>
-            <button
-              className="chart-buttons-individual-month"
-              onClick={removeHabit}
-            >
-              Remove Habit
-            </button>
-            <button
-              className="chart-buttons-individual-month"
-              onClick={removeXs}
-            >
-              Done
             </button>
             <button
               className="chart-buttons-individual-month"

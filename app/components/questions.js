@@ -112,7 +112,7 @@ export default function Child() {
                 </div>
               </section>
               <section className="buttons-q">
-                <button className="add-more" onClick={createNewElement}>
+                <button className="add-more-q-page" onClick={createNewElement}>
                   + Add more
                 </button>
                 <button onClick={getInputValues} className="submit-q">
