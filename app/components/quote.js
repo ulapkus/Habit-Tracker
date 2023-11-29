@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function Home() {
+export default function Quote() {
   const [displayedQuote, setDisplayedQuote] = useState("");
   const [displayedAuthor, setDisplayedAuthor] = useState("");
 

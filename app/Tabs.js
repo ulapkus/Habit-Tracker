@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Chart from "./components/chart";
-import Home from "./components/home";
+import Quote from "./components/quote";
 import Stats from "./components/stats";
-import About from "./components/footer";
+import About from "./components/about";
 
 function Tabs() {
   const [toggleState, setToggleState] = useState(1);
@@ -54,7 +54,7 @@ function Tabs() {
 
         <div className="content-tabs">
           <div className={toggleState === 1 ? "active-content" : "content"}>
-            <Home />
+            <Quote />
           </div>
           <div className={toggleState === 2 ? "active-content" : "content"}>
             <About />

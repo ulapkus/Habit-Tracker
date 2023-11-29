@@ -1094,25 +1094,6 @@ tr {
   padding-top: 0.3vh;
 }
 
-.about-us {
-  font-size: 1.7vh;
-  font-weight: 300;
-  padding: 3vh 0 4vh 0;
-  margin: 0;
-  height: 9vh;
-  width: 10vw;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-  text-transform: uppercase;
-  letter-spacing: 7px;
-  color: gray;
-}
-
-.about-us:hover {
-  color: black;
-  cursor: pointer;
-}
-
 .month-view {
   width: 9.5vw;
   height: 4.5vh;
@@ -1138,13 +1119,3 @@ tr {
   color: white;
 }
 
-footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  height: 100%;
-}

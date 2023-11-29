@@ -1,4 +1,4 @@
-const name = 'John'
+const name = "John";
 
 // this works
 // will show if you run "node test.js" to see it
@@ -6,4 +6,4 @@ const name = 'John'
 
 // another way:
 // this is template strings
-console.log(`my name is ${name}` )
+console.log(`my name is ${name}`);
