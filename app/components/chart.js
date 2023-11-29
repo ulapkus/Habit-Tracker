@@ -299,6 +299,8 @@ export default function Chart() {
   const [lastLogin, setLastLogin] = useState("2023-11-19");
   const [daysDifference, setDaysDifference] = useState(0);
   const [runUpdateDays, setRunUpdateDays] = useState(true);
+  const [newHabitAdded, setNewHabitAdded] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const loginUpdate = () => {
     const startDateObj = new Date(lastLogin);
@@ -335,33 +337,14 @@ export default function Chart() {
     }
   }, [runUpdateDays]);
 
-  // const handleInputChange = (onChangeValue, i) => {
-  //   const inputValue = [...inputFields];
-  //   inputValue[i] = onChangeValue.target.value;
-  //   setInputFields(inputValue);
-  // };
-
   const addHabit = () => {
-    //     inputFields.map((inputField, index) => {
-    //       setDays((prevDays) => ({
-    //         ...prevDays,
-    //         [inputFields[index]]: newArray,
-    //       }));
-    //     });
-    // setDays((prevDays) => {
-    //   const newDays = { ...prevDays };
-    //   newDays[rowName][firstDayOfWeek + index] = format(
-    //     addDays(currentDate, index + 1),
-    //     "y-MM-d"
-    //   );
-    //   return newDays;
-    // });
-
     const addInput = [...inputFields, []];
     setInputFields(addInput);
 
     const addColor = [...colorFields, []];
     setColorFields(addColor);
+
+    setNewHabitAdded(false);
   };
 
   const handleInputChange = (onChangeValue, i) => {
@@ -385,6 +368,8 @@ export default function Chart() {
     const removeColor = [...colorFields];
     removeColor.splice(i, 1);
     setColorFields(removeColor);
+
+    setNewHabitAdded(true);
   };
 
   const newArray = [
@@ -421,10 +406,9 @@ export default function Chart() {
     "0",
   ];
 
-  console.log(colorFields);
-
   const submit = () => {
     setHabits([...habits, ...inputFields]);
+    setNewHabitAdded(true);
 
     inputFields.map((inputField, index) => {
       setDays((prevDays) => ({
@@ -581,7 +565,6 @@ export default function Chart() {
     return currentDay;
   };
 
-  console.log(colors);
   const renderWeekView = () => {
     return (
       <div className="background-week">
@@ -601,89 +584,84 @@ export default function Chart() {
             src="https://cdn-icons-png.flaticon.com/128/758/758778.png"
           ></img>
         </div>
-        <div className="mainquestions">
-          <section className="border">
-            <ModalVisibilityContext.Provider
-              value={[modalVisibility, setModalVisibility]}
-            >
-              <ColorContext.Provider value={[colors, setColors]}>
-                <Context.Provider value={[habits, setHabits]}>
-                  <OtherContext.Provider value={[days, setDays]}>
-                    <Questions />
-                  </OtherContext.Provider>
-                </Context.Provider>
-              </ColorContext.Provider>
-            </ModalVisibilityContext.Provider>
-          </section>
+        <div className="main-questions">
+          <ModalVisibilityContext.Provider
+            value={[modalVisibility, setModalVisibility]}
+          >
+            <ColorContext.Provider value={[colors, setColors]}>
+              <Context.Provider value={[habits, setHabits]}>
+                <OtherContext.Provider value={[days, setDays]}>
+                  <Questions />
+                </OtherContext.Provider>
+              </Context.Provider>
+            </ColorContext.Provider>
+          </ModalVisibilityContext.Provider>
           {/* <div>{loginUpdate}</div> */}
-          <div className="table-plus-x-week">
-            <div className="x-buttons">
-              {habits.map((activity, i) => (
-                <p
-                  key={i}
-                  className="x"
-                  onClick={() => eraseHabit(activity, i)}
-                >
-                  X
-                </p>
-              ))}
-            </div>
 
-            <div className="table-plus-add-more">
-              <table>
-                <thead>
-                  <tr className="test-one">
-                    <td className="dayz-habits-word">Habits</td>
-                    {nextWeekDates.map((date, index) => (
-                      <td className="dayz" key={index}>{`${
-                        date.getMonth() + 1
-                      }/${date.getDate()}`}</td>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {weekCount <= 0 ? (
-                    Object.keys(days).map((activity) => {
-                      const activityArray = days[activity];
-                      const firstDayOfWeek =
-                        days[activity].length - 7 + 7 * weekCount;
-                      const currentDay = days[activity].length + 7 * weekCount;
-                      const slicedArray = activityArray.slice(
-                        firstDayOfWeek,
-                        currentDay
-                      );
+          <table>
+            <thead>
+              <tr className="test-one">
+                <td className="dayz-habits-word">Habits</td>
+                {nextWeekDates.map((date, index) => (
+                  <td className="dayz" key={index}>{`${
+                    date.getMonth() + 1
+                  }/${date.getDate()}`}</td>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {weekCount <= 0 ? (
+                Object.keys(days).map((activity, i) => {
+                  const activityArray = days[activity];
+                  const firstDayOfWeek =
+                    days[activity].length - 7 + 7 * weekCount;
+                  const currentDay = days[activity].length + 7 * weekCount;
+                  const slicedArray = activityArray.slice(
+                    firstDayOfWeek,
+                    currentDay
+                  );
 
-                      return (
-                        <tr key={activity} className="test">
-                          <td className="cell">{activity}</td>
-                          {slicedArray.map((value, index) => (
-                            <td
-                              className="cell"
-                              onClick={() => dayClicked(event, activity, index)}
-                              key={index}
-                              style={{
-                                backgroundColor:
-                                  days[activity][firstDayOfWeek + index] !== "0"
-                                    ? colors[activity]
-                                    : "",
-                              }}
-                            ></td>
-                          ))}
-                        </tr>
-                      );
-                    })
-                  ) : (
-                    <tr>
-                      <td className="no-data-message">No data here</td>
+                  return (
+                    <tr key={activity} className="test">
+                      <td className="cell-first">
+                        <div className="x-button-div-week">
+                          <p
+                            onClick={() => eraseHabit(activity, i)}
+                            className="x-button-week"
+                          >
+                            X
+                          </p>
+                        </div>
+                        <div className="activity-week">{activity}</div>
+                      </td>
+                      {slicedArray.map((value, index) => (
+                        <td
+                          className="cell"
+                          onClick={() => dayClicked(event, activity, index)}
+                          key={index}
+                          style={{
+                            backgroundColor:
+                              days[activity][firstDayOfWeek + index] !== "0"
+                                ? colors[activity]
+                                : "",
+                          }}
+                        ></td>
+                      ))}
                     </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td className="no-data-message">No data here</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
 
           <table>
             <tbody>
+              {/* {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>} */}
+
               {inputFields.map((inputField, i) => {
                 return (
                   <tr key={i} className="add-habit-row">
@@ -701,18 +679,23 @@ export default function Chart() {
                           onChange={(e) => handleInputChange(e, i)}
                           placeholder="Habit"
                         />
-                        <select
-                          className="color-dropdown"
-                          onChange={(event) => handleColorChange(event, i)}
-                        >
-                          <option value="">Choose a color:</option>
-                          <option value="red">Red</option>
-                          <option value="orange">Orange</option>
-                          <option value="yellow">Yellow</option>
-                          <option value="green">Green</option>
-                          <option value="blue">Blue</option>
-                          <option value="purple">Purple</option>
-                        </select>
+                        <div className="select-week">
+                          <select
+                            className="color-dropdown"
+                            onChange={(event) => handleColorChange(event, i)}
+                          >
+                            <option value="">Choose color:</option>
+                            <option value="red">Red</option>
+                            <option value="orange">Orange</option>
+                            <option value="yellow">Yellow</option>
+                            <option value="green">Green</option>
+                            <option value="blue">Blue</option>
+                            <option value="purple">Purple</option>
+                          </select>
+                        </div>
+                        <button className="submit-button-week" onClick={submit}>
+                          Submit
+                        </button>
                       </div>
                     </td>
                     <td className="cell"></td>
@@ -727,31 +710,32 @@ export default function Chart() {
               })}
             </tbody>
           </table>
-          <p className="add-more" onClick={() => addHabit()}>
-            +
-          </p>
+          <div className="add-more-div-week">
+            {newHabitAdded === true ? (
+              <p className="add-more-week" onClick={() => addHabit()}>
+                +
+              </p>
+            ) : null}
+          </div>
         </div>
-        <div className="chart-buttons">
-          <button className="chart-buttons-individual" onClick={submit}>
-            Submit
-          </button>
-          <button className="chart-buttons-individual" onClick={monthView}>
-            Month View
-          </button>
-        </div>
+        <button className="month-view" onClick={monthView}>
+          Month View
+        </button>
       </div>
     );
   };
 
-  // this needs to change so its not workout but the oldest habit that the user has
+  // this needs to change so its not the first but the oldest habit that the user has
   function getUpcomingMonthDates() {
+    const firstArray = Object.values(days)[0];
+    const lengthOfFirstArray = firstArray.length;
     const today = new Date();
     today.setMonth(currentMonth);
     const nextMonthDates = [];
     const firstDay = startOfMonth(today);
     const totalDaysInMonth = endOfMonth(today).getDate();
-    const firstDayOfMonthIndex = days.workout.length - getDate(new Date());
-    const lastIndex = days.workout.length;
+    const firstDayOfMonthIndex = lengthOfFirstArray - getDate(new Date());
+    const lastIndex = lengthOfFirstArray;
     const habitDaysInThisMonth = lastIndex - firstDayOfMonthIndex;
 
     if (monthCount === 0 && habitDaysInThisMonth < totalDaysInMonth) {
@@ -774,8 +758,6 @@ export default function Chart() {
   const theCurrentMonth = format(setMonth(new Date(), currentMonth), "MMMM");
   const nextMonthDates = getUpcomingMonthDates();
 
-  console.log(days);
-
   const renderMonthView = () => {
     return (
       <div>
@@ -793,181 +775,200 @@ export default function Chart() {
               src="https://cdn-icons-png.flaticon.com/128/758/758778.png"
             ></img>
           </div>
-          <div className="mainquestions-month">
-            <section className="border">
-              <ModalVisibilityContext.Provider
-                value={[modalVisibility, setModalVisibility]}
-              >
-                <ColorContext.Provider value={[colors, setColors]}>
-                  <Context.Provider value={[habits, setHabits]}>
-                    <OtherContext.Provider value={[days, setDays]}>
-                      <Questions />
-                    </OtherContext.Provider>
-                  </Context.Provider>
-                </ColorContext.Provider>
-              </ModalVisibilityContext.Provider>
-            </section>
-            <div className="table-plus-x-month">
-              <div className="x-buttons-month">
-                {habits.map((activity, i) => (
-                  <div key={i}>
-                    <p
-                      className="x-month"
-                      onClick={() => eraseHabit(activity, i)}
-                    >
-                      X
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <div className="both-tables-month">
-                <table className="habit-table-month">
-                  <thead>
-                    <tr className="month-header-one">
-                      {nextMonthDates.map((date, indexx) => (
-                        <td
-                          className="month-daysofweek"
-                          key={indexx}
-                        >{`${format(date, "EEEEE")}`}</td>
-                      ))}
-                    </tr>
-                    <tr className="month-header-two">
-                      <td className="month-dayz-habits-word">Habits</td>
-                      {nextMonthDates.map((date, index) => (
-                        <td
-                          className="month-dayz"
-                          key={index}
-                        >{`${date.getDate()}`}</td>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {Object.keys(days).map((activity) => {
-                      const activityArray = days[activity];
-                      const datee = new Date();
+          <div className="main-questions-month">
+            <ModalVisibilityContext.Provider
+              value={[modalVisibility, setModalVisibility]}
+            >
+              <ColorContext.Provider value={[colors, setColors]}>
+                <Context.Provider value={[habits, setHabits]}>
+                  <OtherContext.Provider value={[days, setDays]}>
+                    <Questions />
+                  </OtherContext.Provider>
+                </Context.Provider>
+              </ColorContext.Provider>
+            </ModalVisibilityContext.Provider>
+            {/* <div className="x-buttons-month">
+              {habits.map((activity, i) => (
+                <div key={i}>
+                  <p
+                    className="x-month"
+                    onClick={() => eraseHabit(activity, i)}
+                  >
+                    X
+                  </p>
+                </div>
+              ))}
+            </div> */}
+            <div className="randdd">
+              <table className="habit-table-month">
+                <thead>
+                  <tr className="month-header-one">
+                    {nextMonthDates.map((date, indexx) => (
+                      <td className="month-daysofweek" key={indexx}>{`${format(
+                        date,
+                        "EEEEE"
+                      )}`}</td>
+                    ))}
+                  </tr>
+                  <tr className="month-header-two">
+                    <td className="month-dayz-habits-word">Habits</td>
+                    {nextMonthDates.map((date, index) => (
+                      <td
+                        className="month-dayz"
+                        key={index}
+                      >{`${date.getDate()}`}</td>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.keys(days).map((activity, i) => {
+                    const activityArray = days[activity];
+                    const datee = new Date();
 
-                      const firstDayOfMonthIndex =
-                        days[activity].length - getDate(datee);
-                      const lengthOfArray = days[activity].length;
-                      const slicedArrayy = days[activity].slice(
-                        firstDayOfMonthIndex,
-                        lengthOfArray
-                      );
+                    const firstDayOfMonthIndex =
+                      days[activity].length - getDate(datee);
+                    const lengthOfArray = days[activity].length;
+                    const slicedArrayy = days[activity].slice(
+                      firstDayOfMonthIndex,
+                      lengthOfArray
+                    );
 
-                      const result = sub(datee, {
-                        months: -1 * monthCount,
-                      });
-                      const endofmonth = endOfMonth(result);
-                      const newlengthOfArray =
-                        days[activity].length +
-                        (differenceInDays(endofmonth, datee) - 1);
-                      const newfirstDayOfMonthIndex =
-                        newlengthOfArray - getDaysInMonth(new Date(result));
-                      const newslicedArray = activityArray.slice(
-                        newfirstDayOfMonthIndex,
-                        newlengthOfArray
-                      );
-                      return (
-                        <tr key={activity} className="month-cell-row">
-                          <td className="month-cell-habit">{activity}</td>
-                          {monthCount === 0
-                            ? slicedArrayy.map((value, index) => (
-                                <td
-                                  className="month-cell"
-                                  onClick={() =>
-                                    dayClickedMonth(event, activity, index)
-                                  }
-                                  key={index}
-                                  style={{
-                                    backgroundColor:
-                                      value !== "0" ? colors[activity] : "",
-                                  }}
-                                ></td>
-                              ))
-                            : newslicedArray.map((value, index) => (
-                                <td
-                                  className="month-cell"
-                                  onClick={() =>
-                                    dayClickedMonth(event, activity, index)
-                                  }
-                                  key={index}
-                                  style={{
-                                    backgroundColor:
-                                      value !== "0" ? colors[activity] : "",
-                                  }}
-                                ></td>
-                              ))}
-                          {/* ) : (
-                        <td className="cell">Invalid data structure</td>
-                      ) */}
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-
-                <table className="add-habit-table">
-                  <tbody>
-                    {inputFields.map((inputField, i) => {
-                      return (
-                        <tr key={i} className="add-habit-row-month">
-                          <td className="month-cell-new-habit">
+                    const result = sub(datee, {
+                      months: -1 * monthCount,
+                    });
+                    const endofmonth = endOfMonth(result);
+                    const newlengthOfArray =
+                      days[activity].length +
+                      (differenceInDays(endofmonth, datee) - 1);
+                    const newfirstDayOfMonthIndex =
+                      newlengthOfArray - getDaysInMonth(new Date(result));
+                    const newslicedArray = activityArray.slice(
+                      newfirstDayOfMonthIndex,
+                      newlengthOfArray
+                    );
+                    return (
+                      <tr key={activity} className="month-cell-row">
+                        <td className="month-cell-habit">
+                          <div className="x-button-div-month">
                             <p
-                              className="add-habit-x-button-month"
-                              onClick={() => removeInput(i)}
+                              onClick={() => eraseHabit(activity, i)}
+                              className="x-button-month"
                             >
                               X
                             </p>
-                            <div className="add-habit-x-div-month">
-                              <input
-                                className="input-box-month"
-                                value={inputField}
-                                onChange={(e) => handleInputChange(e, i)}
-                                placeholder="Habit"
-                              />
-                              <select
-                                className="color-dropdown-month"
-                                onChange={(event) =>
-                                  handleColorChange(event, i)
+                          </div>
+                          <div className="activity-month">{activity}</div>
+                        </td>
+                        {monthCount === 0
+                          ? slicedArrayy.map((value, index) => (
+                              <td
+                                className="month-cell"
+                                onClick={() =>
+                                  dayClickedMonth(event, activity, index)
                                 }
-                              >
-                                <option value="">Choose a color:</option>
-                                <option value="red">Red</option>
-                                <option value="orange">Orange</option>
-                                <option value="yellow">Yellow</option>
-                                <option value="green">Green</option>
-                                <option value="blue">Blue</option>
-                                <option value="purple">Purple</option>
-                              </select>
-                            </div>
-                          </td>
-                          {nextMonthDates.map((date, i) => (
-                            <td key={i} className="month-cell"></td>
-                          ))}
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-                <div className="add-more-month-div">
-                <p className="add-more-month" onClick={() => addHabit()}>
-            +
-          </p></div>
+                                key={index}
+                                style={{
+                                  backgroundColor:
+                                    value !== "0" ? colors[activity] : "",
+                                }}
+                              ></td>
+                            ))
+                          : newslicedArray.map((value, index) => (
+                              <td
+                                className="month-cell"
+                                onClick={() =>
+                                  dayClickedMonth(event, activity, index)
+                                }
+                                key={index}
+                                style={{
+                                  backgroundColor:
+                                    value !== "0" ? colors[activity] : "",
+                                }}
+                              ></td>
+                            ))}
+                        {/* ) : (
+                    <td className="cell">Invalid data structure</td>
+                  ) */}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+
+              <table className="add-habit-table">
+                <tbody>
+                  {inputFields.map((inputField, i) => {
+                    return (
+                      <tr key={i} className="add-habit-row-month">
+                        <td className="month-cell-new-habit">
+                          <p
+                            className="add-habit-x-button-month"
+                            onClick={() => removeInput(i)}
+                          >
+                            X
+                          </p>
+                          <div className="add-habit-x-div-month">
+                            <input
+                              className="input-box-month"
+                              value={inputField}
+                              onChange={(e) => handleInputChange(e, i)}
+                              placeholder="Habit"
+                            />
+                            <select
+                              className="color-dropdown-month"
+                              onChange={(event) => handleColorChange(event, i)}
+                            >
+                              <option className="option-month" value="">
+                                Choose color:
+                              </option>
+                              <option className="option-month" value="red">
+                                Red
+                              </option>
+                              <option className="option-month" value="orange">
+                                Orange
+                              </option>
+                              <option className="option-month" value="yellow">
+                                Yellow
+                              </option>
+                              <option className="option-month" value="green">
+                                Green
+                              </option>
+                              <option className="option-month" value="blue">
+                                Blue
+                              </option>
+                              <option className="option-month" value="purple">
+                                Purple
+                              </option>
+                            </select>
+                            <button
+                              className="submit-button-month"
+                              onClick={submit}
+                            >
+                              Submit
+                            </button>
+                          </div>
+                        </td>
+                        {nextMonthDates.map((date, i) => (
+                          <td key={i} className="month-cell"></td>
+                        ))}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+              <div className="add-more-div-month">
+                {newHabitAdded === true ? (
+                  <p className="add-more-month" onClick={() => addHabit()}>
+                    +
+                  </p>
+                ) : null}
               </div>
             </div>
           </div>
 
-          <div className="chart-buttons-month">
-            <button className="chart-buttons-individual-month" onClick={submit}>
-              Submit
-            </button>
-            <button
-              className="chart-buttons-individual-month"
-              onClick={weekView}
-            >
-              Week View
-            </button>
-          </div>
+          <button className="week-view" onClick={weekView}>
+            Week View
+          </button>
         </div>
       </div>
     );
