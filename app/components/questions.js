@@ -29,7 +29,7 @@ export default function Child() {
     const inputValues = Array.from(inputFields).map((input) => input.value);
 
     inputValues.map((inputValue, index) => {
-      const newArray = [true, false, false, false, false, false, true];
+      const newArray = [];
       setDays((prevDays) => ({
         ...prevDays,
         [inputValues[index]]: newArray,

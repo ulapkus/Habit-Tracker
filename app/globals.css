@@ -4,6 +4,20 @@
   box-sizing: border-box;
 }
 
+.red {
+  border: 1px solid blue;
+  background-color: red;
+  width: 15px;
+  height: 10px;
+}
+
+.blue {
+  border: 1px solid pink;
+  width: 100%;
+ 
+}
+
+
 html,
 body {
   width: 100%;
@@ -541,7 +555,7 @@ h1 {
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 100%;
+  width: 100px;
   padding-left: 8vw;
   padding-top: 0px;
   margin: 0 0 0 2.2px;
@@ -555,13 +569,13 @@ h1 {
   justify-content: center;
   align-items: flex-end;
   height: 100%;
-  width: 100%;
+  width: 100px;
   padding: 0;
   margin: 0;
   font-family: "Urbanist", sans-serif;
 }
 
-.month-daysofweek,
+/* .month-daysofweek,
 .month-dayz {
   display: flex;
   flex-direction: column;
@@ -576,7 +590,7 @@ h1 {
   font-family: "Cousine", monospace;
   font-weight: lighter;
   padding-top: 0.48vh;
-}
+} */
 
 thead {
   width: 100%;

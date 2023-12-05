@@ -10,11 +10,7 @@ import {
   startOfMonth,
   getMonth,
   getDate,
-  getDaysInMonth,
   setMonth,
-  setDay,
-  sub,
-  differenceInDays,
 } from "date-fns";
 
 export const Context = React.createContext();
@@ -25,272 +21,48 @@ export const ModalVisibilityContext = React.createContext();
 export default function Chart() {
   const [habits, setHabits] = useState(["workout", "yoga", "water"]);
 
-  // longer version
   const [days, setDays] = useState({
     workout: [
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
       "2023-10-16",
-      "0",
-      "0",
-      "0",
       "2023-10-20",
       "2023-10-21",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
+      "2023-11-1",
       "2023-11-2",
-      "0",
       "2023-11-4",
-      "0",
-      "0",
-      "0",
       "2023-11-8",
-      "0",
       "2023-11-10",
-      "0",
-      "0",
-      "2023-11-13",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
+      "2023-11-27",
     ],
     yoga: [
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
       "2023-10-21",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
       "2023-10-30",
-      "0",
-      "0",
       "2023-11-2",
-      "0",
-      "0",
-      "0",
       "2023-11-6",
       "2023-11-7",
-      "0",
       "2023-11-9",
-      "2023-11-10",
-      "0",
-      "2023-11-12",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
+      "2023-11-26",
+      "2023-11-27",
     ],
     water: [
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
       "2023-10-26",
-      "0",
-      "0",
-      "0",
-      "0",
       "2023-10-31",
-      "0",
-      "0",
       "2023-11-3",
       "2023-11-4",
       "2023-11-5",
-      "0",
       "2023-11-7",
-      "0",
-      "0",
       "2023-11-10",
-      "2023-11-11",
-      "0",
-      "0",
-      "2023-11-14",
-      "0",
-      "0",
-      "0",
-      "0",
-      "0",
+      "2023-11-25",
+      "2023-11-28",
     ],
   });
-
-  // shorter version
-  // const [days, setDays] = useState({
-  //   workout: [
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "2023-11-2",
-  //     "0",
-  //     "2023-11-4",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "2023-11-8",
-  //     "0",
-  //     "2023-11-10",
-  //     "0",
-  //     "0",
-  //     "2023-11-13",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //   ],
-  //   yoga: [
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "2023-11-2",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "2023-11-6",
-  //     "2023-11-7",
-  //     "0",
-  //     "2023-11-9",
-  //     "2023-11-10",
-  //     "0",
-  //     "2023-11-12",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //   ],
-  //   water: [
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "2023-11-3",
-  //     "2023-11-4",
-  //     "2023-11-5",
-  //     "0",
-  //     "2023-11-7",
-  //     "0",
-  //     "0",
-  //     "2023-11-10",
-  //     "2023-11-11",
-  //     "0",
-  //     "0",
-  //     "2023-11-14",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //     "0",
-  //   ],
-  // });
-
   const [colors, setColors] = useState({
     workout: "purple",
     yoga: "green",
     water: "blue",
   });
-
   const [inputFields, setInputFields] = useState([]);
   const [colorFields, setColorFields] = useState([]);
-  const [weekCount, setWeekCount] = useState(0);
+  const [weekCount, setWeekCount] = useState(-1);
   const [view, setView] = useState("week");
   const [modalVisibility, setModalVisibility] = useState(true);
   const [currentMonth, setCurrentMonth] = useState(getMonth(new Date()));
@@ -300,7 +72,17 @@ export default function Chart() {
   const [daysDifference, setDaysDifference] = useState(0);
   const [runUpdateDays, setRunUpdateDays] = useState(true);
   const [newHabitAdded, setNewHabitAdded] = useState(true);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [currentMonths, setCurrentMonths] = useState(11);
+  const [currentYear, setCurrentYear] = useState(2023);
+  const [selectedDates, setSelectedDates] = useState(() => {
+    const today = new Date();
+    const past7Days = Array.from({ length: 7 }, (_, index) => {
+      const currentDate = new Date(today);
+      currentDate.setDate(today.getDate() - index);
+      return currentDate;
+    });
+    return past7Days.sort((a, b) => a - b);
+  });
 
   const loginUpdate = () => {
     const startDateObj = new Date(lastLogin);
@@ -314,22 +96,22 @@ export default function Chart() {
     setLastLogin(format(new Date(), "y-MM-d"));
   };
 
-  if (daysDifference > 0) {
-    setDays((prevDays) => {
-      const updatedDays = { ...prevDays };
+  // if (daysDifference > 0) {
+  //   setDays((prevDays) => {
+  //     const updatedDays = { ...prevDays };
 
-      Object.keys(updatedDays).forEach((activity) => {
-        const array = updatedDays[activity];
-        for (let i = 0; i < daysDifference; i++) {
-          array.push("0");
-        }
-      });
+  //     Object.keys(updatedDays).forEach((activity) => {
+  //       const array = updatedDays[activity];
+  //       for (let i = 0; i < daysDifference; i++) {
+  //         array.push("0");
+  //       }
+  //     });
 
-      setDaysDifference(0);
-      setRunUpdateDays(false);
-      return updatedDays;
-    });
-  }
+  //     setDaysDifference(0);
+  //     setRunUpdateDays(false);
+  //     return updatedDays;
+  //   });
+  // }
 
   useEffect(() => {
     if (runUpdateDays) {
@@ -372,40 +154,6 @@ export default function Chart() {
     setNewHabitAdded(true);
   };
 
-  const newArray = [
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-    "0",
-  ];
-
   const submit = () => {
     setHabits([...habits, ...inputFields]);
     setNewHabitAdded(true);
@@ -413,7 +161,7 @@ export default function Chart() {
     inputFields.map((inputField, index) => {
       setDays((prevDays) => ({
         ...prevDays,
-        [inputFields[index]]: newArray,
+        [inputFields[index]]: [],
       }));
     });
 
@@ -428,79 +176,6 @@ export default function Chart() {
     setColorFields([]);
   };
 
-  const dayClicked = (event, rowName, index) => {
-    const firstDayOfWeek = days[rowName].length - 7;
-
-    if (days[rowName][firstDayOfWeek + index] === "0") {
-      const currentDate = subDays(new Date(), 7);
-
-      setDays((prevDays) => {
-        const newDays = { ...prevDays };
-        newDays[rowName][firstDayOfWeek + index] = format(
-          addDays(currentDate, index + 1),
-          "y-MM-d"
-        );
-        return newDays;
-      });
-    } else {
-      setDays((prevDays) => {
-        const newDays = { ...prevDays };
-        newDays[rowName][firstDayOfWeek + index] = "0";
-        return newDays;
-      });
-    }
-  };
-
-  const dayClickedMonth = (event, rowName, index) => {
-    const datee = new Date();
-    const result = sub(datee, {
-      months: -1 * monthCount,
-    });
-    const startofmonth = startOfMonth(result);
-    const endofmonth = endOfMonth(result);
-    const newlengthOfArray =
-      days[rowName].length + (differenceInDays(endofmonth, datee) - 1);
-    const newfirstDayOfMonthIndex =
-      newlengthOfArray - getDaysInMonth(new Date(result));
-    const firstDayOfMonthIndex = days[rowName].length - getDate(new Date());
-
-    if (monthCount === 0) {
-      if (days[rowName][firstDayOfMonthIndex + index] === "0") {
-        setDays((prevDays) => {
-          const newDays = { ...prevDays };
-          newDays[rowName][firstDayOfMonthIndex + index] = format(
-            addDays(startofmonth, index),
-            "y-MM-d"
-          );
-          return newDays;
-        });
-      } else {
-        setDays((prevDays) => {
-          const newDays = { ...prevDays };
-          newDays[rowName][firstDayOfMonthIndex + index] = "0";
-          return newDays;
-        });
-      }
-    } else if (monthCount < 0) {
-      if (days[rowName][newfirstDayOfMonthIndex + index] === "0") {
-        setDays((prevDays) => {
-          const newDays = { ...prevDays };
-          newDays[rowName][newfirstDayOfMonthIndex + index] = format(
-            addDays(startofmonth, index),
-            "y-MM-d"
-          );
-          return newDays;
-        });
-      } else {
-        setDays((prevDays) => {
-          const newDays = { ...prevDays };
-          newDays[rowName][newfirstDayOfMonthIndex + index] = "0";
-          return newDays;
-        });
-      }
-    }
-  };
-
   const eraseHabit = (activity, i) => {
     const removeFromHabits = [...habits];
     removeFromHabits.splice(i, 1);
@@ -511,38 +186,90 @@ export default function Chart() {
     setDays(newDays);
   };
 
-  function getUpcomingWeekDates() {
-    const today = new Date();
-    today.setDate(today.getDate() + 7 * weekCount);
-    const nextWeekDates = [];
+  const handleCellClickWeek = (activityy, dayIndexx) => {
+    const currentDate = selectedDates[dayIndexx];
+    const formattedDate = `${currentDate.getFullYear()}-${
+      currentDate.getMonth() + 1
+    }-${currentDate.getDate()}`;
 
-    for (let i = 0; i < 7; i++) {
-      const date = new Date();
-      date.setDate(today.getDate() - 6 + i);
-      nextWeekDates.push(date);
+    const isSelected = days[activityy].includes(formattedDate);
+    if (isSelected) {
+      setDays((prevDays) => {
+        return {
+          ...prevDays,
+          [activityy]: prevDays[activityy].filter(
+            (date) => date !== formattedDate
+          ),
+        };
+      });
+    } else {
+      setDays((prevDays) => {
+        return {
+          ...prevDays,
+          [activityy]: [...prevDays[activityy], formattedDate],
+        };
+      });
     }
-
-    return nextWeekDates;
-  }
-
-  const nextWeekDates = getUpcomingWeekDates();
-
-  const next = () => {
-    setWeekCount(weekCount + 1);
   };
 
   const back = () => {
-    setWeekCount(weekCount - 1);
+    setWeekCount((prevWeekCount) => prevWeekCount - 1);
   };
 
-  const nextMonth = () => {
-    setCurrentMonth(currentMonth + 1);
-    setMonthCount(monthCount + 1);
+  const next = () => {
+    setWeekCount((prevWeekCount) => prevWeekCount + 1);
   };
 
-  const backMonth = () => {
-    setCurrentMonth(currentMonth - 1);
-    setMonthCount(monthCount - 1);
+  const generateDateArray = (state) => {
+    const today = addDays(new Date(), 1);
+    const startDate = new Date(today);
+    startDate.setDate(today.getDate() + state * 7);
+
+    const dateArray = Array.from({ length: 7 }, (_, index) => {
+      const currentDate = new Date(startDate);
+      currentDate.setDate(startDate.getDate() + index);
+      return currentDate;
+    });
+    setSelectedDates(dateArray);
+    return dateArray;
+  };
+  useEffect(() => {
+    generateDateArray(weekCount);
+  }, [weekCount]);
+
+  const today = new Date();
+
+  const calculateStartingDate = () => {
+    const daysToAdd = weekCount * 7 + 1;
+    const startingDate = new Date(
+      currentYear,
+      currentMonths,
+      today.getDate() + daysToAdd
+    );
+
+    return startingDate;
+  };
+
+  useEffect(() => {});
+
+  const getBackgroundColorForDayWeek = (activityy, dayIndexxx) => {
+    const activityDays = days[activityy];
+    const currentDate = new Date(calculateStartingDate());
+    currentDate.setDate(currentDate.getDate() + dayIndexxx);
+
+    return activityDays.includes(
+      `${currentDate.getFullYear()}-${
+        currentDate.getMonth() + 1
+      }-${currentDate.getDate()}`
+    )
+      ? colors[activityy]
+      : "white";
+  };
+
+  const formatDate = (datee) => {
+    const month = datee.getMonth() + 1;
+    const day = datee.getDate();
+    return `${month}/${day}`;
   };
 
   const weekView = () => {
@@ -560,11 +287,14 @@ export default function Chart() {
     return firstDay;
   };
 
+  console.log(days);
+
   const currentWeekSecond = () => {
     const currentDay = format(new Date(), "EEEE, MM/d");
     return currentDay;
   };
 
+  console.log(inputFields);
   const renderWeekView = () => {
     return (
       <div className="background-week">
@@ -597,71 +327,42 @@ export default function Chart() {
             </ColorContext.Provider>
           </ModalVisibilityContext.Provider>
           {/* <div>{loginUpdate}</div> */}
-
           <table>
             <thead>
-              <tr className="test-one">
-                <td className="dayz-habits-word">Habits</td>
-                {nextWeekDates.map((date, index) => (
-                  <td className="dayz" key={index}>{`${
-                    date.getMonth() + 1
-                  }/${date.getDate()}`}</td>
+              <tr>
+                <th></th>
+                {selectedDates.map((datee, dayIndexx) => (
+                  <th key={dayIndexx}>{formatDate(datee)}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {weekCount <= 0 ? (
-                Object.keys(days).map((activity, i) => {
-                  const activityArray = days[activity];
-                  const firstDayOfWeek =
-                    days[activity].length - 7 + 7 * weekCount;
-                  const currentDay = days[activity].length + 7 * weekCount;
-                  const slicedArray = activityArray.slice(
-                    firstDayOfWeek,
-                    currentDay
-                  );
-
-                  return (
-                    <tr key={activity} className="test">
-                      <td className="cell-first">
-                        <div className="x-button-div-week">
-                          <p
-                            onClick={() => eraseHabit(activity, i)}
-                            className="x-button-week"
-                          >
-                            X
-                          </p>
-                        </div>
-                        <div className="activity-week">{activity}</div>
-                      </td>
-                      {slicedArray.map((value, index) => (
-                        <td
-                          className="cell"
-                          onClick={() => dayClicked(event, activity, index)}
-                          key={index}
-                          style={{
-                            backgroundColor:
-                              days[activity][firstDayOfWeek + index] !== "0"
-                                ? colors[activity]
-                                : "",
-                          }}
-                        ></td>
-                      ))}
-                    </tr>
-                  );
-                })
-              ) : (
-                <tr>
-                  <td className="no-data-message">No data here</td>
+              {Object.keys(days).map((activityy, indexx) => (
+                <tr key={indexx}>
+                  <td>{activityy}</td>
+                  {selectedDates.map((datee, dayIndexxx) => (
+                    <td
+                      key={dayIndexxx}
+                      onClick={() => handleCellClickWeek(activityy, dayIndexxx)}
+                      style={{
+                        backgroundColor: getBackgroundColorForDayWeek(
+                          activityy,
+                          dayIndexxx
+                        ),
+                        color: "white",
+                      }}
+                    >
+                      {getBackgroundColorForDayWeek(activityy, dayIndexxx) ===
+                        colors[activityy]}
+                    </td>
+                  ))}
                 </tr>
-              )}
+              ))}
             </tbody>
           </table>
-
+          ;
           <table>
             <tbody>
-              {/* {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>} */}
-
               {inputFields.map((inputField, i) => {
                 return (
                   <tr key={i} className="add-habit-row">
@@ -698,13 +399,9 @@ export default function Chart() {
                         </button>
                       </div>
                     </td>
-                    <td className="cell"></td>
-                    <td className="cell"></td>
-                    <td className="cell"></td>
-                    <td className="cell"></td>
-                    <td className="cell"></td>
-                    <td className="cell"></td>
-                    <td className="cell"></td>
+                    {[...Array(7)].map((_, dayIndex) => (
+                      <td key={dayIndex} className="cell"></td>
+                    ))}
                   </tr>
                 );
               })}
@@ -724,6 +421,24 @@ export default function Chart() {
       </div>
     );
   };
+
+  const goToPreviousMonth = () => {
+    setCurrentMonths((prevMonth) => (prevMonth === 0 ? 11 : prevMonth - 1));
+    setCurrentYear((prevYear) =>
+      currentMonths === 0 ? prevYear - 1 : prevYear
+    );
+  };
+
+  const goToNextMonth = () => {
+    setCurrentMonths((prevMonth) => (prevMonth === 11 ? 0 : prevMonth + 1));
+    setCurrentYear((prevYear) =>
+      currentMonths === 11 ? prevYear + 1 : prevYear
+    );
+  };
+
+  useEffect(() => {
+    renderMonthView();
+  }, [currentMonths, currentYear]);
 
   // this needs to change so its not the first but the oldest habit that the user has
   function getUpcomingMonthDates() {
@@ -755,8 +470,60 @@ export default function Chart() {
     }
   }
 
-  const theCurrentMonth = format(setMonth(new Date(), currentMonth), "MMMM");
+  const getDayOfWeek = (year, month, day) => {
+    const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const date = new Date(year, month, day);
+    const dayIndex = date.getDay();
+
+    return daysOfWeek[dayIndex];
+  };
+
+  const theCurrentMonth = format(setMonth(new Date(), currentMonths), "MMMM");
   const nextMonthDates = getUpcomingMonthDates();
+
+  const handleCellClick = (activity, dayIndex) => {
+    const currentDate = new Date(currentYear, currentMonths, dayIndex + 1);
+    const formattedDate = `${currentDate.getFullYear()}-${
+      currentDate.getMonth() + 1
+    }-${currentDate.getDate()}`;
+
+    const isSelected = days[activity].includes(formattedDate);
+
+    if (isSelected) {
+      setDays((prevDays) => {
+        return {
+          ...prevDays,
+          [activity]: prevDays[activity].filter(
+            (date) => date !== formattedDate
+          ),
+        };
+      });
+    } else {
+      setDays((prevDays) => {
+        return {
+          ...prevDays,
+          [activity]: [...prevDays[activity], formattedDate],
+        };
+      });
+    }
+  };
+
+  const getBackgroundColorForDay = (activity, dayIndex) => {
+    const activityDays = days[activity];
+    const currentDate = new Date(currentYear, currentMonths, dayIndex + 1);
+
+    return activityDays.includes(
+      `${currentDate.getFullYear()}-${
+        currentDate.getMonth() + 1
+      }-${currentDate.getDate()}`
+    )
+      ? colors[activity]
+      : "white";
+  };
+
+  const getDaysInMonth = (year, month) => {
+    return new Date(year, month + 1, 0).getDate();
+  };
 
   const renderMonthView = () => {
     return (
@@ -765,13 +532,13 @@ export default function Chart() {
           <div className="month-nextAndBackButtons">
             <img
               className="backMonth"
-              onClick={backMonth}
+              onClick={goToPreviousMonth}
               src="https://cdn-icons-png.flaticon.com/128/860/860790.png"
             ></img>
             <div className="currentMonth">{theCurrentMonth}</div>
             <img
               className="nextMonth"
-              onClick={nextMonth}
+              onClick={goToNextMonth}
               src="https://cdn-icons-png.flaticon.com/128/758/758778.png"
             ></img>
           </div>
@@ -787,114 +554,63 @@ export default function Chart() {
                 </Context.Provider>
               </ColorContext.Provider>
             </ModalVisibilityContext.Provider>
-            {/* <div className="x-buttons-month">
-              {habits.map((activity, i) => (
-                <div key={i}>
-                  <p
-                    className="x-month"
-                    onClick={() => eraseHabit(activity, i)}
-                  >
-                    X
-                  </p>
-                </div>
-              ))}
-            </div> */}
             <div className="randdd">
               <table className="habit-table-month">
                 <thead>
-                  <tr className="month-header-one">
-                    {nextMonthDates.map((date, indexx) => (
-                      <td className="month-daysofweek" key={indexx}>{`${format(
-                        date,
-                        "EEEEE"
-                      )}`}</td>
-                    ))}
+                  <tr>
+                    <th></th>
+                    {Array.from(
+                      { length: getDaysInMonth(currentYear, currentMonths) },
+                      (_, dayIndex) => (
+                        <th key={dayIndex}>{dayIndex + 1}</th>
+                      )
+                    )}
                   </tr>
-                  <tr className="month-header-two">
-                    <td className="month-dayz-habits-word">Habits</td>
-                    {nextMonthDates.map((date, index) => (
-                      <td
-                        className="month-dayz"
-                        key={index}
-                      >{`${date.getDate()}`}</td>
-                    ))}
+                  <tr>
+                    <th></th>
+                    {Array.from(
+                      { length: getDaysInMonth(currentYear, currentMonths) },
+                      (_, dayIndex) => (
+                        <th key={dayIndex}>
+                          {getDayOfWeek(
+                            currentYear,
+                            currentMonths,
+                            dayIndex + 1
+                          )}
+                        </th>
+                      )
+                    )}
                   </tr>
                 </thead>
+
                 <tbody>
-                  {Object.keys(days).map((activity, i) => {
-                    const activityArray = days[activity];
-                    const datee = new Date();
-
-                    const firstDayOfMonthIndex =
-                      days[activity].length - getDate(datee);
-                    const lengthOfArray = days[activity].length;
-                    const slicedArrayy = days[activity].slice(
-                      firstDayOfMonthIndex,
-                      lengthOfArray
-                    );
-
-                    const result = sub(datee, {
-                      months: -1 * monthCount,
-                    });
-                    const endofmonth = endOfMonth(result);
-                    const newlengthOfArray =
-                      days[activity].length +
-                      (differenceInDays(endofmonth, datee) - 1);
-                    const newfirstDayOfMonthIndex =
-                      newlengthOfArray - getDaysInMonth(new Date(result));
-                    const newslicedArray = activityArray.slice(
-                      newfirstDayOfMonthIndex,
-                      newlengthOfArray
-                    );
-                    return (
-                      <tr key={activity} className="month-cell-row">
-                        <td className="month-cell-habit">
-                          <div className="x-button-div-month">
-                            <p
-                              onClick={() => eraseHabit(activity, i)}
-                              className="x-button-month"
-                            >
-                              X
-                            </p>
-                          </div>
-                          <div className="activity-month">{activity}</div>
-                        </td>
-                        {monthCount === 0
-                          ? slicedArrayy.map((value, index) => (
-                              <td
-                                className="month-cell"
-                                onClick={() =>
-                                  dayClickedMonth(event, activity, index)
-                                }
-                                key={index}
-                                style={{
-                                  backgroundColor:
-                                    value !== "0" ? colors[activity] : "",
-                                }}
-                              ></td>
-                            ))
-                          : newslicedArray.map((value, index) => (
-                              <td
-                                className="month-cell"
-                                onClick={() =>
-                                  dayClickedMonth(event, activity, index)
-                                }
-                                key={index}
-                                style={{
-                                  backgroundColor:
-                                    value !== "0" ? colors[activity] : "",
-                                }}
-                              ></td>
-                            ))}
-                        {/* ) : (
-                    <td className="cell">Invalid data structure</td>
-                  ) */}
-                      </tr>
-                    );
-                  })}
+                  {Object.keys(days).map((activity, index) => (
+                    <tr key={index}>
+                      <td>{activity}</td>
+                      {Array.from(
+                        { length: getDaysInMonth(currentYear, currentMonths) },
+                        (_, dayIndex) => (
+                          <td
+                            key={dayIndex}
+                            onClick={() => handleCellClick(activity, dayIndex)}
+                            style={{
+                              backgroundColor: getBackgroundColorForDay(
+                                activity,
+                                dayIndex
+                              ),
+                              color: "white",
+                            }}
+                          >
+                            
+                            {getBackgroundColorForDay(activity, dayIndex) ===
+                              colors[activity]}
+                          </td>
+                        )
+                      )}
+                    </tr>
+                  ))}
                 </tbody>
               </table>
-
               <table className="add-habit-table">
                 <tbody>
                   {inputFields.map((inputField, i) => {
@@ -948,9 +664,14 @@ export default function Chart() {
                             </button>
                           </div>
                         </td>
-                        {nextMonthDates.map((date, i) => (
-                          <td key={i} className="month-cell"></td>
-                        ))}
+                        {Array.from(
+                          {
+                            length: getDaysInMonth(currentYear, currentMonths),
+                          },
+                          (_, i) => (
+                            <td key={i} className="month-cell"></td>
+                          )
+                        )}
                       </tr>
                     );
                   })}
@@ -965,7 +686,6 @@ export default function Chart() {
               </div>
             </div>
           </div>
-
           <button className="week-view" onClick={weekView}>
             Week View
           </button>
