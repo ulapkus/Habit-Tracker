@@ -14,9 +14,7 @@
 .blue {
   border: 1px solid pink;
   width: 100%;
- 
 }
-
 
 html,
 body {
@@ -393,7 +391,7 @@ h4 {
   letter-spacing: 7px;
   color: gray;
   font-size: 2vh;
-  margin: 0; 
+  margin: 0;
 }
 
 .main-questions {
@@ -555,7 +553,7 @@ h1 {
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 100px;
+  width: 100%;
   padding-left: 8vw;
   padding-top: 0px;
   margin: 0 0 0 2.2px;
@@ -569,13 +567,12 @@ h1 {
   justify-content: center;
   align-items: flex-end;
   height: 100%;
-  width: 100px;
+  width: 100%;
   padding: 0;
   margin: 0;
-  font-family: "Urbanist", sans-serif;
 }
 
-/* .month-daysofweek,
+.month-daysofweek,
 .month-dayz {
   display: flex;
   flex-direction: column;
@@ -590,7 +587,7 @@ h1 {
   font-family: "Cousine", monospace;
   font-weight: lighter;
   padding-top: 0.48vh;
-} */
+}
 
 thead {
   width: 100%;
@@ -1132,4 +1129,3 @@ tr {
   border: 1px solid #add8e6;
   color: white;
 }
-

@@ -18,6 +18,9 @@ export const OtherContext = React.createContext();
 export const ColorContext = React.createContext();
 export const ModalVisibilityContext = React.createContext();
 
+// need to address if all habits are erased
+// need to prevent user from going beyond current month/week
+
 export default function Chart() {
   const [habits, setHabits] = useState(["workout", "yoga", "water"]);
 
@@ -65,12 +68,6 @@ export default function Chart() {
   const [weekCount, setWeekCount] = useState(-1);
   const [view, setView] = useState("week");
   const [modalVisibility, setModalVisibility] = useState(true);
-  const [currentMonth, setCurrentMonth] = useState(getMonth(new Date()));
-  const [monthCount, setMonthCount] = useState(0);
-  const [startDate, setStartDate] = useState("2023-10-12");
-  const [lastLogin, setLastLogin] = useState("2023-11-19");
-  const [daysDifference, setDaysDifference] = useState(0);
-  const [runUpdateDays, setRunUpdateDays] = useState(true);
   const [newHabitAdded, setNewHabitAdded] = useState(true);
   const [currentMonths, setCurrentMonths] = useState(11);
   const [currentYear, setCurrentYear] = useState(2023);
@@ -83,41 +80,6 @@ export default function Chart() {
     });
     return past7Days.sort((a, b) => a - b);
   });
-
-  const loginUpdate = () => {
-    const startDateObj = new Date(lastLogin);
-    const currentDate = new Date();
-    const timeDifference = currentDate - startDateObj;
-    const newDaysDifference = Math.floor(
-      timeDifference / (1000 * 60 * 60 * 24)
-    );
-
-    setDaysDifference(newDaysDifference);
-    setLastLogin(format(new Date(), "y-MM-d"));
-  };
-
-  // if (daysDifference > 0) {
-  //   setDays((prevDays) => {
-  //     const updatedDays = { ...prevDays };
-
-  //     Object.keys(updatedDays).forEach((activity) => {
-  //       const array = updatedDays[activity];
-  //       for (let i = 0; i < daysDifference; i++) {
-  //         array.push("0");
-  //       }
-  //     });
-
-  //     setDaysDifference(0);
-  //     setRunUpdateDays(false);
-  //     return updatedDays;
-  //   });
-  // }
-
-  useEffect(() => {
-    if (runUpdateDays) {
-      loginUpdate();
-    }
-  }, [runUpdateDays]);
 
   const addHabit = () => {
     const addInput = [...inputFields, []];
@@ -263,7 +225,7 @@ export default function Chart() {
       }-${currentDate.getDate()}`
     )
       ? colors[activityy]
-      : "white";
+      : "#81c8e0";
   };
 
   const formatDate = (datee) => {
@@ -287,14 +249,11 @@ export default function Chart() {
     return firstDay;
   };
 
-  console.log(days);
-
   const currentWeekSecond = () => {
     const currentDay = format(new Date(), "EEEE, MM/d");
     return currentDay;
   };
 
-  console.log(inputFields);
   const renderWeekView = () => {
     return (
       <div className="background-week">
@@ -326,22 +285,34 @@ export default function Chart() {
               </Context.Provider>
             </ColorContext.Provider>
           </ModalVisibilityContext.Provider>
-          {/* <div>{loginUpdate}</div> */}
           <table>
             <thead>
-              <tr>
-                <th></th>
+              <tr className="test-one">
+                <th className="dayz-habits-word">Habits</th>
                 {selectedDates.map((datee, dayIndexx) => (
-                  <th key={dayIndexx}>{formatDate(datee)}</th>
+                  <th className="dayz" key={dayIndexx}>
+                    {formatDate(datee)}
+                  </th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {Object.keys(days).map((activityy, indexx) => (
-                <tr key={indexx}>
-                  <td>{activityy}</td>
+                <tr key={indexx} className="test">
+                  <td className="cell-first">
+                    <div className="x-button-div-week">
+                      <p
+                        onClick={() => eraseHabit(activityy, indexx)}
+                        className="x-button-week"
+                      >
+                        X
+                      </p>
+                    </div>
+                    <div className="activity-week">{activityy}</div>
+                  </td>
                   {selectedDates.map((datee, dayIndexxx) => (
                     <td
+                      className="cell"
                       key={dayIndexxx}
                       onClick={() => handleCellClickWeek(activityy, dayIndexxx)}
                       style={{
@@ -349,7 +320,6 @@ export default function Chart() {
                           activityy,
                           dayIndexxx
                         ),
-                        color: "white",
                       }}
                     >
                       {getBackgroundColorForDayWeek(activityy, dayIndexxx) ===
@@ -360,7 +330,6 @@ export default function Chart() {
               ))}
             </tbody>
           </table>
-          ;
           <table>
             <tbody>
               {inputFields.map((inputField, i) => {
@@ -440,36 +409,6 @@ export default function Chart() {
     renderMonthView();
   }, [currentMonths, currentYear]);
 
-  // this needs to change so its not the first but the oldest habit that the user has
-  function getUpcomingMonthDates() {
-    const firstArray = Object.values(days)[0];
-    const lengthOfFirstArray = firstArray.length;
-    const today = new Date();
-    today.setMonth(currentMonth);
-    const nextMonthDates = [];
-    const firstDay = startOfMonth(today);
-    const totalDaysInMonth = endOfMonth(today).getDate();
-    const firstDayOfMonthIndex = lengthOfFirstArray - getDate(new Date());
-    const lastIndex = lengthOfFirstArray;
-    const habitDaysInThisMonth = lastIndex - firstDayOfMonthIndex;
-
-    if (monthCount === 0 && habitDaysInThisMonth < totalDaysInMonth) {
-      for (let i = 0; i < habitDaysInThisMonth; i++) {
-        const day = new Date(firstDay);
-        day.setDate(firstDay.getDate() + i);
-        nextMonthDates.push(day);
-      }
-      return nextMonthDates;
-    } else {
-      for (let i = 0; i < totalDaysInMonth; i++) {
-        const day = new Date(firstDay);
-        day.setDate(firstDay.getDate() + i);
-        nextMonthDates.push(day);
-      }
-      return nextMonthDates;
-    }
-  }
-
   const getDayOfWeek = (year, month, day) => {
     const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const date = new Date(year, month, day);
@@ -479,7 +418,6 @@ export default function Chart() {
   };
 
   const theCurrentMonth = format(setMonth(new Date(), currentMonths), "MMMM");
-  const nextMonthDates = getUpcomingMonthDates();
 
   const handleCellClick = (activity, dayIndex) => {
     const currentDate = new Date(currentYear, currentMonths, dayIndex + 1);
@@ -518,7 +456,7 @@ export default function Chart() {
       }-${currentDate.getDate()}`
     )
       ? colors[activity]
-      : "white";
+      : "#81c8e0";
   };
 
   const getDaysInMonth = (year, month) => {
@@ -557,21 +495,23 @@ export default function Chart() {
             <div className="randdd">
               <table className="habit-table-month">
                 <thead>
-                  <tr>
-                    <th></th>
+                  <tr className="month-header-one">
                     {Array.from(
                       { length: getDaysInMonth(currentYear, currentMonths) },
                       (_, dayIndex) => (
-                        <th key={dayIndex}>{dayIndex + 1}</th>
+                        <th className="month-dayz" key={dayIndex}>
+                          {dayIndex + 1}
+                        </th>
                       )
                     )}
                   </tr>
-                  <tr>
-                    <th></th>
+                  <tr className="month-header-two">
+                    <td className="month-dayz-habits-word">Habits</td>
+
                     {Array.from(
                       { length: getDaysInMonth(currentYear, currentMonths) },
                       (_, dayIndex) => (
-                        <th key={dayIndex}>
+                        <th className="month-daysofweek" key={dayIndex}>
                           {getDayOfWeek(
                             currentYear,
                             currentMonths,
@@ -585,12 +525,23 @@ export default function Chart() {
 
                 <tbody>
                   {Object.keys(days).map((activity, index) => (
-                    <tr key={index}>
-                      <td>{activity}</td>
+                    <tr key={index} className="month-cell-row">
+                      <td className="month-cell-habit">
+                        <div className="x-button-div-month">
+                          <p
+                            onClick={() => eraseHabit(activity, i)}
+                            className="x-button-month"
+                          >
+                            X
+                          </p>
+                        </div>
+                        <div className="activity-month">{activity}</div>
+                      </td>
                       {Array.from(
                         { length: getDaysInMonth(currentYear, currentMonths) },
                         (_, dayIndex) => (
                           <td
+                            className="month-cell"
                             key={dayIndex}
                             onClick={() => handleCellClick(activity, dayIndex)}
                             style={{
@@ -598,10 +549,8 @@ export default function Chart() {
                                 activity,
                                 dayIndex
                               ),
-                              color: "white",
                             }}
                           >
-                            
                             {getBackgroundColorForDay(activity, dayIndex) ===
                               colors[activity]}
                           </td>
