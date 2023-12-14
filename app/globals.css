@@ -367,6 +367,33 @@ h5 {
   cursor: pointer;
 }
 
+.testtt {
+  border: 1px solid red;
+  font-size: 100px;
+  color: black;
+  height: 50px;
+}
+
+.month-and-year-week {
+  display: flex;
+  flex-direction: column;
+  height: 6vh;
+  padding: 0;
+  margin: 0;
+  gap: 1.7vh;
+  width: 40vw;
+  text-align: center;
+}
+
+.currentyear-week {
+  font-family: "Cousine", monospace;
+  font-weight: light;
+  letter-spacing: 10px;
+  text-align: center;
+  margin: 0;
+  color: grey;
+}
+
 h4 {
   display: flex;
   flex-direction: column;
@@ -376,7 +403,7 @@ h4 {
   text-transform: uppercase;
   letter-spacing: 7px;
   color: gray;
-  font-size: 2vh;
+  font-size: 2.3vh;
   margin: 0;
 }
 
@@ -621,6 +648,7 @@ table {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   gap: 2vw;
   width: 80%;
 }
@@ -637,6 +665,16 @@ table {
   padding: 0;
 }
 
+.month-and-year {
+  display: flex;
+  flex-direction: column;
+  height: 6vh;
+  padding: 1.5vh 0 0 0;
+  margin: 0 0 2.5vh 0.3vw;
+  gap: 1vh;
+  width: 15vw;
+}
+
 .currentMonth {
   font-size: 3vh;
   color: grey;
@@ -644,7 +682,17 @@ table {
   font-weight: light;
   text-transform: uppercase;
   letter-spacing: 10px;
-  margin-left: 1vw;
+  margin: 0;
+  text-align: center;
+}
+
+.currentYear {
+  font-family: "Cousine", monospace;
+  font-weight: light;
+  letter-spacing: 10px;
+  text-align: center;
+  margin: 0;
+  color: grey;
 }
 
 .month-nextAndBackButtons {
