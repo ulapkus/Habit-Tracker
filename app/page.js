@@ -1,24 +1,15 @@
-// // made edit here after watching YT video
-
 // "use client";
 
 // import React, { useState } from "react";
-// // import Tabs from "./Tabs";
-// import { AuthProvider } from "./contexts/AuthContext";
-// // import Dashboard from "./components/dashboard";
+// import Tabs from "./Tabs";
 
 // export default function Page() {
 //   return (
 //     <div className="main">
-//       {/* <Tabs /> */}
-//       {/* <AuthProvider>
-//         <Dashboard></Dashboard>
-//       </AuthProvider> */}
+//       <Tabs />
 //     </div>
 //   );
 // }
-
-import Image from "next/image";
 
 export default function Home() {
   return (
