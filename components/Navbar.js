@@ -5,15 +5,17 @@ import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
   const { data: session } = useSession();
+
+  console.log(session)
   return (
     <div>
-      <ul className="flex justify-between m-10 item-center">
+      <ul>
         <div>
           <Link href="/">
             <li>Home</li>
           </Link>
         </div>
-        <div className="flex gap-10">
+        <div>
           <Link href="/dashboard">
             <li>Dashboard</li>
           </Link>
@@ -28,13 +30,13 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              {session.user?.email}
+              {/* commented out portion displays email */}
+              {/* {session.user?.email} */}
               <li>
                 <button
                   onClick={() => {
                     signOut();
                   }}
-                  className="p-2 px-5 -mt-1 bg-blue-800 rounded-full"
                 >
                   Logout
                 </button>

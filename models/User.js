@@ -13,6 +13,9 @@ const userSchema = new Schema(
       type: String,
       required: false,
     },
+    testname: {
+      type: String, 
+    }
   },
   { timestamps: true }
 );

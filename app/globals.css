@@ -4,18 +4,6 @@
   box-sizing: border-box;
 }
 
-.red {
-  border: 1px solid blue;
-  background-color: red;
-  width: 15px;
-  height: 10px;
-}
-
-.blue {
-  border: 1px solid pink;
-  width: 100%;
-}
-
 html,
 body {
   width: 100%;
