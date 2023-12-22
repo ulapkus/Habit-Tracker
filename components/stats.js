@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState, createContext } from "react";
 import { differenceInDays } from "date-fns";
 

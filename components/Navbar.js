@@ -5,14 +5,22 @@ import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
   const { data: session } = useSession();
+// console.log(session)
 
-  console.log(session)
+
+
+
   return (
     <div>
       <ul>
         <div>
           <Link href="/">
             <li>Home</li>
+          </Link>
+        </div>
+        <div>
+          <Link href="/testname">
+            <li>testname</li>
           </Link>
         </div>
         <div>
@@ -30,8 +38,8 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              {/* commented out portion displays email */}
-              {/* {session.user?.email} */}
+              {/* this displays email */}
+              {session.user?.email}
               <li>
                 <button
                   onClick={() => {

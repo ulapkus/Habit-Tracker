@@ -34,7 +34,7 @@ const Register = () => {
       setError("Password is invalid");
       return;
     }
-
+    
     try {
       const res = await fetch("/api/register", {
         method: "POST",

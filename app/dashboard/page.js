@@ -6,12 +6,14 @@ import { redirect } from "next/navigation";
 const Dashboard = async () => {
   // await here is used to wait for the asynchronous getServerSession function to complete before continuing
   const session = await getServerSession();
+
   if (!session) {
     redirect("/");
   }
   return (
     <div className="main">
       <Tabs />
+      
     </div>
   );
 };
