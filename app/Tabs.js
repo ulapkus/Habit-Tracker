@@ -4,6 +4,7 @@ import Chart from "../components/chart";
 import Quote from "../components/quote";
 import Stats from "../components/stats";
 import About from "../components/about";
+import React from "react";
 
 function Tabs() {
   const [toggleState, setToggleState] = useState(1);

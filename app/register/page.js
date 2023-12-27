@@ -19,7 +19,7 @@ const Register = () => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     return emailRegex.test(email);
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const email = e.target[0].value;
@@ -34,7 +34,7 @@ const Register = () => {
       setError("Password is invalid");
       return;
     }
-    
+
     try {
       const res = await fetch("/api/register", {
         method: "POST",
@@ -65,29 +65,31 @@ const Register = () => {
 
   return (
     sessionStatus !== "authenticated" && (
-      <div>
-        <div>
-          <h1>Register</h1>
-          <form onSubmit={handleSubmit}>
+      <div className="login-background">
+        <div className="register-box">
+          <h2>Register</h2>
+          <form onSubmit={handleSubmit} className="login-form">
             <input
               type="text"
               placeholder="Email"
               required
+              className="login-email"
             />
             <input
               type="password"
               placeholder="Password"
               required
+              className="login-password"
             />
-            <button type="submit">
+            <button type="submit" className="login-button">
               Register
             </button>
             <p>{error && error}</p>
           </form>
-          <div>- OR -</div>
-          <Link href="/login">
-            Login with an existing account
-          </Link>
+          <hr className="login-break"></hr>
+          <div className="login-bottom">
+            <Link href="/login">I already have an account</Link>
+          </div>
         </div>
       </div>
     )

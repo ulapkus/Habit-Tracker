@@ -16,6 +16,151 @@ body {
   border-radius: 15px;
 }
 
+.login-background {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #8caa91;
+}
+
+.layout-background {
+  height: 100%;
+}
+
+.navbar-background {
+  border: 1px solid red;
+}
+
+.login-break {
+  width: 15vw;
+  color: black;
+}
+
+.login-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 59vh;
+  font-family: "Cousine", monospace;
+  margin: 0 0 8vh 0;
+  padding: 6vh;
+  gap: 1.8vh;
+  letter-spacing: 3px;
+  width: 28vw;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+}
+
+.register-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 50vh;
+  font-family: "Cousine", monospace;
+  margin: 0 0 8vh 0;
+  padding: 6vh;
+  gap: 1.8vh;
+  letter-spacing: 3px;
+  width: 28vw;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  font-size: 4vh;
+  font-family: "Cousine", monospace;
+  color: #8caa91;
+  letter-spacing: 5px;
+  padding: 0;
+  margin: 0 0 1vh 0;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: 1.5vh;
+}
+
+.login-email,
+.login-password {
+  width: 15vw;
+  height: 5vh;
+  border-radius: 5px;
+  font-size: 2vh;
+  font-family: "Cousine", monospace;
+  letter-spacing: 5px;
+  padding-left: 1vw;
+}
+
+.login-email:focus {
+  outline: black;
+}
+
+.login-password:focus {
+  outline: black;
+}
+
+a {
+  color: gray;
+  text-decoration: none;
+  /* border: 1px solid red; */
+  padding: 1vh;
+  border-radius: 6px;
+  font-size: 2vh;
+  text-align: center;
+}
+
+a:hover {
+  background-color: #ffffff;
+  color: black;
+}
+
+.login-button {
+  width: 15vw;
+  height: 4vh;
+  font-size: 2vh;
+  color: gray;
+  font-family: "Cousine", monospace;
+  border-radius: 5px;
+  font-weight: bolder;
+  letter-spacing: 7px;
+  /* background-color: #a4c6aa; */
+}
+
+.login-button:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.login-github {
+  width: 8vw;
+  height: 4vh;
+  font-family: "Cousine", monospace;
+  border-radius: 5px;
+}
+
+.login-github:hover {
+  cursor: pointer;
+}
+
+.login-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.8vh;
+}
+
 .main {
   display: flex;
   flex-direction: column;

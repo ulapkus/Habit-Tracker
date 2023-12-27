@@ -18,9 +18,9 @@ export default async function RootLayout({ children }) {
   const session = await getServerSession();
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} >
         <SessionProvider session={session}>
-          <div>
+          <div className="layout-background">
             <Navbar />
             {children}
           </div>

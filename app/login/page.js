@@ -55,36 +55,40 @@ const Login = () => {
 
   return (
     sessionStatus !== "authenticated" && (
-      <div>
-        <div>
-          <h1>Login</h1>
-          <form onSubmit={handleSubmit}>
+      <div className="login-background">
+        <div className="login-box">
+          <h2>Login</h2>
+          <form onSubmit={handleSubmit} className="login-form">
             <input
               type="text"
               placeholder="Email"
               required
+              className="login-email"
             />
             <input
               type="password"
               placeholder="Password"
               required
+              className="login-password"
             />
-            <button type="submit">
+            <button type="submit" className="login-button">
               Sign In
             </button>
             <p>{error && error}</p>
           </form>
-          <button
-            onClick={() => {
-              signIn("github");
-            }}
-          >
-            Sign In with Github
-          </button>
-          <div>- OR -</div>
-          <Link href="/register">
-            Register Here
-          </Link>
+          <hr className="login-break"></hr>
+          <div className="login-bottom">
+            <button
+              onClick={() => {
+                signIn("github");
+              }}
+              className="login-github"
+            >
+              Sign In with Github
+            </button>
+            <div>- OR -</div>
+            <Link href="/register">Create an account</Link>
+          </div>
         </div>
       </div>
     )

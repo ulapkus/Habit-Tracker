@@ -5,56 +5,69 @@ import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
   const { data: session } = useSession();
-// console.log(session)
-
-
-
 
   return (
-    <div>
-      <ul>
-        <div>
-          <Link href="/">
-            <li>Home</li>
-          </Link>
-        </div>
-        <div>
-          <Link href="/testname">
-            <li>testname</li>
-          </Link>
-        </div>
-        <div>
-          <Link href="/dashboard">
-            <li>Dashboard</li>
-          </Link>
-          {!session ? (
-            <>
-              <Link href="/login">
-                <li>Login</li>
-              </Link>
-              <Link href="/register">
-                <li>Register</li>
-              </Link>
-            </>
-          ) : (
-            <>
-              {/* this displays email */}
-              {session.user?.email}
-              <li>
-                <button
-                  onClick={() => {
-                    signOut();
-                  }}
-                >
-                  Logout
-                </button>
-              </li>
-            </>
-          )}
-        </div>
-      </ul>
+    <div className="navbar-background">
+      <Link href="/">Home</Link>
+      <Link href="/testname">testname</Link>
+      {!session ? (
+        <>
+          <Link href="/login">Login</Link>
+          <Link href="/register">Register</Link>
+        </>
+      ) : (
+        <>
+          <div className="dashboard">
+            <Link href="/dashboard">Dashboard</Link>
+          </div>
+          <button
+            onClick={() => {
+              signOut();
+            }}
+          >
+            Logout
+          </button>
+        </>
+      )}
     </div>
   );
 };
 
 export default Navbar;
+
+// "use client";
+// import React from "react";
+// import Link from "next/link";
+// import { signOut, useSession } from "next-auth/react";
+
+// const Navbar = () => {
+//   const { data: session } = useSession();
+
+//   return (
+//     <div>
+//       <Link href="/">Home</Link>
+//       <Link href="/testname">testname</Link>
+//       <Link href="/dashboard">Dashboard</Link>
+//       {!session ? (
+//         <>
+//           <Link href="/login">Login</Link>
+//           <Link href="/register">Register</Link>
+//         </>
+//       ) : (
+//         <>
+//           {/* this displays email */}
+//           {session.user?.email}
+//           <button
+//             onClick={() => {
+//               signOut();
+//             }}
+//           >
+//             Logout
+//           </button>
+//         </>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Navbar;
