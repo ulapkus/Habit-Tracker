@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Context } from "./chart";
-import { DaysContext } from "./chart";
-import { ColorContext } from "./chart";
-import { ModalContext } from "./chart";
+import { Context } from "./chart/page";
+import { DaysContext } from "./chart/page";
+import { ColorContext } from "./chart/page";
+import { ModalContext } from "./chart/page";
 
 export default function Child() {
   const [habits, setHabits] = useContext(Context);

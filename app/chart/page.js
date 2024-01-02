@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, createContext } from "react";
-import Child from "./questions";
+import Child from "../questions";
 import {
   format,
   subDays,
@@ -13,8 +13,7 @@ import {
   setMonth,
 } from "date-fns";
 
-
-export const Context = createContext([[],() => {}]);
+export const Context = createContext([[], () => {}]);
 export const DaysContext = React.createContext();
 export const ColorContext = React.createContext();
 export const ModalContext = React.createContext();
@@ -267,10 +266,11 @@ export default function Chart() {
             src="https://cdn-icons-png.flaticon.com/128/860/860790.png"
           ></img>
           <div className="month-and-year-week">
-          <h4>
-            {currentWeekFirst()} - {currentWeekSecond()}
-          </h4>
-          <p className="currentyear-week">{currentYear}</p></div>
+            <h4>
+              {currentWeekFirst()} - {currentWeekSecond()}
+            </h4>
+            <p className="currentyear-week">{currentYear}</p>
+          </div>
           <img
             className="next"
             onClick={next}

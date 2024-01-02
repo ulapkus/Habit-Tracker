@@ -63,7 +63,7 @@ export default AllUsers;
 // const AllUsers = () => {
 //   const [rows, setRows] = useState([]);
 
-//   const { data: session } = useSession();
+  // const { data: session } = useSession();
 
 //   useEffect(() => {
     // async function getAllUsers() {

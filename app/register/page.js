@@ -22,8 +22,9 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
+    const name = e.target[0].value;
+    const email = e.target[1].value;
+    const password = e.target[2].value;
 
     if (!isValidEmail(email)) {
       setError("Email is invalid");
@@ -42,6 +43,7 @@ const Register = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          name, 
           email,
           password,
         }),
@@ -69,6 +71,12 @@ const Register = () => {
         <div className="register-box">
           <h2>Register</h2>
           <form onSubmit={handleSubmit} className="login-form">
+          <input
+              type="text"
+              placeholder="Name"
+              required
+              className="login-name"
+            />
             <input
               type="text"
               placeholder="Email"

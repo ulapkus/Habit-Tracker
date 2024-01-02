@@ -8,8 +8,6 @@ import Connect from "../../../../utils/db";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "../../../../utils/mongodb";
 
-
-
 export const authOptions = {
   adapter: MongoDBAdapter(clientPromise),
   providers: [
@@ -20,6 +18,7 @@ export const authOptions = {
     CredentialsProvider({
       name: "credentials",
       credentials: {
+        name: { label: "Name", type: "text" },
         email: { label: "Email", type: "text", placeholder: "Aaron" },
         password: { label: "Password", type: "password" },
       },
@@ -34,7 +33,7 @@ export const authOptions = {
             user.password
           );
           if (isPasswordCorrect) {
-            console.log("hi")
+            console.log("hi");
             return user;
           }
         }
@@ -142,4 +141,3 @@ export { handler as GET, handler as POST };
 
 // export const handler = NextAuth(authOptions);
 // export { handler as GET, handler as POST };
-

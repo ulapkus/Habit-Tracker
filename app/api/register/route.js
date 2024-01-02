@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
-  const { email, password } = await request.json();
+  const { name, email, password } = await request.json();
 
   // first it waits to connect to your database (on mongodb) via mongoose (on /utils/db)
   await Connect();
@@ -17,6 +17,7 @@ export const POST = async (request) => {
 
   const hashedPassword = await bcrypt.hash(password, 5);
   const newUser = new Users({
+    name,
     email,
     password: hashedPassword,
   });
