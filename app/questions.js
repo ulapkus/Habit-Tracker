@@ -74,7 +74,7 @@ export default function Child() {
             <section className="question-main">
               <section className="question-plus-answer">
                 <h3 className="what-habits-q">
-                  What are some habits you would like to work on?
+                  What are some habits you'd like to work on?
                 </h3>
                 <div className="input-boxes">
                   <div className="modal-habit-input">
@@ -86,6 +86,7 @@ export default function Child() {
                             onChange={(e) => handleInputChange(e, i)}
                             placeholder="Habit"
                             type="text"
+                            className="modal-question"
                           />
                         </div>
                       );
@@ -99,8 +100,9 @@ export default function Child() {
                             value={colorField}
                             onChange={(e) => handleColorChange(e, index)}
                             placeholder="Color"
+                            className="modal-question"
                           />
-                          <button onClick={() => removeInput(i)}>X</button>
+                          <button className="question-x" onClick={() => removeInput(i)}>X</button>
                         </div>
                       );
                     })}

@@ -43,7 +43,7 @@ const Register = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name, 
+          name,
           email,
           password,
         }),
@@ -71,7 +71,7 @@ const Register = () => {
         <div className="register-box">
           <h2>Register</h2>
           <form onSubmit={handleSubmit} className="login-form">
-          <input
+            <input
               type="text"
               placeholder="Name"
               required
@@ -96,7 +96,7 @@ const Register = () => {
           </form>
           <hr className="login-break"></hr>
           <div className="login-bottom">
-            <Link href="/login">I already have an account</Link>
+            <Link href="/login" className="have-or-create-account">I already have an account</Link>
           </div>
         </div>
       </div>

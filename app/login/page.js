@@ -11,6 +11,7 @@ const Login = () => {
 
   useEffect(() => {
     if (sessionStatus === "authenticated") {
+      // document.body.style.backgroundColor = "#f5f5dc";
       router.replace("/");
     }
   }, [sessionStatus, router]);
@@ -87,7 +88,7 @@ const Login = () => {
               Sign In with Github
             </button>
             <div>- OR -</div>
-            <Link href="/register">Create an account</Link>
+            <Link href="/register" className="have-or-create-account">Create an account</Link>
           </div>
         </div>
       </div>
