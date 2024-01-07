@@ -25,6 +25,10 @@ const Register = () => {
     const name = e.target[0].value;
     const email = e.target[1].value;
     const password = e.target[2].value;
+    const habits = [];
+    const days = [];
+    // const days = {};
+    const colors = [];
 
     if (!isValidEmail(email)) {
       setError("Email is invalid");
@@ -46,6 +50,9 @@ const Register = () => {
           name,
           email,
           password,
+          habits,
+          days,
+          colors,
         }),
       });
       if (res.status === 400) {
@@ -96,7 +103,9 @@ const Register = () => {
           </form>
           <hr className="login-break"></hr>
           <div className="login-bottom">
-            <Link href="/login" className="have-or-create-account">I already have an account</Link>
+            <Link href="/login" className="have-or-create-account">
+              I already have an account
+            </Link>
           </div>
         </div>
       </div>

@@ -15,6 +15,26 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: false,
+    }, 
+    habits: {
+      type: Array,
+      unique: true,
+      required: false,
+    },
+    // days: {
+    //   type: Object,
+    //   unique: true,
+    //   required: false,
+    // },
+    days: {
+      type: Array,
+      unique: true,
+      required: false,
+    },
+    colors: {
+      type: Array,
+      unique: true,
+      required: false,
     }
   },
   { timestamps: true }

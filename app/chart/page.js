@@ -2,16 +2,8 @@
 
 import React, { useEffect, useState, createContext } from "react";
 import Child from "../questions";
-import {
-  format,
-  subDays,
-  addDays,
-  endOfMonth,
-  startOfMonth,
-  getMonth,
-  getDate,
-  setMonth,
-} from "date-fns";
+import { format, addDays, setMonth, subDays } from "date-fns";
+import { getSession } from "next-auth/react";
 
 export const Context = createContext([[], () => {}]);
 export const DaysContext = React.createContext();
@@ -23,7 +15,6 @@ export const ModalContext = React.createContext();
 
 export default function Chart() {
   const [habits, setHabits] = useState(["workout", "yoga", "water"]);
-
   const [days, setDays] = useState({
     workout: [
       "2023-10-16",
@@ -69,7 +60,13 @@ export default function Chart() {
   const [view, setView] = useState("week");
   const [modalVisibility, setModalVisibility] = useState(true);
   const [newHabitAdded, setNewHabitAdded] = useState(true);
-  const [currentMonths, setCurrentMonths] = useState(11);
+  // const [currentMonths, setCurrentMonths] = useState(12);
+  const [currentMonths, setCurrentMonths] = useState(() => {
+    const firstdayofweek = subDays(new Date(), 6);
+    const month = firstdayofweek.getMonth() + 1;
+    return month;
+  });
+
   const [currentYear, setCurrentYear] = useState(2023);
   const [selectedDates, setSelectedDates] = useState(() => {
     const today = new Date();
@@ -80,6 +77,28 @@ export default function Chart() {
     });
     return past7Days.sort((a, b) => a - b);
   });
+
+  const saveAddHabit = async () => {
+    const session = await getSession();
+
+    const email = session.user.email;
+    const dataa = "testhabittwo";
+    try {
+      const res = await fetch("/api/test", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          dataa,
+        }),
+      });
+      await res.json();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const addHabit = () => {
     const addInput = [...inputFields, []];
@@ -195,6 +214,7 @@ export default function Chart() {
     setSelectedDates(dateArray);
     return dateArray;
   };
+
   useEffect(() => {
     generateDateArray(weekCount);
   }, [weekCount]);
@@ -208,7 +228,6 @@ export default function Chart() {
       currentMonths,
       today.getDate() + daysToAdd
     );
-
     return startingDate;
   };
 
@@ -384,6 +403,9 @@ export default function Chart() {
                 +
               </p>
             ) : null}
+          </div>
+          <div>
+            <button onClick={saveAddHabit}>Save</button>
           </div>
         </div>
         <button className="month-view" onClick={monthView}>
