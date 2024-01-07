@@ -40,7 +40,7 @@ export async function POST(request) {
 
     const result = await Users.updateOne(filter, {
       $set: { days: dataObject },
-      $push: { habits: dataa, colors: datacolor },
+      $addToSet: { habits: {$each: dataa}, colors: {$each: datacolor} },
     });
 
     if (result.modifiedCount === 1) {

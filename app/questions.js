@@ -10,8 +10,6 @@ export default function Child() {
   const [days, setDays] = useContext(DaysContext);
   const [colors, setColors] = useContext(ColorContext);
   const [modalVisibility, setModalVisibility] = useContext(ModalContext);
-  // const [firstInputFields, setFirstInputFields] = useState(["random", "blah", "hello"]);
-
   const [firstInputFields, setFirstInputFields] = useState([[]]);
   const [colorFields, setColorFields] = useState([[]]);
 
@@ -113,7 +111,7 @@ export default function Child() {
             <section className="question-main">
               <section className="question-plus-answer">
                 <h3 className="what-habits-q">
-                  What are some habits you'd like to work on?
+                  {"What are some habits you'd like to work on?"}
                 </h3>
                 <div className="input-boxes">
                   <div className="modal-habit-input">

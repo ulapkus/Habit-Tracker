@@ -78,27 +78,29 @@ export default function Chart() {
     return past7Days.sort((a, b) => a - b);
   });
 
-  const saveAddHabit = async () => {
-    const session = await getSession();
 
-    const email = session.user.email;
-    const dataa = "testhabittwo";
-    try {
-      const res = await fetch("/api/test", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          dataa,
-        }),
-      });
-      await res.json();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
+  // const saveAddHabit = async () => {
+  //   const session = await getSession();
+
+  //   const email = session.user.email;
+  //   const dataa = "testhabittwo";
+  //   try {
+  //     const res = await fetch("/api/test", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         email,
+  //         dataa,
+  //       }),
+  //     });
+  //     await res.json();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const addHabit = () => {
     const addInput = [...inputFields, []];
@@ -109,6 +111,43 @@ export default function Chart() {
 
     setNewHabitAdded(false);
   };
+
+
+  const saveAddHabit = async () => {
+    const session = await getSession();
+
+    const dataObject = {};
+    inputFields.forEach((category) => {
+      dataObject[category] = [];
+    });
+
+    const email = session.user.email;
+    const dataa = habits;
+    const datacolor = colorFields;
+
+    try {
+      const res = await fetch("/api/testchart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          dataa,
+          datacolor,
+          dataObject,
+
+        }),
+      });
+      await res.json();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    saveAddHabit();
+  }, [addHabit]);
 
   const handleInputChange = (onChangeValue, i) => {
     const inputValue = [...inputFields];
