@@ -26,8 +26,8 @@ const Register = () => {
     const email = e.target[1].value;
     const password = e.target[2].value;
     const habits = [];
-    const days = [];
-    // const days = {};
+    // const days = [];
+    const days = {placeholder: []};
     const colors = [];
 
     if (!isValidEmail(email)) {

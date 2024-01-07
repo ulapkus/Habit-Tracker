@@ -16,38 +16,41 @@ export const ModalContext = React.createContext();
 export default function Chart() {
   const [habits, setHabits] = useState(["workout", "yoga", "water"]);
   const [days, setDays] = useState({
-    workout: [
-      "2023-10-16",
-      "2023-10-20",
-      "2023-10-21",
-      "2023-11-1",
-      "2023-11-2",
-      "2023-11-4",
-      "2023-11-8",
-      "2023-11-10",
-      "2023-11-27",
-    ],
-    yoga: [
-      "2023-10-21",
-      "2023-10-30",
-      "2023-11-2",
-      "2023-11-6",
-      "2023-11-7",
-      "2023-11-9",
-      "2023-11-26",
-      "2023-11-27",
-    ],
-    water: [
-      "2023-10-26",
-      "2023-10-31",
-      "2023-11-3",
-      "2023-11-4",
-      "2023-11-5",
-      "2023-11-7",
-      "2023-11-10",
-      "2023-11-25",
-      "2023-11-28",
-    ],
+    workout: [],
+    yoga: [],
+    water: [],
+    // workout: [
+    //   "2023-10-16",
+    //   "2023-10-20",
+    //   "2023-10-21",
+    //   "2023-11-1",
+    //   "2023-11-2",
+    //   "2023-11-4",
+    //   "2023-11-8",
+    //   "2023-11-10",
+    //   "2023-11-27",
+    // ],
+    // yoga: [
+    //   "2023-10-21",
+    //   "2023-10-30",
+    //   "2023-11-2",
+    //   "2023-11-6",
+    //   "2023-11-7",
+    //   "2023-11-9",
+    //   "2023-11-26",
+    //   "2023-11-27",
+    // ],
+    // water: [
+    //   "2023-10-26",
+    //   "2023-10-31",
+    //   "2023-11-3",
+    //   "2023-11-4",
+    //   "2023-11-5",
+    //   "2023-11-7",
+    //   "2023-11-10",
+    //   "2023-11-25",
+    //   "2023-11-28",
+    // ],
   });
   const [colors, setColors] = useState({
     workout: "purple",
@@ -78,8 +81,30 @@ export default function Chart() {
     return past7Days.sort((a, b) => a - b);
   });
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        // This line makes a network request to the /api/test endpoint using the fetch function. The result (res) is a Response object representing the entire HTTP response.
+        // This line doesn't automatically parse the response body as JSON. It's just fetching the response object.
+        const res = await fetch("/api/test");
 
+        if (!res.ok) {
+          throw new Error("Error fetching users");
+        }
+        // This line takes the Response object (res) obtained from the previous fetch request and uses the json method to parse the response body as JSON.
+        // The object { users } is destructuring assignment, which means it extracts the users property from the parsed JSON data. If the JSON structure is { "users": [...] }, then users will contain the array inside the users property.
+        const updatedDays = await res.json();
+        setDays(updatedDays);
+        console.log(users);
+      } catch (error) {
+        console.log("Error fetching current user");
+      }
+    }
 
+    fetchData();
+  }, []);
+
+  console.log(days);
   // const saveAddHabit = async () => {
   //   const session = await getSession();
 
@@ -112,42 +137,42 @@ export default function Chart() {
     setNewHabitAdded(false);
   };
 
+  //this adds data to server when new habits are added
+  // const saveAddHabit = async () => {
+  //   const session = await getSession();
 
-  const saveAddHabit = async () => {
-    const session = await getSession();
+  //   const dataObject = {};
+  //   inputFields.forEach((category) => {
+  //     dataObject[category] = [];
+  //   });
 
-    const dataObject = {};
-    inputFields.forEach((category) => {
-      dataObject[category] = [];
-    });
+  //   const email = session.user.email;
+  //   const dataa = habits;
+  //   const datacolor = colorFields;
 
-    const email = session.user.email;
-    const dataa = habits;
-    const datacolor = colorFields;
+  //   try {
+  //     const res = await fetch("/api/testchart", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         email,
+  //         dataa,
+  //         datacolor,
+  //         dataObject,
 
-    try {
-      const res = await fetch("/api/testchart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          dataa,
-          datacolor,
-          dataObject,
+  //       }),
+  //     });
+  //     await res.json();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-        }),
-      });
-      await res.json();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    saveAddHabit();
-  }, [addHabit]);
+  // useEffect(() => {
+  //   saveAddHabit();
+  // }, [addHabit]);
 
   const handleInputChange = (onChangeValue, i) => {
     const inputValue = [...inputFields];
@@ -231,6 +256,33 @@ export default function Chart() {
       });
     }
   };
+
+  //to make sure the days object is being built upon the previously saved data, i need to set days state to the current data on mongodb
+  const saveCellClick = async () => {
+    const session = await getSession();
+    const email = session.user.email;
+    const copyofdays = days;
+
+    try {
+      const res = await fetch("/api/testcharttwo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          copyofdays,
+        }),
+      });
+      await res.json();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    saveCellClick();
+  }, [days]);
 
   const back = () => {
     setWeekCount((prevWeekCount) => prevWeekCount - 1);
@@ -443,9 +495,7 @@ export default function Chart() {
               </p>
             ) : null}
           </div>
-          <div>
-            <button onClick={saveAddHabit}>Save</button>
-          </div>
+          <div>{/* <button onClick={saveAddHabit}>Save</button> */}</div>
         </div>
         <button className="month-view" onClick={monthView}>
           Month View

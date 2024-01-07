@@ -40,7 +40,7 @@ export async function POST(request) {
 
     const result = await Users.updateOne(filter, {
       $set: { days: dataObject },
-      $addToSet: { habits: {$each: dataa}, colors: {$each: datacolor} },
+      $addToSet: { habits: { $each: dataa }, colors: { $each: datacolor } },
     });
 
     if (result.modifiedCount === 1) {
@@ -83,6 +83,14 @@ export async function POST(request) {
 //   const currentuser = await Users.findOneAndUpdate(thisuser, update, { returnDocument: 'after' });
 // return NextResponse.json({ currentuser }, { status: 200 });
 // }
+
+export async function GET() {
+  await Connect();
+  const session = await getServerSession();
+  const data = await Users.find({email: session.user.email}, {days: true});
+
+  return NextResponse.json({ data }, { status: 200 });
+}
 
 //this returns the current email logged in
 // export async function GET() {

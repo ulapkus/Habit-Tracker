@@ -21,16 +21,16 @@ const userSchema = new Schema(
       unique: true,
       required: false,
     },
-    // days: {
-    //   type: Object,
-    //   unique: true,
-    //   required: false,
-    // },
     days: {
-      type: Array,
+      type: Object,
       unique: true,
       required: false,
     },
+    // days: {
+    //   type: Array,
+    //   unique: true,
+    //   required: false,
+    // },
     colors: {
       type: Array,
       unique: true,
