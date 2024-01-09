@@ -6,6 +6,7 @@ import { getSession } from "next-auth/react";
 const AllUsers = () => {
   const [data, setData] = useState([]);
 
+  
   // const createTest = async () => {
   //   const session = await getSession();
 

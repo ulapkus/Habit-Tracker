@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, createContext } from "react";
+import React, { useEffect, useState, createContext, useCallback } from "react";
 import Child from "../questions";
 import { format, addDays, setMonth, subDays } from "date-fns";
 import { getSession } from "next-auth/react";
@@ -16,9 +16,9 @@ export const ModalContext = React.createContext();
 export default function Chart() {
   const [habits, setHabits] = useState(["workout", "yoga", "water"]);
   const [days, setDays] = useState({
-    workout: [],
-    yoga: [],
-    water: [],
+    // workout: ["2023-01-01"],
+    // yoga: [],
+    // water: [],
     // workout: [
     //   "2023-10-16",
     //   "2023-10-20",
@@ -81,30 +81,34 @@ export default function Chart() {
     return past7Days.sort((a, b) => a - b);
   });
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        // This line makes a network request to the /api/test endpoint using the fetch function. The result (res) is a Response object representing the entire HTTP response.
-        // This line doesn't automatically parse the response body as JSON. It's just fetching the response object.
-        const res = await fetch("/api/test");
+  //  this is GET from test
+  //  it's to get the days object from the server to the days state
+  async function fetchData() {
+    try {
+      // This line makes a network request to the /api/test endpoint using the fetch function. The result (res) is a Response object representing the entire HTTP response.
+      // This line doesn't automatically parse the response body as JSON. It's just fetching the response object.
+      const res = await fetch("/api/test");
 
-        if (!res.ok) {
-          throw new Error("Error fetching users");
-        }
-        // This line takes the Response object (res) obtained from the previous fetch request and uses the json method to parse the response body as JSON.
-        // The object { users } is destructuring assignment, which means it extracts the users property from the parsed JSON data. If the JSON structure is { "users": [...] }, then users will contain the array inside the users property.
-        const updatedDays = await res.json();
-        setDays(updatedDays);
-        console.log(users);
-      } catch (error) {
-        console.log("Error fetching current user");
+      if (!res.ok) {
+        throw new Error("Error fetching usersss", error.message);
       }
+      // This line takes the Response object (res) obtained from the previous fetch request and uses the json method to parse the response body as JSON.
+      // The object { users } is destructuring assignment, which means it extracts the users property from the parsed JSON data. If the JSON structure is { "users": [...] }, then users will contain the array inside the users property.
+      const updatedDays = await res.json();
+      // const updatedDays = responseData.data.length > 0 ? responseData.data[0] : {};
+      const blah = updatedDays.data[0].days;
+      console.log("updated days is:" + JSON.stringify(blah));
+      setDays(blah);
+    } catch (error) {
+      console.log("Error fetching current userrrr", error.message);
     }
+  }
 
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, [handleCellClickWeek]);
 
-  console.log(days);
+  console.log("days is" + JSON.stringify(days));
   // const saveAddHabit = async () => {
   //   const session = await getSession();
 
@@ -258,9 +262,14 @@ export default function Chart() {
   };
 
   //to make sure the days object is being built upon the previously saved data, i need to set days state to the current data on mongodb
-  const saveCellClick = async () => {
+
+  //  this is POST used in testcharttwo
+  //  to update days on the server after day is clicked
+  //  this is updated every time a day is clicked
+  const saveCellClick = useCallback(async () => {
     const session = await getSession();
     const email = session.user.email;
+    //days below needs to be the get of the server
     const copyofdays = days;
 
     try {
@@ -278,11 +287,21 @@ export default function Chart() {
     } catch (error) {
       console.log(error);
     }
-  };
+  });
 
   useEffect(() => {
     saveCellClick();
   }, [days]);
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, [saveCellClick]);
+
+  useEffect(() => {
+    // if (days !== null && days !== undefined) {
+    fetchData();
+    // }
+  }, []);
 
   const back = () => {
     setWeekCount((prevWeekCount) => prevWeekCount - 1);
@@ -409,37 +428,40 @@ export default function Chart() {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(days).map((activityy, indexx) => (
-                <tr key={indexx} className="test">
-                  <td className="cell-first">
-                    <div className="x-button-div-week">
-                      <p
-                        onClick={() => eraseHabit(activityy, indexx)}
-                        className="x-button-week"
-                      >
-                        X
-                      </p>
-                    </div>
-                    <div className="activity-week">{activityy}</div>
-                  </td>
-                  {selectedDates.map((datee, dayIndexxx) => (
-                    <td
-                      className="cell"
-                      key={dayIndexxx}
-                      onClick={() => handleCellClickWeek(activityy, dayIndexxx)}
-                      style={{
-                        backgroundColor: getBackgroundColorForDayWeek(
-                          activityy,
-                          dayIndexxx
-                        ),
-                      }}
-                    >
-                      {getBackgroundColorForDayWeek(activityy, dayIndexxx) ===
-                        colors[activityy]}
+              {days &&
+                Object.keys(days).map((activityy, indexx) => (
+                  <tr key={indexx} className="test">
+                    <td className="cell-first">
+                      <div className="x-button-div-week">
+                        <p
+                          onClick={() => eraseHabit(activityy, indexx)}
+                          className="x-button-week"
+                        >
+                          X
+                        </p>
+                      </div>
+                      <div className="activity-week">{activityy}</div>
                     </td>
-                  ))}
-                </tr>
-              ))}
+                    {selectedDates.map((datee, dayIndexxx) => (
+                      <td
+                        className="cell"
+                        key={dayIndexxx}
+                        onClick={() =>
+                          handleCellClickWeek(activityy, dayIndexxx)
+                        }
+                        style={{
+                          backgroundColor: getBackgroundColorForDayWeek(
+                            activityy,
+                            dayIndexxx
+                          ),
+                        }}
+                      >
+                        {getBackgroundColorForDayWeek(activityy, dayIndexxx) ===
+                          colors[activityy]}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
             </tbody>
           </table>
           <table>

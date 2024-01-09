@@ -18,12 +18,13 @@ const userSchema = new Schema(
     }, 
     habits: {
       type: Array,
-      unique: true,
+      // unique: false,
       required: false,
+      // sparse:true,
     },
     days: {
       type: Object,
-      unique: true,
+      // unique: false,
       required: false,
     },
     // days: {
@@ -33,7 +34,7 @@ const userSchema = new Schema(
     // },
     colors: {
       type: Array,
-      unique: true,
+      // unique: false,
       required: false,
     }
   },

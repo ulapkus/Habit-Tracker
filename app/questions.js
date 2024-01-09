@@ -103,6 +103,10 @@ export default function Child() {
     setColorFields(removeColor);
   };
 
+  const leave = () => {
+    setModalVisibility(false);
+  }
+
   return (
     <div>
       {modalVisibility && (
@@ -158,6 +162,7 @@ export default function Child() {
                 <button onClick={getInputValues} className="submit-q">
                   Submit
                 </button>
+                <button onClick={leave}>Leave</button>
               </section>
             </section>
           </div>

@@ -3,40 +3,15 @@ import Users from "../../../models/User";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 
-// export async function POST(request) {
-//   const { email } = await request.json();
-//   await Connect();
-//   await Users.create({ email });
-//   return NextResponse.json(
-//     { message: "User created successfully" },
-//     { status: 200 }
-//   );
-// }
-
-// export async function POST(request) {
-//   // const { email } = await request.json();
-//   await Connect();
-//   await Users.insertOne({ lastname: "hellooo" });
-//   return NextResponse.json(
-//     { message: "User created successfully" },
-//     { status: 200 }
-//   );
-// }
-
+//this is used in questions
+// to update the main categories from the modal
 export async function POST(request) {
   try {
     const { dataa, datacolor, dataObject } = await request.json();
-    // const { datacolor } = await request.json();
-
     await Connect();
-
     const session = await getServerSession();
     const thisuser = session.user.email;
     const filter = { email: thisuser };
-    // const update = { $push: { habits: dataa } };
-
-    // const update = { $set: { habits: dataa } };
-    // const result = await Users.updateOne(filter, update);
 
     const result = await Users.updateOne(filter, {
       $set: { days: dataObject },
@@ -59,6 +34,43 @@ export async function POST(request) {
     );
   }
 }
+
+//  this is in chart
+//  it's to get the days object from the server to the days state
+export async function GET() {
+  await Connect();
+  const session = await getServerSession();
+  const query = { email: session.user.email };
+  // const query = {email: "hii@aim.com"};
+
+  // const options = { projection: { days: true } };
+  const options = { projection: { name: true } };
+
+  // const data = await Users.find({email: session.user.email}, {days: true});
+  const data = await Users.find(query, { _id: 0, days: 1 });
+
+  return NextResponse.json({ data }, { status: 200 });
+}
+
+// export async function POST(request) {
+//   const { email } = await request.json();
+//   await Connect();
+//   await Users.create({ email });
+//   return NextResponse.json(
+//     { message: "User created successfully" },
+//     { status: 200 }
+//   );
+// }
+
+// export async function POST(request) {
+//   // const { email } = await request.json();
+//   await Connect();
+//   await Users.insertOne({ lastname: "hellooo" });
+//   return NextResponse.json(
+//     { message: "User created successfully" },
+//     { status: 200 }
+//   );
+// }
 
 // export async function GET() {
 //     await Connect();
@@ -83,14 +95,6 @@ export async function POST(request) {
 //   const currentuser = await Users.findOneAndUpdate(thisuser, update, { returnDocument: 'after' });
 // return NextResponse.json({ currentuser }, { status: 200 });
 // }
-
-export async function GET() {
-  await Connect();
-  const session = await getServerSession();
-  const data = await Users.find({email: session.user.email}, {days: true});
-
-  return NextResponse.json({ data }, { status: 200 });
-}
 
 //this returns the current email logged in
 // export async function GET() {
