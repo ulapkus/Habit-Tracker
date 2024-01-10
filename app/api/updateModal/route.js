@@ -3,7 +3,6 @@ import Users from "../../../models/User";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 
-
 export async function POST(request) {
     try {
       const { yeah } = await request.json();
@@ -37,11 +36,7 @@ export async function POST(request) {
     await Connect();
     const session = await getServerSession();
     const query = { email: session.user.email };
-    // const query = {email: "hii@aim.com"};
-  
-    // const options = { projection: { name: true } };
-  
-    // const data = await Users.find({email: session.user.email}, {days: true});
+
     const data = await Users.find(query, { _id: 0, displayModal: 1 });
   
     return NextResponse.json({ data }, { status: 200 });

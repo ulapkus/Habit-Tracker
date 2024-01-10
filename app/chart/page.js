@@ -3,7 +3,6 @@
 import React, { useEffect, useState, createContext, useCallback } from "react";
 import Child from "../questions";
 import { format, addDays, setMonth, subDays } from "date-fns";
-import { getSession } from "next-auth/react";
 
 export const Context = createContext([[], () => {}]);
 export const DaysContext = React.createContext();
@@ -23,85 +22,67 @@ export default function Chart() {
   const [view, setView] = useState("week");
   const [modalVisibility, setModalVisibility] = useState(true);
   const [newHabitAdded, setNewHabitAdded] = useState(true);
-  // const [currentMonths, setCurrentMonths] = useState(12);
-  const [currentMonths, setCurrentMonths] = useState(() => {
-    const firstdayofweek = subDays(new Date(), 6);
-    const month = firstdayofweek.getMonth() + 1;
-    return month;
-  });
-
-  const [currentYear, setCurrentYear] = useState(2024);
+  const [currentMonths, setCurrentMonths] = useState(() =>
+    subDays(new Date(), 6).getMonth()
+  );
+  //need to fix year for weekview (doesnt change when going back)
+  const [currentYear, setCurrentYear] = useState(() =>
+    subDays(new Date(), 6).getFullYear()
+  );
   const [selectedDates, setSelectedDates] = useState(() => {
-    const today = new Date();
     const past7Days = Array.from({ length: 7 }, (_, index) => {
-      const currentDate = new Date(today);
-      currentDate.setDate(today.getDate() - index);
+      const currentDate = new Date(new Date());
+      currentDate.setDate(new Date().getDate() - index);
       return currentDate;
     });
     return past7Days.sort((a, b) => a - b);
   });
 
-  async function fetchDataPartThree() {
+  async function fetchHabits() {
     try {
-      // This line makes a network request to the /api/test endpoint using the fetch function. The result (res) is a Response object representing the entire HTTP response.
-      // This line doesn't automatically parse the response body as JSON. It's just fetching the response object.
-      const res = await fetch("/api/testchartthree");
-
+      const res = await fetch("/api/fetchHabits");
       if (!res.ok) {
-        throw new Error("Error fetching usersss", error.message);
+        throw new Error("Error fetching users", error.message);
       }
-      // This line takes the Response object (res) obtained from the previous fetch request and uses the json method to parse the response body as JSON.
-      // The object { users } is destructuring assignment, which means it extracts the users property from the parsed JSON data. If the JSON structure is { "users": [...] }, then users will contain the array inside the users property.
-      const updatedDays = await res.json();
-      // const updatedDays = responseData.data.length > 0 ? responseData.data[0] : {};
-      // const blah = updatedDays.data[0].habits;
-      const blah = Object.values(updatedDays.data[0])[0];
+      const habitsResponse = await res.json();
+      const updatedHabits = Object.values(habitsResponse.data[0])[0];
+      setHabits(updatedHabits);
 
-      console.log("updated habits is:" + JSON.stringify(blah));
-      setHabits(blah);
+      // console.log("updated habits is:" + JSON.stringify(updatedHabits));
     } catch (error) {
-      console.log("Error fetching current userrrr", error.message);
+      console.log("Error fetching current user", error.message);
     }
   }
 
-  async function fetchDataPartTwo() {
+  async function fetchColors() {
     try {
-      // This line makes a network request to the /api/test endpoint using the fetch function. The result (res) is a Response object representing the entire HTTP response.
-      // This line doesn't automatically parse the response body as JSON. It's just fetching the response object.
-      const res = await fetch("/api/testchart");
-
+      const res = await fetch("/api/fetchColors");
       if (!res.ok) {
-        throw new Error("Error fetching usersss", error.message);
+        throw new Error("Error fetching users", error.message);
       }
-      // This line takes the Response object (res) obtained from the previous fetch request and uses the json method to parse the response body as JSON.
-      // The object { users } is destructuring assignment, which means it extracts the users property from the parsed JSON data. If the JSON structure is { "users": [...] }, then users will contain the array inside the users property.
-      const updatedDays = await res.json();
-      // const updatedDays = responseData.data.length > 0 ? responseData.data[0] : {};
-      const blah = updatedDays.data[0].colors;
-      // console.log("updated colors is:" + JSON.stringify(blah));
-      setColors(blah);
+      const colorsResponse = await res.json();
+      const updatedColors = colorsResponse.data[0].colors;
+      setColors(updatedColors);
+
+      // console.log("updated colors is:" + JSON.stringify(updatedColors));
     } catch (error) {
-      console.log("Error fetching current userrrr", error.message);
+      console.log("Error fetching current user", error.message);
     }
   }
 
   //  this is GET from test
   //  it's to get the days object from the server to the days state
-  async function fetchData() {
+  async function fetchDays() {
     try {
-      // This line makes a network request to the /api/test endpoint using the fetch function. The result (res) is a Response object representing the entire HTTP response.
-      // This line doesn't automatically parse the response body as JSON. It's just fetching the response object.
-      const res = await fetch("/api/test");
-
+      const res = await fetch("/api/fetchDays");
       if (!res.ok) {
         throw new Error("Error fetching usersss", error.message);
       }
-      // This line takes the Response object (res) obtained from the previous fetch request and uses the json method to parse the response body as JSON.
-      // The object { users } is destructuring assignment, which means it extracts the users property from the parsed JSON data. If the JSON structure is { "users": [...] }, then users will contain the array inside the users property.
-      const updatedDays = await res.json();
-      const blah = updatedDays.data[0].days;
-      // console.log("updated days is:" + JSON.stringify(blah));
-      setDays(blah);
+      const daysResponse = await res.json();
+      const updatedDays = daysResponse.data[0].days;
+      setDays(updatedDays);
+
+      // console.log("updated days is:" + JSON.stringify(updatedDays));
     } catch (error) {
       console.log("Error fetching current userrrr", error.message);
     }
@@ -116,43 +97,6 @@ export default function Chart() {
 
     setNewHabitAdded(false);
   };
-
-  //this adds data to server when new habits are added
-  // const saveAddHabit = async () => {
-  //   const session = await getSession();
-
-  //   const dataObject = {};
-  //   inputFields.forEach((category) => {
-  //     dataObject[category] = [];
-  //   });
-
-  //   const email = session.user.email;
-  //   const dataa = habits;
-  //   const datacolor = colorFields;
-
-  //   try {
-  //     const res = await fetch("/api/testchart", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         email,
-  //         dataa,
-  //         datacolor,
-  //         dataObject,
-
-  //       }),
-  //     });
-  //     await res.json();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   saveAddHabit();
-  // }, [addHabit]);
 
   const handleInputChange = (onChangeValue, i) => {
     const inputValue = [...inputFields];
@@ -237,24 +181,21 @@ export default function Chart() {
     }
   };
 
-  //  this is POST used in testcharttwo
+  //  this is POST used in sendCopy
   //  to update days on the server after day is clicked
   //  this is updated every time a day is clicked
   const saveCellClick = useCallback(async () => {
-    const session = await getSession();
-    const email = session.user.email;
     const copyofdays = days;
     const copyofcolors = colors;
     const copyofhabits = habits;
 
     try {
-      const res = await fetch("/api/testcharttwo", {
+      const res = await fetch("/api/sendCopy", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email,
           copyofdays,
           copyofcolors,
           copyofhabits,
@@ -271,13 +212,13 @@ export default function Chart() {
   }, [days, colors, habits]);
 
   useEffect(() => {
-    fetchData();
-    fetchDataPartTwo();
-    fetchDataPartThree();
+    fetchDays();
+    fetchColors();
+    fetchHabits();
   }, []);
 
   useEffect(() => {
-    console.log("habits has changed to:" + habits)
+    console.log("habits has changed to:" + habits);
   }, [habits]);
 
   const back = () => {
@@ -317,8 +258,6 @@ export default function Chart() {
     );
     return startingDate;
   };
-
-  useEffect(() => {});
 
   const getBackgroundColorForDayWeek = (activityy, dayIndexxx) => {
     const activityDays = days[activityy];
@@ -494,7 +433,6 @@ export default function Chart() {
               </p>
             ) : null}
           </div>
-          <div>{/* <button onClick={saveAddHabit}>Save</button> */}</div>
         </div>
         <button className="month-view" onClick={monthView}>
           Month View
@@ -622,7 +560,6 @@ export default function Chart() {
                   </tr>
                   <tr className="month-header-two">
                     <td className="month-dayz-habits-word">Habits</td>
-
                     {Array.from(
                       { length: getDaysInMonth(currentYear, currentMonths) },
                       (_, dayIndex) => (
@@ -637,7 +574,6 @@ export default function Chart() {
                     )}
                   </tr>
                 </thead>
-
                 <tbody>
                   {Object.keys(days).map((activity, index) => (
                     <tr key={index} className="month-cell-row">

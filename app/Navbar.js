@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 
 const Navbar = () => {
@@ -34,7 +33,6 @@ const Navbar = () => {
 
   return (
     <div className="randddd" style={{ backgroundColor: bodyBackgroundColor }}>
-      {/* <div className="container"> */}
       <div className="bloc-tabs">
         <div className="logo-div">
           <Link href="/">
@@ -42,10 +40,6 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="chart-and-stats">
-          {/* <Link href="/">Home</Link> */}
-          <Link href="/testname" className="linkk" style={{ color: textColor }}>
-            testname
-          </Link>
           <Link href="/about" className="linkk" style={{ color: textColor }}>
             ABOUT
           </Link>
@@ -96,45 +90,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
-    // </div>
   );
 };
 
 export default Navbar;
-
-// "use client";
-// import React from "react";
-// import Link from "next/link";
-// import { signOut, useSession } from "next-auth/react";
-
-// const Navbar = () => {
-//   const { data: session } = useSession();
-
-//   return (
-//     <div>
-//       <Link href="/">Home</Link>
-//       <Link href="/testname">testname</Link>
-//       <Link href="/dashboard">Dashboard</Link>
-//       {!session ? (
-//         <>
-//           <Link href="/login">Login</Link>
-//           <Link href="/register">Register</Link>
-//         </>
-//       ) : (
-//         <>
-//           {/* this displays email */}
-//           {session.user?.email}
-//           <button
-//             onClick={() => {
-//               signOut();
-//             }}
-//           >
-//             Logout
-//           </button>
-//         </>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Navbar;

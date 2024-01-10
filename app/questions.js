@@ -17,7 +17,7 @@ export default function Child() {
 
   async function getData() {
     try {
-      const res = await fetch("/api/yesModal");
+      const res = await fetch("/api/updateModal");
 
       if (!res.ok) {
         throw new Error("Error fetching usersss", error.message);
@@ -57,20 +57,16 @@ export default function Child() {
       dataObjectColor[category] = [];
     });
 
-    const email = session.user.email;
     const dataa = firstInputFields;
     const datacolor = dataObjectColor;
 
-    // const datacolor = colorFields;
-
     try {
-      const res = await fetch("/api/test", {
+      const res = await fetch("/api/fetchDays", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email,
           dataa,
           datacolor,
           dataObject,
@@ -84,19 +80,16 @@ export default function Child() {
   };
 
   const hasSeenModal = async () => {
-    const session = await getSession();
-    const email = session.user.email;
     const yeah = false;
 
     try {
-      const res = await fetch("/api/yesModal", {
+      const res = await fetch("/api/updateModal", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email,
-          yeah,
+          yeah
         }),
       });
       const bleh = await res.json();
@@ -128,7 +121,6 @@ export default function Child() {
       setHabits((prevHabits) => [...firstInputFields]);
       console.log("firstinputfields" + firstInputFields);
 
-      // setHabits([...habits, inputValue]);
     });
     setSubmitted(true);
     setShowModal(false);

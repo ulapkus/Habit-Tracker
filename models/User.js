@@ -39,7 +39,7 @@ const userSchema = new Schema(
     },
     displayModal: {
       type: Boolean,
-      default: true, // Initial value
+      default: true,
     },
     // colors: {
     //   type: Array,

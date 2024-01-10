@@ -3,22 +3,21 @@ import Users from "../../../models/User";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 
-//this is used in chart
-//to update days on the server after day is clicked
-//this is updated every time a day is clicked
+//this is used in questions
+// to update the main categories from the modal
 export async function POST(request) {
   try {
-    const { copyofdays, copyofcolors, copyofhabits } = await request.json();
+    const { dataa } = await request.json();
     await Connect();
     const session = await getServerSession();
     const thisuser = session.user.email;
     const filter = { email: thisuser };
 
     const result = await Users.updateOne(filter, {
-        $set: {days: copyofdays, colors: copyofcolors, habits: copyofhabits}
-        // $set: {days: copyofdays}
+      // $set: { days: dataObject, colors: datacolor},
+      $addToSet: { habits: { $each: dataa } },
 
-        // $push: { "days.first": addtoworkout },
+      // $addToSet: { habits: { $each: dataa }, colors: { $each: datacolor } },
     });
 
     if (result.modifiedCount === 1) {
@@ -32,11 +31,20 @@ export async function POST(request) {
   } catch (error) {
     console.error("Error updating user:", error);
     return NextResponse.json(
-      { message: "Error updating user" },
+      { message: "Error updating user", error },
       { status: 500 }
     );
   }
 }
 
+//  this is in chart
+//  it's to get the days object from the server to the days state
+export async function GET() {
+  await Connect();
+  const session = await getServerSession();
+  const query = { email: session.user.email };
 
+  const data = await Users.find(query, { _id: 0, days: 1 });
 
+  return NextResponse.json({ data }, { status: 200 });
+}
