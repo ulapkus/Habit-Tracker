@@ -33,10 +33,19 @@ const userSchema = new Schema(
     //   required: false,
     // },
     colors: {
-      type: Array,
+      type: Object,
       // unique: false,
       required: false,
-    }
+    },
+    displayModal: {
+      type: Boolean,
+      default: true, // Initial value
+    },
+    // colors: {
+    //   type: Array,
+    //   // unique: false,
+    //   required: false,
+    // }
   },
   { timestamps: true }
 ); 

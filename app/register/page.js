@@ -11,7 +11,9 @@ const Register = () => {
 
   useEffect(() => {
     if (sessionStatus === "authenticated") {
-      router.replace("/dashboard");
+      // router.replace("/dashboard");
+      router.replace("/questionone");
+
     }
   }, [sessionStatus, router]);
 
@@ -28,7 +30,8 @@ const Register = () => {
     const habits = [];
     // const days = [];
     const days = {placeholder: []};
-    const colors = [];
+    const colors = {placeholdertwo: ""};
+    // const colors = [];
 
     if (!isValidEmail(email)) {
       setError("Email is invalid");

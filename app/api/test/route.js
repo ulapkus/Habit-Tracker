@@ -14,8 +14,13 @@ export async function POST(request) {
     const filter = { email: thisuser };
 
     const result = await Users.updateOne(filter, {
-      $set: { days: dataObject },
-      $addToSet: { habits: { $each: dataa }, colors: { $each: datacolor } },
+      // $set: { days: dataObject, colors: datacolor},
+      // $set: { days: dataObject},
+
+      $addToSet: { habits: { $each: dataa } },
+
+      // $set: { days: dataObject },
+      // $addToSet: { habits: { $each: dataa }, colors: { $each: datacolor } },
     });
 
     if (result.modifiedCount === 1) {
@@ -29,7 +34,7 @@ export async function POST(request) {
   } catch (error) {
     console.error("Error updating user:", error);
     return NextResponse.json(
-      { message: "Error updating user" },
+      { message: "Error updating user", error},
       { status: 500 }
     );
   }
