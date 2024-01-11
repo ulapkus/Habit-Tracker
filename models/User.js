@@ -19,7 +19,6 @@ const userSchema = new Schema(
     habits: {
       type: Array,
       required: false,
-      // sparse:true,
     },
     days: {
       type: Object,
