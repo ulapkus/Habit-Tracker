@@ -18,10 +18,7 @@ export const authOptions = {
         name: { label: "Name", type: "text" },
         email: { label: "Email", type: "text", placeholder: "Aaron" },
         password: { label: "Password", type: "password" },
-        // habits: { label: "Habits", type: "text" },
-        // days: { label: "Data", type: "text" },
-        // colors: { label: "Colors", type: "text" },
-      },
+ },
       async authorize(credentials, req) {
         // Find your user in the database using MongoDBAdapter
         const user = await authOptions.adapter.getUserByEmail(

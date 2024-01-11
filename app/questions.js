@@ -3,7 +3,6 @@ import { Context } from "./chart/page";
 import { DaysContext } from "./chart/page";
 import { ColorContext } from "./chart/page";
 import { ModalContext } from "./chart/page";
-import { getSession } from "next-auth/react";
 
 export default function Child() {
   const [habits, setHabits] = useContext(Context);
@@ -45,8 +44,6 @@ export default function Child() {
   };
 
   const saveAddHabit = async () => {
-    const session = await getSession();
-
     const dataObject = {};
     firstInputFields.forEach((category) => {
       dataObject[category] = [];
