@@ -8,14 +8,14 @@ import { getServerSession } from "next-auth";
 //this is updated every time a day is clicked
 export async function POST(request) {
   try {
-    const { copyofdays, copyofcolors, copyofhabits } = await request.json();
+    const { copyofdays } = await request.json();
     await Connect();
     const session = await getServerSession();
     const thisuser = session.user.email;
     const filter = { email: thisuser };
 
     const result = await Users.updateOne(filter, {
-      $set: { days: copyofdays, colors: copyofcolors, habits: copyofhabits },
+      $set: { days: copyofdays },
     });
 
     if (result.modifiedCount === 1) {

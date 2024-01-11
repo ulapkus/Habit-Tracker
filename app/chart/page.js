@@ -20,6 +20,7 @@ export default function Chart() {
   const [colorFields, setColorFields] = useState([]);
   const [weekCount, setWeekCount] = useState(-1);
   const [view, setView] = useState("week");
+  const [isDayClicked, setIsDayClicked] = useState(false);
   const [modalVisibility, setModalVisibility] = useState(true);
   const [newHabitAdded, setNewHabitAdded] = useState(true);
   const [currentMonths, setCurrentMonths] = useState(() =>
@@ -38,55 +39,24 @@ export default function Chart() {
     return past7Days.sort((a, b) => a - b);
   });
 
-  async function fetchHabits() {
+  async function fetchState() {
     try {
-      const res = await fetch("/api/fetchHabits");
+      const res = await fetch("/api/fetchState");
       if (!res.ok) {
-        throw new Error("Error fetching users", error.message);
+        throw new Error("Error fetching user", error.message);
       }
-      const habitsResponse = await res.json();
-      const updatedHabits = Object.values(habitsResponse.data[0])[0];
-      setHabits(updatedHabits);
-
-      // console.log("updated habits is:" + JSON.stringify(updatedHabits));
+      const newResponse = await res.json();
+      setDays(newResponse.data[0].days);
+      setHabits(newResponse.data[0].habits);
+      setColors(newResponse.data[0].colors);
     } catch (error) {
       console.log("Error fetching current user", error.message);
     }
   }
 
-  async function fetchColors() {
-    try {
-      const res = await fetch("/api/fetchColors");
-      if (!res.ok) {
-        throw new Error("Error fetching users", error.message);
-      }
-      const colorsResponse = await res.json();
-      const updatedColors = colorsResponse.data[0].colors;
-      setColors(updatedColors);
-
-      // console.log("updated colors is:" + JSON.stringify(updatedColors));
-    } catch (error) {
-      console.log("Error fetching current user", error.message);
-    }
-  }
-
-  //  this is GET from test
-  //  it's to get the days object from the server to the days state
-  async function fetchDays() {
-    try {
-      const res = await fetch("/api/fetchDays");
-      if (!res.ok) {
-        throw new Error("Error fetching usersss", error.message);
-      }
-      const daysResponse = await res.json();
-      const updatedDays = daysResponse.data[0].days;
-      setDays(updatedDays);
-
-      // console.log("updated days is:" + JSON.stringify(updatedDays));
-    } catch (error) {
-      console.log("Error fetching current userrrr", error.message);
-    }
-  }
+  useEffect(() => {
+    fetchState();
+  }, []);
 
   const addHabit = () => {
     const addInput = [...inputFields, []];
@@ -155,6 +125,27 @@ export default function Chart() {
     setDays(newDays);
   };
 
+  //  this is POST used in sendCopy
+  //  to update days on the server after day is clicked
+  //  this is updated every time a day is clicked
+  const saveCellClick = async () => {
+    const copyofdays = days;
+    try {
+      const res = await fetch("/api/sendCopy", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          copyofdays,
+        }),
+      });
+      await res.json();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleCellClickWeek = (activityy, dayIndexx) => {
     const currentDate = selectedDates[dayIndexx];
     const formattedDate = `${currentDate.getFullYear()}-${
@@ -179,47 +170,15 @@ export default function Chart() {
         };
       });
     }
+    setIsDayClicked(true);
   };
 
-  //  this is POST used in sendCopy
-  //  to update days on the server after day is clicked
-  //  this is updated every time a day is clicked
-  const saveCellClick = useCallback(async () => {
-    const copyofdays = days;
-    const copyofcolors = colors;
-    const copyofhabits = habits;
-
-    try {
-      const res = await fetch("/api/sendCopy", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          copyofdays,
-          copyofcolors,
-          copyofhabits,
-        }),
-      });
-      await res.json();
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    if (isDayClicked) {
+      saveCellClick();
+      setIsDayClicked(false);
     }
-  });
-
-  useEffect(() => {
-    saveCellClick();
-  }, [days, colors, habits]);
-
-  useEffect(() => {
-    fetchDays();
-    fetchColors();
-    fetchHabits();
-  }, []);
-
-  useEffect(() => {
-    console.log("habits has changed to:" + habits);
-  }, [habits]);
+  }, [isDayClicked]);
 
   const back = () => {
     setWeekCount((prevWeekCount) => prevWeekCount - 1);

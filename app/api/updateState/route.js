@@ -3,21 +3,19 @@ import Users from "../../../models/User";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 
-//this is used in questions
+// this is used in questions
 // to update the main categories from the modal
 export async function POST(request) {
   try {
-    const { dataa } = await request.json();
+    const { daysData, colorData, habitData } = await request.json();
     await Connect();
     const session = await getServerSession();
     const thisuser = session.user.email;
     const filter = { email: thisuser };
 
     const result = await Users.updateOne(filter, {
-      // $set: { days: dataObject, colors: datacolor},
-      $addToSet: { habits: { $each: dataa } },
-
-      // $addToSet: { habits: { $each: dataa }, colors: { $each: datacolor } },
+      $set: { days: daysData, colors: colorData},
+      $addToSet: { habits: { $each: habitData } },
     });
 
     if (result.modifiedCount === 1) {
@@ -37,14 +35,3 @@ export async function POST(request) {
   }
 }
 
-//  this is in chart
-//  it's to get the days object from the server to the days state
-export async function GET() {
-  await Connect();
-  const session = await getServerSession();
-  const query = { email: session.user.email };
-
-  const data = await Users.find(query, { _id: 0, days: 1 });
-
-  return NextResponse.json({ data }, { status: 200 });
-}
