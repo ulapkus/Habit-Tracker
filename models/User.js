@@ -18,7 +18,6 @@ const userSchema = new Schema(
     }, 
     habits: {
       type: Array,
-      // unique: false,
       required: false,
       // sparse:true,
     },
