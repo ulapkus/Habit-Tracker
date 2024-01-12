@@ -122,6 +122,12 @@ export default function Child() {
     setHabitInputField(inputValue);
   };
 
+  // useEffect(() => {
+
+  //     setStateUpdated(false);
+
+  // }, [colorInputField]);
+
   const handleColorChange = (value, i) => {
     const colorValue = [...colorInputField];
     colorValue[i] = value.target.value;

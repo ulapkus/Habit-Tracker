@@ -15,40 +15,29 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: false,
-    }, 
+    },
     habits: {
       type: Array,
       required: false,
     },
     days: {
       type: Object,
-      // unique: false,
       required: false,
+      default: {},
     },
-    // days: {
-    //   type: Array,
-    //   unique: true,
-    //   required: false,
-    // },
     colors: {
       type: Object,
-      // unique: false,
       required: false,
+      default: {},
     },
     displayModal: {
       type: Boolean,
       default: true,
     },
-    // colors: {
-    //   type: Array,
-    //   // unique: false,
-    //   required: false,
-    // }
   },
-  { timestamps: true }
-); 
+  { timestamps: true, minimize: false }
+);
 
-const Users =
-  mongoose.models.User || mongoose.model("User", userSchema);
+const Users = mongoose.models.User || mongoose.model("User", userSchema);
 
 export default Users;
