@@ -191,7 +191,6 @@ return (
                 <button onClick={getInputValues} className="submit-q">
                   Submit
                 </button>
-                <button onClick={leave}>Leave</button>
               </section>
             </section>
           </div>
