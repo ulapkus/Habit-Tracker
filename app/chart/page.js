@@ -281,7 +281,7 @@ export default function Chart() {
             src="https://cdn-icons-png.flaticon.com/128/758/758778.png"
           ></img>
         </div>
-        <div className="main-questions">
+        <div className="main-table">
           <ModalContext.Provider value={[modalVisibility, setModalVisibility]}>
             <ColorContext.Provider value={[colors, setColors]}>
               <Context.Provider value={[habits, setHabits]}>
@@ -492,7 +492,7 @@ export default function Chart() {
               src="https://cdn-icons-png.flaticon.com/128/758/758778.png"
             ></img>
           </div>
-          <div className="main-questions-month">
+          <div className="table-parent-month">
             <ModalContext.Provider
               value={[modalVisibility, setModalVisibility]}
             >
@@ -504,145 +504,143 @@ export default function Chart() {
                 </Context.Provider>
               </ColorContext.Provider>
             </ModalContext.Provider>
-            <div className="randdd">
-              <table className="habit-table-month">
-                <thead>
-                  <tr className="month-header-one">
+            <table className="habit-table-month">
+              <thead>
+                <tr className="month-header-one">
+                  {Array.from(
+                    { length: getDaysInMonth(currentYear, currentMonths) },
+                    (_, dayIndex) => (
+                      <th className="month-dayz" key={dayIndex}>
+                        {dayIndex + 1}
+                      </th>
+                    )
+                  )}
+                </tr>
+                <tr className="month-header-two">
+                  <td className="month-dayz-habits-word">Habits</td>
+                  {Array.from(
+                    { length: getDaysInMonth(currentYear, currentMonths) },
+                    (_, dayIndex) => (
+                      <th className="month-daysofweek" key={dayIndex}>
+                        {getDayOfWeek(
+                          currentYear,
+                          currentMonths,
+                          dayIndex + 1
+                        )}
+                      </th>
+                    )
+                  )}
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(days).map((activity, index) => (
+                  <tr key={index} className="month-cell-row">
+                    <td className="month-cell-habit">
+                      <div className="x-button-div-month">
+                        <p
+                          onClick={() => eraseHabit(activity, i)}
+                          className="x-button-month"
+                        >
+                          X
+                        </p>
+                      </div>
+                      <div className="activity-month">{activity}</div>
+                    </td>
                     {Array.from(
                       { length: getDaysInMonth(currentYear, currentMonths) },
                       (_, dayIndex) => (
-                        <th className="month-dayz" key={dayIndex}>
-                          {dayIndex + 1}
-                        </th>
+                        <td
+                          className="month-cell"
+                          key={dayIndex}
+                          onClick={() => handleCellClick(activity, dayIndex)}
+                          style={{
+                            backgroundColor: getBackgroundColorForDay(
+                              activity,
+                              dayIndex
+                            ),
+                          }}
+                        >
+                          {getBackgroundColorForDay(activity, dayIndex) ===
+                            colors[activity]}
+                        </td>
                       )
                     )}
                   </tr>
-                  <tr className="month-header-two">
-                    <td className="month-dayz-habits-word">Habits</td>
-                    {Array.from(
-                      { length: getDaysInMonth(currentYear, currentMonths) },
-                      (_, dayIndex) => (
-                        <th className="month-daysofweek" key={dayIndex}>
-                          {getDayOfWeek(
-                            currentYear,
-                            currentMonths,
-                            dayIndex + 1
-                          )}
-                        </th>
-                      )
-                    )}
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(days).map((activity, index) => (
-                    <tr key={index} className="month-cell-row">
-                      <td className="month-cell-habit">
-                        <div className="x-button-div-month">
-                          <p
-                            onClick={() => eraseHabit(activity, i)}
-                            className="x-button-month"
+                ))}
+              </tbody>
+            </table>
+            <table className="add-habit-table">
+              <tbody>
+                {inputFields.map((inputField, i) => {
+                  return (
+                    <tr key={i} className="add-habit-row-month">
+                      <td className="month-cell-new-habit">
+                        <p
+                          className="add-habit-x-button-month"
+                          onClick={() => removeInput(i)}
+                        >
+                          X
+                        </p>
+                        <div className="add-habit-x-div-month">
+                          <input
+                            className="input-box-month"
+                            value={inputField}
+                            onChange={(e) => handleInputChange(e, i)}
+                            placeholder="Habit"
+                          />
+                          <select
+                            className="color-dropdown-month"
+                            onChange={(event) => handleColorChange(event, i)}
                           >
-                            X
-                          </p>
+                            <option className="option-month" value="">
+                              Choose color:
+                            </option>
+                            <option className="option-month" value="red">
+                              Red
+                            </option>
+                            <option className="option-month" value="orange">
+                              Orange
+                            </option>
+                            <option className="option-month" value="yellow">
+                              Yellow
+                            </option>
+                            <option className="option-month" value="green">
+                              Green
+                            </option>
+                            <option className="option-month" value="blue">
+                              Blue
+                            </option>
+                            <option className="option-month" value="purple">
+                              Purple
+                            </option>
+                          </select>
+                          <button
+                            className="submit-button-month"
+                            onClick={submit}
+                          >
+                            Submit
+                          </button>
                         </div>
-                        <div className="activity-month">{activity}</div>
                       </td>
                       {Array.from(
-                        { length: getDaysInMonth(currentYear, currentMonths) },
-                        (_, dayIndex) => (
-                          <td
-                            className="month-cell"
-                            key={dayIndex}
-                            onClick={() => handleCellClick(activity, dayIndex)}
-                            style={{
-                              backgroundColor: getBackgroundColorForDay(
-                                activity,
-                                dayIndex
-                              ),
-                            }}
-                          >
-                            {getBackgroundColorForDay(activity, dayIndex) ===
-                              colors[activity]}
-                          </td>
+                        {
+                          length: getDaysInMonth(currentYear, currentMonths),
+                        },
+                        (_, i) => (
+                          <td key={i} className="month-cell"></td>
                         )
                       )}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-              <table className="add-habit-table">
-                <tbody>
-                  {inputFields.map((inputField, i) => {
-                    return (
-                      <tr key={i} className="add-habit-row-month">
-                        <td className="month-cell-new-habit">
-                          <p
-                            className="add-habit-x-button-month"
-                            onClick={() => removeInput(i)}
-                          >
-                            X
-                          </p>
-                          <div className="add-habit-x-div-month">
-                            <input
-                              className="input-box-month"
-                              value={inputField}
-                              onChange={(e) => handleInputChange(e, i)}
-                              placeholder="Habit"
-                            />
-                            <select
-                              className="color-dropdown-month"
-                              onChange={(event) => handleColorChange(event, i)}
-                            >
-                              <option className="option-month" value="">
-                                Choose color:
-                              </option>
-                              <option className="option-month" value="red">
-                                Red
-                              </option>
-                              <option className="option-month" value="orange">
-                                Orange
-                              </option>
-                              <option className="option-month" value="yellow">
-                                Yellow
-                              </option>
-                              <option className="option-month" value="green">
-                                Green
-                              </option>
-                              <option className="option-month" value="blue">
-                                Blue
-                              </option>
-                              <option className="option-month" value="purple">
-                                Purple
-                              </option>
-                            </select>
-                            <button
-                              className="submit-button-month"
-                              onClick={submit}
-                            >
-                              Submit
-                            </button>
-                          </div>
-                        </td>
-                        {Array.from(
-                          {
-                            length: getDaysInMonth(currentYear, currentMonths),
-                          },
-                          (_, i) => (
-                            <td key={i} className="month-cell"></td>
-                          )
-                        )}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-              <div className="add-more-div-month">
-                {newHabitAdded === true ? (
-                  <p className="add-more-month" onClick={() => addHabit()}>
-                    +
-                  </p>
-                ) : null}
-              </div>
+                  );
+                })}
+              </tbody>
+            </table>
+            <div className="add-more-div-month">
+              {newHabitAdded === true ? (
+                <p className="add-more-month" onClick={() => addHabit()}>
+                  +
+                </p>
+              ) : null}
             </div>
           </div>
           <button className="week-view" onClick={weekView}>

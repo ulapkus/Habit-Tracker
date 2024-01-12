@@ -32,8 +32,8 @@ const Navbar = () => {
   }, [pathname]);
 
   return (
-    <div className="randddd" style={{ backgroundColor: bodyBackgroundColor }}>
-      <div className="bloc-tabs">
+    <div className="nav-background" style={{ backgroundColor: bodyBackgroundColor }}>
+      <div className="nav-main">
         <div className="logo-div">
           <Link href="/">
             <img className="logo" src="https://i.ibb.co/p3LhT3W/H-2.png"></img>

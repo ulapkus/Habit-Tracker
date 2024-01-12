@@ -11,7 +11,6 @@ const Login = () => {
 
   useEffect(() => {
     if (sessionStatus === "authenticated") {
-      // document.body.style.backgroundColor = "#f5f5dc";
       router.replace("/");
     }
   }, [sessionStatus, router]);
