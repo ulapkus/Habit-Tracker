@@ -293,10 +293,10 @@ export default function Chart() {
           </ModalContext.Provider>
           <table>
             <thead>
-              <tr className="test-one">
-                <th className="dayz-habits-word">Habits</th>
+              <tr className="week-header-one">
+                <th className="days-habit-word">Habits</th>
                 {selectedDates.map((datee, dayIndexx) => (
-                  <th className="dayz" key={dayIndexx}>
+                  <th className="days" key={dayIndexx}>
                     {formatDate(datee)}
                   </th>
                 ))}
@@ -305,8 +305,8 @@ export default function Chart() {
             <tbody>
               {days &&
                 Object.keys(days).map((activityy, indexx) => (
-                  <tr key={indexx} className="test">
-                    <td className="cell-first">
+                  <tr key={indexx} className="week-cell-row">
+                    <td className="week-cell-habit">
                       <div className="x-button-div-week">
                         <p
                           onClick={() => eraseHabit(activityy, indexx)}
@@ -319,7 +319,7 @@ export default function Chart() {
                     </td>
                     {selectedDates.map((datee, dayIndexxx) => (
                       <td
-                        className="cell"
+                        className="week-cell"
                         key={dayIndexxx}
                         onClick={() =>
                           handleCellClickWeek(activityy, dayIndexxx)
@@ -343,15 +343,15 @@ export default function Chart() {
             <tbody>
               {inputFields.map((inputField, i) => {
                 return (
-                  <tr key={i} className="add-habit-row">
-                    <td className="cell-new-habit">
+                  <tr key={i} className="add-habit-row-week">
+                    <td className="cell-new-habit-week">
                       <p
-                        className="add-habit-x-button"
+                        className="add-habit-x-button-week"
                         onClick={() => removeInput(i)}
                       >
                         X
                       </p>
-                      <div className="add-habit-x-div">
+                      <div className="add-habit-x-div-week">
                         <input
                           className="input-box-week"
                           value={inputField}
@@ -360,7 +360,7 @@ export default function Chart() {
                         />
                         <div className="select-week">
                           <select
-                            className="color-dropdown"
+                            className="color-dropdown-week"
                             onChange={(event) => handleColorChange(event, i)}
                           >
                             <option value="">Choose color:</option>
@@ -422,7 +422,6 @@ export default function Chart() {
     const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const date = new Date(year, month, day);
     const dayIndex = date.getDay();
-
     return daysOfWeek[dayIndex];
   };
 
@@ -510,23 +509,19 @@ export default function Chart() {
                   {Array.from(
                     { length: getDaysInMonth(currentYear, currentMonths) },
                     (_, dayIndex) => (
-                      <th className="month-dayz" key={dayIndex}>
+                      <th className="month-days" key={dayIndex}>
                         {dayIndex + 1}
                       </th>
                     )
                   )}
                 </tr>
                 <tr className="month-header-two">
-                  <td className="month-dayz-habits-word">Habits</td>
+                  <td className="month-days-habits-word">Habits</td>
                   {Array.from(
                     { length: getDaysInMonth(currentYear, currentMonths) },
                     (_, dayIndex) => (
                       <th className="month-daysofweek" key={dayIndex}>
-                        {getDayOfWeek(
-                          currentYear,
-                          currentMonths,
-                          dayIndex + 1
-                        )}
+                        {getDayOfWeek(currentYear, currentMonths, dayIndex + 1)}
                       </th>
                     )
                   )}
@@ -574,7 +569,7 @@ export default function Chart() {
                 {inputFields.map((inputField, i) => {
                   return (
                     <tr key={i} className="add-habit-row-month">
-                      <td className="month-cell-new-habit">
+                      <td className="cell-new-habit-month">
                         <p
                           className="add-habit-x-button-month"
                           onClick={() => removeInput(i)}

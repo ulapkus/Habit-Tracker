@@ -598,7 +598,7 @@ h4 {
   align-items: center;
   padding: 4vh 0.5vw 2vh 0.5vw;
   background-color: #add8e6;
-  border-radius: 20px;
+  border-radius: 25px;
   color: white;
   width: 85%;
   margin: 5vh 0 3vh 0;
@@ -724,7 +724,7 @@ h1 {
   padding: 0;
 }
 
-.test {
+.week-cell-row {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -736,7 +736,7 @@ h1 {
   font-family: "Urbanist", sans-serif;
 }
 
-.add-habit-row {
+.add-habit-row-week {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -758,11 +758,11 @@ h1 {
   padding: 0;
 }
 
-.test-one :first-child {
+.week-header-one :first-child {
   width: 14vw;
 }
 
-.test-one {
+.week-header-one {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -799,7 +799,7 @@ h1 {
 }
 
 .month-daysofweek,
-.month-dayz {
+.month-days {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -905,7 +905,7 @@ table {
   padding: 0;
 }
 
-.cell {
+.week-cell {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -917,14 +917,14 @@ table {
   margin: 10px;
   background-color: #81c8e0;
   font-size: 1.5vw;
-  border-radius: 20px;
+  border-radius: 15px;
   font-family: "Cousine", monospace;
   font-weight: lighter;
   text-transform: uppercase;
   letter-spacing: 7px;
 }
 
-.test > :not(:first-child):hover {
+.week-header-two > :not(:first-child):hover {
   cursor: pointer;
 }
 
@@ -932,7 +932,7 @@ table {
   cursor: pointer;
 }
 
-.cell-new-habit {
+.cell-new-habit-week {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -952,7 +952,7 @@ table {
   letter-spacing: 7px;
 }
 
-.dayz {
+.days {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -962,7 +962,7 @@ table {
   font-weight: 500;
   width: 8vw;
   background-color: #81c8e0;
-  border-radius: 20px;
+  border-radius: 15px;
   margin: 10px;
   font-family: "Cousine", monospace;
   font-weight: lighter;
@@ -1033,14 +1033,14 @@ p {
   margin: 0;
 }
 
-.add-habit-x-button {
+.add-habit-x-button-week {
   font-size: 1.7vh;
   height: 1vh;
   padding: 0;
   margin: 0;
 }
 
-.add-habit-x-div {
+.add-habit-x-div-week {
   width: 100%;
 }
 
@@ -1071,10 +1071,15 @@ p {
 }
 
 .option-month {
+  /* display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; */
   font-size: 30vh;
+  text-align: center;
 }
 
-.color-dropdown {
+.color-dropdown-week {
   background-color: #81c8e0;
   border: none;
   border-radius: 10px;
@@ -1102,7 +1107,7 @@ p {
   height: 100%;
 }
 
-.color-dropdown:hover {
+.color-dropdown-week:hover {
   background-color: #add8e6;
 }
 
@@ -1138,7 +1143,7 @@ p {
   color: white;
 }
 
-.dayz-habits-word {
+.days-habit-word {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1148,7 +1153,7 @@ p {
   font-weight: 500;
   width: 8vw;
   background-color: #81c8e0;
-  border-radius: 20px;
+  border-radius: 15px;
   margin: 10px;
   font-family: "Cousine", monospace;
   font-weight: lighter;
@@ -1156,7 +1161,7 @@ p {
   letter-spacing: 7px;
 }
 
-.month-dayz-habits-word {
+.month-days-habits-word {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1196,7 +1201,7 @@ p {
   font-family: "Urbanist", sans-serif;
 }
 
-.month-cell-new-habit {
+.cell-new-habit-month {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -1289,7 +1294,7 @@ tr {
   padding: 5vh;
 }
 
-.cell-first {
+.week-cell-habit {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -1302,7 +1307,7 @@ tr {
   margin: 10px;
   background-color: #81c8e0;
   font-size: 1.5vw;
-  border-radius: 20px;
+  border-radius: 12px;
   font-family: "Cousine", monospace;
   font-weight: lighter;
   text-transform: uppercase;
