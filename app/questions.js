@@ -23,8 +23,6 @@ export default function Child() {
       }
       const modalResponse = await res.json();
       const updatedData = Object.values(modalResponse.data[0])[0];
-
-      // console.log("displayModal GET data is:" + JSON.stringify(updatedData));
       setShowModal(updatedData);
     } catch (error) {
       console.log("Error fetching current user", error.message);
@@ -144,17 +142,7 @@ export default function Child() {
     setColorInputField(removeColor);
   };
 
-  const leave = () => {
-    setModalVisibility(false);
-  };
-
-  // useEffect(() => {
-  //   if (showModal) {
-  // saveAddHabit();
-  //   }
-  // }, [getInputValues]);
-
-  return (
+return (
     <div>
       {showModal && modalVisibility && (
         <div id="myModal" style={{ display: "block" }}>
