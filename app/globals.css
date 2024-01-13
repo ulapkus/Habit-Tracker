@@ -40,10 +40,6 @@ input:focus {
   width: 100%;
 }
 
-.navbar-background {
-  border: 1px solid red;
-}
-
 .login-break {
   width: 15vw;
   color: black;
@@ -114,14 +110,8 @@ h2 {
   padding-left: 1vw;
 }
 
-.login-name:focus {
-  outline: black;
-}
-
-.login-email:focus {
-  outline: black;
-}
-
+.login-name:focus,
+.login-email:focus,
 .login-password:focus {
   outline: black;
 }
@@ -130,7 +120,7 @@ h2 {
   height: 6vh;
 }
 
-.linkk {
+.nav-link {
   color: gray;
   text-decoration: none;
   padding: 1vh;
@@ -140,7 +130,7 @@ h2 {
   letter-spacing: 6px;
 }
 
-.linkk:hover {
+.nav-link:hover {
   color: black;
   cursor: pointer;
 }
@@ -168,10 +158,6 @@ h2 {
   border-radius: 5px;
 }
 
-.login-github:hover {
-  cursor: pointer;
-}
-
 .login-bottom {
   display: flex;
   flex-direction: column;
@@ -183,6 +169,7 @@ h2 {
 .have-or-create-account {
   text-decoration: none;
   color: grey;
+  text-align: center;
 }
 
 .have-or-create-account:hover {
@@ -214,8 +201,6 @@ h2 {
   text-align: center;
   font-size: 4.5vh;
   font-family: "Libre Baskerville", serif;
-  padding: 0;
-  margin: 0;
 }
 
 .author {
@@ -225,8 +210,6 @@ h2 {
   align-items: center;
   font-size: 2vh;
   font-family: "Libre Baskerville", serif;
-  padding: 0;
-  margin: 0;
 }
 
 .quote-and-author {
@@ -252,7 +235,6 @@ h2 {
   justify-content: flex-start;
   align-items: center;
   flex-grow: 1;
-  width: 10vw;
   height: 60%;
 }
 
@@ -261,21 +243,7 @@ h2 {
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 0;
   margin: 0 7.5% 0 7.5%;
-  height: 100%;
-}
-
-.content {
-  display: none;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.content p {
-  width: 100%;
   height: 100%;
 }
 
@@ -358,10 +326,6 @@ h2 {
   border: 1.5px solid white;
 }
 
-.add-more-q-page:hover {
-  cursor: pointer;
-}
-
 .add-more-week {
   display: flex;
   flex-direction: column;
@@ -377,10 +341,6 @@ h2 {
   font-weight: lighter;
   padding: 0;
   margin: 0vh 0 0.5vh 0vw;
-}
-
-.add-more-week:hover {
-  cursor: pointer;
 }
 
 .add-more-month {
@@ -427,10 +387,6 @@ h2 {
   width: 2.5vh;
 }
 
-.add-more-month:hover {
-  cursor: pointer;
-}
-
 .modal-color-plus-button {
   display: flex;
   flex-direction: row;
@@ -442,10 +398,6 @@ h2 {
   border: none;
   background-color: rgb(254, 199, 103);
   color: white;
-}
-
-.question-x:hover {
-  cursor: pointer;
 }
 
 .input-boxes {
@@ -499,10 +451,6 @@ h5 {
   margin: 0;
   color: gray;
   text-transform: uppercase;
-}
-
-.submit-q:hover {
-  cursor: pointer;
 }
 
 #newElementId {
@@ -728,24 +676,6 @@ h1 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  font-family: "Urbanist", sans-serif;
-}
-
-.add-habit-row-week {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  padding: 0;
-  margin: 0 0 0 0;
-  font-family: "Urbanist", sans-serif;
 }
 
 .month-cell-row {
@@ -830,16 +760,22 @@ table {
 
 .back,
 .next {
-  padding: 0;
-  margin: 0;
   height: 2vh;
   width: 1vw;
 }
 
-.back,
-.next,
-.backMonth,
-.nextMonth:hover {
+.back:hover,
+.next:hover,
+.backMonth:hover,
+.nextMonth:hover,
+.login-github:hover,
+.add-more-q-page:hover,
+.submit-q:hover,
+.question-x:hover,
+.add-more-month:hover .add-more-week:hover,
+.month-cell:hover,
+.x-button-week:hover,
+.x-button-month:hover {
   cursor: pointer;
 }
 
@@ -860,8 +796,6 @@ table {
   align-items: center;
   height: 1.5vh;
   width: 0.75vw;
-  margin: 0;
-  padding: 0;
 }
 
 .month-and-year {
@@ -901,8 +835,6 @@ table {
   align-items: center;
   gap: 2vw;
   width: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 .week-cell {
@@ -925,10 +857,6 @@ table {
 }
 
 .week-header-two > :not(:first-child):hover {
-  cursor: pointer;
-}
-
-.month-cell:hover {
   cursor: pointer;
 }
 
@@ -1070,15 +998,6 @@ p {
   border-radius: 3px;
 }
 
-.option-month {
-  /* display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center; */
-  font-size: 30vh;
-  text-align: center;
-}
-
 .color-dropdown-week {
   background-color: #81c8e0;
   border: none;
@@ -1107,17 +1026,10 @@ p {
   height: 100%;
 }
 
-.color-dropdown-week:hover {
+.color-dropdown-week:hover,
+.input-box-week:hover,
+.color-dropdown-month:hover {
   background-color: #add8e6;
-}
-
-.input-box-week:hover {
-  background-color: #add8e6;
-}
-
-.input-box-month:hover {
-  background-color: #add8e6;
-  color: white;
 }
 
 .submit-button-week {
@@ -1133,12 +1045,9 @@ p {
   margin: 0 0.5vw 0 0;
 }
 
-.submit-button-week:hover {
-  background-color: #add8e6;
-  color: white;
-}
-
-.submit-button-month:hover {
+.submit-button-week:hover,
+.submit-button-month:hover,
+.input-box-month:hover {
   background-color: #add8e6;
   color: white;
 }
@@ -1179,26 +1088,11 @@ p {
   letter-spacing: 5px;
 }
 
-.habit-table-month {
-  margin: 0;
-  padding: 0 0 0 0;
-}
-
-.add-habit-table {
-  margin: 0 0 0 0;
-  padding: 0;
-}
-
 .add-habit-row-month {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  font-family: "Urbanist", sans-serif;
 }
 
 .cell-new-habit-month {
@@ -1206,7 +1100,7 @@ p {
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 2.6vw;
+  height: 2.5vw;
   width: 8vw;
   text-align: center;
   font-size: 1.7vh;
@@ -1223,8 +1117,6 @@ p {
 .add-habit-x-button-month {
   font-size: 1vh;
   height: 1.5vh;
-  padding: 0;
-  margin: 0;
   width: 0.75vw;
 }
 
@@ -1264,10 +1156,6 @@ p {
   height: 35%;
 }
 
-.color-dropdown-month:hover {
-  background-color: #add8e6;
-}
-
 .month-cell {
   display: flex;
   flex-direction: column;
@@ -1280,18 +1168,6 @@ p {
   margin: 2.2px;
   background-color: #81c8e0;
   border-radius: 6px;
-}
-
-tr {
-  padding: 0;
-}
-
-.no-data-message {
-  font-size: 5vh;
-  text-align: center;
-  font-family: "Urbanist", sans-serif;
-  font-weight: bolder;
-  padding: 5vh;
 }
 
 .week-cell-habit {
@@ -1314,28 +1190,10 @@ tr {
   letter-spacing: 7px;
 }
 
-.x-button-div-week {
-  margin: 0;
-  padding: 0;
-  width: 1vw;
-}
-
 .x-button-week {
   width: 0.7vw;
   height: 1.5vh;
   font-size: 1.6vh;
-  margin: 0;
-  padding: 0;
-}
-
-.x-button-week:hover {
-  cursor: pointer;
-  color: gray;
-}
-
-.x-button-month:hover {
-  cursor: pointer;
-  color: gray;
 }
 
 .activity-week {
@@ -1354,7 +1212,7 @@ tr {
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 2.6vw;
+  height: 2.5vw;
   width: 8vw;
   text-align: center;
   font-size: 1.7vh;
@@ -1368,17 +1226,10 @@ tr {
   letter-spacing: 5px;
 }
 
-.x-button-div-month {
-  margin: 0;
-  padding: 0;
-}
-
 .x-button-month {
   width: 0.75vw;
   height: 1.5vh;
   font-size: 1vh;
-  margin: 0;
-  padding: 0;
 }
 
 .activity-month {
@@ -1415,4 +1266,8 @@ tr {
   background-color: #add8e6;
   border: 1px solid #add8e6;
   color: white;
+}
+
+.error {
+  text-align: center;
 }

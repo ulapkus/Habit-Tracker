@@ -40,7 +40,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="chart-and-stats">
-          <Link href="/about" className="linkk" style={{ color: textColor }}>
+          <Link href="/about" className="nav-link" style={{ color: textColor }}>
             ABOUT
           </Link>
 
@@ -48,14 +48,14 @@ const Navbar = () => {
             <>
               <Link
                 href="/login"
-                className="linkk"
+                className="nav-link"
                 style={{ color: textColor }}
               >
                 LOGIN
               </Link>
               <Link
                 href="/register"
-                className="linkk"
+                className="nav-link"
                 style={{ color: textColor }}
               >
                 REGISTER
@@ -65,20 +65,20 @@ const Navbar = () => {
             <>
               <Link
                 href="/chart"
-                className="linkk"
+                className="nav-link"
                 style={{ color: textColor }}
               >
                 CHART
               </Link>
               <Link
                 href="/stats"
-                className="linkk"
+                className="nav-link"
                 style={{ color: textColor }}
               >
                 STATS
               </Link>
               <p
-                className="linkk"
+                className="nav-link"
                 onClick={() => {
                   signOut();
                 }}

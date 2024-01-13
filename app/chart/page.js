@@ -307,14 +307,12 @@ export default function Chart() {
                 Object.keys(days).map((activityy, indexx) => (
                   <tr key={indexx} className="week-cell-row">
                     <td className="week-cell-habit">
-                      <div className="x-button-div-week">
                         <p
                           onClick={() => eraseHabit(activityy, indexx)}
                           className="x-button-week"
                         >
                           X
                         </p>
-                      </div>
                       <div className="activity-week">{activityy}</div>
                     </td>
                     {selectedDates.map((datee, dayIndexxx) => (
@@ -343,7 +341,7 @@ export default function Chart() {
             <tbody>
               {inputFields.map((inputField, i) => {
                 return (
-                  <tr key={i} className="add-habit-row-week">
+                  <tr key={i} className="week-cell-row">
                     <td className="cell-new-habit-week">
                       <p
                         className="add-habit-x-button-week"
@@ -531,14 +529,12 @@ export default function Chart() {
                 {Object.keys(days).map((activity, index) => (
                   <tr key={index} className="month-cell-row">
                     <td className="month-cell-habit">
-                      <div className="x-button-div-month">
-                        <p
-                          onClick={() => eraseHabit(activity, i)}
-                          className="x-button-month"
-                        >
-                          X
-                        </p>
-                      </div>
+                      <p
+                        onClick={() => eraseHabit(activity, i)}
+                        className="x-button-month"
+                      >
+                        X
+                      </p>
                       <div className="activity-month">{activity}</div>
                     </td>
                     {Array.from(
@@ -564,7 +560,7 @@ export default function Chart() {
                 ))}
               </tbody>
             </table>
-            <table className="add-habit-table">
+            <table>
               <tbody>
                 {inputFields.map((inputField, i) => {
                   return (

@@ -98,7 +98,7 @@ const Register = () => {
             <button type="submit" className="login-button">
               Register
             </button>
-            <p>{error && error}</p>
+            <p className="error">{error && error}</p>
           </form>
           <hr className="login-break"></hr>
           <div className="login-bottom">

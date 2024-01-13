@@ -74,7 +74,7 @@ const Login = () => {
             <button type="submit" className="login-button">
               Sign In
             </button>
-            <p>{error && error}</p>
+            <p className="error">{error && error}</p>
           </form>
           <hr className="login-break"></hr>
           <div className="login-bottom">
