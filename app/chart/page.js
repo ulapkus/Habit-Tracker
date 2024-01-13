@@ -248,18 +248,6 @@ export default function Chart() {
     setModalVisibility(false);
   };
 
-  const currentWeekFirst = () => {
-    const firstDay = selectedDates[0];
-    const formattedDate = format(firstDay, "EEEE, M/d");
-    return formattedDate;
-  };
-
-  const currentWeekSecond = () => {
-    const lastDay = selectedDates[6];
-    const formattedDate = format(lastDay, "EEEE, M/d");
-    return formattedDate;
-  };
-
   const renderWeekView = () => {
     return (
       <div className="background-week">
@@ -271,7 +259,8 @@ export default function Chart() {
           ></img>
           <div className="month-and-year-week">
             <h4>
-              {currentWeekFirst()} - {currentWeekSecond()}
+              {format(selectedDates[0], "EEEE, M/d")} -{" "}
+              {format(selectedDates[6], "EEEE, M/d")}
             </h4>
             <p className="currentyear-week">{currentYear}</p>
           </div>
@@ -307,12 +296,12 @@ export default function Chart() {
                 Object.keys(days).map((activityy, indexx) => (
                   <tr key={indexx} className="week-cell-row">
                     <td className="week-cell-habit">
-                        <p
-                          onClick={() => eraseHabit(activityy, indexx)}
-                          className="x-button-week"
-                        >
-                          X
-                        </p>
+                      <p
+                        onClick={() => eraseHabit(activityy, indexx)}
+                        className="x-button-week"
+                      >
+                        X
+                      </p>
                       <div className="activity-week">{activityy}</div>
                     </td>
                     {selectedDates.map((datee, dayIndexxx) => (
