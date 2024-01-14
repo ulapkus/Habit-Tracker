@@ -503,7 +503,7 @@ h5 {
   text-align: center;
 }
 
-.currentyear-week {
+.year-week {
   font-family: "Cousine", monospace;
   font-weight: light;
   letter-spacing: 10px;
@@ -779,7 +779,7 @@ table {
   cursor: pointer;
 }
 
-.nextAndBackButtons {
+.nextAndBack-week {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -808,7 +808,7 @@ table {
   width: 15vw;
 }
 
-.currentMonth {
+.month {
   font-size: 3vh;
   color: grey;
   font-family: "Cousine", monospace;
@@ -819,7 +819,7 @@ table {
   text-align: center;
 }
 
-.currentYear {
+.year-month {
   font-family: "Cousine", monospace;
   font-weight: light;
   letter-spacing: 10px;
@@ -828,7 +828,7 @@ table {
   color: grey;
 }
 
-.month-nextAndBackButtons {
+.nextAndBack-month {
   display: flex;
   flex-direction: row;
   justify-content: center;

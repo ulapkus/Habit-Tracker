@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, createContext } from "react";
 import Child from "../questions";
-import { format, addDays, set, subDays } from "date-fns";
+import { format, addDays, set, subDays, getYear } from "date-fns";
 
 export const Context = createContext([[], () => {}]);
 export const DaysContext = React.createContext();
@@ -24,9 +24,9 @@ export default function Chart() {
   const [modalVisibility, setModalVisibility] = useState(true);
   const [newHabitAdded, setNewHabitAdded] = useState(true);
   const [month, setMonth] = useState(() => subDays(new Date(), 6).getMonth());
-  //need to fix year for weekview (doesnt change when going back)
-  const [year, setYear] = useState(() => subDays(new Date(), 6).getFullYear());
-  const [selectedDates, setSelectedDates] = useState(() => {
+  const [year, setYear] = useState(() => getYear(new Date()));
+  const [yearWeek, setYearWeek] = useState(() => getYear(new Date()));
+  const [weekDates, setWeekDates] = useState(() => {
     const past7Days = Array.from({ length: 7 }, (_, index) => {
       const dates = new Date(new Date());
       dates.setDate(new Date().getDate() - index);
@@ -175,7 +175,7 @@ export default function Chart() {
   };
 
   const cellClickWeek = (activityy, dayIndexx) => {
-    const dates = selectedDates[dayIndexx];
+    const dates = weekDates[dayIndexx];
     const newDates = `${dates.getFullYear()}-${
       dates.getMonth() + 1
     }-${dates.getDate()}`;
@@ -241,13 +241,15 @@ export default function Chart() {
     const today = addDays(new Date(), 1);
     const startDate = new Date(today);
     startDate.setDate(today.getDate() + state * 7);
+    const newYear = getYear(startDate);
+    setYearWeek(newYear);
 
     const dateArray = Array.from({ length: 7 }, (_, index) => {
       const currentDate = new Date(startDate);
       currentDate.setDate(startDate.getDate() + index);
       return currentDate;
     });
-    setSelectedDates(dateArray);
+    setWeekDates(dateArray);
     return dateArray;
   };
 
@@ -281,7 +283,7 @@ export default function Chart() {
   const renderWeekView = () => {
     return (
       <div className="background-week">
-        <div className="nextAndBackButtons">
+        <div className="nextAndBack-week">
           <img
             className="back"
             onClick={back}
@@ -289,10 +291,10 @@ export default function Chart() {
           ></img>
           <div className="month-and-year-week">
             <h4>
-              {format(selectedDates[0], "EEEE, M/d")} -{" "}
-              {format(selectedDates[6], "EEEE, M/d")}
+              {format(weekDates[0], "EEEE, M/d")} -{" "}
+              {format(weekDates[6], "EEEE, M/d")}
             </h4>
-            <p className="currentyear-week">{year}</p>
+            <p className="year-week">{yearWeek}</p>
           </div>
           <img
             className="next"
@@ -314,7 +316,7 @@ export default function Chart() {
             <thead>
               <tr className="week-header-one">
                 <th className="days-habit-word">Habits</th>
-                {selectedDates.map((datee, dayIndexx) => (
+                {weekDates.map((datee, dayIndexx) => (
                   <th className="days" key={dayIndexx}>
                     {`${datee.getMonth() + 1}/${datee.getDate()}`}
                   </th>
@@ -334,7 +336,7 @@ export default function Chart() {
                       </p>
                       <div className="activity-week">{activityy}</div>
                     </td>
-                    {selectedDates.map((datee, dayIndexxx) => (
+                    {weekDates.map((datee, dayIndexxx) => (
                       <td
                         className="week-cell"
                         key={dayIndexxx}
@@ -449,17 +451,17 @@ export default function Chart() {
     return (
       <div>
         <div className="background-month">
-          <div className="month-nextAndBackButtons">
+          <div className="nextAndBack-month">
             <img
               className="backMonth"
               onClick={previousMonth}
               src="https://cdn-icons-png.flaticon.com/128/860/860790.png"
             ></img>
             <div className="month-and-year">
-              <h6 className="currentMonth">
+              <h6 className="month">
                 {format(set(new Date(), { month: month }), "MMMM")}
               </h6>
-              <p className="currentYear">{year}</p>
+              <p className="year-month">{year}</p>
             </div>
             <img
               className="nextMonth"
