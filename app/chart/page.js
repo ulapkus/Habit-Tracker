@@ -1,15 +1,14 @@
 "use client";
 
-import React, { useEffect, useState, createContext, useCallback } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import Child from "../questions";
-import { format, addDays, setMonth, subDays } from "date-fns";
+import { format, addDays, set, subDays } from "date-fns";
 
 export const Context = createContext([[], () => {}]);
 export const DaysContext = React.createContext();
 export const ColorContext = React.createContext();
 export const ModalContext = React.createContext();
 
-// need to address if all habits are erased
 // need to prevent user from going beyond current month/week
 
 export default function Chart() {
@@ -21,20 +20,17 @@ export default function Chart() {
   const [weekCount, setWeekCount] = useState(-1);
   const [view, setView] = useState("week");
   const [isDayClicked, setIsDayClicked] = useState(false);
+  const [isSubmitClicked, setIsSubmitClicked] = useState(false);
   const [modalVisibility, setModalVisibility] = useState(true);
   const [newHabitAdded, setNewHabitAdded] = useState(true);
-  const [currentMonths, setCurrentMonths] = useState(() =>
-    subDays(new Date(), 6).getMonth()
-  );
+  const [month, setMonth] = useState(() => subDays(new Date(), 6).getMonth());
   //need to fix year for weekview (doesnt change when going back)
-  const [currentYear, setCurrentYear] = useState(() =>
-    subDays(new Date(), 6).getFullYear()
-  );
+  const [year, setYear] = useState(() => subDays(new Date(), 6).getFullYear());
   const [selectedDates, setSelectedDates] = useState(() => {
     const past7Days = Array.from({ length: 7 }, (_, index) => {
-      const currentDate = new Date(new Date());
-      currentDate.setDate(new Date().getDate() - index);
-      return currentDate;
+      const dates = new Date(new Date());
+      dates.setDate(new Date().getDate() - index);
+      return dates;
     });
     return past7Days.sort((a, b) => a - b);
   });
@@ -77,7 +73,6 @@ export default function Chart() {
   const handleColorChange = (event, i) => {
     const colorValue = [...colorFields];
     colorValue[i] = event.target.value;
-
     setColorFields(colorValue);
   };
 
@@ -113,31 +108,39 @@ export default function Chart() {
 
     setInputFields([]);
     setColorFields([]);
+    setIsSubmitClicked(true);
   };
 
   const eraseHabit = (activity, i) => {
-    const removeFromHabits = [...habits];
-    removeFromHabits.splice(i, 1);
-    setHabits(removeFromHabits);
+    const newHabits = [...habits];
+    newHabits.splice(i, 1);
+    setHabits(newHabits);
 
     const newDays = { ...days };
     delete newDays[activity];
     setDays(newDays);
+
+    const newColors = { ...colors };
+    delete newColors[activity];
+    setColors(newColors);
+
+    setIsSubmitClicked(true);
   };
 
-  //  this is POST used in sendCopy
-  //  to update days on the server after day is clicked
-  //  this is updated every time a day is clicked
-  const saveCellClick = async () => {
-    const copyofdays = days;
+  const saveAddOrRemoveHabit = async () => {
+    const daysCopy = days;
+    const colorsCopy = colors;
+    const habitsCopy = habits;
     try {
-      const res = await fetch("/api/sendCopy", {
+      const res = await fetch("/api/addOrRemoveHabit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          copyofdays,
+          daysCopy,
+          colorsCopy,
+          habitsCopy,
         }),
       });
       await res.json();
@@ -146,27 +149,73 @@ export default function Chart() {
     }
   };
 
-  const handleCellClickWeek = (activityy, dayIndexx) => {
-    const currentDate = selectedDates[dayIndexx];
-    const formattedDate = `${currentDate.getFullYear()}-${
-      currentDate.getMonth() + 1
-    }-${currentDate.getDate()}`;
+  useEffect(() => {
+    if (isSubmitClicked) {
+      saveAddOrRemoveHabit();
+      setIsSubmitClicked(false);
+    }
+  }, [isSubmitClicked]);
 
-    const isSelected = days[activityy].includes(formattedDate);
-    if (isSelected) {
+  const saveCellClick = async () => {
+    const daysCopy = days;
+    try {
+      const res = await fetch("/api/sendCopy", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          daysCopy,
+        }),
+      });
+      await res.json();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const cellClickWeek = (activityy, dayIndexx) => {
+    const dates = selectedDates[dayIndexx];
+    const newDates = `${dates.getFullYear()}-${
+      dates.getMonth() + 1
+    }-${dates.getDate()}`;
+
+    if (days[activityy].includes(newDates)) {
       setDays((prevDays) => {
         return {
           ...prevDays,
-          [activityy]: prevDays[activityy].filter(
-            (date) => date !== formattedDate
-          ),
+          [activityy]: prevDays[activityy].filter((date) => date !== newDates),
         };
       });
     } else {
       setDays((prevDays) => {
         return {
           ...prevDays,
-          [activityy]: [...prevDays[activityy], formattedDate],
+          [activityy]: [...prevDays[activityy], newDates],
+        };
+      });
+    }
+    setIsDayClicked(true);
+  };
+
+  const cellClickMonth = (activity, dayIndex) => {
+    const dates = new Date(year, month, dayIndex + 1);
+    const newDates = `${dates.getFullYear()}-${
+      dates.getMonth() + 1
+    }-${dates.getDate()}`;
+
+    if (days[activity].includes(newDates)) {
+      setDays((prevDays) => {
+        return {
+          ...prevDays,
+          [activity]: prevDays[activity].filter((date) => date !== newDates),
+        };
+      });
+    } else {
+      setDays((prevDays) => {
+        return {
+          ...prevDays,
+          [activity]: [...prevDays[activity], newDates],
         };
       });
     }
@@ -206,36 +255,17 @@ export default function Chart() {
     generateDateArray(weekCount);
   }, [weekCount]);
 
-  const today = new Date();
-
-  const calculateStartingDate = () => {
-    const daysToAdd = weekCount * 7 + 1;
-    const startingDate = new Date(
-      currentYear,
-      currentMonths,
-      today.getDate() + daysToAdd
+  const dayColorWeek = (activityy, dayIndexxx) => {
+    const date = new Date(
+      new Date(year, month, new Date().getDate() + (weekCount * 7 + 1))
     );
-    return startingDate;
-  };
+    date.setDate(date.getDate() + dayIndexxx);
 
-  const getBackgroundColorForDayWeek = (activityy, dayIndexxx) => {
-    const activityDays = days[activityy];
-    const currentDate = new Date(calculateStartingDate());
-    currentDate.setDate(currentDate.getDate() + dayIndexxx);
-
-    return activityDays.includes(
-      `${currentDate.getFullYear()}-${
-        currentDate.getMonth() + 1
-      }-${currentDate.getDate()}`
+    return days[activityy].includes(
+      `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     )
       ? colors[activityy]
       : "#81c8e0";
-  };
-
-  const formatDate = (datee) => {
-    const month = datee.getMonth() + 1;
-    const day = datee.getDate();
-    return `${month}/${day}`;
   };
 
   const weekView = () => {
@@ -262,7 +292,7 @@ export default function Chart() {
               {format(selectedDates[0], "EEEE, M/d")} -{" "}
               {format(selectedDates[6], "EEEE, M/d")}
             </h4>
-            <p className="currentyear-week">{currentYear}</p>
+            <p className="currentyear-week">{year}</p>
           </div>
           <img
             className="next"
@@ -286,7 +316,7 @@ export default function Chart() {
                 <th className="days-habit-word">Habits</th>
                 {selectedDates.map((datee, dayIndexx) => (
                   <th className="days" key={dayIndexx}>
-                    {formatDate(datee)}
+                    {`${datee.getMonth() + 1}/${datee.getDate()}`}
                   </th>
                 ))}
               </tr>
@@ -308,17 +338,12 @@ export default function Chart() {
                       <td
                         className="week-cell"
                         key={dayIndexxx}
-                        onClick={() =>
-                          handleCellClickWeek(activityy, dayIndexxx)
-                        }
+                        onClick={() => cellClickWeek(activityy, dayIndexxx)}
                         style={{
-                          backgroundColor: getBackgroundColorForDayWeek(
-                            activityy,
-                            dayIndexxx
-                          ),
+                          backgroundColor: dayColorWeek(activityy, dayIndexxx),
                         }}
                       >
-                        {getBackgroundColorForDayWeek(activityy, dayIndexxx) ===
+                        {dayColorWeek(activityy, dayIndexxx) ===
                           colors[activityy]}
                       </td>
                     ))}
@@ -387,74 +412,36 @@ export default function Chart() {
     );
   };
 
-  const goToPreviousMonth = () => {
-    setCurrentMonths((prevMonth) => (prevMonth === 0 ? 11 : prevMonth - 1));
-    setCurrentYear((prevYear) =>
-      currentMonths === 0 ? prevYear - 1 : prevYear
-    );
+  const previousMonth = () => {
+    setMonth((prevMonth) => (prevMonth === 0 ? 11 : prevMonth - 1));
+    setYear((prevYear) => (month === 0 ? prevYear - 1 : prevYear));
   };
 
-  const goToNextMonth = () => {
-    setCurrentMonths((prevMonth) => (prevMonth === 11 ? 0 : prevMonth + 1));
-    setCurrentYear((prevYear) =>
-      currentMonths === 11 ? prevYear + 1 : prevYear
-    );
+  const nextMonth = () => {
+    setMonth((prevMonth) => (prevMonth === 11 ? 0 : prevMonth + 1));
+    setYear((prevYear) => (month === 11 ? prevYear + 1 : prevYear));
   };
 
   useEffect(() => {
     renderMonthView();
-  }, [currentMonths, currentYear]);
+  }, [month, year]);
 
   const getDayOfWeek = (year, month, day) => {
-    const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const date = new Date(year, month, day);
-    const dayIndex = date.getDay();
-    return daysOfWeek[dayIndex];
+    const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    return week[new Date(year, month, day).getDay()];
   };
 
-  const theCurrentMonth = format(setMonth(new Date(), currentMonths), "MMMM");
+  const dayColorMonth = (activity, dayIndex) => {
+    const dates = new Date(year, month, dayIndex + 1);
 
-  const handleCellClick = (activity, dayIndex) => {
-    const currentDate = new Date(currentYear, currentMonths, dayIndex + 1);
-    const formattedDate = `${currentDate.getFullYear()}-${
-      currentDate.getMonth() + 1
-    }-${currentDate.getDate()}`;
-
-    const isSelected = days[activity].includes(formattedDate);
-
-    if (isSelected) {
-      setDays((prevDays) => {
-        return {
-          ...prevDays,
-          [activity]: prevDays[activity].filter(
-            (date) => date !== formattedDate
-          ),
-        };
-      });
-    } else {
-      setDays((prevDays) => {
-        return {
-          ...prevDays,
-          [activity]: [...prevDays[activity], formattedDate],
-        };
-      });
-    }
-  };
-
-  const getBackgroundColorForDay = (activity, dayIndex) => {
-    const activityDays = days[activity];
-    const currentDate = new Date(currentYear, currentMonths, dayIndex + 1);
-
-    return activityDays.includes(
-      `${currentDate.getFullYear()}-${
-        currentDate.getMonth() + 1
-      }-${currentDate.getDate()}`
+    return days[activity].includes(
+      `${dates.getFullYear()}-${dates.getMonth() + 1}-${dates.getDate()}`
     )
       ? colors[activity]
       : "#81c8e0";
   };
 
-  const getDaysInMonth = (year, month) => {
+  const daysInMonth = (year, month) => {
     return new Date(year, month + 1, 0).getDate();
   };
 
@@ -465,16 +452,18 @@ export default function Chart() {
           <div className="month-nextAndBackButtons">
             <img
               className="backMonth"
-              onClick={goToPreviousMonth}
+              onClick={previousMonth}
               src="https://cdn-icons-png.flaticon.com/128/860/860790.png"
             ></img>
             <div className="month-and-year">
-              <h6 className="currentMonth">{theCurrentMonth}</h6>
-              <p className="currentYear">{currentYear}</p>
+              <h6 className="currentMonth">
+                {format(set(new Date(), { month: month }), "MMMM")}
+              </h6>
+              <p className="currentYear">{year}</p>
             </div>
             <img
               className="nextMonth"
-              onClick={goToNextMonth}
+              onClick={nextMonth}
               src="https://cdn-icons-png.flaticon.com/128/758/758778.png"
             ></img>
           </div>
@@ -494,7 +483,7 @@ export default function Chart() {
               <thead>
                 <tr className="month-header-one">
                   {Array.from(
-                    { length: getDaysInMonth(currentYear, currentMonths) },
+                    { length: daysInMonth(year, month) },
                     (_, dayIndex) => (
                       <th className="month-days" key={dayIndex}>
                         {dayIndex + 1}
@@ -505,10 +494,10 @@ export default function Chart() {
                 <tr className="month-header-two">
                   <td className="month-days-habits-word">Habits</td>
                   {Array.from(
-                    { length: getDaysInMonth(currentYear, currentMonths) },
+                    { length: daysInMonth(year, month) },
                     (_, dayIndex) => (
                       <th className="month-daysofweek" key={dayIndex}>
-                        {getDayOfWeek(currentYear, currentMonths, dayIndex + 1)}
+                        {getDayOfWeek(year, month, dayIndex + 1)}
                       </th>
                     )
                   )}
@@ -519,7 +508,7 @@ export default function Chart() {
                   <tr key={index} className="month-cell-row">
                     <td className="month-cell-habit">
                       <p
-                        onClick={() => eraseHabit(activity, i)}
+                        onClick={() => eraseHabit(activity, index)}
                         className="x-button-month"
                       >
                         X
@@ -527,20 +516,17 @@ export default function Chart() {
                       <div className="activity-month">{activity}</div>
                     </td>
                     {Array.from(
-                      { length: getDaysInMonth(currentYear, currentMonths) },
+                      { length: daysInMonth(year, month) },
                       (_, dayIndex) => (
                         <td
                           className="month-cell"
                           key={dayIndex}
-                          onClick={() => handleCellClick(activity, dayIndex)}
+                          onClick={() => cellClickMonth(activity, dayIndex)}
                           style={{
-                            backgroundColor: getBackgroundColorForDay(
-                              activity,
-                              dayIndex
-                            ),
+                            backgroundColor: dayColorMonth(activity, dayIndex),
                           }}
                         >
-                          {getBackgroundColorForDay(activity, dayIndex) ===
+                          {dayColorMonth(activity, dayIndex) ===
                             colors[activity]}
                         </td>
                       )
@@ -604,7 +590,7 @@ export default function Chart() {
                       </td>
                       {Array.from(
                         {
-                          length: getDaysInMonth(currentYear, currentMonths),
+                          length: daysInMonth(year, month),
                         },
                         (_, i) => (
                           <td key={i} className="month-cell"></td>

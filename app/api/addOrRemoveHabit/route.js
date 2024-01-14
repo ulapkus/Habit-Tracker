@@ -5,14 +5,14 @@ import { getServerSession } from "next-auth";
 
 export async function POST(request) {
   try {
-    const { daysCopy } = await request.json();
+    const { daysCopy, colorsCopy, habitsCopy } = await request.json();
     await Connect();
     const session = await getServerSession();
     const thisuser = session.user.email;
     const filter = { email: thisuser };
 
     const result = await Users.updateOne(filter, {
-      $set: { days: daysCopy },
+      $set: { days: daysCopy, colors: colorsCopy, habits: habitsCopy },
     });
 
     if (result.modifiedCount === 1) {
