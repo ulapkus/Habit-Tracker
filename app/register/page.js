@@ -74,37 +74,64 @@ const Register = () => {
   return (
     sessionStatus !== "authenticated" && (
       <div className="login-background">
-        <div className="register-box">
-          <h2>Register</h2>
-          <form onSubmit={handleSubmit} className="login-form">
-            <input
-              type="text"
-              placeholder="Name"
-              required
-              className="login-name"
-            />
-            <input
-              type="text"
-              placeholder="Email"
-              required
-              className="login-email"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              required
-              className="login-password"
-            />
-            <button type="submit" className="login-button">
-              Register
-            </button>
-            <p className="error">{error && error}</p>
-          </form>
-          <hr className="login-break"></hr>
-          <div className="login-bottom">
-            <Link href="/login" className="have-or-create-account">
-              I already have an account
+        <div className="login-box">
+          <h2>Start hopping</h2>
+          <div className="no-account-signup">
+            <p className="no-account">ALREADY HAVE AN ACCOUNT?&nbsp;</p>
+            <Link href="/login" className="signup">
+              LOG IN
             </Link>
+          </div>
+          <div className="register">
+          <div className="login-form">
+
+            <form onSubmit={handleSubmit} className="login-form">
+              <input
+                type="text"
+                placeholder="Name"
+                required
+                className="register-name"
+              />
+              <input
+                type="text"
+                placeholder="Email"
+                required
+                className="login-email"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                required
+                className="login-password"
+              />
+              <button type="submit" className="login-button">
+                Sign up
+              </button>
+              <p className="error">{error && error}</p>
+            </form>
+            </div>
+            <div className="break-plus-or">
+              <div className="break"></div>
+              <p className="break-or">OR</p>
+              <div className="break"></div>
+            </div>
+            <div className="login-bottom">
+              {/* need to add register with google and github ability */}
+              <button className="login-google">
+                <img
+                  className="image-google"
+                  src="https://banner2.cleanpng.com/20180324/iww/kisspng-google-logo-g-suite-google-5ab6f1cee66464.5739288415219388949437.jpg"
+                ></img>
+                Continue with Google
+              </button>
+              <button className="login-github">
+                <img
+                  className="image-github"
+                  src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
+                ></img>
+                Continue with Github
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -15,10 +15,10 @@ const Navbar = () => {
 
   useEffect(() => {
     if (pathname === "/login") {
-      setBodyBackgroundColor("#8caa91");
+      setBodyBackgroundColor("#1D4938");
       setTextColor("black");
     } else if (pathname === "/register") {
-      setBodyBackgroundColor("#8caa91");
+      setBodyBackgroundColor("#1D4938");
       setTextColor("black");
     } else {
       setBodyBackgroundColor("#f5f5dc");

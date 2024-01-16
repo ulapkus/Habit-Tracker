@@ -1,161 +1,205 @@
-@import url("https://fonts.googleapis.com/css2?family=Cousine&family=Libre+Baskerville&family=Roboto+Mono:wght@100;200&family=Urbanist:wght@100&display=swap");
-
 * {
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Neue Power Trial";
+  src: url("fontss/subset-NeuePowerTrial-Ultra.woff2") format("woff2"),
+    url("fontss/subset-NeuePowerTrial-Ultra.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* beginning */
+
 html,
 body {
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
-  margin: auto;
-  background-color: #f5f5dc;
+  margin: 0;
+  background-color: #1d4938;
 }
 
-input:focus {
-  outline: none;
-}
-
-.logo {
-  width: 100%;
-  border-radius: 15px;
+h2 {
+  font-size: 6vh;
+  color: #8bf1b5;
+  padding: 0;
+  margin: 0;
+  font-family: Neue Power Trial;
 }
 
 .login-background {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #1d4938;
+  height: 80%;
+
+  /* width: 100%; */
+  /* border: 1px solid blue; */
+  margin: 0;
+  padding: 0;
+}
+
+/* signin and register css is the same  */
+
+.signin {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  width: 40vw;
+  /* height: 28vh; */
+  border: 1px solid blue;
+}
+
+.register {
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  max-height: 80%;
-  padding: 5% 0 10% 0;
-  background-color: #8caa91;
-}
-
-.nav-background {
-  height: 20%;
-}
-
-.layout-background {
-  height: 100%;
-  width: 100%;
-}
-
-.login-break {
-  width: 15vw;
-  color: black;
-}
-
-.login-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100%;
-  margin: 0 0 5% 0;
-  padding: 6vh;
-  gap: 1.8vh;
-  font-family: "Cousine", monospace;
-  letter-spacing: 3px;
-  width: 28vw;
-  border-radius: 10px;
-  background-color: white;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
-}
-
-.register-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100%;
-  font-family: "Cousine", monospace;
-  margin: 0 0 5% 0;
-  padding: 6vh;
-  gap: 1.8vh;
-  letter-spacing: 3px;
-  width: 28vw;
-  border-radius: 10px;
-  background-color: white;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-}
-
-h2 {
-  font-size: 4vh;
-  font-family: "Cousine", monospace;
-  color: #8caa91;
-  letter-spacing: 5px;
+  width: 40vw;
+  /* height: 100%; */
+  border: 1px solid blue;
+  margin: 0;
   padding: 0;
-  margin: 0 0 1vh 0;
+}
+
+.break-plus-or {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  /* border: 1px solid blue; */
+  width: 5vw;
+  padding: 0 3.5vw 0 3.5vw;
+}
+
+.break {
+  border-top: none;
+  border-left: 0.5px solid white;
+  border-right: none;
+  border-bottom: none;
+  color: white;
+  height: 14vh;
+  /* width: 100%; */
+}
+
+.break-or {
+  color: white;
+  font-size: 1.1vh;
+  padding: 0.65vh 0 0.65vh 0;
+}
+
+.no-account-signup {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: 2vh;
+  color: #8bf1b5;
+  padding: 1vh 0 4vh 0;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4vh;
+  /* border: 1px solid blue; */
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+.signup {
+  color: #8bf1b5;
+}
+
+.login-box {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 0;
-  padding: 0;
-  gap: 1.5vh;
+  height: 80%;
+  width: 100%;
 }
 
-.login-name,
+.register-name,
 .login-email,
 .login-password {
-  width: 15vw;
-  height: 5vh;
-  border-radius: 5px;
-  font-size: 2vh;
-  font-family: "Cousine", monospace;
-  letter-spacing: 5px;
-  padding-left: 1vw;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #336a50;
+  background-color: #1d4938;
+  color: #8bf1b5;
+  width: 18vw;
+  height: 4vh;
+  font-size: 1.8vh;
 }
 
-.login-name:focus,
-.login-email:focus,
-.login-password:focus {
-  outline: black;
-}
-
-.logo {
-  height: 6vh;
-}
-
-.nav-link {
-  color: gray;
-  text-decoration: none;
-  padding: 1vh;
-  border-radius: 6px;
-  font-size: 1.75vh;
-  text-align: center;
-  letter-spacing: 6px;
-}
-
-.nav-link:hover {
-  color: black;
-  cursor: pointer;
+.register-name::placeholder,
+.login-email::placeholder,
+.login-password::placeholder {
+  color: #8bf1b5;
 }
 
 .login-button {
-  width: 15vw;
+  border: 1px solid #ffa201;
+  background-color: #3f5530;
+  color: white;
+  width: 11vw;
   height: 4vh;
-  font-size: 2vh;
-  color: gray;
-  font-family: "Cousine", monospace;
-  border-radius: 5px;
-  font-weight: bolder;
-  letter-spacing: 7px;
+  text-align: left;
+  padding-left: 1vw;
 }
 
 .login-button:hover {
   cursor: pointer;
-  color: black;
+}
+
+.login-google,
+.login-github {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 15vw;
+  height: 5vh;
+  color: white;
+  border: none;
+  border-radius: 0;
+}
+
+.login-google {
+  background-color: #1b72e8;
+}
+
+.image-google {
+  display: block;
+  border: 1.65vh solid white;
+  margin: 0;
+  padding: 0;
+  width: 5vh;
+  height: 5vh;
+}
+
+.image-github {
+  display: block;
+  border: 1vh solid white;
+  margin: 0;
+  padding: 0;
+  width: 5vh;
+  height: 5vh;
 }
 
 .login-github {
-  width: 8vw;
-  max-height: 4vh;
-  font-family: "Cousine", monospace;
-  border-radius: 5px;
+  background-color: #000000;
 }
 
 .login-bottom {
@@ -163,17 +207,351 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1.8vh;
+  gap: 1.5vh;
+  /* border: 1px solid blue; */
+  width: 100%;
+  height: 100%;
 }
 
-.have-or-create-account {
-  text-decoration: none;
-  color: grey;
+.quote-background {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: 1px solid blue;
+  padding: 0 0 0 10vw;
+  height: 100%;
+  background-color: #1d4938;
+}
+
+.quote-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid red;
+  /* gap: 4vh; */
+  width: 60vw;
+  font-size: 1vh;
+}
+
+h1 {
+  color: #8bf1b5;
+}
+
+.quote-user {
+}
+
+.quote {
+  color: #8bf1b5;
+  font-size: 9vh;
+  width: 100%;
+  padding: 1.5vh 0 4.5vh 0;
+  line-height: 90%;
+  font-family: Neue Power Trial;
+}
+
+.author {
+  color: #8bf1b5;
+  border: 1px solid pink;
+  font-size: 2vh;
+  padding: 0 0 0 3vw;
+  white-space: nowrap;
+}
+
+.quote-button {
+  border: 1.5px solid #ffa201;
+  width: 14vw;
+  height: 5.5vh;
+  background-color: #3f5530;
+  color: white;
+  border-radius: 0.8vh;
+  font-size: 2.5vh;
+}
+
+.about {
+  border: 1px solid blue;
+  width: 60%;
+  margin: 0 0 0 7vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3vh;
+}
+
+.about-p {
+  color: #8bf1b5;
+  font-size: 2vh;
+  line-height: 180%;
+  padding: 0 0 0 0;
+}
+
+h6 {
+}
+
+h3 {
+  color: white;
+  padding: 0;
+  margin: 0;
+  font-size: 10vh;
+  line-height: 95%;
+  font-family: Neue Power Trial;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.background-week {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1;
+  height: 100%;
+  width: 100%;
+  margin: 0 0 0 0;
+  padding: 0 0 5vh 0;
+}
+
+.nextAndBack-week {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+  width: 80%;
+}
+
+.back,
+.next {
+  height: 2vh;
+  width: 1vw;
+}
+
+.month-and-year-week {
+  display: flex;
+  flex-direction: column;
+  height: 6vh;
+  padding: 0;
+  margin: 0;
+  gap: 1.7vh;
+  width: 40vw;
   text-align: center;
 }
 
-.have-or-create-account:hover {
-  background-color: white;
+.year-week {
+  font-family: "Cousine", monospace;
+  font-weight: light;
+  letter-spacing: 10px;
+  text-align: center;
+  margin: 0;
+  color: grey;
+}
+
+.main-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4vh 0.5vw 2vh 0.5vw;
+  border-radius: 25px;
+  color: white;
+  width: 85%;
+  margin: 5vh 0 3vh 0;
+}
+
+.week-header-one :first-child {
+  width: 14vw;
+}
+
+.week-header-one {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.days {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 4vw;
+  font-size: 1.2vw;
+  text-align: center;
+  font-weight: 500;
+  width: 12vh;
+  background-color: #81c8e0;
+  border-radius: 15px;
+  margin: 10px;
+  font-family: "Cousine", monospace;
+  font-weight: lighter;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+.week-cell-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.week-cell-habit {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 12vh;
+  width: 18vw;
+  text-align: center;
+  font-size: 1vw;
+  padding: 1.4vh;
+  margin: 10px;
+  background-color: #81c8e0;
+  font-size: 1.5vw;
+  border-radius: 12px;
+  font-family: "Cousine", monospace;
+  font-weight: lighter;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+}
+
+.x-button-week {
+  width: 0.7vw;
+  height: 1.5vh;
+  font-size: 1.6vh;
+}
+
+.activity-week {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-right: 0.75vw;
+  padding-top: 0.3vh;
+}
+
+.week-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 12vh;
+  width: 12vh;
+  text-align: center;
+  font-size: 1vw;
+  padding: 10px;
+  margin: 10px;
+  background-color: #81c8e0;
+  font-size: 1.5vw;
+  border-radius: 15px;
+  font-family: "Cousine", monospace;
+  font-weight: lighter;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+}
+
+.cell-new-habit-week {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 8vw;
+  width: 14vw;
+  text-align: center;
+  font-size: 1vw;
+  padding: 15px 10px 10px 11px;
+  margin: 10px;
+  background-color: #81c8e0;
+  font-size: 1.5vw;
+  border-radius: 20px;
+  font-family: "Cousine", monospace;
+  font-weight: lighter;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+}
+
+.add-habit-x-button-week {
+  font-size: 1.7vh;
+  height: 1vh;
+  padding: 0;
+  margin: 0;
+}
+
+.add-habit-x-div-week {
+  width: 100%;
+}
+
+.input-box-week {
+  width: 10vw;
+  background-color: #81c8e0;
+  border: none;
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 3vh;
+  font-family: "Cousine", monospace;
+  font-weight: lighter;
+  text-transform: uppercase;
+  outline: none;
+  letter-spacing: 7px;
+}
+
+.input-box-week::placeholder {
+  color: white;
+}
+
+.add-more-div-week {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 1vh 0 0 0;
+}
+
+.add-more-week {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 2.5vh;
+  width: 2.5vh;
+  color: white;
+  border: 1px solid white;
+  border-radius: 20px;
+  font-size: 2.5vh;
+  font-family: "Cousine", monospace;
+  font-weight: lighter;
+  padding: 0;
+  margin: 0vh 0 0.5vh 0vw;
+}
+
+.month-view {
+  width: 9.5vw;
+  height: 4.5vh;
+  font-size: 1.8vh;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 0;
+}
+
+/* ending */
+
+input:focus {
+  outline: none;
+}
+
+.layout-background {
+  height: 100%;
+  width: 100%;
 }
 
 .main {
@@ -182,69 +560,6 @@ h2 {
   justify-content: center;
   align-items: center;
   background-color: beige;
-}
-
-.main-home {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 5vh;
-  margin: 3vh 0 23vh 0;
-}
-
-.quote {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 4.5vh;
-  font-family: "Libre Baskerville", serif;
-}
-
-.author {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 2vh;
-  font-family: "Libre Baskerville", serif;
-}
-
-.quote-and-author {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 4vh;
-  border: 1px solid purple;
-  background-color: rgb(200, 200, 243);
-  border-radius: 30px;
-  font-weight: bolder;
-  color: grey;
-  width: 70%;
-  height: 40%;
-  margin: 0;
-  padding: 8vh 1vw 8vh 1vw;
-}
-
-.logo-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  flex-grow: 1;
-  height: 60%;
-}
-
-.nav-main {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin: 0 7.5% 0 7.5%;
-  height: 100%;
 }
 
 #myModal {
@@ -326,23 +641,6 @@ h2 {
   border: 1.5px solid white;
 }
 
-.add-more-week {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 2.5vh;
-  width: 2.5vh;
-  color: white;
-  border: 1px solid white;
-  border-radius: 20px;
-  font-size: 2.5vh;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-  padding: 0;
-  margin: 0vh 0 0.5vh 0vw;
-}
-
 .add-more-month {
   display: flex;
   flex-direction: column;
@@ -358,16 +656,6 @@ h2 {
   font-weight: lighter;
   padding: 0;
   margin: 0 0 0 0;
-}
-
-.add-more-div-week {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  margin: 1vh 0 0 0;
 }
 
 .add-more-div-month {
@@ -485,33 +773,6 @@ h5 {
   cursor: pointer;
 }
 
-.testtt {
-  border: 1px solid red;
-  font-size: 100px;
-  color: black;
-  height: 50px;
-}
-
-.month-and-year-week {
-  display: flex;
-  flex-direction: column;
-  height: 6vh;
-  padding: 0;
-  margin: 0;
-  gap: 1.7vh;
-  width: 40vw;
-  text-align: center;
-}
-
-.year-week {
-  font-family: "Cousine", monospace;
-  font-weight: light;
-  letter-spacing: 10px;
-  text-align: center;
-  margin: 0;
-  color: grey;
-}
-
 h4 {
   display: flex;
   flex-direction: column;
@@ -539,19 +800,6 @@ h4 {
   margin: 0;
 }
 
-.main-table {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 4vh 0.5vw 2vh 0.5vw;
-  background-color: #add8e6;
-  border-radius: 25px;
-  color: white;
-  width: 85%;
-  margin: 5vh 0 3vh 0;
-}
-
 .table-parent-month {
   display: flex;
   flex-direction: column;
@@ -562,15 +810,6 @@ h4 {
   border-radius: 20px;
   color: white;
   margin: 2.5vh 0 2.5vh 0;
-}
-
-.chart-and-stats {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 0.25vw;
-  height: 60%;
 }
 
 #checkboxes-plus-submit {
@@ -611,54 +850,12 @@ h4 {
   align-items: center;
 }
 
-h1 {
-  font-size: 2vh;
-  text-align: center;
-  padding: 0;
-  margin: 0;
-  color: gray;
-  letter-spacing: 7px;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-}
-
-.quote-user {
-  width: 5vw;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-  letter-spacing: 7px;
-  font-size: 2vh;
-  padding: 0;
-  margin: 0;
-  color: gray;
-  text-transform: uppercase;
-}
-
-.welcome-back {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-}
-
 .stats-greeting {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 0 0 3vh 0;
   width: 100%;
-}
-
-.background-week {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1;
-  height: 100%;
-  width: 100%;
-  margin: 0 0 0 0;
-  padding: 0 0 5vh 0;
 }
 
 .background-month {
@@ -672,12 +869,6 @@ h1 {
   padding: 0;
 }
 
-.week-cell-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
 .month-cell-row {
   display: flex;
   flex-direction: row;
@@ -686,21 +877,6 @@ h1 {
   height: 100%;
   width: 100%;
   padding: 0;
-}
-
-.week-header-one :first-child {
-  width: 14vw;
-}
-
-.week-header-one {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  padding: 0;
-  margin: 0;
 }
 
 .month-header-one {
@@ -758,12 +934,6 @@ table {
   margin: 0;
 }
 
-.back,
-.next {
-  height: 2vh;
-  width: 1vw;
-}
-
 .back:hover,
 .next:hover,
 .backMonth:hover,
@@ -777,15 +947,6 @@ table {
 .x-button-week:hover,
 .x-button-month:hover {
   cursor: pointer;
-}
-
-.nextAndBack-week {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 2vw;
-  width: 80%;
 }
 
 .backMonth,
@@ -837,139 +998,12 @@ table {
   width: 100%;
 }
 
-.week-cell {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 8vw;
-  width: 8vw;
-  text-align: center;
-  font-size: 1vw;
-  padding: 10px;
-  margin: 10px;
-  background-color: #81c8e0;
-  font-size: 1.5vw;
-  border-radius: 15px;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-  text-transform: uppercase;
-  letter-spacing: 7px;
-}
-
 .week-header-two > :not(:first-child):hover {
   cursor: pointer;
 }
 
-.cell-new-habit-week {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  height: 8vw;
-  width: 14vw;
-  text-align: center;
-  font-size: 1vw;
-  padding: 15px 10px 10px 11px;
-  margin: 10px;
-  background-color: #81c8e0;
-  font-size: 1.5vw;
-  border-radius: 20px;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-  text-transform: uppercase;
-  letter-spacing: 7px;
-}
-
-.days {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 4vw;
-  font-size: 1.2vw;
-  text-align: center;
-  font-weight: 500;
-  width: 8vw;
-  background-color: #81c8e0;
-  border-radius: 15px;
-  margin: 10px;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-}
-
-.input-box-week {
-  width: 10vw;
-  background-color: #81c8e0;
-  border: none;
-  color: white;
-  text-align: center;
-  border-radius: 10px;
-  font-size: 3vh;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-  text-transform: uppercase;
-  outline: none;
-  letter-spacing: 7px;
-}
-
-.input-box-week::placeholder {
-  color: white;
-}
-
 .input-box-month::placeholder {
   color: white;
-}
-
-.about {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-  width: 100%;
-  padding: 0 15vw 8vh 15vw;
-  font-size: 1.8vh;
-  gap: 3vh;
-  line-height: 3.5vh;
-}
-
-.original-habit-tracker {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  margin: 5vh;
-}
-
-h6 {
-  font-size: 2.5vh;
-  font-weight: bolder;
-  letter-spacing: 4px;
-  margin: 2vh 0 0 0;
-}
-
-h3 {
-  font-size: 3.8vh;
-  font-weight: bolder;
-}
-
-p {
-  padding: 0;
-  margin: 0;
-}
-
-.add-habit-x-button-week {
-  font-size: 1.7vh;
-  height: 1vh;
-  padding: 0;
-  margin: 0;
-}
-
-.add-habit-x-div-week {
-  width: 100%;
 }
 
 .add-habit-x-div-month {
@@ -1050,24 +1084,6 @@ p {
 .input-box-month:hover {
   background-color: #add8e6;
   color: white;
-}
-
-.days-habit-word {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 4vw;
-  font-size: 1.5vw;
-  text-align: center;
-  font-weight: 500;
-  width: 8vw;
-  background-color: #81c8e0;
-  border-radius: 15px;
-  margin: 10px;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-  text-transform: uppercase;
-  letter-spacing: 7px;
 }
 
 .month-days-habits-word {
@@ -1170,43 +1186,6 @@ p {
   border-radius: 6px;
 }
 
-.week-cell-habit {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  height: 8vw;
-  width: 14vw;
-  text-align: center;
-  font-size: 1vw;
-  padding: 1.4vh;
-  margin: 10px;
-  background-color: #81c8e0;
-  font-size: 1.5vw;
-  border-radius: 12px;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-  text-transform: uppercase;
-  letter-spacing: 7px;
-}
-
-.x-button-week {
-  width: 0.7vw;
-  height: 1.5vh;
-  font-size: 1.6vh;
-}
-
-.activity-week {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  margin-right: 0.75vw;
-  padding-top: 0.3vh;
-}
-
 .month-cell-habit {
   display: flex;
   flex-direction: row;
@@ -1243,15 +1222,6 @@ p {
   padding-top: 0.3vh;
 }
 
-.month-view {
-  width: 9.5vw;
-  height: 4.5vh;
-  font-size: 1.8vh;
-  border: 1px solid black;
-  border-radius: 10px;
-  margin: 0;
-}
-
 .week-view {
   width: 6.4vw;
   height: 3.5vh;
@@ -1271,3 +1241,57 @@ p {
 .error {
   text-align: center;
 }
+
+/* navbar start */
+.nav-background {
+  height: 20%;
+}
+
+.nav-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0 7.5% 0 7.5%;
+  height: 100%;
+}
+
+.logo-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
+  height: 60%;
+}
+
+.logo {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.chart-and-stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25vw;
+  height: 60%;
+}
+
+.nav-link {
+  color: gray;
+  text-decoration: none;
+  padding: 1vh;
+  border-radius: 6px;
+  font-size: 1.75vh;
+  text-align: center;
+  letter-spacing: 6px;
+}
+
+.nav-link:hover {
+  color: black;
+  cursor: pointer;
+}
+
+/* navbar end */

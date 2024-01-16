@@ -315,7 +315,7 @@ export default function Chart() {
           <table>
             <thead>
               <tr className="week-header-one">
-                <th className="days-habit-word">Habits</th>
+                {/* <th className="days-habit-word">Habits</th> */}
                 {weekDates.map((datee, dayIndexx) => (
                   <th className="days" key={dayIndexx}>
                     {`${datee.getMonth() + 1}/${datee.getDate()}`}

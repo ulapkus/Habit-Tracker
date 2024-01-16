@@ -11,107 +11,107 @@ export default function Dashboard() {
   const motivationalQuotes = [
     {
       text: "Don’t watch the clock; do what it does. Keep going.",
-      author: "Sam Levenson",
+      author: "SAM LEVENSON",
     },
     {
       text: "Believe you can and you're halfway there.",
-      author: "Theodore Roosevelt",
+      author: "THEODORE ROOSEVELT",
     },
     {
       text: "The only way to achieve the impossible is to believe it is possible.",
-      author: "Charles Kingsleigh",
+      author: "CHARLES KINGSLEIGH",
     },
     {
       text: "Success is not final, failure is not fatal: It is the courage to continue that counts.",
-      author: "Winston Churchill",
+      author: "WINSTON CHURCHILL",
     },
     {
       text: "Your time is limited, don't waste it living someone else's life.",
-      author: "Steve Jobs",
+      author: "STEVE JOBS",
     },
     {
       text: "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart.",
-      author: "Roy T. Bennett",
+      author: "ROY T. BENNETT",
     },
     {
       text: "It always seems impossible until it's done.",
-      author: "Nelson Mandela",
+      author: "NELSON MANDELA",
     },
     {
       text: "Your attitude, not your aptitude, will determine your altitude.",
-      author: "Zig Ziglar",
+      author: "ZIG ZIGLAR",
     },
     {
       text: "The only limit to our realization of tomorrow will be our doubts of today.",
-      author: "Franklin D. Roosevelt",
+      author: "FRANKLIN D. ROOSEVELT",
     },
     {
       text: "The only thing standing between you and your goal is the story you keep telling yourself as to why you can't achieve it.",
-      author: "Jordan Belfort",
+      author: "JORDAN BELFORT",
     },
     {
       text: "Do not wait to strike till the iron is hot, but make it hot by striking.",
-      author: "William Butler Yeats",
+      author: "WILLIAM BUTLER YEATS",
     },
     {
       text: "The only person you are destined to become is the person you decide to be.",
-      author: "Ralph Waldo Emerson",
+      author: "RALPH WALDO EMERSON",
     },
     {
       text: "Success is not in what you have, but who you are.",
-      author: "Bo Bennett",
+      author: "BO BENNETT",
     },
     {
       text: "If you want to achieve greatness stop asking for permission.",
-      author: "Anonymous",
+      author: "ANONYMOUS",
     },
     {
       text: "Do not wait; the time will never be 'just right.' Start where you stand, and work with whatever tools you may have at your command, and better tools will be found as you go along.",
-      author: "Napoleon Hill",
+      author: "NAPOLEON HILL",
     },
     {
       text: "Our greatest glory is not in never falling, but in rising every time we fall.",
-      author: "Confucius",
+      author: "CONFUCIUS",
     },
     {
       text: "The only way to do great work is to love what you do.",
-      author: "Steve Jobs",
+      author: "STEVE JOBS",
     },
     {
       text: "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
-      author: "Ralph Waldo Emerson",
+      author: "RALPH WALDO EMERSON",
     },
     {
       text: "Success is liking yourself, liking what you do, and liking how you do it.",
-      author: "Maya Angelou",
+      author: "MAYA ANGELOU",
     },
     {
       text: "The future belongs to those who believe in the beauty of their dreams.",
-      author: "Eleanor Roosevelt",
+      author: "ELEANOR ROOSEVELT",
     },
     {
       text: "Don't count the days, make the days count.",
-      author: "Muhammad Ali",
+      author: "MUHAMMAD ALI",
     },
     {
       text: "The only place where success comes before work is in the dictionary.",
-      author: "Vidal Sassoon",
+      author: "VIDAL SASSOON",
     },
     {
       text: "Don't be afraid to give up the good to go for the great.",
-      author: "John D. Rockefeller",
+      author: "JOHN D. ROCKEFELLER",
     },
     {
       text: "It's not about how hard you hit. It's about how hard you can get hit and keep moving forward.",
-      author: "Rocky Balboa",
+      author: "ROCKY BALBOA",
     },
     {
       text: "You are the master of your destiny. You can influence, direct, and control your own environment. You can make your life what you want it to be.",
-      author: "Napoleon Hill",
+      author: "NAPOLEON HILL",
     },
     {
       text: "Challenges are what make life interesting and overcoming them is what makes life meaningful.",
-      author: "Joshua J. Marine",
+      author: "JOSHUA J. MARINE",
     },
   ];
 
@@ -126,27 +126,18 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="main-home">
-      <div className="welcome-back">
+    <div className="quote-background">
+      <div className="quote-box">
         <h1>WELCOME BACK,&nbsp;</h1>
         {!session ? null : (
-          <div className="quote-user"> {session.user?.name}!</div>
+          <div className="quote-user"> {session.user?.name}</div>
         )}
-      </div>
-      <div className="quote-and-author">
-        <p className="quote">&quot;{displayedQuote}&quot;</p>
-        <p className="author">- {displayedAuthor}</p>
+        <p className="quote">
+          &quot;{displayedQuote}&quot;
+          <span className="author">- {displayedAuthor}</span>
+        </p>
+        <button className="quote-button">Go to chart</button>
       </div>
     </div>
   );
 }
-
-// // "use client";
-
-// export default function Home() {
-//   return (
-//     <div>
-//       <h1>Home Page</h1>
-//     </div>
-//   );
-// }

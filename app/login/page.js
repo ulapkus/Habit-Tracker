@@ -58,36 +58,58 @@ const Login = () => {
       <div className="login-background">
         <div className="login-box">
           <h2>Login</h2>
-          <form onSubmit={handleSubmit} className="login-form">
-            <input
-              type="text"
-              placeholder="Email"
-              required
-              className="login-email"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              required
-              className="login-password"
-            />
-            <button type="submit" className="login-button">
-              Sign In
-            </button>
-            <p className="error">{error && error}</p>
-          </form>
-          <hr className="login-break"></hr>
-          <div className="login-bottom">
-            <button
-              onClick={() => {
-                signIn("github");
-              }}
-              className="login-github"
-            >
-              Sign In with Github
-            </button>
-            <div>- OR -</div>
-            <Link href="/register" className="have-or-create-account">Create an account</Link>
+          <div className="no-account-signup">
+            <p className="no-account">DON&apos;T HAVE AN ACCOUNT?&nbsp;</p>
+            <Link href="/register" className="signup">
+              SIGN UP
+            </Link>
+          </div>
+          <div className="signin">
+            <form onSubmit={handleSubmit} className="login-form">
+              <input
+                type="text"
+                placeholder="Email"
+                required
+                className="login-email"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                required
+                className="login-password"
+              />
+              <button type="submit" className="login-button">
+                Sign In
+              </button>
+              <p className="error">{error && error}</p>
+            </form>
+            <div className="break-plus-or">
+              <div className="break"></div>
+              <p className="break-or">OR</p>
+              <div className="break"></div>
+            </div>
+            <div className="login-bottom">
+              {/* need to add signin with google ability */}
+              <button className="login-google">
+                <img
+                  className="image-google"
+                  src="https://banner2.cleanpng.com/20180324/iww/kisspng-google-logo-g-suite-google-5ab6f1cee66464.5739288415219388949437.jpg"
+                ></img>
+                Continue with Google
+              </button>
+              <button
+                onClick={() => {
+                  signIn("github");
+                }}
+                className="login-github"
+              >
+                <img
+                  className="image-github"
+                  src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
+                ></img>
+                Continue with Github
+              </button>
+            </div>
           </div>
         </div>
       </div>
