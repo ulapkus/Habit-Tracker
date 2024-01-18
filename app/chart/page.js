@@ -8,7 +8,7 @@ export const Context = createContext([[], () => {}]);
 export const DaysContext = React.createContext();
 export const ColorContext = React.createContext();
 export const ModalContext = React.createContext();
-
+//can get rid of weekyear
 // need to prevent user from going beyond current month/week
 
 export default function Chart() {
@@ -18,7 +18,7 @@ export default function Chart() {
   const [inputFields, setInputFields] = useState([]);
   const [colorFields, setColorFields] = useState([]);
   const [weekCount, setWeekCount] = useState(-1);
-  const [view, setView] = useState("week");
+  const [view, setView] = useState("month");
   const [isDayClicked, setIsDayClicked] = useState(false);
   const [isSubmitClicked, setIsSubmitClicked] = useState(false);
   const [modalVisibility, setModalVisibility] = useState(true);
@@ -267,7 +267,7 @@ export default function Chart() {
       `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     )
       ? colors[activityy]
-      : "#81c8e0";
+      : "rgba(255, 255, 255, 0.1)";
   };
 
   const weekView = () => {
@@ -283,133 +283,148 @@ export default function Chart() {
   const renderWeekView = () => {
     return (
       <div className="background-week">
-        <div className="nextAndBack-week">
-          <img
-            className="back"
-            onClick={back}
-            src="https://cdn-icons-png.flaticon.com/128/860/860790.png"
-          ></img>
-          <div className="month-and-year-week">
-            <h4>
-              {format(weekDates[0], "EEEE, M/d")} -{" "}
-              {format(weekDates[6], "EEEE, M/d")}
-            </h4>
-            <p className="year-week">{yearWeek}</p>
-          </div>
-          <img
-            className="next"
-            onClick={next}
-            src="https://cdn-icons-png.flaticon.com/128/758/758778.png"
-          ></img>
-        </div>
-        <div className="main-table">
-          <ModalContext.Provider value={[modalVisibility, setModalVisibility]}>
-            <ColorContext.Provider value={[colors, setColors]}>
-              <Context.Provider value={[habits, setHabits]}>
-                <DaysContext.Provider value={[days, setDays]}>
-                  <Child />
-                </DaysContext.Provider>
-              </Context.Provider>
-            </ColorContext.Provider>
-          </ModalContext.Provider>
-          <table>
-            <thead>
-              <tr className="week-header-one">
-                {/* <th className="days-habit-word">Habits</th> */}
-                {weekDates.map((datee, dayIndexx) => (
-                  <th className="days" key={dayIndexx}>
-                    {`${datee.getMonth() + 1}/${datee.getDate()}`}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {days &&
-                Object.keys(days).map((activityy, indexx) => (
-                  <tr key={indexx} className="week-cell-row">
-                    <td className="week-cell-habit">
-                      <p
-                        onClick={() => eraseHabit(activityy, indexx)}
-                        className="x-button-week"
-                      >
-                        X
-                      </p>
-                      <div className="activity-week">{activityy}</div>
-                    </td>
-                    {weekDates.map((datee, dayIndexxx) => (
-                      <td
-                        className="week-cell"
-                        key={dayIndexxx}
-                        onClick={() => cellClickWeek(activityy, dayIndexxx)}
-                        style={{
-                          backgroundColor: dayColorWeek(activityy, dayIndexxx),
-                        }}
-                      >
-                        {dayColorWeek(activityy, dayIndexxx) ===
-                          colors[activityy]}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-          <table>
-            <tbody>
-              {inputFields.map((inputField, i) => {
-                return (
-                  <tr key={i} className="week-cell-row">
-                    <td className="cell-new-habit-week">
-                      <p
-                        className="add-habit-x-button-week"
-                        onClick={() => removeInput(i)}
-                      >
-                        X
-                      </p>
-                      <div className="add-habit-x-div-week">
-                        <input
-                          className="input-box-week"
-                          value={inputField}
-                          onChange={(e) => handleInputChange(e, i)}
-                          placeholder="Habit"
-                        />
-                        <div className="select-week">
-                          <select
-                            className="color-dropdown-week"
-                            onChange={(event) => handleColorChange(event, i)}
-                          >
-                            <option value="">Choose color:</option>
-                            <option value="red">Red</option>
-                            <option value="orange">Orange</option>
-                            <option value="yellow">Yellow</option>
-                            <option value="green">Green</option>
-                            <option value="blue">Blue</option>
-                            <option value="purple">Purple</option>
-                          </select>
-                        </div>
-                        <button className="submit-button-week" onClick={submit}>
-                          Submit
-                        </button>
-                      </div>
-                    </td>
-                    {[...Array(7)].map((_, dayIndex) => (
-                      <td key={dayIndex} className="cell"></td>
-                    ))}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-          <div className="add-more-div-week">
-            {newHabitAdded === true ? (
-              <p className="add-more-week" onClick={() => addHabit()}>
-                +
-              </p>
-            ) : null}
-          </div>
-        </div>
-        <button className="month-view" onClick={monthView}>
+        <div className="main-items-week">
+          <div className="header-week">
+            <div className="header-left-week">
+              <img
+                className="back"
+                onClick={back}
+                src="https://cdn-icons-png.flaticon.com/128/860/860790.png"
+              ></img>
+              <div className="header-four">
+                <h4>{format(weekDates[0], "EEEE, M/d")}</h4>
+                <h4>to {format(weekDates[6], "EEEE, M/d")}</h4>
+              </div>
+              <img
+                className="next"
+                onClick={next}
+                src="https://cdn-icons-png.flaticon.com/128/758/758778.png"
+              ></img>
+            </div>
+            <div className="header-right-week">
+              {/* <button className="month-view" onClick={monthView}>
           Month View
-        </button>
+        </button> */}
+              <select className="month-view">
+                <option value="">WEEK</option>
+                {/* need to make sure this works */}
+                <option onClick={monthView}>MONTH</option>
+              </select>
+              {newHabitAdded === true ? (
+                <button className="add-more-week" onClick={() => addHabit()}>
+                  NEW HABIT +
+                </button>
+              ) : null}
+            </div>
+          </div>
+          <div className="main-table">
+            <ModalContext.Provider
+              value={[modalVisibility, setModalVisibility]}
+            >
+              <ColorContext.Provider value={[colors, setColors]}>
+                <Context.Provider value={[habits, setHabits]}>
+                  <DaysContext.Provider value={[days, setDays]}>
+                    <Child />
+                  </DaysContext.Provider>
+                </Context.Provider>
+              </ColorContext.Provider>
+            </ModalContext.Provider>
+            <table>
+              <thead>
+                <tr className="week-header-one">
+                  {/* <th className="days-habit-word">Habits</th> */}
+                  {weekDates.map((datee, dayIndexx) => (
+                    <th className="days" key={dayIndexx}>
+                      {`${datee.getMonth() + 1}/${datee.getDate()}`}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {days &&
+                  Object.keys(days).map((activityy, indexx) => (
+                    <tr key={indexx} className="week-cell-row">
+                      <td className="week-cell-habit">
+                        <div className="activity-week">{activityy}</div>
+                        <p
+                          onClick={() => eraseHabit(activityy, indexx)}
+                          className="x-button-week"
+                        >
+                          X
+                        </p>
+                      </td>
+                      {weekDates.map((datee, dayIndexxx) => (
+                        <td
+                          className="week-cell"
+                          key={dayIndexxx}
+                          onClick={() => cellClickWeek(activityy, dayIndexxx)}
+                          style={{
+                            backgroundColor: dayColorWeek(
+                              activityy,
+                              dayIndexxx
+                            ),
+                          }}
+                        >
+                          {dayColorWeek(activityy, dayIndexxx) ===
+                            colors[activityy]}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+            <table>
+              <tbody>
+                {inputFields.map((inputField, i) => {
+                  return (
+                    <tr key={i} className="week-cell-row">
+                      <td className="cell-new-habit-week">
+                        <p
+                          className="add-habit-x-button-week"
+                          onClick={() => removeInput(i)}
+                        >
+                          X
+                        </p>
+                        <div className="add-habit-x-div-week">
+                          <input
+                            className="input-box-week"
+                            value={inputField}
+                            onChange={(e) => handleInputChange(e, i)}
+                            placeholder="Habit"
+                          />
+                          <div className="select-week">
+                            <select
+                              className="color-dropdown-week"
+                              onChange={(event) => handleColorChange(event, i)}
+                            >
+                              <option value="">Choose color:</option>
+                              <option value="#e74645">Red</option>
+                              <option value="#FF8466">Orange</option>
+                              <option value="#FFBD49">Yellow</option>
+                              <option value="#8BF1B5">Green</option>
+                              <option value="#3b4cc3">Blue</option>
+                              <option value="#935ab3">Purple</option>
+                              <option value="#FF81C3">Pink</option>
+                            </select>
+                          </div>
+                          <button
+                            className="submit-button-week"
+                            onClick={submit}
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      </td>
+                      {[...Array(7)].map((_, dayIndex) => (
+                        <td key={dayIndex} className="cell"></td>
+                      ))}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     );
   };
@@ -560,27 +575,13 @@ export default function Chart() {
                             className="color-dropdown-month"
                             onChange={(event) => handleColorChange(event, i)}
                           >
-                            <option className="option-month" value="">
-                              Choose color:
-                            </option>
-                            <option className="option-month" value="red">
-                              Red
-                            </option>
-                            <option className="option-month" value="orange">
-                              Orange
-                            </option>
-                            <option className="option-month" value="yellow">
-                              Yellow
-                            </option>
-                            <option className="option-month" value="green">
-                              Green
-                            </option>
-                            <option className="option-month" value="blue">
-                              Blue
-                            </option>
-                            <option className="option-month" value="purple">
-                              Purple
-                            </option>
+                            <option value="#e74645">Red</option>
+                            <option value="#FF8466">Orange</option>
+                            <option value="#FFBD49">Yellow</option>
+                            <option value="#8BF1B5">Green</option>
+                            <option value="#3b4cc3">Blue</option>
+                            <option value="#935ab3">Purple</option>
+                            <option value="#FF81C3">Pink</option>
                           </select>
                           <button
                             className="submit-button-month"

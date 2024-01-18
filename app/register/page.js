@@ -83,32 +83,31 @@ const Register = () => {
             </Link>
           </div>
           <div className="register">
-          <div className="login-form">
-
-            <form onSubmit={handleSubmit} className="login-form">
-              <input
-                type="text"
-                placeholder="Name"
-                required
-                className="register-name"
-              />
-              <input
-                type="text"
-                placeholder="Email"
-                required
-                className="login-email"
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                required
-                className="login-password"
-              />
-              <button type="submit" className="login-button">
-                Sign up
-              </button>
-              <p className="error">{error && error}</p>
-            </form>
+            <div className="login-form">
+              <form onSubmit={handleSubmit} className="login-form">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  required
+                  className="register-name"
+                />
+                <input
+                  type="text"
+                  placeholder="Email"
+                  required
+                  className="login-email"
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  required
+                  className="login-password"
+                />
+                <button type="submit" className="login-button">
+                  Sign up
+                </button>
+                <p className="error">{error && error}</p>
+              </form>
             </div>
             <div className="break-plus-or">
               <div className="break"></div>
@@ -117,19 +116,19 @@ const Register = () => {
             </div>
             <div className="login-bottom">
               {/* need to add register with google and github ability */}
-              <button className="login-google">
+              <button className="login-google-button">
                 <img
                   className="image-google"
                   src="https://banner2.cleanpng.com/20180324/iww/kisspng-google-logo-g-suite-google-5ab6f1cee66464.5739288415219388949437.jpg"
                 ></img>
-                Continue with Google
+                <p className="login-google">Continue with Google</p>
               </button>
-              <button className="login-github">
+              <button className="login-github-button">
                 <img
                   className="image-github"
                   src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
                 ></img>
-                Continue with Github
+                <p className="login-github">Continue with Github</p>
               </button>
             </div>
           </div>

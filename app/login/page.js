@@ -57,7 +57,7 @@ const Login = () => {
     sessionStatus !== "authenticated" && (
       <div className="login-background">
         <div className="login-box">
-          <h2>Login</h2>
+          <h2>Log in</h2>
           <div className="no-account-signup">
             <p className="no-account">DON&apos;T HAVE AN ACCOUNT?&nbsp;</p>
             <Link href="/register" className="signup">
@@ -90,24 +90,24 @@ const Login = () => {
             </div>
             <div className="login-bottom">
               {/* need to add signin with google ability */}
-              <button className="login-google">
+              <button className="login-google-button">
                 <img
                   className="image-google"
                   src="https://banner2.cleanpng.com/20180324/iww/kisspng-google-logo-g-suite-google-5ab6f1cee66464.5739288415219388949437.jpg"
                 ></img>
-                Continue with Google
+                <p className="login-google">Continue with Google</p>
               </button>
               <button
                 onClick={() => {
                   signIn("github");
                 }}
-                className="login-github"
+                className="login-github-button"
               >
                 <img
                   className="image-github"
                   src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
                 ></img>
-                Continue with Github
+                <p className="login-github">Continue with Github</p>
               </button>
             </div>
           </div>

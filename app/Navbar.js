@@ -8,35 +8,43 @@ import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const { data: session } = useSession();
-  const [bodyBackgroundColor, setBodyBackgroundColor] = useState("");
+  // const [bodyBackgroundColor, setBodyBackgroundColor] = useState("");
   const [textColor, setTextColor] = useState("");
 
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname === "/login") {
-      setBodyBackgroundColor("#1D4938");
-      setTextColor("black");
-    } else if (pathname === "/register") {
-      setBodyBackgroundColor("#1D4938");
-      setTextColor("black");
-    } else {
-      setBodyBackgroundColor("#f5f5dc");
-      setTextColor("grey");
+    if (pathname === "/chart") {
+      // setBodyBackgroundColor("#1D4938");
+      setTextColor("white");
+    }
+    // else if (pathname === "/register") {
+    //   // setBodyBackgroundColor("#1D4938");
+    //   setTextColor("#8AEEB3");
+    // }
+    else {
+      // setBodyBackgroundColor("#f5f5dc");
+      setTextColor("#8AEEB3");
     }
 
     return () => {
-      setBodyBackgroundColor("");
+      // setBodyBackgroundColor("");
       setTextColor("");
     };
   }, [pathname]);
 
   return (
-    <div className="nav-background" style={{ backgroundColor: bodyBackgroundColor }}>
+    // <div className="nav-background" style={{ backgroundColor: bodyBackgroundColor }}>
+
+    <div className="nav-background">
       <div className="nav-main">
         <div className="logo-div">
           <Link href="/">
-            <img className="logo" src="https://i.ibb.co/p3LhT3W/H-2.png"></img>
+            <img
+              className="logo"
+              src="https://i.ibb.co/3myfFc1/Habbit-Rabbit-Logo.png"
+              alt="HABIT RABBIT"
+            ></img>
           </Link>
         </div>
         <div className="chart-and-stats">
@@ -82,6 +90,7 @@ const Navbar = () => {
                 onClick={() => {
                   signOut();
                 }}
+                style={{ color: textColor }}
               >
                 LOGOUT
               </p>
