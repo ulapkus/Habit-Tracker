@@ -3,11 +3,9 @@
 import React, { useEffect, useState } from "react";
 
 import { differenceInDays } from "date-fns";
-import { useSession } from "next-auth/react";
 
 export default function Stats() {
   const [dateCreated, setDateCreated] = useState();
-  const { data: session } = useSession();
   const daysDifference = differenceInDays(new Date(), new Date(dateCreated));
 
   async function getStartDate() {
@@ -30,16 +28,12 @@ export default function Stats() {
   }, []);
 
   return (
-    <div>
-      <div className="stats-greeting">
-        <h5>HELLO,&nbsp;</h5>
-        {!session ? null : (
-          <div className="stats-user"> {session.user?.name}!</div>
-        )}
-      </div>
+    <div className="stats-main">
+      {/* fix the below so if its 1 day it doesnt say "1 days" */}
       <p className="days-tracked">
-        You have been tracking your habits for {daysDifference} days
+        You&apos;ve been habit hoppin&apos; for {daysDifference} days
       </p>
+      <p className="insights">HERE ARE YOUR INSIGHTS</p>
     </div>
   );
 }

@@ -8,34 +8,23 @@ import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const { data: session } = useSession();
-  // const [bodyBackgroundColor, setBodyBackgroundColor] = useState("");
   const [textColor, setTextColor] = useState("");
 
   const pathname = usePathname();
 
   useEffect(() => {
     if (pathname === "/chart") {
-      // setBodyBackgroundColor("#1D4938");
       setTextColor("white");
-    }
-    // else if (pathname === "/register") {
-    //   // setBodyBackgroundColor("#1D4938");
-    //   setTextColor("#8AEEB3");
-    // }
-    else {
-      // setBodyBackgroundColor("#f5f5dc");
+    } else {
       setTextColor("#8AEEB3");
     }
 
     return () => {
-      // setBodyBackgroundColor("");
       setTextColor("");
     };
   }, [pathname]);
 
   return (
-    // <div className="nav-background" style={{ backgroundColor: bodyBackgroundColor }}>
-
     <div className="nav-background">
       <div className="nav-main">
         <div className="logo-div">

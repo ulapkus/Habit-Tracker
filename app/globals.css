@@ -13,11 +13,8 @@
   font-display: swap;
 }
 
-/* beginning */
-
 html,
 body {
-  /* width: 100%; */
   height: 100%;
   margin: 0;
   background-color: #1d4938;
@@ -38,9 +35,6 @@ h2 {
   align-items: center;
   background-color: #1d4938;
   height: 80%;
-
-  /* width: 100%; */
-  /* border: 1px solid blue; */
   margin: 0;
   padding: 0;
 }
@@ -53,8 +47,7 @@ h2 {
   justify-content: center;
   align-items: flex-end;
   width: 40vw;
-  /* height: 28vh; */
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 
 .register {
@@ -63,8 +56,7 @@ h2 {
   justify-content: center;
   align-items: center;
   width: 40vw;
-  /* height: 100%; */
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   margin: 0;
   padding: 0;
 }
@@ -75,7 +67,6 @@ h2 {
   justify-content: center;
   align-items: center;
   height: 100%;
-  /* border: 1px solid blue; */
   width: 5vw;
   padding: 0 3.5vw 0 3.5vw;
 }
@@ -87,7 +78,6 @@ h2 {
   border-bottom: none;
   color: white;
   height: 14vh;
-  /* width: 100%; */
 }
 
 .break-or {
@@ -127,7 +117,6 @@ h2 {
   justify-content: center;
   align-items: flex-start;
   gap: 4vh;
-  /* border: 1px solid blue; */
   width: 100%;
   height: 100%;
   padding: 0;
@@ -135,7 +124,6 @@ h2 {
 }
 
 .login-box {
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -167,7 +155,7 @@ h2 {
 }
 
 .login-button {
-  border: 1px solid #ffa201;
+  /* border: 1px solid #ffa201; */
   background-color: #3f5530;
   color: white;
   width: 11vw;
@@ -244,7 +232,6 @@ h2 {
   justify-content: center;
   align-items: center;
   gap: 1.5vh;
-  /* border: 1px solid blue; */
   width: 100%;
   height: 100%;
 }
@@ -254,8 +241,8 @@ h2 {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  border: 1px solid blue;
-  padding: 0 0 0 10vw;
+  /* border: 1px solid blue; */
+  padding: 0 0 0 7.5%;
   height: 100%;
   background-color: #1d4938;
 }
@@ -264,8 +251,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border: 1px solid red;
-  /* gap: 4vh; */
+  /* border: 1px solid red; */
   width: 60vw;
   font-size: 1vh;
 }
@@ -291,7 +277,7 @@ h1 {
 
 .author {
   color: #498967;
-  border: 1px solid pink;
+  /* border: 1px solid pink; */
   font-size: 2vh;
   padding: 0 0 0 3vw;
   white-space: nowrap;
@@ -310,9 +296,9 @@ h1 {
 }
 
 .about {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   width: 60%;
-  margin: 0 0 0 7vw;
+  margin: 0 0 0 7.5%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -350,11 +336,10 @@ p {
   flex-direction: column;
   align-items: center;
   height: 100%;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   margin: 0 0 0 0;
   padding: 0 0 0 0;
-
-  background-image: url("fontss/rabbit-background-chart.png");
+  /* background-image: url("https://i.ibb.co/KNw6Pm5/rabbit-background-chart.png"); */
 }
 
 .back,
@@ -364,10 +349,21 @@ p {
   color: white;
   margin: 0;
   padding: 0;
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
+}
+
+.backMonth,
+.nextMonth {
+  height: 2vh;
+  width: 1vw;
+  color: white;
+  margin: 0;
+  padding: 0;
+  /* border: 1px solid yellow; */
 }
 
 .main-items-week {
+  /* border: 1px solid yellow; */
 }
 
 .main-table {
@@ -375,10 +371,8 @@ p {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border-radius: 25px;
   color: white;
-  /* width: 100%; */
-  margin: 5vh 0 3vh 0;
+  margin: 2.7vh 0 3vh 0;
 }
 
 .week-header-one {
@@ -390,7 +384,7 @@ p {
   width: 100%;
   padding: 0;
   margin: 0;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 
 .days {
@@ -403,10 +397,9 @@ p {
   font-weight: 500;
   width: 12vh;
   margin: 10px;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
+  font-family: "Roboto Mono", monospace;
   text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 0.2vw;
 }
 
 .week-cell-row {
@@ -419,10 +412,8 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  /* align-items: flex-start; */
   height: 12vh;
   width: 18vw;
-  /* text-align: center; */
   background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -432,7 +423,6 @@ p {
   padding: 1.4vh;
   margin: 10px;
   font-size: 1.5vw;
-  border-radius: 12px;
   font-family: monospace;
   text-transform: uppercase;
   letter-spacing: 7px;
@@ -462,17 +452,14 @@ p {
   justify-content: center;
   height: 12vh;
   width: 12vh;
-  /* text-align: center; */
   font-size: 1vw;
   padding: 10px;
   margin: 10px;
-  /* background: rgba(255, 255, 255, 0.1); */
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(9.7px);
   -webkit-backdrop-filter: blur(9.7px);
   font-size: 1.5vw;
-  border-radius: 15px;
 }
 
 .cell-new-habit-week {
@@ -486,7 +473,6 @@ p {
   font-size: 1vw;
   padding: 15px 10px 10px 11px;
   margin: 10px;
-  background-color: #81c8e0;
   font-size: 1.5vw;
 }
 
@@ -503,7 +489,6 @@ p {
 
 .input-box-week {
   width: 10vw;
-  background-color: #81c8e0;
   border: none;
   color: white;
   text-align: center;
@@ -518,18 +503,15 @@ p {
 }
 
 .header-week {
-  border: 1px solid pink;
+  /* border: 1px solid pink; */
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-end;
   height: 100%;
-  /* padding: 0 8vw 0 8vw; */
   margin: 0;
+  padding: 0 1.8vw 0 0;
   gap: 1.7vh;
-
-  /* need to fix width to match the chart  */
-  /* width: 130vh; */
   width: 100%;
   text-align: center;
 }
@@ -549,7 +531,44 @@ p {
   flex-direction: row;
   justify-content: flex-end;
   align-items: flex-end;
+  gap: 1vw;
+
   height: 100%;
+}
+
+.header-month {
+  /* border: 1px solid pink; */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  margin: 0 8vw 0 8vw;
+  gap: 1.7vh;
+  text-align: center;
+}
+
+.header-left-month {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
+  padding: 0;
+  margin: 0;
+}
+
+.header-right-month {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 1vw;
+  height: 100%;
+}
+
+.main-items-month {
+  /* border: 1px solid blue; */
 }
 
 .header-four {
@@ -575,7 +594,6 @@ h4 {
 .month-view {
   width: 6vw;
   height: 5vh;
-  /* From https://css.glass */
   background: rgba(255, 255, 255, 0.08);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.9px);
@@ -584,6 +602,9 @@ h4 {
   border-radius: 8px;
   color: white;
   text-align: center;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.5vh;
+  letter-spacing: 0.1vw;
 }
 
 .add-more-week {
@@ -591,13 +612,41 @@ h4 {
   height: 5vh;
   border-radius: 8px;
   color: white;
-  /* From https://css.glass */
   background: rgba(255, 255, 255, 0.08);
-
+  font-family: "Roboto Mono", monospace;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.9px);
   -webkit-backdrop-filter: blur(3.9px);
   border: 1px solid rgba(255, 255, 255, 0.56);
+  font-size: 1.5vh;
+  letter-spacing: 0.1vw;
+}
+
+.stats-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2vh;
+  /* border: 1px solid blue; */
+  width: 45%;
+  margin-left: 7.5%;
+}
+
+.days-tracked {
+  font-family: "Neue Power Trial";
+  color: #8bf1b5;
+  font-size: 8vh;
+  margin: 0;
+  line-height: 85%;
+}
+
+.insights {
+  color: #8bf1b5;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.8vh;
+  font-weight: 200;
+  letter-spacing: 0.15vw;
 }
 
 /* ending */
@@ -609,15 +658,18 @@ input:focus {
 .layout-background {
   height: 100%;
   width: 100%;
+
+  /* border: 1px solid red; */
+  /* background-color: #1D4938; */
 }
 
-.main {
+/* .main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: beige;
-}
+} */
 
 #myModal {
   display: none;
@@ -687,39 +739,31 @@ input:focus {
   height: 1.5vw;
   color: white;
   font-size: 2vh;
-  font-family: "Cousine";
+  font-family: "Roboto Mono", monospace;
   border-radius: 50px;
   font-weight: bolder;
   background-color: rgb(254, 199, 103);
-
   border: 1.5px solid white;
 }
 
 .add-more-month {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 1.8vh;
-  width: 1.8vh;
+  width: 9vw;
+  height: 5vh;
+  border-radius: 8px;
   color: white;
-  border: 1px solid white;
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.9px);
+  -webkit-backdrop-filter: blur(3.9px);
+  border: 1px solid rgba(255, 255, 255, 0.56);
+  font-family: "Roboto Mono", monospace;
   font-size: 1.5vh;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-  padding: 0;
-  margin: 0 0 0 0;
-}
-
-.add-more-div-month {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  margin: 1vh 0 0 0;
+  letter-spacing: 0.1vw;
+  text-align: center;
 }
 
 .modal-color-plus-button {
@@ -754,38 +798,12 @@ button {
 .submit-q {
   height: 4vh;
   width: 10vw;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
+  font-family: "Roboto Mono", monospace;
+
   letter-spacing: 5px;
   font-size: 2vh;
   border: none;
   color: grey;
-}
-
-h5 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-  letter-spacing: 7px;
-  font-size: 2.5vh;
-  color: gray;
-  padding: 0;
-  margin: 0;
-}
-
-.stats-user {
-  width: 5vw;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-  letter-spacing: 7px;
-  font-size: 2.5vh;
-  padding: 0;
-  margin: 0;
-  color: gray;
-  text-transform: uppercase;
 }
 
 #newElementId {
@@ -820,28 +838,11 @@ h5 {
   cursor: pointer;
 }
 
-.days-tracked {
+.main-table-month {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-  text-transform: uppercase;
-  letter-spacing: 7px;
-  color: gray;
-  font-size: 2vh;
-  margin: 0;
-}
-
-.table-parent-month {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 1.5vw 2vh 1.5vw;
-  background-color: #add8e6;
-  border-radius: 20px;
   color: white;
   margin: 2.5vh 0 2.5vh 0;
 }
@@ -884,14 +885,6 @@ h5 {
   align-items: center;
 }
 
-.stats-greeting {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 0 0 3vh 0;
-  width: 100%;
-}
-
 .background-month {
   display: flex;
   flex-direction: column;
@@ -901,6 +894,7 @@ h5 {
   width: 100%;
   margin: 0 0 19vh 0;
   padding: 0;
+  /* background-image: url("https://i.ibb.co/ZhG2X94/ryanteo-beautiful-pixel-art-landscape-of-a-hundred-bunnies-frol-68a56c97-6b00-4597-8fb3-c945485450cb.png"); */
 }
 
 .month-cell-row {
@@ -912,46 +906,28 @@ h5 {
   width: 100%;
   padding: 0;
 }
-
-.month-header-one {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  padding-left: 8vw;
-  padding-top: 0px;
-  margin: 0 0 0 2.2px;
-  position: relative;
-  top: 3.3vh;
-}
-
-.month-header-two {
+.month-header {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
   height: 100%;
   width: 100%;
-  padding: 0;
+  padding: 0 0 0 8vw;
   margin: 0;
 }
 
-.month-daysofweek,
-.month-days {
+.month-daysofweek {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 1.6vw;
-  font-size: 0.8vw;
+  text-transform: uppercase;
+  font-size: 0.7vw;
   text-align: center;
   width: 2.5vw;
-  background-color: #81c8e0;
   margin: 2.2px;
   border-radius: 5px;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
+  font-family: "Roboto Mono", monospace;
   padding-top: 0.48vh;
 }
 
@@ -996,31 +972,16 @@ table {
 .month-and-year {
   display: flex;
   flex-direction: column;
-  height: 6vh;
-  padding: 1.5vh 0 0 0;
-  margin: 0 0 2.5vh 0.3vw;
-  gap: 1vh;
-  width: 15vw;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .month {
-  font-size: 3vh;
-  color: grey;
-  font-family: "Cousine", monospace;
-  font-weight: light;
-  text-transform: uppercase;
-  letter-spacing: 10px;
+  font-size: 4vw;
+  color: white;
+  font-family: "Neue Power Trial";
   margin: 0;
   text-align: center;
-}
-
-.year-month {
-  font-family: "Cousine", monospace;
-  font-weight: light;
-  letter-spacing: 10px;
-  text-align: center;
-  margin: 0;
-  color: grey;
 }
 
 .nextAndBack-month {
@@ -1053,8 +1014,8 @@ table {
 
 .submit-button-month {
   border: none;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
+  font-family: "Roboto Mono", monospace;
+
   letter-spacing: 3px;
   width: 3.5vw;
   height: 1.2vh;
@@ -1067,13 +1028,12 @@ table {
 }
 
 .color-dropdown-week {
-  background-color: #81c8e0;
   border: none;
   border-radius: 10px;
   color: white;
   font-size: 1.65vh;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
+  font-family: "Roboto Mono", monospace;
+
   text-transform: uppercase;
   padding: 0.5vh 0.5vh 0.5vh 0.5vh;
   margin: 0 0.5vw 0 0;
@@ -1102,8 +1062,8 @@ table {
 
 .submit-button-week {
   border: none;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
+  font-family: "Roboto Mono", monospace;
+
   letter-spacing: 3px;
   width: 4.3vw;
   height: 2vh;
@@ -1118,24 +1078,6 @@ table {
 .input-box-month:hover {
   background-color: #add8e6;
   color: white;
-}
-
-.month-days-habits-word {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 3.5vw;
-  font-size: 1.7vh;
-  text-align: center;
-  font-weight: 500;
-  width: 8vw;
-  background-color: #81c8e0;
-  margin: 2.2px;
-  border-radius: 7px;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-  text-transform: uppercase;
-  letter-spacing: 5px;
 }
 
 .add-habit-row-month {
@@ -1156,11 +1098,8 @@ table {
   font-size: 1.7vh;
   padding: 5px;
   margin: 0;
-  background-color: #81c8e0;
   border-radius: 7px;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
-  text-transform: uppercase;
+  font-family: "Roboto Mono", monospace;
   letter-spacing: 5px;
 }
 
@@ -1175,27 +1114,25 @@ table {
   height: 1.6vh;
   padding: 0.3vh 0vw 0.1vh 0.35vw;
   margin: 0.1vh 0 0 0;
-  background-color: #81c8e0;
   border: none;
   color: white;
   text-align: center;
   border-radius: 2.5px;
   font-size: 1.85vh;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
+  font-family: "Roboto Mono", monospace;
+
   text-transform: uppercase;
   outline: none;
   letter-spacing: 7px;
 }
 
 .color-dropdown-month {
-  background-color: #81c8e0;
   border: none;
   border-radius: 3.5px;
   color: white;
   font-size: 1vh;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
+  font-family: "Roboto Mono", monospace;
+
   text-transform: uppercase;
   outline: none;
   letter-spacing: 1px;
@@ -1216,8 +1153,10 @@ table {
   font-size: 1vw;
   padding: 5px;
   margin: 2.2px;
-  background-color: #81c8e0;
-  border-radius: 6px;
+  border-radius: 1.3vh;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.7px);
+  -webkit-backdrop-filter: blur(9.7px);
 }
 
 .month-cell-habit {
@@ -1229,12 +1168,8 @@ table {
   width: 8vw;
   text-align: center;
   font-size: 1.7vh;
-  padding: 5px;
-  margin: 2px 2px 0 0;
-  background-color: #81c8e0;
-  border-radius: 7px;
-  font-family: "Cousine", monospace;
-  font-weight: lighter;
+  /* border: 1px solid blue; */
+  font-family: "Roboto Mono", monospace;
   text-transform: uppercase;
   letter-spacing: 5px;
 }
@@ -1251,25 +1186,34 @@ table {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
-  margin-right: 0.75vw;
+  height: 2.5vw;
   padding-top: 0.3vh;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1.35vh;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.7px);
+  -webkit-backdrop-filter: blur(9.7px);
 }
 
 .week-view {
-  width: 6.4vw;
-  height: 3.5vh;
-  font-size: 0.7vw;
-  border: 1px solid black;
-  border-radius: 9px;
+  width: 6vw;
+  height: 5vh;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.9px);
+  -webkit-backdrop-filter: blur(3.9px);
+  border: 1px solid rgba(255, 255, 255, 0.56);
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.5vh;
+  letter-spacing: 0.1vw;
 }
 
 .week-view:hover,
 .month-view:hover {
   cursor: pointer;
-  background-color: #add8e6;
-  border: 1px solid #add8e6;
-  color: white;
 }
 
 .error {
@@ -1278,7 +1222,7 @@ table {
 
 /* navbar start */
 .nav-background {
-  /* height: 10%; */
+  padding: 3vh 0 10vh 0;
 }
 
 .nav-main {
@@ -1297,7 +1241,7 @@ table {
   align-items: flex-end;
   flex-grow: 1;
   height: 100%;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 
 .logo {
