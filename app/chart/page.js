@@ -18,7 +18,7 @@ export default function Chart() {
   const [inputFields, setInputFields] = useState([]);
   const [colorFields, setColorFields] = useState([]);
   const [weekCount, setWeekCount] = useState(-1);
-  const [view, setView] = useState("week");
+  const [view, setView] = useState("month");
   const [isDayClicked, setIsDayClicked] = useState(false);
   const [isSubmitClicked, setIsSubmitClicked] = useState(false);
   const [modalVisibility, setModalVisibility] = useState(true);
@@ -331,10 +331,11 @@ export default function Chart() {
             </ModalContext.Provider>
             <table>
               <thead>
-                <tr className="week-header-one">
+                <tr className="week-header">
                   {weekDates.map((datee, dayIndexx) => (
                     <th className="days" key={dayIndexx}>
-                      {`${datee.getMonth() + 1}/${datee.getDate()}`}
+                      <p>{getDayOfWeek(year, month, dayIndexx)}</p>
+                      <p>{`${datee.getMonth() + 1}/${datee.getDate()}`}</p>
                     </th>
                   ))}
                 </tr>
@@ -378,12 +379,6 @@ export default function Chart() {
                   return (
                     <tr key={i} className="week-cell-row">
                       <td className="cell-new-habit-week">
-                        <p
-                          className="add-habit-x-button-week"
-                          onClick={() => removeInput(i)}
-                        >
-                          X
-                        </p>
                         <div className="add-habit-x-div-week">
                           <input
                             className="input-box-week"
@@ -410,13 +405,27 @@ export default function Chart() {
                             className="submit-button-week"
                             onClick={submit}
                           >
-                            Submit
+                            SUBMIT
                           </button>
                         </div>
+                        <p
+                          className="add-habit-x-button-week"
+                          onClick={() => removeInput(i)}
+                        >
+                          X
+                        </p>
                       </td>
-                      {[...Array(7)].map((_, dayIndex) => (
+                      {/* {[...Array(7)].map((_, dayIndex) => (
                         <td key={dayIndex} className="cell"></td>
-                      ))}
+                      ))} */}
+                      {Array.from(
+                        {
+                          length: 7,
+                        },
+                        (_, i) => (
+                          <td key={i} className="week-cell-new"></td>
+                        )
+                      )}
                     </tr>
                   );
                 })}
@@ -518,10 +527,8 @@ export default function Chart() {
                       { length: daysInMonth(year, month) },
                       (_, dayIndex) => (
                         <th className="month-daysofweek" key={dayIndex}>
-                          <p className="month-header-one">
-                            {getDayOfWeek(year, month, dayIndex + 1)}
-                          </p>
-                          <p className="month-header-two">{dayIndex + 1}</p>
+                          <p>{getDayOfWeek(year, month, dayIndex + 1)}</p>
+                          <p>{dayIndex + 1}</p>
                         </th>
                       )
                     )}
@@ -568,12 +575,6 @@ export default function Chart() {
                     return (
                       <tr key={i} className="add-habit-row-month">
                         <td className="cell-new-habit-month">
-                          <p
-                            className="add-habit-x-button-month"
-                            onClick={() => removeInput(i)}
-                          >
-                            X
-                          </p>
                           <div className="add-habit-x-div-month">
                             <input
                               className="input-box-month"
@@ -601,13 +602,19 @@ export default function Chart() {
                               Submit
                             </button>
                           </div>
+                          <p
+                            className="add-habit-x-button-month"
+                            onClick={() => removeInput(i)}
+                          >
+                            X
+                          </p>
                         </td>
                         {Array.from(
                           {
                             length: daysInMonth(year, month),
                           },
                           (_, i) => (
-                            <td key={i} className="month-cell"></td>
+                            <td key={i} className="month-cell-new"></td>
                           )
                         )}
                       </tr>
