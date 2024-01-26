@@ -68,7 +68,9 @@ const Register = () => {
   };
 
   if (sessionStatus === "loading") {
-    return <h1>Loading...</h1>;
+    <div className="loading-background">
+      <p className="loading">LOADING...</p>
+    </div>;
   }
 
   return (
@@ -103,9 +105,16 @@ const Register = () => {
                   required
                   className="login-password"
                 />
-                <button type="submit" className="login-button">
-                  Sign up
+                <button type="submit" className="login-button-plus-arrow">
+                  <p className="login-button">Sign Up</p>
+                  <img
+                    className="login-arrow"
+                    src="https://i.ibb.co/rdtxXCB/Arrow-noglow.png"
+                  ></img>
                 </button>
+                {/* <button type="submit" className="login-button">
+                  Sign up
+                </button> */}
                 <p className="error">{error && error}</p>
               </form>
             </div>

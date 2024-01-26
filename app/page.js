@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 export default function Dashboard() {
   const [displayedQuote, setDisplayedQuote] = useState("");
@@ -136,7 +137,13 @@ export default function Dashboard() {
           &quot;{displayedQuote}&quot;
           <span className="author">- {displayedAuthor}</span>
         </p>
-        <button className="quote-button">Go to chart</button>
+        <Link href="/chart" className="quote-button-plus-arrow">
+          <p className="quote-button">Go to chart</p>
+          <img
+            className="quote-arrow"
+            src="https://i.ibb.co/rdtxXCB/Arrow-noglow.png"
+          ></img>
+        </Link>
       </div>
     </div>
   );

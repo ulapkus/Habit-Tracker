@@ -50,7 +50,11 @@ const Login = () => {
   };
 
   if (sessionStatus === "loading") {
-    return <h1>Loading...</h1>;
+    return (
+      <div className="loading-background">
+        <p className="loading">LOADING...</p>
+      </div>
+    );
   }
 
   return (
@@ -78,8 +82,12 @@ const Login = () => {
                 required
                 className="login-password"
               />
-              <button type="submit" className="login-button">
-                Sign In
+              <button type="submit" className="login-button-plus-arrow">
+                <p className="login-button">Sign In</p>
+                <img
+                  className="login-arrow"
+                  src="https://i.ibb.co/rdtxXCB/Arrow-noglow.png"
+                ></img>
               </button>
               <p className="error">{error && error}</p>
             </form>

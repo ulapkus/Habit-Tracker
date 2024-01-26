@@ -4,13 +4,18 @@
   box-sizing: border-box;
 }
 
-@font-face {
+/* @font-face {
   font-family: "Neue Power Trial";
   src: url("fontss/subset-NeuePowerTrial-Ultra.woff2") format("woff2"),
     url("fontss/subset-NeuePowerTrial-Ultra.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+} */
+
+@font-face {
+  font-family: "Neue Power Trial";
+  src: url("fontss/NeuePowerTrial-Ultra.otf");
 }
 
 html,
@@ -73,7 +78,7 @@ h2 {
 
 .break {
   border-top: none;
-  border-left: 0.5px solid white;
+  border-left: 1px solid #336a50;
   border-right: none;
   border-bottom: none;
   color: white;
@@ -154,8 +159,36 @@ h2 {
   color: #8bf1b5;
 }
 
+.login-button-plus-arrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ffa201;
+  text-align: center;
+  width: 11vw;
+  height: 4vh;
+  padding: 0 1vw 0 1vw;
+  background-color: #3f5530;
+  border-radius: 0.8vh;
+  text-decoration: none;
+}
+
 .login-button {
-  /* border: 1px solid #ffa201; */
+  /* border: 1px solid blue; */
+  color: #fffae5;
+  font-size: 1.7vh;
+  font-family: "Neue Power Trial", monospace;
+}
+
+.login-arrow {
+  height: 1vh;
+  width: 1vh;
+  /* border: 1px solid red; */
+}
+
+/* .login-button {
+  border: 1px solid #ffa201;
   background-color: #3f5530;
   color: white;
   width: 11vw;
@@ -165,7 +198,7 @@ h2 {
   font-family: "Neue Power Trial", monospace;
   font-size: 1.7vh;
   width: 10vw;
-}
+} */
 
 .login-button:hover {
   cursor: pointer;
@@ -284,15 +317,32 @@ h1 {
   font-family: "Roboto Mono", monospace;
 }
 
-.quote-button {
+.quote-button-plus-arrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
   border: 1.5px solid #ffa201;
+  text-align: center;
   width: 14vw;
   height: 5.5vh;
+  padding: 0 0 0 0;
   background-color: #3f5530;
-  color: white;
   border-radius: 0.8vh;
+  text-decoration: none;
+}
+
+.quote-button {
+  /* border: 1px solid blue; */
+  color: #fffae5;
   font-size: 2.5vh;
   font-family: "Neue Power Trial", monospace;
+}
+
+.quote-arrow {
+  height: 1.75vh;
+  width: 1.75vh;
+  /* border: 1px solid red; */
 }
 
 .about {
@@ -743,6 +793,24 @@ h4 {
   padding: 0 5vw 0 5vw;
 }
 
+.loading-background {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+}
+
+.loading {
+  color: #8af0b5;
+  font-size: 3vh;
+  color: #8bf1b5;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 200;
+  letter-spacing: 0.4vw;
+  text-align: center;
+}
+
 /* ending */
 
 input:focus {
@@ -1043,10 +1111,13 @@ table {
 .backMonth:hover,
 .nextMonth:hover,
 .login-github-button:hover,
+.login-google-button:hover,
+.quote-button-plus-arrow:hover,
 .add-more-q-page:hover,
 .submit-q:hover,
 .question-x:hover,
-.add-more-month:hover .add-more-week:hover,
+.add-more-week:hover,
+.add-more-month:hover,
 .month-cell:hover,
 .x-button-week:hover,
 .x-button-month:hover {
@@ -1217,7 +1288,7 @@ table {
   width: 6vw;
   height: 1.6vh;
   padding: 0.3vh 0vw 0.1vh 1.15vw;
-  ;
+
   margin: 0.1vh 0 0 0;
   border: none;
   color: white;
