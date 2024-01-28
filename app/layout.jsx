@@ -7,7 +7,7 @@ import localFont from "next/font/local";
 
 // Font files can be colocated inside of `app`
 const myFont = localFont({
-  src: "../public/subset-NeuePowerTrial-Ultra.woff",
+  src: "../public/neue-power-trial-ultra.otf",
   display: "swap",
 });
 
