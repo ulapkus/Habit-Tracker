@@ -1,11 +1,15 @@
 import Navbar from "./Navbar";
 import "./globals.css";
-import { Inter } from "next/font/google";
 import { getServerSession } from "next-auth";
 import SessionProvider from "../utils/SessionProvider";
 import ClientLogic from "./clientlogic";
+import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ["latin"] });
+// Font files can be colocated inside of `app`
+const myFont = localFont({
+  src: "../public/subset-NeuePowerTrial-Ultra.woff",
+  display: "swap",
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -16,8 +20,8 @@ export default async function RootLayout({ children }) {
   const session = await getServerSession();
 
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={myFont.className}>
+      <body>
         <SessionProvider session={session}>
           {/* <div className="layout-background"> */}
           <ClientLogic>

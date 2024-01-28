@@ -5,6 +5,8 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import habitRabbitLogo from "../public/habbit-rabbit-logo.png";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -29,11 +31,12 @@ const Navbar = () => {
       <div className="nav-main">
         <div className="logo-div">
           <Link href="/">
-            <img
-              className="logo"
-              src="https://i.ibb.co/3myfFc1/Habbit-Rabbit-Logo.png"
-              alt="HABIT RABBIT"
-            ></img>
+            <Image
+              src={habitRabbitLogo}
+              alt="habbit rabbit logo"
+              width={400}
+              height={100}
+            />
           </Link>
         </div>
         <div className="chart-and-stats">

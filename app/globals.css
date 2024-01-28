@@ -4,19 +4,8 @@
   box-sizing: border-box;
 }
 
-/* @font-face {
-  font-family: "Neue Power Trial";
-  src: url("fontss/subset-NeuePowerTrial-Ultra.woff2") format("woff2"),
-    url("fontss/subset-NeuePowerTrial-Ultra.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-} */
 
-@font-face {
-  font-family: "Neue Power Trial";
-  src: url("fontss/NeuePowerTrial-Ultra.otf");
-}
+
 
 html,
 body {
