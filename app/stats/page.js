@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
+import Image from "next/image";
+import rabbitOne from '../../public/bunny-one.png'
 import { differenceInDays } from "date-fns";
 
 export default function Stats() {
@@ -38,11 +39,12 @@ export default function Stats() {
           <p className="insights">HERE ARE YOUR INSIGHTS</p>
         </div>
         <div className="stats-rabbit-container">
-        <img
-          className="stats-rabbit"
-          src="https://i.ibb.co/4FSQSbp/Bunny1.png"
-          alt="habit rabbit icon"
-        ></img>
+        <Image
+              src={rabbitOne}
+              alt="rabbit icon"
+              width={100}
+              height={100}
+            />
         <p className="stats-rabbit-comment">THIS PAGE IS COMING SOON!</p>
         </div>
       </div>

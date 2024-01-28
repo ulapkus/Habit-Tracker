@@ -30,7 +30,6 @@ export const authOptions = {
             user.password
           );
           if (isPasswordCorrect) {
-            console.log("hi");
             return user;
           }
         }

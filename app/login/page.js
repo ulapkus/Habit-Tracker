@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import arrow from "../../public/arrow.png";
 
 const Login = () => {
   const router = useRouter();
@@ -84,10 +86,7 @@ const Login = () => {
               />
               <button type="submit" className="login-button-plus-arrow">
                 <p className="login-button">Sign In</p>
-                <img
-                  className="login-arrow"
-                  src="https://i.ibb.co/rdtxXCB/Arrow-noglow.png"
-                ></img>
+                <Image src={arrow} alt="arrow" width={10} height={10} />
               </button>
               <p className="error">{error && error}</p>
             </form>

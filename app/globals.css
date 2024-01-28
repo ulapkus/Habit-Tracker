@@ -4,9 +4,6 @@
   box-sizing: border-box;
 }
 
-
-
-
 html,
 body {
   height: 100%;
@@ -19,7 +16,7 @@ h2 {
   color: #8bf1b5;
   padding: 0;
   margin: 0;
-  font-family: "Neue Power Trial", monospace;
+  /* font-family: "Neue Power Trial", monospace; */
 }
 
 .login-background {
@@ -167,7 +164,7 @@ h2 {
   /* border: 1px solid blue; */
   color: #fffae5;
   font-size: 1.7vh;
-  font-family: "Neue Power Trial", monospace;
+  /* font-family: "Neue Power Trial", monospace; */
 }
 
 .login-arrow {
@@ -294,7 +291,7 @@ h1 {
   width: 100%;
   padding: 1.5vh 0 4.5vh 0;
   line-height: 90%;
-  font-family: "Neue Power Trial", monospace;
+  /* font-family: "Neue Power Trial", monospace; */
 }
 
 .author {
@@ -325,7 +322,7 @@ h1 {
   /* border: 1px solid blue; */
   color: #fffae5;
   font-size: 2.5vh;
-  font-family: "Neue Power Trial", monospace;
+  /* font-family: "Neue Power Trial", monospace; */
 }
 
 .quote-arrow {
@@ -362,7 +359,7 @@ h3 {
   margin: 0;
   font-size: 10vh;
   line-height: 95%;
-  font-family: "Neue Power Trial", monospace;
+  /* font-family: "Neue Power Trial", monospace; */
 }
 
 p {
@@ -664,7 +661,7 @@ h4 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-family: "Neue Power Trial", monospace;
+  /* font-family: "Neue Power Trial", monospace; */
   color: white;
   letter-spacing: 3px;
   font-size: 7.3vh;
@@ -728,7 +725,7 @@ h4 {
 }
 
 .days-tracked {
-  font-family: "Neue Power Trial";
+  /* font-family: "Neue Power Trial"; */
   color: #8bf1b5;
   font-size: 10vh;
   margin: 0;
@@ -1133,7 +1130,7 @@ table {
 .month {
   font-size: 4vw;
   color: white;
-  font-family: "Neue Power Trial";
+  /* font-family: "Neue Power Trial"; */
   margin: 0;
   text-align: center;
 }
