@@ -11,12 +11,15 @@ body {
   background-color: #1d4938;
 }
 
+button {
+  font-family: inherit;
+}
+
 h2 {
   font-size: 6vh;
   color: #8bf1b5;
   padding: 0;
   margin: 0;
-  /* font-family: "Neue Power Trial", monospace; */
 }
 
 .login-background {
@@ -30,15 +33,12 @@ h2 {
   padding: 0;
 }
 
-/* signin and register css is the same  */
-
 .signin {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
   width: 40vw;
-  /* border: 1px solid blue; */
 }
 
 .register {
@@ -47,7 +47,6 @@ h2 {
   justify-content: center;
   align-items: center;
   width: 40vw;
-  /* border: 1px solid blue; */
   margin: 0;
   padding: 0;
 }
@@ -161,33 +160,13 @@ h2 {
 }
 
 .login-button {
-  /* border: 1px solid blue; */
   color: #fffae5;
   font-size: 1.7vh;
-  /* font-family: "Neue Power Trial", monospace; */
 }
 
 .login-arrow {
   height: 1vh;
   width: 1vh;
-  /* border: 1px solid red; */
-}
-
-/* .login-button {
-  border: 1px solid #ffa201;
-  background-color: #3f5530;
-  color: white;
-  width: 11vw;
-  height: 4vh;
-  text-align: left;
-  padding-left: 1vw;
-  font-family: "Neue Power Trial", monospace;
-  font-size: 1.7vh;
-  width: 10vw;
-} */
-
-.login-button:hover {
-  cursor: pointer;
 }
 
 .login-google-button,
@@ -203,7 +182,6 @@ h2 {
   color: white;
   border: none;
   border-radius: 0;
-  font-family: "Roboto Mono", monospace;
   width: 19vw;
 }
 
@@ -217,7 +195,8 @@ h2 {
 
 .image-google {
   display: block;
-  border: 1.65vh solid white;
+  border: 1.5vh solid white;
+  background-color: white;
   margin: 0;
   padding: 0;
   width: 5vh;
@@ -228,7 +207,8 @@ h2 {
 
 .image-github {
   display: block;
-  border: 1vh solid white;
+  border: 1.4vh solid white;
+  background-color: white;
   margin: 0;
   padding: 0;
   width: 5vh;
@@ -260,7 +240,6 @@ h2 {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  /* border: 1px solid blue; */
   padding: 0 0 0 7.5%;
   height: 100%;
   background-color: #1d4938;
@@ -270,9 +249,14 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* border: 1px solid red; */
   width: 60vw;
   font-size: 1vh;
+}
+
+.quote-welcome-user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 h1 {
@@ -283,6 +267,12 @@ h1 {
 }
 
 .quote-user {
+  color: #8bf1b5;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 300;
+  font-size: 2vh;
+  letter-spacing: 0.2vw;
+  text-transform: uppercase;
 }
 
 .quote {
@@ -291,12 +281,10 @@ h1 {
   width: 100%;
   padding: 1.5vh 0 4.5vh 0;
   line-height: 90%;
-  /* font-family: "Neue Power Trial", monospace; */
 }
 
 .author {
   color: #8bf1b5;
-  /* border: 1px solid pink; */
   font-size: 2vh;
   padding: 0 0 0 3vw;
   white-space: nowrap;
@@ -319,20 +307,16 @@ h1 {
 }
 
 .quote-button {
-  /* border: 1px solid blue; */
   color: #fffae5;
   font-size: 2.5vh;
-  /* font-family: "Neue Power Trial", monospace; */
 }
 
 .quote-arrow {
   height: 1.75vh;
   width: 1.75vh;
-  /* border: 1px solid red; */
 }
 
 .about {
-  /* border: 1px solid blue; */
   width: 60%;
   margin: 0 0 0 7.5%;
   display: flex;
@@ -340,6 +324,32 @@ h1 {
   justify-content: center;
   align-items: flex-start;
   gap: 3vh;
+}
+
+.about-title-parent {
+  padding-bottom: 2.5vh;
+}
+
+.about-hey-and-welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  display: inline-block;
+  padding-right: 1.5vw;
+}
+
+.about-hey {
+  color: #8bf1b5;
+  font-size: 2vh;
+  line-height: 180%;
+  padding: 0 0 1vh 0;
+  font-family: "Roboto Mono", monospace;
+  letter-spacing: 0.2vw;
+}
+
+.about-rabbit {
+  height: 10vh;
+  width: 3.5vw;
 }
 
 .about-p {
@@ -359,7 +369,12 @@ h3 {
   margin: 0;
   font-size: 10vh;
   line-height: 95%;
-  /* font-family: "Neue Power Trial", monospace; */
+}
+
+.about-image {
+  width: 6vw;
+  height: 6vw;
+  border: 1px solid blue;
 }
 
 p {
@@ -372,10 +387,8 @@ p {
   flex-direction: column;
   align-items: center;
   height: 100%;
-  /* border: 1px solid blue; */
   margin: 0 0 0 0;
   padding: 0 0 0 0;
-  /* background-image: url("https://i.ibb.co/KNw6Pm5/rabbit-background-chart.png"); */
 }
 
 .back,
@@ -385,7 +398,6 @@ p {
   color: white;
   margin: 0;
   padding: 0;
-  /* border: 1px solid yellow; */
 }
 
 .backMonth,
@@ -395,11 +407,9 @@ p {
   color: white;
   margin: 0;
   padding: 0;
-  /* border: 1px solid yellow; */
 }
 
 .main-items-week {
-  /* border: 1px solid yellow; */
 }
 
 .main-table {
@@ -420,7 +430,6 @@ p {
   width: 100%;
   padding: 0;
   margin: 0;
-  /* border: 1px solid blue; */
 }
 
 .days {
@@ -530,26 +539,9 @@ p {
   font-size: 1vw;
   padding: 1.4vh;
   margin: 10px;
-
-  /* display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  height: 12vh;
-  width: 18vw;
-  text-align: center;
-  padding: 15px 10px 10px 11px;
-  margin: 10px;
-  font-size: 1.5vw;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(9.7px);
-  -webkit-backdrop-filter: blur(9.7px); */
 }
 
 .add-habit-x-button-week {
-  /* border: 1px solid yellow; */
   width: 0.7vw;
   height: 1.5vh;
   font-size: 1.4vh;
@@ -562,8 +554,6 @@ p {
   justify-content: center;
   align-items: center;
   width: 100%;
-  /* border: 1px solid red; */
-  /* margin-right: 0.75vw; */
 }
 
 .input-box-week {
@@ -614,9 +604,7 @@ p {
 
   height: 100%;
 }
-
 .header-month {
-  /* border: 1px solid pink; */
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -647,7 +635,6 @@ p {
 }
 
 .main-items-month {
-  /* border: 1px solid blue; */
 }
 
 .header-four {
@@ -661,7 +648,6 @@ h4 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* font-family: "Neue Power Trial", monospace; */
   color: white;
   letter-spacing: 3px;
   font-size: 7.3vh;
@@ -670,37 +656,65 @@ h4 {
   line-height: 87%;
 }
 
-.month-view {
+.month-view-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 6vw;
   height: 5vh;
   background: rgba(255, 255, 255, 0.08);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.9px);
   -webkit-backdrop-filter: blur(3.9px);
-  border: 1px solid rgba(255, 255, 255, 0.56);
+  border: 1px solid #585b6f;
   border-radius: 8px;
+}
+
+.month-view {
   color: white;
-  text-align: center;
+  background: rgba(255, 255, 255, 0);
+  border: none;
+  text-decoration: none;
   font-family: "Roboto Mono", monospace;
   font-size: 1.5vh;
   letter-spacing: 0.1vw;
 }
 
+select:focus {
+  outline: none;
+}
+
+.add-more-week-container {
+  line-height: 60%;
+}
+
+.rabbit-month {
+  height: 5vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  object-fit: contain;
+}
+
 .add-more-week {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   width: 9vw;
   height: 5vh;
   border-radius: 8px;
   color: white;
-  background: rgba(255, 255, 255, 0.08);
   font-family: "Roboto Mono", monospace;
+  background: rgba(255, 162, 1, 0.184);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.9px);
   -webkit-backdrop-filter: blur(3.9px);
-  border: 1px solid rgba(255, 255, 255, 0.56);
+  border: 1px solid #ffa201;
   font-size: 1.5vh;
   letter-spacing: 0.1vw;
 }
-
 .stats-top {
   display: flex;
   flex-direction: row;
@@ -717,15 +731,11 @@ h4 {
   justify-content: center;
   align-items: flex-start;
   gap: 2vh;
-  /* border: 1px solid red; */
-  /* width: 50vw; */
   height: 100%;
   flex-grow: 1;
-  /* margin: 0 0 6vh 7.5%; */
 }
 
 .days-tracked {
-  /* font-family: "Neue Power Trial"; */
   color: #8bf1b5;
   font-size: 10vh;
   margin: 0;
@@ -746,14 +756,10 @@ h4 {
   flex-direction: row;
   justify-content: flex-end;
   align-items: flex-start;
-  /* border: 1px solid yellow; */
-
-  /* width: 40vw; */
   height: 15vh;
 }
 
 .stats-rabbit {
-  /* border: 1px solid blue; */
   width: 6vw;
   height: 12vh;
   margin-top: 2vh;
@@ -761,7 +767,6 @@ h4 {
 }
 
 .stats-rabbit-comment {
-  /* border: 1px solid blue; */
   color: #87eaaf;
   padding: 5%;
   width: 8vw;
@@ -773,9 +778,8 @@ h4 {
   border-radius: 0.5vw;
 }
 
-.stats-img {
+.stats-image {
   width: 100%;
-  /* border: 1px solid blue; */
   padding: 0 5vw 0 5vw;
 }
 
@@ -806,18 +810,7 @@ input:focus {
 .layout-background {
   height: 100%;
   width: 100%;
-
-  /* border: 1px solid red; */
-  /* background-color: #1D4938; */
 }
-
-/* .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: beige;
-} */
 
 #myModal {
   display: none;
@@ -894,7 +887,29 @@ input:focus {
   border: 1.5px solid white;
 }
 
+.add-more-month-container {
+  margin: 0;
+  padding: 0;
+  line-height: 60%;
+}
+
+.add-more-image-month {
+  height: 5vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  object-fit: contain;
+}
+
+.rabbit-month {
+  width: 2.4vw;
+  margin: 0;
+  padding: 0;
+}
+
 .add-more-month {
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -903,11 +918,12 @@ input:focus {
   height: 5vh;
   border-radius: 8px;
   color: white;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 162, 1, 0.184);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.9px);
   -webkit-backdrop-filter: blur(3.9px);
-  border: 1px solid rgba(255, 255, 255, 0.56);
+  border: 1px solid #ffa201;
+  /* border: 1px solid rgba(255, 255, 255, 0.56); */
   font-family: "Roboto Mono", monospace;
   font-size: 1.5vh;
   letter-spacing: 0.1vw;
@@ -947,7 +963,6 @@ button {
   height: 4vh;
   width: 10vw;
   font-family: "Roboto Mono", monospace;
-
   letter-spacing: 5px;
   font-size: 2vh;
   border: none;
@@ -1098,6 +1113,7 @@ table {
 .nextMonth:hover,
 .login-github-button:hover,
 .login-google-button:hover,
+.github-button-container:hover,
 .quote-button-plus-arrow:hover,
 .add-more-q-page:hover,
 .submit-q:hover,
@@ -1106,7 +1122,11 @@ table {
 .add-more-month:hover,
 .month-cell:hover,
 .x-button-week:hover,
-.x-button-month:hover {
+.x-button-month:hover,
+.login-button-plus-arrow:hover,
+.login-button:hover,
+.week-view:hover,
+.month-view:hover {
   cursor: pointer;
 }
 
@@ -1143,11 +1163,6 @@ table {
   gap: 2vw;
   width: 100%;
 }
-
-/* .week-header-two > :not(:first-child):hover {
-  cursor: pointer;
-} */
-
 .input-box-month::placeholder {
   color: white;
 }
@@ -1254,9 +1269,10 @@ table {
   justify-content: center;
   align-items: flex-start;
   gap: 0.4vw;
-  width: 7.5vw;
+  width: 8vw;
   height: 2.5vw;
   padding-top: 0.3vh;
+  padding-left: 0.75vw;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 1.35vh;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -1268,6 +1284,7 @@ table {
   font-size: 1vh;
   height: 1.5vh;
   width: 0.75vw;
+  color: #ba3032;
 }
 
 .input-box-month {
@@ -1295,7 +1312,6 @@ table {
   font-size: 1vh;
   font-family: "Roboto Mono", monospace;
   background: none;
-
   text-transform: uppercase;
   outline: none;
   letter-spacing: 1px;
@@ -1330,17 +1346,14 @@ table {
   height: 2.5vw;
   width: 8vw;
   text-align: center;
-  font-size: 1.7vh;
-  /* border: 1px solid blue; */
   font-family: "Roboto Mono", monospace;
   text-transform: uppercase;
   letter-spacing: 5px;
-}
-
-.x-button-month {
-  width: 0.75vw;
-  height: 1.5vh;
-  font-size: 1vh;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1.35vh;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.7px);
+  -webkit-backdrop-filter: blur(9.7px);
 }
 
 .activity-month {
@@ -1349,34 +1362,43 @@ table {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 2.5vw;
-  padding-top: 0.3vh;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 1.35vh;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(9.7px);
-  -webkit-backdrop-filter: blur(9.7px);
-}
-
-.week-view {
-  width: 6vw;
-  height: 5vh;
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3.9px);
-  -webkit-backdrop-filter: blur(3.9px);
-  border: 1px solid rgba(255, 255, 255, 0.56);
-  border-radius: 8px;
-  color: white;
-  text-align: center;
-  font-family: "Roboto Mono", monospace;
-  font-size: 1.5vh;
+  height: 100%;
+  padding-left: 0.75vw;
+  font-size: 1.2vh;
   letter-spacing: 0.1vw;
 }
 
-.week-view:hover,
-.month-view:hover {
-  cursor: pointer;
+.x-button-month {
+  width: 0.75vw;
+  height: 1.5vh;
+  font-size: 1vh;
+  color: #ba3032;
+}
+
+.week-view-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 6vw;
+  height: 5vh;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.9px);
+  -webkit-backdrop-filter: blur(3.9px);
+  /* border: 1px solid rgba(255, 255, 255, 0.56); */
+  border: 1px solid #aba3a7;
+  border-radius: 8px;
+}
+
+.week-view {
+  color: white;
+  background: rgba(255, 255, 255, 0);
+  border: none;
+  text-decoration: none;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.5vh;
+  letter-spacing: 0.1vw;
 }
 
 .error {

@@ -3,12 +3,14 @@
 import React, { useEffect, useState, createContext } from "react";
 import Child from "../questions";
 import { format, addDays, set, subDays, getYear } from "date-fns";
+import Image from "next/image";
+import rabbitEars from "../../public/rabbit-ears.png";
 
 export const Context = createContext([[], () => {}]);
 export const DaysContext = React.createContext();
 export const ColorContext = React.createContext();
 export const ModalContext = React.createContext();
-//can get rid of weekyear
+// can get rid of weekyear
 // need to prevent user from going beyond current month/week
 
 export default function Chart() {
@@ -18,7 +20,7 @@ export default function Chart() {
   const [inputFields, setInputFields] = useState([]);
   const [colorFields, setColorFields] = useState([]);
   const [weekCount, setWeekCount] = useState(-1);
-  const [view, setView] = useState("week");
+  const [view, setView] = useState("month");
   const [isDayClicked, setIsDayClicked] = useState(false);
   const [isSubmitClicked, setIsSubmitClicked] = useState(false);
   const [modalVisibility, setModalVisibility] = useState(true);
@@ -305,16 +307,25 @@ export default function Chart() {
               {/* <button className="month-view" onClick={monthView}>
                  Month View
                 </button> */}
-              <select className="month-view">
-                <option value="">WEEK</option>
-                {/* need to make sure this works */}
-                <option onClick={monthView}>MONTH</option>
-              </select>
-              {newHabitAdded === true ? (
-                <button className="add-more-week" onClick={() => addHabit()}>
-                  NEW HABIT +
-                </button>
-              ) : null}
+              <div className="month-view-container">
+                <select className="month-view">
+                  <option value="">WEEK</option>
+                  {/* need to make sure this works */}
+                  <option onClick={monthView}>MONTH</option>
+                </select>
+              </div>
+              <div className="add-more-week-container">
+                <Image
+                  src={rabbitEars}
+                  alt="rabbit ears"
+                  className="rabbit-month"
+                />
+                {newHabitAdded === true ? (
+                  <p className="add-more-week" onClick={() => addHabit()}>
+                    NEW HABIT +
+                  </p>
+                ) : null}
+              </div>
             </div>
           </div>
           <div className="main-table">
@@ -495,16 +506,26 @@ export default function Chart() {
                 ></img>
               </div>
               <div className="header-right-month">
-                <select className="week-view">
-                  <option value="">MONTH</option>
-                  {/* need to make sure this works */}
-                  <option onClick={weekView}>WEEK</option>
-                </select>
-                {newHabitAdded === true ? (
-                  <p className="add-more-month" onClick={() => addHabit()}>
-                    NEW HABIT +
-                  </p>
-                ) : null}
+                <div className="week-view-container">
+                  <select className="week-view">
+                    <option value="">MONTH</option>
+                    {/* need to make sure this works */}
+                    <option onClick={weekView}>WEEK</option>
+                  </select>
+                </div>
+                <div className="add-more-month-container">
+                  <Image
+                    src={rabbitEars}
+                    alt="rabbit ears"
+                    className="add-more-image-month"
+                  />
+
+                  {newHabitAdded === true ? (
+                    <p className="add-more-month" onClick={() => addHabit()}>
+                      NEW HABIT +
+                    </p>
+                  ) : null}
+                </div>
               </div>
             </div>
 

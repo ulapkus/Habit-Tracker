@@ -5,6 +5,8 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import arrow from "../../public/arrow.png";
+import githubLogo from "../../public/github-logo.png";
+import googleLogo from "../../public/google-logo.png";
 
 const Login = () => {
   const router = useRouter();
@@ -86,7 +88,7 @@ const Login = () => {
               />
               <button type="submit" className="login-button-plus-arrow">
                 <p className="login-button">Sign In</p>
-                <Image src={arrow} alt="arrow" width={10} height={10} />
+                <Image src={arrow} alt="arrow" className="login-arrow" />
               </button>
               <p className="error">{error && error}</p>
             </form>
@@ -98,10 +100,11 @@ const Login = () => {
             <div className="login-bottom">
               {/* need to add signin with google ability */}
               <button className="login-google-button">
-                <img
+                <Image
+                  src={googleLogo}
+                  alt="Google logo"
                   className="image-google"
-                  src="https://banner2.cleanpng.com/20180324/iww/kisspng-google-logo-g-suite-google-5ab6f1cee66464.5739288415219388949437.jpg"
-                ></img>
+                />
                 <p className="login-google">Continue with Google</p>
               </button>
               <button
@@ -110,10 +113,11 @@ const Login = () => {
                 }}
                 className="login-github-button"
               >
-                <img
+                <Image
+                  src={githubLogo}
+                  alt="Github logo"
                   className="image-github"
-                  src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
-                ></img>
+                />
                 <p className="login-github">Continue with Github</p>
               </button>
             </div>

@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import arrow from "../../public/arrow.png";
+import githubLogo from "../../public/github-logo.png";
+import googleLogo from "../../public/google-logo.png";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -87,35 +89,35 @@ const Register = () => {
             </Link>
           </div>
           <div className="register">
-            <div className="login-form">
-              <form onSubmit={handleSubmit} className="login-form">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  required
-                  className="register-name"
-                />
-                <input
-                  type="text"
-                  placeholder="Email"
-                  required
-                  className="login-email"
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  required
-                  className="login-password"
-                />
-                <button type="submit" className="login-button-plus-arrow">
-                  <p className="login-button">Sign Up</p>
-                  <Image src={arrow} alt="arrow" width={10} height={10} />
+            {/* <div className="login-form"> */}
+            <form onSubmit={handleSubmit} className="login-form">
+              <input
+                type="text"
+                placeholder="Name"
+                required
+                className="register-name"
+              />
+              <input
+                type="text"
+                placeholder="Email"
+                required
+                className="login-email"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                required
+                className="login-password"
+              />
 
-                </button>
-      
-                <p className="error">{error && error}</p>
-              </form>
-            </div>
+              <button type="submit" className="login-button-plus-arrow">
+                <p className="login-button">Sign Up</p>
+                <Image src={arrow} alt="arrow" className="login-arrow" />
+              </button>
+
+              <p className="error">{error && error}</p>
+            </form>
+            {/* </div> */}
             <div className="break-plus-or">
               <div className="break"></div>
               <p className="break-or">OR</p>
@@ -124,17 +126,19 @@ const Register = () => {
             <div className="login-bottom">
               {/* need to add register with google and github ability */}
               <button className="login-google-button">
-                <img
+                <Image
+                  src={googleLogo}
+                  alt="Google logo"
                   className="image-google"
-                  src="https://banner2.cleanpng.com/20180324/iww/kisspng-google-logo-g-suite-google-5ab6f1cee66464.5739288415219388949437.jpg"
-                ></img>
+                />
                 <p className="login-google">Continue with Google</p>
               </button>
               <button className="login-github-button">
-                <img
+                <Image
+                  src={githubLogo}
+                  alt="Github logo"
                   className="image-github"
-                  src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
-                ></img>
+                />
                 <p className="login-github">Continue with Github</p>
               </button>
             </div>

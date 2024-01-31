@@ -33,9 +33,8 @@ const Navbar = () => {
           <Link href="/">
             <Image
               src={habitRabbitLogo}
-              alt="habbit rabbit logo"
-              width={400}
-              height={100}
+              alt="habit rabbit logo"
+              className="logo"
             />
           </Link>
         </div>
@@ -82,7 +81,7 @@ const Navbar = () => {
                 onClick={() => {
                   signOut();
                 }}
-                style={{ color: textColor }}
+                style={{ color: "#BA3032" }}
               >
                 LOGOUT
               </p>

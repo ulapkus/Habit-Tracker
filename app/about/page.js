@@ -11,7 +11,7 @@ export default function About() {
           <p className="about-hey">HEY THERE!</p>
           <h3>Welcome</h3>
         </div>
-        <Image src={rabbitEars} alt="rabbit ears" width={150} height={150} />
+        <Image className="about-image" src={rabbitEars} alt="rabbit ears" />
 
         <h3>to Habit Rabbit</h3>
       </div>
@@ -20,7 +20,7 @@ export default function About() {
           "I'm Ula, the self-taught coder and creator behind this little corner of the internet. It's my mission to make building and maintaining habits a breeze."
         }
       </p>
-      <Image src={bunnyTwo} alt="rabbit icon" width={100} height={100} />
+      <Image className="about-rabbit" src={bunnyTwo} alt="rabbit icon" />
       <p className="about-p">
         Ever since I read &quot;The Power of Habit&quot; by Charles Duhigg in
         2020, I&apos;ve been on a habit-tracking train. As a result, I loved

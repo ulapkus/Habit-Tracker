@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import Image from "next/image";
+import arrow from "../public/arrow.png";
 
 export default function Dashboard() {
   const [displayedQuote, setDisplayedQuote] = useState("");
@@ -129,20 +131,19 @@ export default function Dashboard() {
   return (
     <div className="quote-background">
       <div className="quote-box">
-        <h1>WELCOME BACK,&nbsp;</h1>
-        {!session ? null : (
-          <div className="quote-user"> {session.user?.name}</div>
-        )}
+        <div className="quote-welcome-user">
+          <h1>WELCOME BACK,&nbsp;</h1>
+          {!session ? null : (
+            <div className="quote-user"> {session.user?.name}</div>
+          )}
+        </div>
         <p className="quote">
           &quot;{displayedQuote}&quot;
           <span className="author">- {displayedAuthor}</span>
         </p>
         <Link href="/chart" className="quote-button-plus-arrow">
           <p className="quote-button">Go to chart</p>
-          <img
-            className="quote-arrow"
-            src="https://i.ibb.co/rdtxXCB/Arrow-noglow.png"
-          ></img>
+          <Image className="quote-arrow" src={arrow} alt="habbit rabbit logo" />
         </Link>
       </div>
     </div>

@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import rabbitOne from '../../public/bunny-one.png'
+import rabbitOne from "../../public/bunny-one.png";
+import stats from "../../public/blurred-stats.png";
 import { differenceInDays } from "date-fns";
 
 export default function Stats() {
@@ -39,20 +40,11 @@ export default function Stats() {
           <p className="insights">HERE ARE YOUR INSIGHTS</p>
         </div>
         <div className="stats-rabbit-container">
-        <Image
-              src={rabbitOne}
-              alt="rabbit icon"
-              width={100}
-              height={100}
-            />
-        <p className="stats-rabbit-comment">THIS PAGE IS COMING SOON!</p>
+          <Image className="stats-rabbit" src={rabbitOne} alt="rabbit icon" />
+          <p className="stats-rabbit-comment">THIS PAGE IS COMING SOON!</p>
         </div>
       </div>
-      <img
-        className="stats-img"
-        src="https://i.ibb.co/j3vS6GK/BLURRED-STATS.png"
-        alt="user data"
-      ></img>
+      <Image src={stats} alt="user statistics" className="stats-image" />
     </div>
   );
 }
