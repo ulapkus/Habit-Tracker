@@ -39,6 +39,7 @@ export default function Chart() {
     });
     return past7Days.sort((a, b) => a - b);
   });
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function fetchState() {
     try {
@@ -94,6 +95,14 @@ export default function Chart() {
   };
 
   const submit = () => {
+    const duplicateHabits = inputFields.filter((habit) =>
+      habits.includes(habit)
+    );
+    if (duplicateHabits.length > 0) {
+      setErrorMessage("Habit already exists. Please choose a different name.");
+      return;
+    }
+
     setHabits([...habits, ...inputFields]);
     setNewHabitAdded(true);
 
@@ -114,6 +123,7 @@ export default function Chart() {
     setInputFields([]);
     setColorFields([]);
     setIsSubmitClicked(true);
+    setErrorMessage("");
   };
 
   const eraseHabit = (activity, i) => {
@@ -382,10 +392,7 @@ export default function Chart() {
                               dayIndexxx
                             ),
                           }}
-                        >
-                          {/* {dayColorWeek(activityy, dayIndexxx) ===
-                            colors[activityy]} */}
-                        </td>
+                        ></td>
                       ))}
                     </tr>
                   ))}
@@ -425,6 +432,7 @@ export default function Chart() {
                           >
                             SUBMIT
                           </button>
+                          <p className="error-chart">{errorMessage}</p>
                         </div>
                         <p
                           className="add-habit-x-button-week"
@@ -433,9 +441,6 @@ export default function Chart() {
                           X
                         </p>
                       </td>
-                      {/* {[...Array(7)].map((_, dayIndex) => (
-                        <td key={dayIndex} className="cell"></td>
-                      ))} */}
                       {Array.from(
                         {
                           length: 7,
@@ -587,8 +592,6 @@ export default function Chart() {
                               ),
                             }}
                           >
-                            {/* {dayColorMonth(activity, dayIndex) ===
-                              colors[activity]} */}
                           </td>
                         )
                       )}
@@ -648,14 +651,10 @@ export default function Chart() {
                     );
                   })}
                 </tbody>
+                <p className="error-month-chart">{errorMessage}</p>
+
               </table>
-              {/* <div className="add-more-div-month">
-        
-            </div> */}
             </div>
-            {/* <button className="week-view" onClick={weekView}>
-            Week View
-          </button> */}
           </div>
         </div>
       </div>

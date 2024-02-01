@@ -392,7 +392,6 @@ p {
   height: 2.5vh;
   width: 1vw;
   object-fit: contain;
-
 }
 
 .backMonth,
@@ -866,6 +865,7 @@ input:focus {
   padding-left: 0.5vw;
   letter-spacing: 3px;
   border: none;
+  color: gray;
 }
 
 .buttons-q {
@@ -1151,7 +1151,6 @@ table {
 .submit-button-month {
   border: none;
   font-family: "Roboto Mono", monospace;
-
   letter-spacing: 3px;
   width: 3.5vw;
   height: 1.2vh;
@@ -1216,6 +1215,21 @@ table {
   background-color: none;
   color: gray;
   margin: 0 0.5vw 0 0;
+}
+
+.error-chart {
+  color: #fffae5;
+  font-size: 1vh;
+  font-family: "Roboto Mono", monospace;
+  text-align: center;
+}
+
+.error-month-chart {
+  color: #fffae5;
+  padding-top: 1vh;
+  font-size: 1vh;
+  font-family: "Roboto Mono", monospace;
+  text-align: left;
 }
 
 .add-habit-row-month {
@@ -1364,6 +1378,10 @@ table {
 
 .error {
   text-align: center;
+  color: #8af0b5;
+  font-size: 1.5vh;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 300;
 }
 
 /* navbar start */

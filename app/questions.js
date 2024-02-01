@@ -97,8 +97,6 @@ export default function Child() {
           [inputValues[index]]: colorInputField[index],
         }));
       });
-
-      //do i even need a list of habits? if not, i can get rid of the below
       setHabits((prevHabits) => [...habitInputField]);
     });
     setShowModal(false);
@@ -162,36 +160,23 @@ export default function Child() {
                       );
                     })}
                   </div>
-                  {colorInputField.map((colorField, index) => {
-                    return (
-                      <div key={index} className="select-week">
-                        <select
-                          className="color-dropdown-week"
-                          onChange={(e) => handleColorChange(e, index)}
-                        >
-                          <option value="">Choose color:</option>
-                          <option value="#e74645">Red</option>
-                          <option value="#FF8466">Orange</option>
-                          <option value="#FFBD49">Yellow</option>
-                          <option value="#93C574">Green</option>
-                          <option value="#3b4cc3">Blue</option>
-                          <option value="#AA8AFA">Purple</option>
-                          <option value="#FF81C3">Pink</option>
-                        </select>
-                      </div>
-                    );
-                  })}
-
-                  {/* <div className="modal-color-input">
+                  <div className="modal-color-input">
                     {colorInputField.map((colorField, index) => {
                       return (
                         <div key={index} className="modal-color-plus-button">
-                          <input
-                            value={colorField}
-                            onChange={(e) => handleColorChange(e, index)}
-                            placeholder="Color"
+                          <select
                             className="modal-question"
-                          />
+                            onChange={(e) => handleColorChange(e, index)}
+                          >
+                            <option value="">Choose color:</option>
+                            <option value="#e74645">Red</option>
+                            <option value="#FF8466">Orange</option>
+                            <option value="#FFBD49">Yellow</option>
+                            <option value="#93C574">Green</option>
+                            <option value="#3b4cc3">Blue</option>
+                            <option value="#AA8AFA">Purple</option>
+                            <option value="#FF81C3">Pink</option>
+                          </select>
                           <button
                             className="question-x"
                             onClick={() => removeInput(i)}
@@ -200,9 +185,8 @@ export default function Child() {
                           </button>
                         </div>
                       );
-                    }
-                    )}
-                  </div> */}
+                    })}
+                  </div>
                 </div>
               </section>
               <section className="buttons-q">
