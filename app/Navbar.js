@@ -16,7 +16,7 @@ const Navbar = () => {
 
   useEffect(() => {
     if (pathname === "/chart") {
-      setTextColor("white");
+      setTextColor("#FFFAE5");
     } else {
       setTextColor("#8AEEB3");
     }

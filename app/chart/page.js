@@ -5,6 +5,8 @@ import Child from "../questions";
 import { format, addDays, set, subDays, getYear } from "date-fns";
 import Image from "next/image";
 import rabbitEars from "../../public/rabbit-ears.png";
+import arrowLeft from "../../public/arrow-left.png";
+import arrowRight from "../../public/arrow-right.png";
 
 export const Context = createContext([[], () => {}]);
 export const DaysContext = React.createContext();
@@ -20,7 +22,7 @@ export default function Chart() {
   const [inputFields, setInputFields] = useState([]);
   const [colorFields, setColorFields] = useState([]);
   const [weekCount, setWeekCount] = useState(-1);
-  const [view, setView] = useState("month");
+  const [view, setView] = useState("week");
   const [isDayClicked, setIsDayClicked] = useState(false);
   const [isSubmitClicked, setIsSubmitClicked] = useState(false);
   const [modalVisibility, setModalVisibility] = useState(true);
@@ -288,20 +290,12 @@ export default function Chart() {
         <div className="main-items-week">
           <div className="header-week">
             <div className="header-left-week">
-              <img
-                className="back"
-                onClick={back}
-                src="https://cdn-icons-png.flaticon.com/128/860/860790.png"
-              ></img>
+              <Image src={arrowLeft} alt="left arrow" className="back" />
               <div className="header-four">
                 <h4>{format(weekDates[0], "EEEE, M/d")}</h4>
                 <h4>to {format(weekDates[6], "EEEE, M/d")}</h4>
               </div>
-              <img
-                className="next"
-                onClick={next}
-                src="https://cdn-icons-png.flaticon.com/128/758/758778.png"
-              ></img>
+              <Image src={arrowRight} alt="right arrow" className="next" />
             </div>
             <div className="header-right-week">
               {/* <button className="month-view" onClick={monthView}>
@@ -489,21 +483,17 @@ export default function Chart() {
             <div className="header-month">
               {/* <div className="nextAndBack-month"> */}
               <div className="header-left-month">
-                <img
-                  className="backMonth"
-                  onClick={previousMonth}
-                  src="https://cdn-icons-png.flaticon.com/128/860/860790.png"
-                ></img>
+                <Image src={arrowLeft} alt="left arrow" className="backMonth" />
                 <div className="month-and-year">
                   <h6 className="month">
                     {format(set(new Date(), { month: month }), "MMMM")} {year}
                   </h6>
                 </div>
-                <img
+                <Image
+                  src={arrowRight}
+                  alt="right arrow"
                   className="nextMonth"
-                  onClick={nextMonth}
-                  src="https://cdn-icons-png.flaticon.com/128/758/758778.png"
-                ></img>
+                />
               </div>
               <div className="header-right-month">
                 <div className="week-view-container">

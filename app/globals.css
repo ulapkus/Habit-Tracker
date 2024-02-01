@@ -360,9 +360,6 @@ h1 {
   font-family: "Roboto Mono", monospace;
 }
 
-h6 {
-}
-
 h3 {
   color: white;
   padding: 0;
@@ -374,7 +371,6 @@ h3 {
 .about-image {
   width: 6vw;
   height: 6vw;
-  border: 1px solid blue;
 }
 
 p {
@@ -393,20 +389,17 @@ p {
 
 .back,
 .next {
-  height: 2vh;
+  height: 2.5vh;
   width: 1vw;
-  color: white;
-  margin: 0;
-  padding: 0;
+  object-fit: contain;
+
 }
 
 .backMonth,
 .nextMonth {
-  height: 2vh;
+  height: 2.5vh;
   width: 1vw;
-  color: white;
-  margin: 0;
-  padding: 0;
+  object-fit: contain;
 }
 
 .main-items-week {
@@ -437,14 +430,15 @@ p {
   flex-direction: column;
   justify-content: center;
   height: 4vw;
-  font-size: 1.2vw;
+  font-size: 1.1vw;
   text-align: center;
-  font-weight: 500;
+  font-weight: 400;
   width: 12vh;
   margin: 10px;
   font-family: "Roboto Mono", monospace;
   text-transform: uppercase;
-  letter-spacing: 0.2vw;
+  letter-spacing: 0.1vw;
+  color: #fffae5;
 }
 
 .week-cell-row {
@@ -485,10 +479,14 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   width: 100%;
   height: 100%;
   margin-right: 0.75vw;
   padding-top: 0.3vh;
+  color: #fffae5;
+  font-size: 1vw;
+  letter-spacing: 0.15vw;
 }
 
 .week-cell {
@@ -591,8 +589,9 @@ p {
   justify-content: flex-start;
   align-items: center;
   flex-grow: 1;
+  gap: 2vw;
   padding: 0;
-  margin: 0;
+  margin: 0 0 0 -2vw;
 }
 
 .header-right-week {
@@ -601,9 +600,9 @@ p {
   justify-content: flex-end;
   align-items: flex-end;
   gap: 1vw;
-
   height: 100%;
 }
+
 .header-month {
   display: flex;
   flex-direction: row;
@@ -621,7 +620,8 @@ p {
   justify-content: flex-start;
   align-items: center;
   flex-grow: 1;
-  padding: 0;
+  gap: 2vw;
+  padding: 0 0 0 2vw;
   margin: 0;
 }
 
@@ -648,7 +648,7 @@ h4 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: white;
+  color: #fffae5;
   letter-spacing: 3px;
   font-size: 7.3vh;
   margin: 0;
@@ -661,7 +661,7 @@ h4 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 6vw;
+  width: 6.5vw;
   height: 5vh;
   background: rgba(255, 255, 255, 0.08);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -672,13 +672,14 @@ h4 {
 }
 
 .month-view {
-  color: white;
+  color: #fffae5;
   background: rgba(255, 255, 255, 0);
   border: none;
   text-decoration: none;
   font-family: "Roboto Mono", monospace;
   font-size: 1.5vh;
   letter-spacing: 0.1vw;
+  font-size: 0.8vw;
 }
 
 select:focus {
@@ -705,14 +706,15 @@ select:focus {
   width: 9vw;
   height: 5vh;
   border-radius: 8px;
-  color: white;
+  color: #fffae5;
   font-family: "Roboto Mono", monospace;
   background: rgba(255, 162, 1, 0.184);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.9px);
   -webkit-backdrop-filter: blur(3.9px);
   border: 1px solid #ffa201;
-  font-size: 1.5vh;
+  font-size: 0.8vw;
+  white-space: nowrap;
   letter-spacing: 0.1vw;
 }
 .stats-top {
@@ -720,7 +722,6 @@ select:focus {
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-end;
-  /* border: 1px solid blue; */
   margin: 0 10.5% 0 8%;
   height: 40vh;
 }
@@ -902,7 +903,7 @@ input:focus {
 }
 
 .rabbit-month {
-  width: 2.4vw;
+  height: 4.8vh;
   margin: 0;
   padding: 0;
 }
@@ -917,7 +918,8 @@ input:focus {
   width: 9vw;
   height: 5vh;
   border-radius: 8px;
-  color: white;
+  color: #fffae5;
+  white-space: nowrap;
   background: rgba(255, 162, 1, 0.184);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.9px);
@@ -925,7 +927,7 @@ input:focus {
   border: 1px solid #ffa201;
   /* border: 1px solid rgba(255, 255, 255, 0.56); */
   font-family: "Roboto Mono", monospace;
-  font-size: 1.5vh;
+  font-size: 0.8vw;
   letter-spacing: 0.1vw;
   text-align: center;
 }
@@ -985,20 +987,6 @@ button {
   height: 100%;
   padding: 0;
   margin: 0;
-}
-
-.answer {
-  border-radius: 5px;
-  height: 4vh;
-  width: 13vw;
-  padding: 0 0 0 1vw;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
 }
 
 .main-table-month {
@@ -1092,6 +1080,7 @@ button {
   border-radius: 5px;
   font-family: "Roboto Mono", monospace;
   padding-top: 0.48vh;
+  color: #fffae5;
 }
 
 thead {
@@ -1130,16 +1119,6 @@ table {
   cursor: pointer;
 }
 
-.backMonth,
-.nextMonth {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 1.5vh;
-  width: 0.75vw;
-}
-
 .month-and-year {
   display: flex;
   flex-direction: column;
@@ -1149,8 +1128,7 @@ table {
 
 .month {
   font-size: 4vw;
-  color: white;
-  /* font-family: "Neue Power Trial"; */
+  color: #fffae5;
   margin: 0;
   text-align: center;
 }
@@ -1212,7 +1190,6 @@ table {
 
 .color-dropdown-week {
   border: none;
-  /* border-radius: 10px; */
   color: white;
   font-size: 1.65vh;
   font-family: "Roboto Mono", monospace;
@@ -1237,16 +1214,9 @@ table {
   height: 100%;
 }
 
-.color-dropdown-week:hover,
-.input-box-week:hover,
-.color-dropdown-month:hover {
-  /* background-color: #add8e6; */
-}
-
 .submit-button-week {
   border: none;
   font-family: "Roboto Mono", monospace;
-
   letter-spacing: 3px;
   width: 4.3vw;
   height: 2vh;
@@ -1291,7 +1261,6 @@ table {
   width: 6vw;
   height: 1.6vh;
   padding: 0.3vh 0vw 0.1vh 1.15vw;
-
   margin: 0.1vh 0 0 0;
   border: none;
   color: white;
@@ -1366,6 +1335,7 @@ table {
   padding-left: 0.75vw;
   font-size: 1.2vh;
   letter-spacing: 0.1vw;
+  color: #fffae5;
 }
 
 .x-button-month {
@@ -1386,18 +1356,17 @@ table {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.9px);
   -webkit-backdrop-filter: blur(3.9px);
-  /* border: 1px solid rgba(255, 255, 255, 0.56); */
   border: 1px solid #aba3a7;
   border-radius: 8px;
 }
 
 .week-view {
-  color: white;
+  color: #fffae5;
   background: rgba(255, 255, 255, 0);
   border: none;
   text-decoration: none;
   font-family: "Roboto Mono", monospace;
-  font-size: 1.5vh;
+  font-size: 0.8vw;
   letter-spacing: 0.1vw;
 }
 
@@ -1426,7 +1395,6 @@ table {
   align-items: flex-end;
   flex-grow: 1;
   height: 100%;
-  /* border: 1px solid blue; */
 }
 
 .logo {
@@ -1451,11 +1419,6 @@ table {
   text-align: center;
   letter-spacing: 6px;
   font-family: "Roboto Mono", monospace;
-}
-
-.nav-link:hover {
-  color: black;
-  cursor: pointer;
 }
 
 /* navbar end */
