@@ -5,7 +5,6 @@ import SessionProvider from "../utils/SessionProvider";
 import ClientLogic from "./clientlogic";
 import localFont from "next/font/local";
 
-// Font files can be colocated inside of `app`
 const myFont = localFont({
   src: "../public/neue-power-trial-ultra.otf",
   display: "swap",
@@ -21,14 +20,32 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en" className={myFont.className}>
+      <head>
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        ></link>
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        ></link>
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        ></link>
+        <link rel="manifest" href="/site.webmanifest"></link>
+      </head>
       <body>
         <SessionProvider session={session}>
-          {/* <div className="layout-background"> */}
           <ClientLogic>
             <Navbar />
             {children}
           </ClientLogic>
-          {/* </div> */}
         </SessionProvider>
       </body>
     </html>

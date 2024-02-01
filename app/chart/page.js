@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, createContext } from "react";
 import Child from "../questions";
-import { format, addDays, set, subDays, getYear } from "date-fns";
+import { format, addDays, set, subDays, getYear, getMonth } from "date-fns";
 import Image from "next/image";
 import rabbitEars from "../../public/rabbit-ears.png";
 import arrowLeft from "../../public/arrow-left.png";
@@ -27,7 +27,8 @@ export default function Chart() {
   const [isSubmitClicked, setIsSubmitClicked] = useState(false);
   const [modalVisibility, setModalVisibility] = useState(true);
   const [newHabitAdded, setNewHabitAdded] = useState(true);
-  const [month, setMonth] = useState(() => subDays(new Date(), 6).getMonth());
+  // const [month, setMonth] = useState(() => subDays(new Date(), 6).getMonth());
+  const [month, setMonth] = useState(() => new Date().getMonth());
   const [year, setYear] = useState(() => getYear(new Date()));
   const [yearWeek, setYearWeek] = useState(() => getYear(new Date()));
   const [weekDates, setWeekDates] = useState(() => {
@@ -183,7 +184,6 @@ export default function Chart() {
     const newDates = `${dates.getFullYear()}-${
       dates.getMonth() + 1
     }-${dates.getDate()}`;
-
     if (days[activityy].includes(newDates)) {
       setDays((prevDays) => {
         return {
@@ -266,12 +266,19 @@ export default function Chart() {
       new Date(year, month, new Date().getDate() + (weekCount * 7 + 1))
     );
     date.setDate(date.getDate() + dayIndexxx);
-
     return days[activityy].includes(
       `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     )
       ? colors[activityy]
       : "rgba(255, 255, 255, 0.1)";
+  };
+
+  const handleChange = (event) => {
+    if (event.target.value === "month") {
+      monthView();
+    } else if (event.target.value === "week") {
+      weekView();
+    }
   };
 
   const weekView = () => {
@@ -290,22 +297,28 @@ export default function Chart() {
         <div className="main-items-week">
           <div className="header-week">
             <div className="header-left-week">
-              <Image src={arrowLeft} alt="left arrow" className="back" />
+              <Image
+                src={arrowLeft}
+                alt="left arrow"
+                className="back"
+                onClick={back}
+              />
               <div className="header-four">
                 <h4>{format(weekDates[0], "EEEE, M/d")}</h4>
                 <h4>to {format(weekDates[6], "EEEE, M/d")}</h4>
               </div>
-              <Image src={arrowRight} alt="right arrow" className="next" />
+              <Image
+                src={arrowRight}
+                alt="right arrow"
+                className="next"
+                onClick={next}
+              />
             </div>
             <div className="header-right-week">
-              {/* <button className="month-view" onClick={monthView}>
-                 Month View
-                </button> */}
-              <div className="month-view-container">
+              <div className="month-view-container" onChange={handleChange}>
                 <select className="month-view">
                   <option value="">WEEK</option>
-                  {/* need to make sure this works */}
-                  <option onClick={monthView}>MONTH</option>
+                  <option value="month">MONTH</option>
                 </select>
               </div>
               <div className="add-more-week-container">
@@ -370,8 +383,8 @@ export default function Chart() {
                             ),
                           }}
                         >
-                          {dayColorWeek(activityy, dayIndexxx) ===
-                            colors[activityy]}
+                          {/* {dayColorWeek(activityy, dayIndexxx) ===
+                            colors[activityy]} */}
                         </td>
                       ))}
                     </tr>
@@ -463,7 +476,6 @@ export default function Chart() {
 
   const dayColorMonth = (activity, dayIndex) => {
     const dates = new Date(year, month, dayIndex + 1);
-
     return days[activity].includes(
       `${dates.getFullYear()}-${dates.getMonth() + 1}-${dates.getDate()}`
     )
@@ -481,9 +493,13 @@ export default function Chart() {
         <div className="background-month">
           <div className="main-items-month">
             <div className="header-month">
-              {/* <div className="nextAndBack-month"> */}
               <div className="header-left-month">
-                <Image src={arrowLeft} alt="left arrow" className="backMonth" />
+                <Image
+                  src={arrowLeft}
+                  alt="left arrow"
+                  className="backMonth"
+                  onClick={previousMonth}
+                />
                 <div className="month-and-year">
                   <h6 className="month">
                     {format(set(new Date(), { month: month }), "MMMM")} {year}
@@ -493,14 +509,14 @@ export default function Chart() {
                   src={arrowRight}
                   alt="right arrow"
                   className="nextMonth"
+                  onClick={nextMonth}
                 />
               </div>
               <div className="header-right-month">
                 <div className="week-view-container">
-                  <select className="week-view">
+                  <select className="week-view" onChange={handleChange}>
                     <option value="">MONTH</option>
-                    {/* need to make sure this works */}
-                    <option onClick={weekView}>WEEK</option>
+                    <option value="week">WEEK</option>
                   </select>
                 </div>
                 <div className="add-more-month-container">
@@ -571,8 +587,8 @@ export default function Chart() {
                               ),
                             }}
                           >
-                            {dayColorMonth(activity, dayIndex) ===
-                              colors[activity]}
+                            {/* {dayColorMonth(activity, dayIndex) ===
+                              colors[activity]} */}
                           </td>
                         )
                       )}

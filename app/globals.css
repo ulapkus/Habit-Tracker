@@ -808,10 +808,10 @@ input:focus {
   outline: none;
 }
 
-.layout-background {
+/* .layout-background {
   height: 100%;
   width: 100%;
-}
+} */
 
 #myModal {
   display: none;
@@ -1133,14 +1133,6 @@ table {
   text-align: center;
 }
 
-.nextAndBack-month {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 2vw;
-  width: 100%;
-}
 .input-box-month::placeholder {
   color: white;
 }
