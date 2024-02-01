@@ -120,9 +120,9 @@ export default function Child() {
     setHabitInputField(inputValue);
   };
 
-  const handleColorChange = (value, i) => {
+  const handleColorChange = (e, index) => {
     const colorValue = [...colorInputField];
-    colorValue[i] = value.target.value;
+    colorValue[index] = e.target.value;
     setColorInputField(colorValue);
   };
 
@@ -136,7 +136,7 @@ export default function Child() {
     setColorInputField(removeColor);
   };
 
-return (
+  return (
     <div>
       {showModal && modalVisibility && (
         <div id="myModal" style={{ display: "block" }}>
@@ -162,7 +162,27 @@ return (
                       );
                     })}
                   </div>
-                  <div className="modal-color-input">
+                  {colorInputField.map((colorField, index) => {
+                    return (
+                      <div key={index} className="select-week">
+                        <select
+                          className="color-dropdown-week"
+                          onChange={(e) => handleColorChange(e, index)}
+                        >
+                          <option value="">Choose color:</option>
+                          <option value="#e74645">Red</option>
+                          <option value="#FF8466">Orange</option>
+                          <option value="#FFBD49">Yellow</option>
+                          <option value="#93C574">Green</option>
+                          <option value="#3b4cc3">Blue</option>
+                          <option value="#AA8AFA">Purple</option>
+                          <option value="#FF81C3">Pink</option>
+                        </select>
+                      </div>
+                    );
+                  })}
+
+                  {/* <div className="modal-color-input">
                     {colorInputField.map((colorField, index) => {
                       return (
                         <div key={index} className="modal-color-plus-button">
@@ -180,8 +200,9 @@ return (
                           </button>
                         </div>
                       );
-                    })}
-                  </div>
+                    }
+                    )}
+                  </div> */}
                 </div>
               </section>
               <section className="buttons-q">
