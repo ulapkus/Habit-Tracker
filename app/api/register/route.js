@@ -5,11 +5,8 @@ import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
   const { name, email, password, habits, days, colors } = await request.json();
-
   await Connect();
-
   const existingUser = await Users.findOne({ email });
-
   if (existingUser) {
     return new NextResponse("Email is already in use", { status: 400 });
   }

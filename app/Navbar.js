@@ -11,7 +11,6 @@ import habitRabbitLogo from "../public/habbit-rabbit-logo.png";
 const Navbar = () => {
   const { data: session } = useSession();
   const [textColor, setTextColor] = useState("");
-
   const pathname = usePathname();
 
   useEffect(() => {
@@ -20,7 +19,6 @@ const Navbar = () => {
     } else {
       setTextColor("#8AEEB3");
     }
-
     return () => {
       setTextColor("");
     };
@@ -42,7 +40,6 @@ const Navbar = () => {
           <Link href="/about" className="nav-link" style={{ color: textColor }}>
             ABOUT
           </Link>
-
           {!session ? (
             <>
               <Link

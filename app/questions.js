@@ -17,7 +17,6 @@ export default function Child() {
   async function getData() {
     try {
       const res = await fetch("/api/updateModal");
-
       if (!res.ok) {
         throw new Error("Error fetching users", error.message);
       }

@@ -89,7 +89,6 @@ const Register = () => {
             </Link>
           </div>
           <div className="register">
-            {/* <div className="login-form"> */}
             <form onSubmit={handleSubmit} className="login-form">
               <input
                 type="text"
@@ -117,14 +116,12 @@ const Register = () => {
 
               <p className="error">{error && error}</p>
             </form>
-            {/* </div> */}
             <div className="break-plus-or">
               <div className="break"></div>
               <p className="break-or">OR</p>
               <div className="break"></div>
             </div>
             <div className="login-bottom">
-              {/* need to add register with google and github ability */}
               <button className="login-google-button">
                 <Image
                   src={googleLogo}

@@ -10,7 +10,6 @@ export async function POST(request) {
       const session = await getServerSession();
       const thisuser = session.user.email;
       const filter = { email: thisuser };
-  
       const result = await Users.updateOne(filter, {
         $set: { displayModal: false}
         });
@@ -36,9 +35,7 @@ export async function POST(request) {
     await Connect();
     const session = await getServerSession();
     const query = { email: session.user.email };
-
     const data = await Users.find(query, { _id: 0, displayModal: 1 });
-  
     return NextResponse.json({ data }, { status: 200 });
   }
   

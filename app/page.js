@@ -49,10 +49,6 @@ export default function Dashboard() {
       author: "FRANKLIN D. ROOSEVELT",
     },
     {
-      text: "The only thing standing between you and your goal is the story you keep telling yourself as to why you can't achieve it.",
-      author: "JORDAN BELFORT",
-    },
-    {
       text: "Do not wait to strike till the iron is hot, but make it hot by striking.",
       author: "WILLIAM BUTLER YEATS",
     },

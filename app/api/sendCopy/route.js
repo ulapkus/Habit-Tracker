@@ -10,7 +10,6 @@ export async function POST(request) {
     const session = await getServerSession();
     const thisuser = session.user.email;
     const filter = { email: thisuser };
-
     const result = await Users.updateOne(filter, {
       $set: { days: daysCopy },
     });

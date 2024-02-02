@@ -20,7 +20,6 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
  },
       async authorize(credentials, req) {
-        // Find your user in the database using MongoDBAdapter
         const user = await authOptions.adapter.getUserByEmail(
           credentials.email
         );
@@ -38,12 +37,10 @@ export const authOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET,
   session: {
-    // Set it as jwt instead of database
     strategy: "jwt",
   },
   callbacks: {
     async jwt({ token, user }) {
-      // Persist the OAuth access_token and or the user id to the token right after signin
       if (user) {
         token.accessToken = user.access_token;
         token.id = user.id;
@@ -51,10 +48,8 @@ export const authOptions = {
       return token;
     },
     async session({ session, token }) {
-      // Send properties to the client, like an access_token and user id from a provider.
       session.accessToken = token.accessToken;
       session.user.id = token.id;
-
       return session;
     },
   },

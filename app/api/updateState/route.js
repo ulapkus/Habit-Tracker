@@ -3,8 +3,6 @@ import Users from "../../../models/User";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 
-// this is used in questions
-// to update the main categories from the modal
 export async function POST(request) {
   try {
     const { daysData, colorData, habitData } = await request.json();
@@ -12,7 +10,6 @@ export async function POST(request) {
     const session = await getServerSession();
     const thisuser = session.user.email;
     const filter = { email: thisuser };
-
     const result = await Users.updateOne(filter, {
       $set: { days: daysData, colors: colorData},
       $addToSet: { habits: { $each: habitData } },

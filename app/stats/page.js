@@ -33,7 +33,6 @@ export default function Stats() {
     <div>
       <div className="stats-top">
         <div className="stats-main">
-          {/* fix the below so if its 1 day it doesnt say "1 days" */}
           <p className="days-tracked">
             You&apos;ve been habit hoppin&apos; for {daysDifference} days
           </p>

@@ -12,8 +12,6 @@ export const Context = createContext([[], () => {}]);
 export const DaysContext = React.createContext();
 export const ColorContext = React.createContext();
 export const ModalContext = React.createContext();
-// can get rid of weekyear
-// need to prevent user from going beyond current month/week
 
 export default function Chart() {
   const [habits, setHabits] = useState([]);

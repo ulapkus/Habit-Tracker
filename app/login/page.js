@@ -98,7 +98,6 @@ const Login = () => {
               <div className="break"></div>
             </div>
             <div className="login-bottom">
-              {/* need to add signin with google ability */}
               <button className="login-google-button">
                 <Image
                   src={googleLogo}

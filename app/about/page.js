@@ -12,7 +12,6 @@ export default function About() {
           <h3>Welcome</h3>
         </div>
         <Image className="about-image" src={rabbitEars} alt="rabbit ears" />
-
         <h3>to Habit Rabbit</h3>
       </div>
       <p className="about-p">
