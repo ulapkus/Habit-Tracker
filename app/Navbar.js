@@ -74,7 +74,7 @@ const Navbar = () => {
                 STATS
               </Link>
               <p
-                className="nav-link"
+                className="nav-link logout"
                 onClick={() => {
                   signOut();
                 }}

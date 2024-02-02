@@ -281,6 +281,18 @@ export default function Chart() {
       : "rgba(255, 255, 255, 0.1)";
   };
 
+  const dayShadowWeek = (activityy, dayIndexxx) => {
+    const date = new Date(
+      new Date(year, month, new Date().getDate() + (weekCount * 7 + 1))
+    );
+    date.setDate(date.getDate() + dayIndexxx);
+    return days[activityy].includes(
+      `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+    )
+      ? `0 4px 30px ${colors[activityy]}`
+      : "0 4px 30px rgba(0, 0, 0, 0.1)";
+  };
+
   const handleChange = (event) => {
     if (event.target.value === "month") {
       monthView();
@@ -389,6 +401,7 @@ export default function Chart() {
                               activityy,
                               dayIndexxx
                             ),
+                            boxShadow: dayShadowWeek(activityy, dayIndexxx),
                           }}
                         ></td>
                       ))}
@@ -484,6 +497,15 @@ export default function Chart() {
     )
       ? colors[activity]
       : "rgba(255, 255, 255, 0.1)";
+  };
+
+  const dayShadowMonth = (activity, dayIndex) => {
+    const dates = new Date(year, month, dayIndex + 1);
+    return days[activity].includes(
+      `${dates.getFullYear()}-${dates.getMonth() + 1}-${dates.getDate()}`
+    )
+      ? `0 4px 30px ${colors[activity]}`
+      : "0 4px 30px rgba(0, 0, 0, 0.1)";
   };
 
   const daysInMonth = (year, month) => {
@@ -588,9 +610,9 @@ export default function Chart() {
                                 activity,
                                 dayIndex
                               ),
+                              boxShadow: dayShadowMonth(activity, dayIndex),
                             }}
-                          >
-                          </td>
+                          ></td>
                         )
                       )}
                     </tr>
@@ -650,7 +672,6 @@ export default function Chart() {
                   })}
                 </tbody>
                 <p className="error-month-chart">{errorMessage}</p>
-
               </table>
             </div>
           </div>

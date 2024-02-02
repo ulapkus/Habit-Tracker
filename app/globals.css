@@ -66,12 +66,11 @@ h2 {
   border-left: 1px solid #336a50;
   border-right: none;
   border-bottom: none;
-  color: white;
   height: 14vh;
 }
 
 .break-or {
-  color: white;
+  color: #fffae5;
   font-size: 1.1vh;
   padding: 0.65vh 0 0.65vh 0;
 }
@@ -163,6 +162,7 @@ h2 {
 .login-button {
   color: #fffae5;
   font-size: 1.7vh;
+  text-decoration: none;
 }
 
 .login-arrow {
@@ -261,8 +261,9 @@ h2 {
 h1 {
   color: #8bf1b5;
   font-family: "Roboto Mono", monospace;
-  font-weight: 400;
-  letter-spacing: 3px;
+  font-weight: 300;
+  font-size: 1.75vh;
+  letter-spacing: 0.3vw;
 }
 
 .quote-user {
@@ -284,8 +285,10 @@ h1 {
 
 .author {
   color: #8bf1b5;
-  font-size: 2vh;
-  padding: 0 0 0 3vw;
+  font-size: 1.75vh;
+  padding: 0 0 0 2vw;
+  letter-spacing: 0.3vw;
+  font-weight: 300;
   white-space: nowrap;
   font-family: "Roboto Mono", monospace;
 }
@@ -308,6 +311,7 @@ h1 {
 .quote-button {
   color: #fffae5;
   font-size: 2.5vh;
+  text-decoration: none;
 }
 
 .quote-arrow {
@@ -344,6 +348,7 @@ h1 {
   padding: 0 0 1vh 0;
   font-family: "Roboto Mono", monospace;
   letter-spacing: 0.2vw;
+  font-weight: 300;
 }
 
 .about-rabbit {
@@ -360,7 +365,7 @@ h1 {
 }
 
 h3 {
-  color: white;
+  color: #fffae5;
   padding: 0;
   margin: 0;
   font-size: 10vh;
@@ -408,7 +413,6 @@ p {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  color: white;
   margin: 2.7vh 0 3vh 0;
 }
 
@@ -497,7 +501,6 @@ p {
   padding: 10px;
   margin: 10px;
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(9.7px);
   -webkit-backdrop-filter: blur(9.7px);
   font-size: 1.5vw;
@@ -715,6 +718,19 @@ select:focus {
   white-space: nowrap;
   letter-spacing: 0.1vw;
 }
+
+.add-more-week:hover,
+.add-more-month:hover {
+  background: rgba(255, 162, 1, 0.318);
+  box-shadow: 0 0 30px rgba(255, 162, 1, 0.492);
+}
+
+.quote-button-plus-arrow:hover,
+.login-button-plus-arrow:hover {
+  background: rgba(255, 162, 1, 0.211);
+  box-shadow: 0 0 30px rgba(255, 162, 1, 0.304);
+}
+
 .stats-top {
   display: flex;
   flex-direction: row;
@@ -953,10 +969,10 @@ input:focus {
   margin: 0;
 }
 
-button {
+/* button {
   border-radius: 5px;
   background-color: white;
-}
+} */
 
 .submit-q {
   height: 4vh;
@@ -991,7 +1007,6 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
   margin: 2.5vh 0 2.5vh 0;
 }
 
@@ -1306,7 +1321,6 @@ table {
   padding: 5px;
   margin: 2.2px;
   border-radius: 1.3vh;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(9.7px);
   -webkit-backdrop-filter: blur(9.7px);
 }
@@ -1356,11 +1370,11 @@ table {
   align-items: center;
   width: 6vw;
   height: 5vh;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.9px);
   -webkit-backdrop-filter: blur(3.9px);
-  border: 1px solid #aba3a7;
+  border: 1px solid #585b6f;
   border-radius: 8px;
 }
 
@@ -1372,6 +1386,14 @@ table {
   font-family: "Roboto Mono", monospace;
   font-size: 0.8vw;
   letter-spacing: 0.1vw;
+}
+
+.month-view-container:hover,
+.week-view-container:hover {
+  background: rgba(88, 91, 111, 0.378);
+  box-shadow: 0 4px 30px rgba(88, 91, 111, 0.582);
+  backdrop-filter: blur(3.9px);
+  -webkit-backdrop-filter: blur(3.9px);
 }
 
 .error {
@@ -1423,10 +1445,17 @@ table {
   color: #8aeeb3;
   text-decoration: none;
   padding: 1vh;
-  font-size: 1.75vh;
   text-align: center;
-  letter-spacing: 6px;
+  font-weight: 300;
+  font-size: 1.75vh;
+  letter-spacing: 0.3vw;
   font-family: "Roboto Mono", monospace;
 }
 
-/* navbar end */
+a:hover {
+  text-shadow: 0 0 15px rgb(138, 240, 180);
+}
+
+.logout:hover {
+  text-shadow: 0 0 20px rgb(186, 48, 50);
+}

@@ -134,8 +134,8 @@ export default function Dashboard() {
           )}
         </div>
         <p className="quote">
-          &quot;{displayedQuote}&quot;
-          <span className="author">- {displayedAuthor}</span>
+          {displayedQuote}
+          <span className="author">-{displayedAuthor}</span>
         </p>
         <Link href="/chart" className="quote-button-plus-arrow">
           <p className="quote-button">Go to chart</p>
