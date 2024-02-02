@@ -190,10 +190,6 @@ h2 {
   background-color: #1b72e8;
 }
 
-.login-google {
-  flex-grow: 1;
-}
-
 .image-google {
   display: block;
   border: 1.5vh solid white;
@@ -218,8 +214,10 @@ h2 {
   box-sizing: border-box;
 }
 
-.login-github {
+.login-github,
+.login-google {
   flex-grow: 1;
+  font-family: "Roboto Mono", monospace;
 }
 
 .login-github-button {
@@ -785,15 +783,13 @@ select:focus {
 }
 
 .loading-background {
+  height: 50vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 50%;
 }
 
 .loading {
-  color: #8af0b5;
   font-size: 3vh;
   color: #8bf1b5;
   font-family: "Roboto Mono", monospace;
@@ -1116,7 +1112,8 @@ table {
 .login-button-plus-arrow:hover,
 .login-button:hover,
 .week-view:hover,
-.month-view:hover {
+.month-view:hover,
+.nav-link:hover {
   cursor: pointer;
 }
 
