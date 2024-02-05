@@ -30,12 +30,16 @@ const Login = () => {
     const password = e.target[1].value;
 
     if (!isValidEmail(email)) {
-      setError("Email is invalid");
+      setError("THAT EMAIL IS INVALID. ARE YOU SURE YOU ENTERED IT CORRECTLY?");
+      setTimeout(() => setError(""), 3000);
       return;
     }
 
     if (!password || password.length < 8) {
-      setError("Password is invalid");
+      setError(
+        "THAT PASSWORD IS INVALID. ARE YOU SURE YOU ENTERED IT CORRECTLY?"
+      );
+      setTimeout(() => setError(""), 3000);
       return;
     }
 
@@ -64,6 +68,9 @@ const Login = () => {
   return (
     sessionStatus !== "authenticated" && (
       <div className="login-background">
+        <p className={`error ${error ? "error-visible" : ""}`}>
+          {error && error}
+        </p>
         <div className="login-box">
           <h2>Log in</h2>
           <div className="no-account-signup">
@@ -90,7 +97,6 @@ const Login = () => {
                 <p className="login-button">Sign In</p>
                 <Image src={arrow} alt="arrow" className="login-arrow" />
               </button>
-              <p className="error">{error && error}</p>
             </form>
             <div className="break-plus-or">
               <div className="break"></div>

@@ -34,12 +34,16 @@ const Register = () => {
     const colors = {};
 
     if (!isValidEmail(email)) {
-      setError("Email is invalid");
+      setError("THAT EMAIL IS INVALID. ARE YOU SURE YOU ENTERED IT CORRECTLY?");
+      setTimeout(() => setError(""), 3000);
       return;
     }
 
     if (!password || password.length < 8) {
-      setError("Password is invalid");
+      setError(
+        "THAT PASSWORD IS INVALID. ARE YOU SURE YOU ENTERED IT CORRECTLY?"
+      );
+      setTimeout(() => setError(""), 3000);
       return;
     }
 
@@ -59,7 +63,8 @@ const Register = () => {
         }),
       });
       if (res.status === 400) {
-        setError("This email is already registered");
+        setError("THIS EMAIL IS ALREADY REGISTERED. PLEASE LOG IN.");
+        setTimeout(() => setError(""), 3000);
       }
       if (res.status === 200) {
         setError("");
@@ -80,6 +85,9 @@ const Register = () => {
   return (
     sessionStatus !== "authenticated" && (
       <div className="login-background">
+        <p className={`error ${error ? "error-visible" : ""}`}>
+          {error && error}
+        </p>
         <div className="login-box">
           <h2>Start hopping</h2>
           <div className="no-account-signup">
@@ -108,13 +116,10 @@ const Register = () => {
                 required
                 className="login-password"
               />
-
               <button type="submit" className="login-button-plus-arrow">
                 <p className="login-button">Sign Up</p>
                 <Image src={arrow} alt="arrow" className="login-arrow" />
               </button>
-
-              <p className="error">{error && error}</p>
             </form>
             <div className="break-plus-or">
               <div className="break"></div>
