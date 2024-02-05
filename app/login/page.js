@@ -98,7 +98,12 @@ const Login = () => {
               <div className="break"></div>
             </div>
             <div className="login-bottom">
-              <button className="login-google-button">
+              <button
+                onClick={() => {
+                  signIn("google");
+                }}
+                className="login-google-button"
+              >
                 <Image
                   src={googleLogo}
                   alt="Google logo"

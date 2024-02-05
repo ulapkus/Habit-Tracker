@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState, createContext } from "react";
-import Child from "../questions";
-import { format, addDays, set, subDays, getYear, getMonth } from "date-fns";
+import Child from "../modal";
+import { format, addDays, set, getYear } from "date-fns";
 import Image from "next/image";
 import rabbitEars from "../../public/rabbit-ears.png";
 import arrowLeft from "../../public/arrow-left.png";

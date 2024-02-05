@@ -1,4 +1,6 @@
-import Navbar from "./navbar";
+import Navbar from "./Navbar";
+
+// import Navbar from "./navbar";
 import "./globals.css";
 import { getServerSession } from "next-auth";
 import SessionProvider from "../utils/SessionProvider";
