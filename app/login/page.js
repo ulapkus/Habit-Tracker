@@ -7,6 +7,7 @@ import Image from "next/image";
 import arrow from "../../public/arrow.png";
 import githubLogo from "../../public/github-logo.png";
 import googleLogo from "../../public/google-logo.png";
+import Bunny from "../components/bunny";
 
 const Login = () => {
   const router = useRouter();
@@ -32,6 +33,7 @@ const Login = () => {
     if (!isValidEmail(email)) {
       setError("THAT EMAIL IS INVALID. ARE YOU SURE YOU ENTERED IT CORRECTLY?");
       setTimeout(() => setError(""), 3000);
+
       return;
     }
 
@@ -71,6 +73,7 @@ const Login = () => {
         <p className={`error ${error ? "error-visible" : ""}`}>
           {error && error}
         </p>
+        <Bunny />
         <div className="login-box">
           <h2>Log in</h2>
           <div className="no-account-signup">

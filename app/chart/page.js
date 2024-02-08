@@ -7,6 +7,7 @@ import Image from "next/image";
 import rabbitEars from "../../public/rabbit-ears.png";
 import arrowLeft from "../../public/arrow-left.png";
 import arrowRight from "../../public/arrow-right.png";
+import Bunny from "../components/bunny";
 
 export const Context = createContext([[], () => {}]);
 export const DaysContext = React.createContext();
@@ -67,6 +68,10 @@ export default function Chart() {
 
     setNewHabitAdded(false);
   };
+
+  // useEffect(() => {
+  //   console.log(inputFields);
+  // }, [addHabit]);
 
   const handleInputChange = (onChangeValue, i) => {
     const inputValue = [...inputFields];
@@ -311,9 +316,16 @@ export default function Chart() {
     setModalVisibility(false);
   };
 
+  const getDayOfWeek = (year, month, day) => {
+    const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    return week[new Date(year, month, day).getDay()];
+  };
+
   const renderWeekView = () => {
     return (
       <div className="background-week">
+        <Bunny />
+
         <div className="main-items-week">
           <div className="header-week">
             <div className="header-left-week">
@@ -372,7 +384,7 @@ export default function Chart() {
                 <tr className="week-header">
                   {weekDates.map((datee, dayIndexx) => (
                     <th className="days" key={dayIndexx}>
-                      <p>{getDayOfWeek(year, month, dayIndexx)}</p>
+                      <p>{getDayOfWeek(year, month, dayIndexx - 1)}</p>
                       <p>{`${datee.getMonth() + 1}/${datee.getDate()}`}</p>
                     </th>
                   ))}
@@ -485,11 +497,6 @@ export default function Chart() {
     renderMonthView();
   }, [month, year]);
 
-  const getDayOfWeek = (year, month, day) => {
-    const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    return week[new Date(year, month, day).getDay()];
-  };
-
   const dayColorMonth = (activity, dayIndex) => {
     const dates = new Date(year, month, dayIndex + 1);
     return days[activity].includes(
@@ -516,6 +523,8 @@ export default function Chart() {
     return (
       <div>
         <div className="background-month">
+          <Bunny />
+
           <div className="main-items-month">
             <div className="header-month">
               <div className="header-left-month">

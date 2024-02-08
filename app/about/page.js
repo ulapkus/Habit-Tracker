@@ -1,11 +1,16 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import rabbitEars from "../../public/rabbit-ears.png";
 import bunnyTwo from "../../public/bunny-two.png";
+import Bunny from "../components/bunny";
 
 export default function About() {
   return (
     <div className="about">
+      <Bunny />
+      <div className="about-main">
       <div className="about-title-parent">
         <div className="about-hey-and-welcome">
           <p className="about-hey">HEY THERE!</p>
@@ -48,6 +53,7 @@ export default function About() {
       <div className="about-bottom about-p">
         <p>Happy tracking!</p>
         <p>- Ula</p>
+      </div>
       </div>
     </div>
   );

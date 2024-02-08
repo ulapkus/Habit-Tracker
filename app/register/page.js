@@ -7,6 +7,8 @@ import Image from "next/image";
 import arrow from "../../public/arrow.png";
 import githubLogo from "../../public/github-logo.png";
 import googleLogo from "../../public/google-logo.png";
+import rabbitOne from "../../public/bunny-one.png";
+import Bunny from "../components/bunny";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -88,6 +90,7 @@ const Register = () => {
         <p className={`error ${error ? "error-visible" : ""}`}>
           {error && error}
         </p>
+        <Bunny />
         <div className="login-box">
           <h2>Start hopping</h2>
           <div className="no-account-signup">

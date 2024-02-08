@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 import arrow from "../public/arrow.png";
+import Bunny from "./components/bunny";
 
 export default function Dashboard() {
   const [displayedQuote, setDisplayedQuote] = useState("");
@@ -100,10 +101,7 @@ export default function Dashboard() {
       text: "It's not about how hard you hit. It's about how hard you can get hit and keep moving forward.",
       author: "ROCKY BALBOA",
     },
-    {
-      text: "You are the master of your destiny. You can influence, direct, and control your own environment. You can make your life what you want it to be.",
-      author: "NAPOLEON HILL",
-    },
+
     {
       text: "Challenges are what make life interesting and overcoming them is what makes life meaningful.",
       author: "JOSHUA J. MARINE",
@@ -122,6 +120,7 @@ export default function Dashboard() {
 
   return (
     <div className="quote-background">
+      <Bunny />
       <div className="quote-box">
         <div className="quote-welcome-user">
           <h1>WELCOME BACK,&nbsp;</h1>

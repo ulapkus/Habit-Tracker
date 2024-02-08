@@ -22,15 +22,18 @@ h2 {
   margin: 0;
 }
 
+.current-user {
+  text-transform: uppercase;
+}
+
 .login-background {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-end;
   background-color: #1d4938;
-  height: 80%;
-  margin: 0 7.5% 0 7.5%;
-  padding: 0;
+  height: 100%;
+  padding-top: 7.5vh;
 }
 
 .signin {
@@ -119,7 +122,8 @@ h2 {
   align-items: center;
   height: 80%;
   width: 100%;
-  padding: 7.5vh 0 0 0;
+  padding: 0 0 0 0;
+  /* margin: 0 7.5% 0 7.5%; */
 }
 
 .register-name,
@@ -234,14 +238,48 @@ h2 {
   height: 100%;
 }
 
+.login-rabbit-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 76%;
+  width: 100%;
+  flex-grow: 1;
+  padding: 0 5vw 0 0;
+  position: fixed;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.login-rabbit {
+  width: 6vw;
+  height: 12vh;
+  margin-top: 2vh;
+  object-fit: contain;
+}
+
+.login-rabbit-comment {
+  color: #87eaaf;
+  /* padding: 5%; */
+  padding: 1vh;
+  margin-bottom: 8vh;
+  width: 8vw;
+  font-size: 1.3vh;
+  height: auto;
+  font-family: "Roboto Mono", monospace;
+  letter-spacing: 0.1vw;
+  background-color: #2d624b;
+  border-radius: 0.5vw;
+}
+
 .quote-background {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 7.5vh 0 0 7.5%;
+  padding-top: 7.5vh;
   height: 100%;
-
   background-color: #1d4938;
 }
 
@@ -249,7 +287,8 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 60vw;
+  width: 100%;
+  padding: 0 34vw 0 7.5%;
   font-size: 1vh;
 }
 
@@ -321,14 +360,17 @@ h1 {
 }
 
 .about {
-  width: 60%;
-  margin: 0 0 0 7.5%;
+  padding: 7.5vh 0 0 0;
+}
+
+.about-main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 3vh;
-  padding: 7.5vh 0 0 0;
+  margin: 0 0 0 7.5%;
+  width: 60%;
 }
 
 .about-title-parent {
@@ -387,10 +429,12 @@ p {
 .background-week {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   height: 100%;
   margin: 0 0 0 0;
   padding: 7.5vh 0 0 0;
+  /* padding: 7.5vh 4vw 0 7.5%; */
 }
 
 .back,
@@ -823,10 +867,10 @@ input:focus {
   outline: none;
 }
 
-/* .layout-background {
-  height: 100%;
+.layout-background {
+  height: calc(100% - 8.2vh);
   width: 100%;
-} */
+}
 
 #myModal {
   display: none;
@@ -836,7 +880,9 @@ input:focus {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-image: url(https://i.ibb.co/YLgnHpd/Background-Asset-1-Blurred.png);
 }
 
@@ -952,26 +998,6 @@ select option {
 option[value="#e74645"] {
   background-color: #e74645;
 }
-
-/* .buttons-q {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  gap: 3vh;
-} */
-
-/* .add-more-q-page {
-  width: 1.5vw;
-  height: 1.5vw;
-  color: white;
-  font-size: 2vh;
-  font-family: "Roboto Mono", monospace;
-  border-radius: 50px;
-  font-weight: bolder;
-  background-color: rgb(254, 199, 103);
-  border: 1.5px solid white;
-} */
 
 .add-more-month-container {
   margin: 0;
@@ -1489,7 +1515,7 @@ table {
 .error {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   text-align: center;
   color: #fffae5;
@@ -1501,16 +1527,19 @@ table {
   height: 5vh;
   font-size: 1.5vh;
   letter-spacing: 0.1vw;
+  margin: -7vh 0 7vh 0;
+  transition: opacity 7s ease-in-out;
+  opacity: 1;
 }
 
 .error-visible {
+  opacity: 0;
   background-color: #be2f2f;
 }
 
 /* navbar start */
 .nav-background {
   padding: 3vh 0 1.5vh 0;
-  /* padding: 3vh 0 10vh 0; */
 }
 
 .nav-main {
@@ -1519,7 +1548,8 @@ table {
   justify-content: center;
   align-items: center;
   margin: 0 7.5% 0 7.5%;
-  height: 60%;
+  /* height: 60%; */
+  height: 3.7vh;
 }
 
 .logo-div {
