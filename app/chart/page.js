@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, createContext } from "react";
 import Child from "../modal";
+import Childtwo from "../modalagain";
 import { format, addDays, set, getYear } from "date-fns";
 import Image from "next/image";
 import rabbitEars from "../../public/rabbit-ears.png";
@@ -25,7 +26,9 @@ export default function Chart() {
   const [isDayClicked, setIsDayClicked] = useState(false);
   const [isSubmitClicked, setIsSubmitClicked] = useState(false);
   const [modalVisibility, setModalVisibility] = useState(true);
-  const [newHabitAdded, setNewHabitAdded] = useState(true);
+  const [modalVisibilityNew, setModalVisibilityNew] = useState(false);
+
+  // const [newHabitAdded, setNewHabitAdded] = useState(true);
   // const [month, setMonth] = useState(() => subDays(new Date(), 6).getMonth());
   const [month, setMonth] = useState(() => new Date().getMonth());
   const [year, setYear] = useState(() => getYear(new Date()));
@@ -59,19 +62,31 @@ export default function Chart() {
     fetchState();
   }, []);
 
+  // const addHabit = () => {
+  //   const addInput = [...inputFields, []];
+  //   setInputFields(addInput);
+
+  //   const addColor = [...colorFields, []];
+  //   setColorFields(addColor);
+
+  //   setNewHabitAdded(false);
+  // };
+
   const addHabit = () => {
-    const addInput = [...inputFields, []];
-    setInputFields(addInput);
+    setModalVisibilityNew(true);
 
-    const addColor = [...colorFields, []];
-    setColorFields(addColor);
+    // const addInput = [...inputFields, []];
+    // setInputFields(addInput);
 
-    setNewHabitAdded(false);
+    // const addColor = [...colorFields, []];
+    // setColorFields(addColor);
+
+    // setNewHabitAdded(false);
   };
 
-  // useEffect(() => {
-  //   console.log(inputFields);
-  // }, [addHabit]);
+  useEffect(() => {
+    console.log(colorFields);
+  }, [addHabit]);
 
   const handleInputChange = (onChangeValue, i) => {
     const inputValue = [...inputFields];
@@ -94,7 +109,7 @@ export default function Chart() {
     removeColor.splice(i, 1);
     setColorFields(removeColor);
 
-    setNewHabitAdded(true);
+    // setNewHabitAdded(true);
   };
 
   const submit = () => {
@@ -107,7 +122,7 @@ export default function Chart() {
     }
 
     setHabits([...habits, ...inputFields]);
-    setNewHabitAdded(true);
+    // setNewHabitAdded(true);
 
     inputFields.map((inputField, index) => {
       setDays((prevDays) => ({
@@ -359,22 +374,25 @@ export default function Chart() {
                   alt="rabbit ears"
                   className="rabbit-month"
                 />
-                {newHabitAdded === true ? (
-                  <p className="add-more-week" onClick={() => addHabit()}>
-                    NEW HABIT +
-                  </p>
-                ) : null}
+
+                <p className="add-more-week" onClick={() => addHabit()}>
+                  NEW HABIT +
+                </p>
               </div>
             </div>
           </div>
           <div className="main-table">
             <ModalContext.Provider
-              value={[modalVisibility, setModalVisibility]}
+              value={{
+                value: [modalVisibility, setModalVisibility],
+                value2: [modalVisibilityNew, setModalVisibilityNew],
+              }}
             >
               <ColorContext.Provider value={[colors, setColors]}>
                 <Context.Provider value={[habits, setHabits]}>
                   <DaysContext.Provider value={[days, setDays]}>
                     <Child />
+                    <Childtwo />
                   </DaysContext.Provider>
                 </Context.Provider>
               </ColorContext.Provider>
@@ -419,62 +437,6 @@ export default function Chart() {
                       ))}
                     </tr>
                   ))}
-              </tbody>
-            </table>
-            <table>
-              <tbody>
-                {inputFields.map((inputField, i) => {
-                  return (
-                    <tr key={i} className="week-cell-row">
-                      <td className="cell-new-habit-week">
-                        <div className="add-habit-x-div-week">
-                          <input
-                            className="input-box-week"
-                            value={inputField}
-                            onChange={(e) => handleInputChange(e, i)}
-                            placeholder="Habit"
-                          />
-                          <div className="select-week">
-                            <select
-                              className="color-dropdown-week"
-                              onChange={(event) => handleColorChange(event, i)}
-                            >
-                              <option value="">Choose color:</option>
-                              <option value="#e74645">Red</option>
-                              <option value="#FF8466">Orange</option>
-                              <option value="#FFBD49">Yellow</option>
-                              <option value="#93C574">Green</option>
-                              <option value="#3b4cc3">Blue</option>
-                              <option value="#AA8AFA">Purple</option>
-                              <option value="#FF81C3">Pink</option>
-                            </select>
-                          </div>
-                          <button
-                            className="submit-button-week"
-                            onClick={submit}
-                          >
-                            SUBMIT
-                          </button>
-                          <p className="error-chart">{errorMessage}</p>
-                        </div>
-                        <p
-                          className="add-habit-x-button-week"
-                          onClick={() => removeInput(i)}
-                        >
-                          X
-                        </p>
-                      </td>
-                      {Array.from(
-                        {
-                          length: 7,
-                        },
-                        (_, i) => (
-                          <td key={i} className="week-cell-new"></td>
-                        )
-                      )}
-                    </tr>
-                  );
-                })}
               </tbody>
             </table>
           </div>
@@ -559,24 +521,25 @@ export default function Chart() {
                     alt="rabbit ears"
                     className="add-more-image-month"
                   />
-
-                  {newHabitAdded === true ? (
-                    <p className="add-more-month" onClick={() => addHabit()}>
-                      NEW HABIT +
-                    </p>
-                  ) : null}
+                  <p className="add-more-month" onClick={() => addHabit()}>
+                    NEW HABIT +
+                  </p>
                 </div>
               </div>
             </div>
 
             <div className="main-table-month">
               <ModalContext.Provider
-                value={[modalVisibility, setModalVisibility]}
+                value={{
+                  value: [modalVisibility, setModalVisibility],
+                  value2: [modalVisibilityNew, setModalVisibilityNew],
+                }}
               >
                 <ColorContext.Provider value={[colors, setColors]}>
                   <Context.Provider value={[habits, setHabits]}>
                     <DaysContext.Provider value={[days, setDays]}>
                       <Child />
+                      <Childtwo />
                     </DaysContext.Provider>
                   </Context.Provider>
                 </ColorContext.Provider>
@@ -627,60 +590,6 @@ export default function Chart() {
                     </tr>
                   ))}
                 </tbody>
-              </table>
-              <table>
-                <tbody>
-                  {inputFields.map((inputField, i) => {
-                    return (
-                      <tr key={i} className="add-habit-row-month">
-                        <td className="cell-new-habit-month">
-                          <div className="add-habit-x-div-month">
-                            <input
-                              className="input-box-month"
-                              value={inputField}
-                              onChange={(e) => handleInputChange(e, i)}
-                              placeholder="Habit"
-                            />
-                            <select
-                              className="color-dropdown-month"
-                              onChange={(event) => handleColorChange(event, i)}
-                            >
-                              <option value="">Choose color:</option>
-                              <option value="#e74645">Red</option>
-                              <option value="#FF8466">Orange</option>
-                              <option value="#FFBD49">Yellow</option>
-                              <option value="#93C574">Green</option>
-                              <option value="#3b4cc3">Blue</option>
-                              <option value="#AA8AFA">Purple</option>
-                              <option value="#FF81C3">Pink</option>
-                            </select>
-                            <button
-                              className="submit-button-month"
-                              onClick={submit}
-                            >
-                              Submit
-                            </button>
-                          </div>
-                          <p
-                            className="add-habit-x-button-month"
-                            onClick={() => removeInput(i)}
-                          >
-                            X
-                          </p>
-                        </td>
-                        {Array.from(
-                          {
-                            length: daysInMonth(year, month),
-                          },
-                          (_, i) => (
-                            <td key={i} className="month-cell-new"></td>
-                          )
-                        )}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-                <p className="error-month-chart">{errorMessage}</p>
               </table>
             </div>
           </div>

@@ -7,10 +7,11 @@ import Image from "next/image";
 import arrow from "../public/arrow.png";
 
 export default function Child() {
+  const { value } = React.useContext(ModalContext);
   const [habits, setHabits] = useContext(Context);
   const [days, setDays] = useContext(DaysContext);
   const [colors, setColors] = useContext(ColorContext);
-  const [modalVisibility, setModalVisibility] = useContext(ModalContext);
+  const [modalVisibility, setModalVisibility] = value;
   const [habitInputField, setHabitInputField] = useState([[], [], []]);
   const [colorInputField, setColorInputField] = useState([[], [], []]);
   const [showModal, setShowModal] = useState(false);
@@ -33,15 +34,6 @@ export default function Child() {
   useEffect(() => {
     getData();
   }, []);
-
-  // const createNewElement = () => {
-  //   const addInput = [...habitInputField, []];
-  //   setHabitInputField(addInput);
-
-  //   const addColor = [...colorInputField, []];
-  //   setColorInputField(addColor);
-  //   console.log(habitInputField);
-  // };
 
   const saveAddHabit = async () => {
     const daysData = days;
@@ -126,23 +118,12 @@ export default function Child() {
     setColorInputField(colorValue);
   };
 
-  // const removeInput = (i) => {
-  //   const removeInput = [...habitInputField];
-  //   removeInput.splice(i, 1);
-  //   setHabitInputField(removeInput);
-
-  //   const removeColor = [...colorInputField];
-  //   removeColor.splice(i, 1);
-  //   setColorInputField(removeColor);
-  // };
-
   return (
     <div>
       {showModal && modalVisibility && (
         <div id="myModal" style={{ display: "block" }}>
           <div className="modal-content">
             <section className="question-main">
-              {/* <section className="question-plus-answer"> */}
               <h5>{"Let's start you off with three habits to work on"}</h5>
               <div className="input-boxes">
                 <div className="modal-habit-input">
@@ -177,28 +158,16 @@ export default function Child() {
                           <option value="#AA8AFA">Purple</option>
                           <option value="#FF81C3">Pink</option>
                         </select>
-                        {/* <button
-                          className="question-x"
-                          onClick={() => removeInput(i)}
-                        >
-                          X
-                        </button> */}
                       </div>
                     );
                   })}
                 </div>
               </div>
             </section>
-            {/* <section className="buttons-q"> */}
-            {/* <button className="add-more-q-page" onClick={createNewElement}>
-                +
-              </button> */}
-            {/* </section>{" "} */}
             <button onClick={getInputValues} className="submit-q">
               <p className="start-hoppin">Start hoppin&apos;</p>
               <Image src={arrow} alt="arrow" className="arrow-q" />
             </button>
-            {/* </section> */}
           </div>
         </div>
       )}

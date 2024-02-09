@@ -33,7 +33,7 @@ h2 {
   align-items: flex-end;
   background-color: #1d4938;
   height: 100%;
-  padding-top: 7.5vh;
+  padding: 7.5vh 7.5% 0 7.5%;
 }
 
 .signin {
@@ -489,11 +489,6 @@ p {
   color: #fffae5;
 }
 
-.week-cell-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
 
 .week-cell-habit {
   display: flex;
@@ -552,72 +547,7 @@ p {
   font-size: 1.5vw;
 }
 
-.week-cell-new {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 12vh;
-  width: 12vh;
-  font-size: 1vw;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(9.7px);
-  -webkit-backdrop-filter: blur(9.7px);
-  /* font-size: 1.5vw; */
-}
-
-.cell-new-habit-week {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  /* align-items: flex-start; */
-  height: 12vh;
-  width: 18vw;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(9.7px);
-  -webkit-backdrop-filter: blur(9.7px);
-  font-size: 1vw;
-  padding: 1.4vh;
-  margin: 10px;
-}
-
-.add-habit-x-button-week {
-  width: 0.7vw;
-  height: 1.5vh;
-  font-size: 1.4vh;
-  color: #c14443;
-}
-
-.add-habit-x-div-week {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.input-box-week {
-  width: 10vw;
-  border: none;
-  color: white;
-  text-align: center;
-  font-size: 3vh;
-  background: none;
-  outline: none;
-  letter-spacing: 7px;
-}
-
-.input-box-week::placeholder {
-  color: white;
-}
-
 .header-week {
-  /* border: 1px solid pink; */
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -772,9 +702,9 @@ select:focus {
 }
 
 .quote-button-plus-arrow:hover,
-.login-button-plus-arrow:hover {
+.login-button-plus-arrow:hover,
+.submit-q:hover {
   background-color: #ffa201;
-  box-shadow: 0 0 30px rgba(255, 162, 1, 0.304);
   text-shadow: none;
 }
 
@@ -884,6 +814,8 @@ input:focus {
   background-position: center;
   background-repeat: no-repeat;
   background-image: url(https://i.ibb.co/YLgnHpd/Background-Asset-1-Blurred.png);
+  border: 1px solid blue;
+  padding: 7.5% 7.5% 0 7.5%;
 }
 
 .modal-content {
@@ -892,15 +824,7 @@ input:focus {
   justify-content: center;
   align-items: center;
   margin: 10% auto;
-  gap: 2.5vh;
-  /* padding: 4vh;
-  width: 40%; */
-  /* border-radius: 25px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3.3px);
-  -webkit-backdrop-filter: blur(3.3px); */
+  gap: 3.4vh;
 }
 
 .modal-habit-input {
@@ -929,16 +853,36 @@ input:focus {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3.5vh;
-  width: 100%;
-  border-radius: 25px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.3px);
   -webkit-backdrop-filter: blur(3.3px);
-  padding: 5.5vh;
   width: 40%;
+}
+
+.x-container-modalagain {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  text-align: center;
+}
+
+.x-modalagain {
+  color: #c14443;
+  width: 2vw;
+  font-family: "Roboto Mono", monospace;
+  margin: 1.5vh 1vh 1.5vh 1.5vh;
+}
+
+.x-modalagain:hover {
+  color: #fffae5;
+}
+
+.question-main-second-modalagain {
+  width: 100%;
+  padding: 2vh 5.5vh 6.5vh 5.5vh;
 }
 
 h5 {
@@ -950,12 +894,12 @@ h5 {
   padding: 0;
   margin: 0;
   line-height: 90%;
+  padding-bottom: 2.5vh;
 }
 
 .modal-question {
   height: 6vh;
   width: 100%;
-  /* width: 27vw; */
   font-size: 1.8vh;
   padding-left: 1.5vw;
   letter-spacing: 3px;
@@ -1048,13 +992,6 @@ option[value="#e74645"] {
   gap: 0.5vw;
 }
 
-/* .question-x {
-  height: 4vh;
-  border: none;
-  background-color: rgb(254, 199, 103);
-  color: white;
-} */
-
 .input-boxes {
   display: flex;
   flex-direction: row;
@@ -1065,11 +1002,6 @@ option[value="#e74645"] {
   padding: 0;
   margin: 0;
 }
-
-/* button {
-  border-radius: 5px;
-  background-color: white;
-} */
 
 .submit-q {
   margin: 0;
@@ -1105,16 +1037,6 @@ option[value="#e74645"] {
   justify-content: center;
   align-items: center;
   gap: 1vh;
-}
-
-.question-plus-answer {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100%;
-  padding: 0;
-  margin: 0; */
 }
 
 .main-table-month {
@@ -1172,7 +1094,6 @@ option[value="#e74645"] {
   width: 100%;
   margin: 0 0 19vh 0;
   padding: 7.5vh 0 0 0;
-  /* background-image: url("https://i.ibb.co/ZhG2X94/ryanteo-beautiful-pixel-art-landscape-of-a-hundred-bunnies-frol-68a56c97-6b00-4597-8fb3-c945485450cb.png"); */
 }
 
 .month-cell-row {
@@ -1225,13 +1146,14 @@ table {
 
 .back:hover,
 .next:hover,
+.x-container-modalagain:hover,
 .backMonth:hover,
 .nextMonth:hover,
 .login-github-button:hover,
 .login-google-button:hover,
 .github-button-container:hover,
 .quote-button-plus-arrow:hover,
-/* .add-more-q-page:hover, */
+.week-cell:hover,
 .submit-q:hover,
 .question-x:hover,
 .add-more-week:hover,
@@ -1261,9 +1183,6 @@ table {
   text-align: center;
 }
 
-.input-box-month::placeholder {
-  color: white;
-}
 
 .add-habit-x-div-month {
   display: flex;
@@ -1274,155 +1193,6 @@ table {
   padding: 0;
   margin: 0 0 0 0;
   height: 100%;
-}
-
-.submit-button-month {
-  border: none;
-  font-family: "Roboto Mono", monospace;
-  letter-spacing: 3px;
-  width: 3.5vw;
-  height: 1.2vh;
-  padding: 0.1vh 0vw 0.3vh 0.2vw;
-  background-color: white;
-  color: gray;
-  margin: 0.1vh 0 0 0;
-  font-size: 1.1vh;
-  border-radius: 3px;
-}
-
-.month-cell-new {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 2.5vw;
-  width: 2.5vw;
-  text-align: center;
-  font-size: 1vw;
-  padding: 5px;
-  margin: 2.2px;
-  border-radius: 1.3vh;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(9.7px);
-  -webkit-backdrop-filter: blur(9.7px);
-}
-
-.color-dropdown-week {
-  border: none;
-  color: white;
-  font-size: 1.65vh;
-  font-family: "Roboto Mono", monospace;
-  text-transform: uppercase;
-  padding: 0.5vh 0.5vh 0.5vh 0.5vh;
-  margin: 0;
-  outline: none;
-  letter-spacing: 3px;
-  text-align: center;
-  width: 11vw;
-  background: none;
-}
-
-.select-week {
-  width: 11vw;
-}
-
-.select-month {
-  width: 100%;
-  padding: -1vh 0 0 0;
-  margin: 0;
-  height: 100%;
-}
-
-.submit-button-week {
-  border: none;
-  font-family: "Roboto Mono", monospace;
-  letter-spacing: 3px;
-  width: 4.3vw;
-  height: 2vh;
-  padding: 0.3vh 0.1vw 0 0.3vw;
-  background-color: none;
-  color: gray;
-  margin: 0 0.5vw 0 0;
-}
-
-.error-chart {
-  color: #fffae5;
-  font-size: 1vh;
-  font-family: "Roboto Mono", monospace;
-  text-align: center;
-}
-
-.error-month-chart {
-  color: #fffae5;
-  padding-top: 1vh;
-  font-size: 1vh;
-  font-family: "Roboto Mono", monospace;
-  text-align: left;
-}
-
-.add-habit-row-month {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.cell-new-habit-month {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 0.4vw;
-  width: 8vw;
-  height: 2.5vw;
-  padding-top: 0.3vh;
-  padding-left: 0.75vw;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 1.35vh;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(9.7px);
-  -webkit-backdrop-filter: blur(9.7px);
-}
-
-.add-habit-x-button-month {
-  font-size: 1vh;
-  height: 1.5vh;
-  width: 0.75vw;
-  color: #ba3032;
-}
-
-.input-box-month {
-  width: 6vw;
-  height: 1.6vh;
-  padding: 0.3vh 0vw 0.1vh 1.15vw;
-  margin: 0.1vh 0 0 0;
-  border: none;
-  color: white;
-  text-align: center;
-  border-radius: 2.5px;
-  font-size: 1.85vh;
-  font-family: "Roboto Mono", monospace;
-  text-transform: uppercase;
-  outline: none;
-  letter-spacing: 7px;
-  background: none;
-}
-
-.color-dropdown-month {
-  border: none;
-  border-radius: 3.5px;
-  color: white;
-  font-size: 1vh;
-  font-family: "Roboto Mono", monospace;
-  background: none;
-  text-transform: uppercase;
-  outline: none;
-  letter-spacing: 1px;
-  width: 6vw;
-  text-align: center;
-  padding: 0;
-  margin: 0.05vh 0 0 0;
-  height: 35%;
 }
 
 .month-cell {
@@ -1506,7 +1276,6 @@ table {
 .month-view-container:hover,
 .week-view-container:hover {
   background-color: #585b6f;
-  /* background: rgba(88, 91, 111, 0.378); */
   box-shadow: 0 4px 30px rgba(88, 91, 111, 0.582);
   backdrop-filter: blur(3.9px);
   -webkit-backdrop-filter: blur(3.9px);
@@ -1548,7 +1317,6 @@ table {
   justify-content: center;
   align-items: center;
   margin: 0 7.5% 0 7.5%;
-  /* height: 60%; */
   height: 3.7vh;
 }
 
@@ -1571,7 +1339,7 @@ table {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 0.25vw;
+  gap: 1vw;
   height: 60%;
 }
 
@@ -1584,12 +1352,4 @@ table {
   font-size: 1.75vh;
   letter-spacing: 0.3vw;
   font-family: "Roboto Mono", monospace;
-}
-
-a:hover {
-  text-shadow: 0 0 15px rgb(138, 240, 180);
-}
-
-.logout:hover {
-  text-shadow: 0 0 20px rgb(186, 48, 50);
 }
