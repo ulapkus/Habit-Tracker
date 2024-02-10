@@ -489,6 +489,11 @@ p {
   color: #fffae5;
 }
 
+.week-cell-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
 .week-cell-habit {
   display: flex;
@@ -545,6 +550,10 @@ p {
   backdrop-filter: blur(9.7px);
   -webkit-backdrop-filter: blur(9.7px);
   font-size: 1.5vw;
+}
+
+.week-cell:hover {
+  transform: scale(1.1);
 }
 
 .header-week {
@@ -814,11 +823,19 @@ input:focus {
   background-position: center;
   background-repeat: no-repeat;
   background-image: url(https://i.ibb.co/YLgnHpd/Background-Asset-1-Blurred.png);
-  border: 1px solid blue;
   padding: 7.5% 7.5% 0 7.5%;
 }
 
 .modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* margin: 3% auto; */
+  gap: 3.4vh;
+}
+
+.modal-content-again {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -858,6 +875,19 @@ input:focus {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.3px);
   -webkit-backdrop-filter: blur(3.3px);
+  width: 50%;
+}
+
+.question-main-again {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.3px);
+  -webkit-backdrop-filter: blur(3.3px);
   width: 40%;
 }
 
@@ -880,21 +910,33 @@ input:focus {
   color: #fffae5;
 }
 
+.question-main-second {
+  width: 100%;
+  padding: 5.5vh 5.5vh 5.5vh 5.5vh;
+}
+
 .question-main-second-modalagain {
   width: 100%;
   padding: 2vh 5.5vh 6.5vh 5.5vh;
 }
 
-h5 {
+h5,
+h6 {
   color: #fffae5;
-  text-align: center;
-  width: 100%;
   font-size: 6vh;
   text-align: left;
   padding: 0;
   margin: 0;
   line-height: 90%;
-  padding-bottom: 2.5vh;
+  padding-bottom: 3vh;
+}
+
+h5 {
+  width: 90%;
+}
+
+h6 {
+  width: 100%;
 }
 
 .modal-question {
@@ -1182,7 +1224,6 @@ table {
   margin: 0;
   text-align: center;
 }
-
 
 .add-habit-x-div-month {
   display: flex;

@@ -33,7 +33,6 @@ const Login = () => {
     if (!isValidEmail(email)) {
       setError("THAT EMAIL IS INVALID. ARE YOU SURE YOU ENTERED IT CORRECTLY?");
       setTimeout(() => setError(""), 3000);
-
       return;
     }
 
@@ -52,7 +51,7 @@ const Login = () => {
     });
 
     if (res?.error) {
-      setError("Invalid email or password");
+      setError("INVALID EMAIL OR PASSWORD");
       if (res?.url) router.replace("/");
     } else {
       setError("");

@@ -16,6 +16,7 @@ export default function Child() {
   const [colorInputField, setColorInputField] = useState([[], [], []]);
   const [showModal, setShowModal] = useState(false);
   const [stateUpdated, setStateUpdated] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function getData() {
     try {
@@ -35,20 +36,42 @@ export default function Child() {
     getData();
   }, []);
 
+  // const saveAddHabit = async () => {
+  //   const daysData = days;
+  //   const colorData = colors;
+  //   const habitData = habitInputField;
+  //   try {
+  //     const res = await fetch("/api/updateState", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         habitData,
+  //         colorData,
+  //         daysData,
+  //       }),
+  //     });
+  //     await res.json();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   const saveAddHabit = async () => {
-    const daysData = days;
-    const colorData = colors;
-    const habitData = habitInputField;
+    const daysCopy = days;
+    const colorsCopy = colors;
+    const habitsCopy = habits;
     try {
-      const res = await fetch("/api/updateState", {
+      const res = await fetch("/api/addOrRemoveHabit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          habitData,
-          colorData,
-          daysData,
+          daysCopy,
+          colorsCopy,
+          habitsCopy,
         }),
       });
       await res.json();
@@ -79,24 +102,36 @@ export default function Child() {
     const inputFields = document.querySelectorAll("input[type='text']");
     const inputValues = Array.from(inputFields).map((input) => input.value);
 
-    inputValues.map((inputValue, index) => {
-      setDays((prevDays) => ({
-        ...prevDays,
-        [inputValues[index]]: [],
-      }));
+    const habitFilled = habitInputField.every((array) => array.length > 0);
+    const colorFilled = colorInputField.every((array) => array.length > 0);
 
+    if (habitFilled && colorFilled) {
       inputValues.map((inputValue, index) => {
-        setColors((prevColor) => ({
-          ...prevColor,
-          [inputValues[index]]: colorInputField[index],
+        setDays((prevDays) => ({
+          ...prevDays,
+          [inputValues[index]]: [],
         }));
+
+        inputValues.map((inputValue, index) => {
+          setColors((prevColor) => ({
+            ...prevColor,
+            [inputValues[index]]: colorInputField[index],
+          }));
+        });
+        setHabits((prevHabits) => [...habitInputField]);
       });
-      setHabits((prevHabits) => [...habitInputField]);
-    });
-    setShowModal(false);
-    hasSeenModal();
-    setModalVisibility(false);
-    setStateUpdated(true);
+      setShowModal(false);
+      hasSeenModal();
+      setModalVisibility(false);
+      setStateUpdated(true);
+      setErrorMessage("");
+    } else {
+      setErrorMessage(
+        "NOT ALL BOXES ARE FILLED IN. PLEASE INCLUDE THREE HABITS AND THREE COLORS."
+      );
+      setTimeout(() => setErrorMessage(""), 3000);
+      return;
+    }
   }
 
   useEffect(() => {
@@ -122,45 +157,52 @@ export default function Child() {
     <div>
       {showModal && modalVisibility && (
         <div id="myModal" style={{ display: "block" }}>
+          <p className={`error ${errorMessage ? "error-visible" : ""}`}>
+            {errorMessage}
+          </p>
           <div className="modal-content">
+            {/* <div className="question-main-second-modalagain"> */}
+
             <section className="question-main">
-              <h5>{"Let's start you off with three habits to work on"}</h5>
-              <div className="input-boxes">
-                <div className="modal-habit-input">
-                  {habitInputField.map((habitInput, i) => {
-                    return (
-                      <div key={i} className="modal-habit">
-                        <input
-                          value={habitInput}
-                          onChange={(e) => handleInputChange(e, i)}
-                          placeholder="ENTER HABIT HERE..."
-                          type="text"
-                          className="modal-question"
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className="modal-color-input">
-                  {colorInputField.map((colorField, index) => {
-                    return (
-                      <div key={index} className="modal-color-plus-button">
-                        <select
-                          className="modal-color"
-                          onChange={(e) => handleColorChange(e, index)}
-                        >
-                          <option value=""></option>
-                          <option value="#e74645"></option>
-                          <option value="#FF8466">Orange</option>
-                          <option value="#FFBD49">Yellow</option>
-                          <option value="#93C574">Green</option>
-                          <option value="#3b4cc3">Blue</option>
-                          <option value="#AA8AFA">Purple</option>
-                          <option value="#FF81C3">Pink</option>
-                        </select>
-                      </div>
-                    );
-                  })}
+              <div className="question-main-second">
+                <h5>{"Let's start you off with three habits to work on"}</h5>
+                <div className="input-boxes">
+                  <div className="modal-habit-input">
+                    {habitInputField.map((habitInput, i) => {
+                      return (
+                        <div key={i} className="modal-habit">
+                          <input
+                            value={habitInput}
+                            onChange={(e) => handleInputChange(e, i)}
+                            placeholder="ENTER HABIT HERE..."
+                            type="text"
+                            className="modal-question"
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="modal-color-input">
+                    {colorInputField.map((colorField, index) => {
+                      return (
+                        <div key={index} className="modal-color-plus-button">
+                          <select
+                            className="modal-color"
+                            onChange={(e) => handleColorChange(e, index)}
+                          >
+                            <option value=""></option>
+                            <option value="#e74645"></option>
+                            <option value="#FF8466">Orange</option>
+                            <option value="#FFBD49">Yellow</option>
+                            <option value="#93C574">Green</option>
+                            <option value="#3b4cc3">Blue</option>
+                            <option value="#AA8AFA">Purple</option>
+                            <option value="#FF81C3">Pink</option>
+                          </select>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </section>

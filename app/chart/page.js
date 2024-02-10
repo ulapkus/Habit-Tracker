@@ -27,8 +27,6 @@ export default function Chart() {
   const [isSubmitClicked, setIsSubmitClicked] = useState(false);
   const [modalVisibility, setModalVisibility] = useState(true);
   const [modalVisibilityNew, setModalVisibilityNew] = useState(false);
-
-  // const [newHabitAdded, setNewHabitAdded] = useState(true);
   // const [month, setMonth] = useState(() => subDays(new Date(), 6).getMonth());
   const [month, setMonth] = useState(() => new Date().getMonth());
   const [year, setYear] = useState(() => getYear(new Date()));
@@ -41,7 +39,6 @@ export default function Chart() {
     });
     return past7Days.sort((a, b) => a - b);
   });
-  const [errorMessage, setErrorMessage] = useState("");
 
   async function fetchState() {
     try {
@@ -62,86 +59,8 @@ export default function Chart() {
     fetchState();
   }, []);
 
-  // const addHabit = () => {
-  //   const addInput = [...inputFields, []];
-  //   setInputFields(addInput);
-
-  //   const addColor = [...colorFields, []];
-  //   setColorFields(addColor);
-
-  //   setNewHabitAdded(false);
-  // };
-
   const addHabit = () => {
     setModalVisibilityNew(true);
-
-    // const addInput = [...inputFields, []];
-    // setInputFields(addInput);
-
-    // const addColor = [...colorFields, []];
-    // setColorFields(addColor);
-
-    // setNewHabitAdded(false);
-  };
-
-  useEffect(() => {
-    console.log(colorFields);
-  }, [addHabit]);
-
-  const handleInputChange = (onChangeValue, i) => {
-    const inputValue = [...inputFields];
-    inputValue[i] = onChangeValue.target.value;
-    setInputFields(inputValue);
-  };
-
-  const handleColorChange = (event, i) => {
-    const colorValue = [...colorFields];
-    colorValue[i] = event.target.value;
-    setColorFields(colorValue);
-  };
-
-  const removeInput = (i) => {
-    const removeInput = [...inputFields];
-    removeInput.splice(i, 1);
-    setInputFields(removeInput);
-
-    const removeColor = [...colorFields];
-    removeColor.splice(i, 1);
-    setColorFields(removeColor);
-
-    // setNewHabitAdded(true);
-  };
-
-  const submit = () => {
-    const duplicateHabits = inputFields.filter((habit) =>
-      habits.includes(habit)
-    );
-    if (duplicateHabits.length > 0) {
-      setErrorMessage("Habit already exists. Please choose a different name.");
-      return;
-    }
-
-    setHabits([...habits, ...inputFields]);
-    // setNewHabitAdded(true);
-
-    inputFields.map((inputField, index) => {
-      setDays((prevDays) => ({
-        ...prevDays,
-        [inputFields[index]]: [],
-      }));
-    });
-
-    inputFields.map((inputField, index) => {
-      setColors((prevColor) => ({
-        ...prevColor,
-        [inputFields[index]]: colorFields[index],
-      }));
-    });
-
-    setInputFields([]);
-    setColorFields([]);
-    setIsSubmitClicked(true);
-    setErrorMessage("");
   };
 
   const eraseHabit = (activity, i) => {
@@ -340,7 +259,6 @@ export default function Chart() {
     return (
       <div className="background-week">
         <Bunny />
-
         <div className="main-items-week">
           <div className="header-week">
             <div className="header-left-week">

@@ -61,36 +61,48 @@ export default function Childtwo() {
   };
 
   const submit = () => {
+    const habitFilled = habitInputField.every((array) => array.length > 0);
+    const colorFilled = colorInputField.every((array) => array.length > 0);
+
     const duplicateHabits = habitInputField.filter((habit) =>
       habits.includes(habit)
     );
+
     if (duplicateHabits.length > 0) {
-      setErrorMessage("Habit already exists. Please choose a different name.");
+      setErrorMessage("HABIT ALREADY EXISTS. PLEASE CHOOSE A DIFFERENT NAME.");
+      setTimeout(() => setErrorMessage(""), 3000);
       return;
     }
 
-    setHabits([...habits, ...habitInputField]);
+    if (habitFilled && colorFilled) {
+      setHabits([...habits, ...habitInputField]);
 
-    habitInputField.map((inputField, index) => {
-      setDays((prevDays) => ({
-        ...prevDays,
-        [habitInputField[index]]: [],
-      }));
-    });
+      habitInputField.map((inputField, index) => {
+        setDays((prevDays) => ({
+          ...prevDays,
+          [habitInputField[index]]: [],
+        }));
+      });
 
-    setModalVisibilityNew(false);
-    habitInputField.map((inputField, index) => {
-      setColors((prevColor) => ({
-        ...prevColor,
-        [habitInputField[index]]: colorInputField[index],
-      }));
-    });
-
-    setHabitInputField([]);
-    setColorInputField([]);
-    setIsSubmitClicked(true);
-    setErrorMessage("");
-    saveAddOrRemoveHabit();
+      setModalVisibilityNew(false);
+      habitInputField.map((inputField, index) => {
+        setColors((prevColor) => ({
+          ...prevColor,
+          [habitInputField[index]]: colorInputField[index],
+        }));
+      });
+      setHabitInputField([]);
+      setColorInputField([]);
+      setIsSubmitClicked(true);
+      setErrorMessage("");
+      saveAddOrRemoveHabit();
+    } else {
+      setErrorMessage(
+        "NOT ALL BOXES ARE FILLED IN. PLEASE INCLUDE BOTH A HABIT AND A COLOR."
+      );
+      setTimeout(() => setErrorMessage(""), 3000);
+      return;
+    }
   };
 
   useEffect(() => {
@@ -106,16 +118,16 @@ export default function Childtwo() {
         <div id="myModal" style={{ display: "block" }}>
           <p className={`error ${errorMessage ? "error-visible" : ""}`}>
             {errorMessage}
-          </p>{" "}
-          <div className="modal-content">
-            <section className="question-main">
+          </p>
+          <div className="modal-content-again">
+            <section className="question-main-again">
               <div className="x-container-modalagain">
                 <p className="x-modalagain" onClick={removeModal}>
                   X
                 </p>
               </div>
               <div className="question-main-second-modalagain">
-                <h5>Add a new habit</h5>
+                <h6>Add a new habit</h6>
                 {habitInputField.map((inputField, i) => {
                   return (
                     <div key={i} className="input-boxes">

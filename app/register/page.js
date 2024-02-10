@@ -41,9 +41,17 @@ const Register = () => {
       return;
     }
 
-    if (!password || password.length < 8) {
+    if (!password) {
       setError(
         "THAT PASSWORD IS INVALID. ARE YOU SURE YOU ENTERED IT CORRECTLY?"
+      );
+      setTimeout(() => setError(""), 3000);
+      return;
+    }
+
+    if (password.length < 8) {
+      setError(
+        "THAT PASSWORD IS TOO SHORT. MAKE SURE IT IS AT LEAST 8 CHARACTERS LONG."
       );
       setTimeout(() => setError(""), 3000);
       return;
@@ -73,8 +81,7 @@ const Register = () => {
         router.push("/login");
       }
     } catch (error) {
-      setError("Error, try again");
-      console.log(error);
+      setError("ERROR, TRY AGAIN");
     }
   };
 
