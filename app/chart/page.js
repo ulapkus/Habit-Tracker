@@ -292,7 +292,6 @@ export default function Chart() {
                   alt="rabbit ears"
                   className="rabbit-month"
                 />
-
                 <p className="add-more-week" onClick={() => addHabit()}>
                   NEW HABIT +
                 </p>
@@ -304,16 +303,13 @@ export default function Chart() {
               value={{
                 value: [modalVisibility, setModalVisibility],
                 value2: [modalVisibilityNew, setModalVisibilityNew],
+                value3: [days, setDays],
+                value4: [colors, setColors],
+                value5: [habits, setHabits],
               }}
             >
-              <ColorContext.Provider value={[colors, setColors]}>
-                <Context.Provider value={[habits, setHabits]}>
-                  <DaysContext.Provider value={[days, setDays]}>
-                    <Child />
-                    <Childtwo />
-                  </DaysContext.Provider>
-                </Context.Provider>
-              </ColorContext.Provider>
+              <Child />
+              <Childtwo />
             </ModalContext.Provider>
             <table>
               <thead>
@@ -451,16 +447,13 @@ export default function Chart() {
                 value={{
                   value: [modalVisibility, setModalVisibility],
                   value2: [modalVisibilityNew, setModalVisibilityNew],
+                  value3: [days, setDays],
+                  value4: [colors, setColors],
+                  value5: [habits, setHabits],
                 }}
               >
-                <ColorContext.Provider value={[colors, setColors]}>
-                  <Context.Provider value={[habits, setHabits]}>
-                    <DaysContext.Provider value={[days, setDays]}>
-                      <Child />
-                      <Childtwo />
-                    </DaysContext.Provider>
-                  </Context.Provider>
-                </ColorContext.Provider>
+                <Child />
+                <Childtwo />
               </ModalContext.Provider>
               <table className="habit-table-month">
                 <thead>

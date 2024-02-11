@@ -2,12 +2,11 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import arrow from "../../public/arrow.png";
 import githubLogo from "../../public/github-logo.png";
 import googleLogo from "../../public/google-logo.png";
-import rabbitOne from "../../public/bunny-one.png";
 import Bunny from "../components/bunny";
 
 const Register = () => {
@@ -137,7 +136,12 @@ const Register = () => {
               <div className="break"></div>
             </div>
             <div className="login-bottom">
-              <button className="login-google-button">
+              <button
+                onClick={() => {
+                  signIn("google");
+                }}
+                className="login-google-button"
+              >
                 <Image
                   src={googleLogo}
                   alt="Google logo"
@@ -145,7 +149,12 @@ const Register = () => {
                 />
                 <p className="login-google">Continue with Google</p>
               </button>
-              <button className="login-github-button">
+              <button
+                onClick={() => {
+                  signIn("github");
+                }}
+                className="login-github-button"
+              >
                 <Image
                   src={githubLogo}
                   alt="Github logo"

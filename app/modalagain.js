@@ -10,10 +10,13 @@ import arrow from "../public/arrow.png";
 
 export default function Childtwo() {
   const { value2 } = React.useContext(ModalContext);
+  const { value3 } = React.useContext(ModalContext);
+  const { value4 } = React.useContext(ModalContext);
+  const { value5 } = React.useContext(ModalContext);
 
-  const [habits, setHabits] = useContext(Context);
-  const [days, setDays] = useContext(DaysContext);
-  const [colors, setColors] = useContext(ColorContext);
+  const [days, setDays] = value3;
+  const [colors, setColors] = value4;
+  const [habits, setHabits] = value5;
   const [modalVisibilityNew, setModalVisibilityNew] = value2;
   const [isSubmitClicked, setIsSubmitClicked] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");

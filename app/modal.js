@@ -8,9 +8,13 @@ import arrow from "../public/arrow.png";
 
 export default function Child() {
   const { value } = React.useContext(ModalContext);
-  const [habits, setHabits] = useContext(Context);
-  const [days, setDays] = useContext(DaysContext);
-  const [colors, setColors] = useContext(ColorContext);
+  const { value3 } = React.useContext(ModalContext);
+  const { value4 } = React.useContext(ModalContext);
+  const { value5 } = React.useContext(ModalContext);
+
+  const [days, setDays] = value3;
+  const [colors, setColors] = value4;
+  const [habits, setHabits] = value5;
   const [modalVisibility, setModalVisibility] = value;
   const [habitInputField, setHabitInputField] = useState([[], [], []]);
   const [colorInputField, setColorInputField] = useState([[], [], []]);
@@ -35,28 +39,6 @@ export default function Child() {
   useEffect(() => {
     getData();
   }, []);
-
-  // const saveAddHabit = async () => {
-  //   const daysData = days;
-  //   const colorData = colors;
-  //   const habitData = habitInputField;
-  //   try {
-  //     const res = await fetch("/api/updateState", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         habitData,
-  //         colorData,
-  //         daysData,
-  //       }),
-  //     });
-  //     await res.json();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const saveAddHabit = async () => {
     const daysCopy = days;
