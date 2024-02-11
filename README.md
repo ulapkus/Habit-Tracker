@@ -3,12 +3,12 @@ The "Habit Rabbit" app helps users establish and monitor their daily routines by
 
 ![Alt text](/public/quote-screen.png "Optional title")
 
-##Features
+## Features
 - Different colors used to distinguish between various habits
 - Ability to toggle between a week and a month view
 - Easy to use, straight to the point
 - Adaptable to various screen sizes due to it's responsive design
 
-###Goals
+### Goals
 - Statistics page providing users with an analysis of their data
 - Build iOS version
