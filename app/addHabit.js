@@ -129,14 +129,14 @@ export default function Childtwo() {
             )}
             {errorMessage}
           </p>
-          <div className="modal-content-again">
-            <section className="question-main-again">
-              <div className="x-container-modalagain">
-                <p className="x-modalagain" onClick={removeModal}>
+          <div className="modal-content-two">
+            <section className="question-main-two">
+              <div className="remove-container">
+                <p className="remove" onClick={removeModal}>
                   X
                 </p>
               </div>
-              <div className="question-main-second-modalagain">
+              <div className="modal-text-two">
                 <h6>Add a new habit</h6>
                 {habitInputField.map((inputField, i) => {
                   return (
@@ -155,13 +155,13 @@ export default function Childtwo() {
                           onChange={(event) => handleColorChange(event, i)}
                         >
                           <option value=""></option>
-                          <option value="#e74645">Red</option>
-                          <option value="#FF8466">Orange</option>
-                          <option value="#FFBD49">Yellow</option>
-                          <option value="#93C574">Green</option>
-                          <option value="#3b4cc3">Blue</option>
-                          <option value="#AA8AFA">Purple</option>
-                          <option value="#FF81C3">Pink</option>
+                          <option value="#e74645">RED</option>
+                          <option value="#FF8466">ORANGE</option>
+                          <option value="#FFBD49">YELLOW</option>
+                          <option value="#93C574">GREEN</option>
+                          <option value="#3b4cc3">BLUE</option>
+                          <option value="#AA8AFA">PURPLE</option>
+                          <option value="#FF81C3">PINK</option>
                         </select>
                       </div>
                     </div>

@@ -832,7 +832,7 @@ input:focus {
   gap: 3.4vh;
 }
 
-.modal-content-again {
+.modal-content-two {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -875,7 +875,7 @@ input:focus {
   width: 50%;
 }
 
-.question-main-again {
+.question-main-two {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -888,7 +888,7 @@ input:focus {
   width: 40%;
 }
 
-.x-container-modalagain {
+.remove-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -896,23 +896,23 @@ input:focus {
   text-align: center;
 }
 
-.x-modalagain {
+.remove {
   color: #c14443;
   width: 2vw;
   font-family: "Roboto Mono", monospace;
   margin: 1.5vh 1vh 1.5vh 1.5vh;
 }
 
-.x-modalagain:hover {
+.remove:hover {
   color: #fffae5;
 }
 
-.question-main-second {
+.modal-text {
   width: 100%;
   padding: 5.5vh 5.5vh 5.5vh 5.5vh;
 }
 
-.question-main-second-modalagain {
+.modal-text-two {
   width: 100%;
   padding: 2vh 5.5vh 6.5vh 5.5vh;
 }
@@ -959,9 +959,8 @@ h6 {
 
 .modal-color {
   height: 6vh;
-  width: 8vh;
+  width: 8vw;
   font-size: 2vh;
-  padding-left: 0.5vw;
   letter-spacing: 3px;
   border: none;
   background: rgba(84, 81, 92, 0.21);
@@ -969,17 +968,11 @@ h6 {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(2.3px);
   -webkit-backdrop-filter: blur(2.3px);
-}
-
-select option {
-  margin: 40px;
-  background: blue;
-  color: #fff;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
-}
-
-option[value="#e74645"] {
-  background-color: #e74645;
+  color: #fffae5;
+  font-size: 1.8vh;
+  padding-left: 1.5vw;
+  letter-spacing: 3px;
+  font-family: "Roboto Mono", monospace;
 }
 
 .add-more-month-container {
@@ -1185,7 +1178,7 @@ table {
 
 .back:hover,
 .next:hover,
-.x-container-modalagain:hover,
+.remove-container:hover,
 .backMonth:hover,
 .nextMonth:hover,
 .login-github-button:hover,

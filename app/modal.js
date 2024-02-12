@@ -150,10 +150,8 @@ export default function Child() {
             {errorMessage}
           </p>
           <div className="modal-content">
-            {/* <div className="question-main-second-modalagain"> */}
-
             <section className="question-main">
-              <div className="question-main-second">
+              <div className="modal-text">
                 <h5>{"Let's start you off with three habits to work on"}</h5>
                 <div className="input-boxes">
                   <div className="modal-habit-input">
@@ -179,14 +177,14 @@ export default function Child() {
                             className="modal-color"
                             onChange={(e) => handleColorChange(e, index)}
                           >
-                            <option value=""></option>
-                            <option value="#e74645"></option>
-                            <option value="#FF8466">Orange</option>
-                            <option value="#FFBD49">Yellow</option>
-                            <option value="#93C574">Green</option>
-                            <option value="#3b4cc3">Blue</option>
-                            <option value="#AA8AFA">Purple</option>
-                            <option value="#FF81C3">Pink</option>
+                            <option value="">COLOR</option>
+                            <option value="#e74645">RED</option>
+                            <option value="#FF8466">ORANGE</option>
+                            <option value="#FFBD49">YELLOW</option>
+                            <option value="#93C574">GREEN</option>
+                            <option value="#3b4cc3">BLUE</option>
+                            <option value="#AA8AFA">PURPLE</option>
+                            <option value="#FF81C3">PINK</option>
                           </select>
                         </div>
                       );

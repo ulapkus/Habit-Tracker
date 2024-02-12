@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, createContext } from "react";
 import Child from "../modal";
-import Childtwo from "../modalagain";
+import Childtwo from "../addHabit";
 import { format, addDays, set, getYear } from "date-fns";
 import Image from "next/image";
 import rabbitEars from "../../public/rabbit-ears.png";
