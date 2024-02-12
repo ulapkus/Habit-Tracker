@@ -19,8 +19,6 @@ export default function Chart() {
   const [habits, setHabits] = useState([]);
   const [days, setDays] = useState({});
   const [colors, setColors] = useState({});
-  const [inputFields, setInputFields] = useState([]);
-  const [colorFields, setColorFields] = useState([]);
   const [weekCount, setWeekCount] = useState(-1);
   const [view, setView] = useState("week");
   const [isDayClicked, setIsDayClicked] = useState(false);

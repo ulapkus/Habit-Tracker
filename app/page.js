@@ -134,7 +134,7 @@ export default function Dashboard() {
         </p>
         <Link href="/chart" className="quote-button-plus-arrow">
           <p className="quote-button">Go to chart</p>
-          <Image className="quote-arrow" src={arrow} alt="habbit rabbit logo" />
+          <Image className="quote-arrow" src={arrow} alt="habit rabbit logo" />
         </Link>
       </div>
     </div>

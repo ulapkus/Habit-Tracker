@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useContext, useEffect, useState } from "react";
-import { Context } from "./chart/page";
+import React, { useEffect, useState } from "react";
 import { ModalContext } from "./chart/page";
-import { DaysContext } from "./chart/page";
-import { ColorContext } from "./chart/page";
 import Image from "next/image";
 import arrow from "../public/arrow.png";
+import alert from "../public/alert-icon.png";
 
 export default function Childtwo() {
   const { value2 } = React.useContext(ModalContext);
@@ -118,8 +116,17 @@ export default function Childtwo() {
   return (
     <div>
       {modalVisibilityNew && (
-        <div id="myModal" style={{ display: "block" }}>
+        <div
+          id="myModal"
+          style={{
+            display: "block",
+            backgroundImage: `url('/background-modal.png')`,
+          }}
+        >
           <p className={`error ${errorMessage ? "error-visible" : ""}`}>
+            {errorMessage && (
+              <Image src={alert} alt="Error" className="error-img"></Image>
+            )}
             {errorMessage}
           </p>
           <div className="modal-content-again">

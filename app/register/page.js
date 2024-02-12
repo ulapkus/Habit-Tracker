@@ -8,6 +8,7 @@ import arrow from "../../public/arrow.png";
 import githubLogo from "../../public/github-logo.png";
 import googleLogo from "../../public/google-logo.png";
 import Bunny from "../components/bunny";
+import alert from "../../public/alert-icon.png";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -94,7 +95,10 @@ const Register = () => {
     sessionStatus !== "authenticated" && (
       <div className="login-background">
         <p className={`error ${error ? "error-visible" : ""}`}>
-          {error && error}
+          {error && (
+            <Image src={alert} alt="Error" className="error-img"></Image>
+          )}
+          {error}
         </p>
         <Bunny />
         <div className="login-box">

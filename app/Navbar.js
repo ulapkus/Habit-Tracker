@@ -28,13 +28,7 @@ const Navbar = () => {
     <div className="nav-background">
       <div className="nav-main">
         <div className="logo-div">
-          <Link href="/">
-            <Image
-              src={habitRabbitLogo}
-              alt="habit rabbit logo"
-              className="logo"
-            />
-          </Link>
+          <Link href="/" className="logo"></Link>
         </div>
         <div className="chart-and-stats">
           <Link href="/about" className="nav-link" style={{ color: textColor }}>

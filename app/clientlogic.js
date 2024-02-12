@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import backgroundPic from "../public/background.webp";
 
 export default function ClientLogic({ children }) {
   const pathname = usePathname();
@@ -10,14 +11,13 @@ export default function ClientLogic({ children }) {
     let backgroundImage = "";
 
     if (pathname === "/chart") {
-      backgroundImage =
-        "url(https://i.ibb.co/KNw6Pm5/rabbit-background-chart.png)";
+      backgroundImage = `url(${backgroundPic.src})`;
     } else {
       backgroundImage = "";
     }
-
     document.body.style.backgroundImage = backgroundImage;
     document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
   }, [pathname]);
 
   return <div className="layout-background">{children}</div>;
