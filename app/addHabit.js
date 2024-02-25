@@ -5,6 +5,7 @@ import { ModalContext } from "./chart/page";
 import Image from "next/image";
 import arrow from "../public/arrow.png";
 import alert from "../public/alert-icon.png";
+import styles from "./styles/page.module.css";
 
 export default function Childtwo() {
   const { value2 } = React.useContext(ModalContext);
@@ -129,29 +130,37 @@ export default function Childtwo() {
             )}
             {errorMessage}
           </p>
-          <div className="modal-content-two">
-            <section className="question-main-two">
-              <div className="remove-container">
-                <p className="remove" onClick={removeModal}>
+          <div className={styles.modal_content_two}>
+            <section className={styles.question_main_two}>
+              <div className={styles.remove_container}>
+                <p className={styles.remove} onClick={removeModal}>
                   X
                 </p>
               </div>
-              <div className="modal-text-two">
+              <div className={styles.modal_text_two}>
                 <h6>Add a new habit</h6>
                 {habitInputField.map((inputField, i) => {
                   return (
-                    <div key={i} className="input-boxes">
-                      <div className="modal-habit">
+                    <div key={i} className={styles.input_boxes}>
+                      <div className={styles.modal_habit}>
                         <input
                           value={inputField}
                           onChange={(e) => handleInputChange(e, i)}
-                          className="modal-question"
+                          className={styles.modal_question}
                           placeholder="ENTER HABIT HERE..."
                         />
                       </div>
-                      <div className="modal-color-plus-button">
+                      {/* <div className="modal-color">Hover me</div>
+                      <div class="dropdown-container">
+                        <div class="trigger">Hover me</div>
+                        <div class="dropdown-content">
+                          <p>This is the dropdown content</p>
+                          <p>So is this</p>
+                        </div>
+                      </div> */}
+                      <div className={styles.modal_color_plus_button}>
                         <select
-                          className="modal-color"
+                          className={styles.modal_color}
                           onChange={(event) => handleColorChange(event, i)}
                         >
                           <option value=""></option>
@@ -169,9 +178,9 @@ export default function Childtwo() {
                 })}
               </div>
             </section>
-            <button className="submit-q" onClick={submit}>
-              <p className="start-hoppin">Confirm</p>
-              <Image src={arrow} alt="arrow" className="arrow-q" />
+            <button className={styles.submit_q} onClick={submit}>
+              <p className={styles.start_hoppin}>Confirm</p>
+              <Image src={arrow} alt="arrow" className={styles.arrow_q} />
             </button>
           </div>
         </div>

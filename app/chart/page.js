@@ -9,6 +9,7 @@ import rabbitEars from "../../public/rabbit-ears.png";
 import arrowLeft from "../../public/arrow-left.png";
 import arrowRight from "../../public/arrow-right.png";
 import Bunny from "../components/bunny";
+import styles from "../styles/page.module.css";
 
 export const Context = createContext([[], () => {}]);
 export const DaysContext = React.createContext();
@@ -255,48 +256,51 @@ export default function Chart() {
 
   const renderWeekView = () => {
     return (
-      <div className="background-week">
+      <div className={styles.background_week}>
         <Bunny />
-        <div className="main-items-week">
-          <div className="header-week">
-            <div className="header-left-week">
+        <div className={styles.main_items_week}>
+          <div className={styles.header_week}>
+            <div className={styles.header_left_week}>
               <Image
                 src={arrowLeft}
                 alt="left arrow"
-                className="back"
+                className={styles.back}
                 onClick={back}
               />
-              <div className="header-four">
+              <div className={styles.header_four}>
                 <h4>{format(weekDates[0], "EEEE, M/d")}</h4>
                 <h4>to {format(weekDates[6], "EEEE, M/d")}</h4>
               </div>
               <Image
                 src={arrowRight}
                 alt="right arrow"
-                className="next"
+                className={styles.next}
                 onClick={next}
               />
             </div>
-            <div className="header-right-week">
-              <div className="month-view-container" onChange={handleChange}>
-                <select className="month-view">
+            <div className={styles.header_right_week}>
+              <div
+                className={styles.month_view_container}
+                onChange={handleChange}
+              >
+                <select className={styles.month_view}>
                   <option value="">WEEK</option>
                   <option value="month">MONTH</option>
                 </select>
               </div>
-              <div className="add-more-week-container">
+              <div className={styles.add_more_week_container}>
                 <Image
                   src={rabbitEars}
                   alt="rabbit ears"
-                  className="rabbit-month"
+                  className={styles.rabbit_month}
                 />
-                <p className="add-more-week" onClick={() => addHabit()}>
+                <p className={styles.add_more_week} onClick={() => addHabit()}>
                   NEW HABIT +
                 </p>
               </div>
             </div>
           </div>
-          <div className="main-table">
+          <div className={styles.main_table}>
             <ModalContext.Provider
               value={{
                 value: [modalVisibility, setModalVisibility],
@@ -311,9 +315,9 @@ export default function Chart() {
             </ModalContext.Provider>
             <table>
               <thead>
-                <tr className="week-header">
+                <tr className={styles.week_header}>
                   {weekDates.map((datee, dayIndexx) => (
-                    <th className="days" key={dayIndexx}>
+                    <th className={styles.days} key={dayIndexx}>
                       <p>{getDayOfWeek(year, month, dayIndexx - 1)}</p>
                       <p>{`${datee.getMonth() + 1}/${datee.getDate()}`}</p>
                     </th>
@@ -323,19 +327,19 @@ export default function Chart() {
               <tbody>
                 {days &&
                   Object.keys(days).map((activityy, indexx) => (
-                    <tr key={indexx} className="week-cell-row">
-                      <td className="week-cell-habit">
-                        <div className="activity-week">{activityy}</div>
+                    <tr key={indexx} className={styles.week_cell_row}>
+                      <td className={styles.week_cell_habit}>
+                        <div className={styles.activity_week}>{activityy}</div>
                         <p
                           onClick={() => eraseHabit(activityy, indexx)}
-                          className="x-button-week"
+                          className={styles.x_button_week}
                         >
                           X
                         </p>
                       </td>
                       {weekDates.map((datee, dayIndexxx) => (
                         <td
-                          className="week-cell"
+                          className={styles.week_cell}
                           key={dayIndexxx}
                           onClick={() => cellClickWeek(activityy, dayIndexxx)}
                           style={{
@@ -396,51 +400,49 @@ export default function Chart() {
   const renderMonthView = () => {
     return (
       <div>
-        <div className="background-month">
+        <div className={styles.background_month}>
           <Bunny />
-
-          <div className="main-items-month">
-            <div className="header-month">
-              <div className="header-left-month">
+          <div className={styles.main_items_month}>
+            <div className={styles.header_month}>
+              <div className={styles.header_left_month}>
                 <Image
                   src={arrowLeft}
                   alt="left arrow"
-                  className="backMonth"
+                  className={styles.backMonth}
                   onClick={previousMonth}
                 />
-                <div className="month-and-year">
-                  <h6 className="month">
+                <div className={styles.month_and_year}>
+                  <h6 className={styles.month}>
                     {format(set(new Date(), { month: month }), "MMMM")} {year}
                   </h6>
                 </div>
                 <Image
                   src={arrowRight}
                   alt="right arrow"
-                  className="nextMonth"
+                  className={styles.nextMonth}
                   onClick={nextMonth}
                 />
               </div>
-              <div className="header-right-month">
-                <div className="week-view-container">
-                  <select className="week-view" onChange={handleChange}>
+              <div className={styles.header_right_month}>
+                <div className={styles.week_view_container}>
+                  <select className={styles.week_view} onChange={handleChange}>
                     <option value="">MONTH</option>
                     <option value="week">WEEK</option>
                   </select>
                 </div>
-                <div className="add-more-month-container">
+                <div className={styles.add_more_month_container}>
                   <Image
                     src={rabbitEars}
                     alt="rabbit ears"
-                    className="add-more-image-month"
+                    className={styles.add_more_img_month}
                   />
-                  <p className="add-more-month" onClick={() => addHabit()}>
+                  <p className={styles.add_more_month} onClick={() => addHabit()}>
                     NEW HABIT +
                   </p>
                 </div>
               </div>
             </div>
-
-            <div className="main-table-month">
+            <div className={styles.main_table_month}>
               <ModalContext.Provider
                 value={{
                   value: [modalVisibility, setModalVisibility],
@@ -453,13 +455,13 @@ export default function Chart() {
                 <Child />
                 <Childtwo />
               </ModalContext.Provider>
-              <table className="habit-table-month">
+              <table className={styles.habit_table_month}>
                 <thead>
-                  <tr className="month-header">
+                  <tr className={styles.month_header}>
                     {Array.from(
                       { length: daysInMonth(year, month) },
                       (_, dayIndex) => (
-                        <th className="month-daysofweek" key={dayIndex}>
+                        <th className={styles.month_daysofweek} key={dayIndex}>
                           <p>{getDayOfWeek(year, month, dayIndex + 1)}</p>
                           <p>{dayIndex + 1}</p>
                         </th>
@@ -469,12 +471,12 @@ export default function Chart() {
                 </thead>
                 <tbody>
                   {Object.keys(days).map((activity, index) => (
-                    <tr key={index} className="month-cell-row">
-                      <td className="month-cell-habit">
-                        <div className="activity-month">{activity}</div>
+                    <tr key={index} className={styles.month_cell_row}>
+                      <td className={styles.month_cell_habit}>
+                        <div className={styles.activity_month}>{activity}</div>
                         <p
                           onClick={() => eraseHabit(activity, index)}
-                          className="x-button-month"
+                          className={styles.x_button_month}
                         >
                           X
                         </p>
@@ -483,7 +485,7 @@ export default function Chart() {
                         { length: daysInMonth(year, month) },
                         (_, dayIndex) => (
                           <td
-                            className="month-cell"
+                            className={styles.month_cell}
                             key={dayIndex}
                             onClick={() => cellClickMonth(activity, dayIndex)}
                             style={{

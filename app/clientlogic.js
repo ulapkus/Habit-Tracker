@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import backgroundPic from "../public/background.webp";
+import styles from './styles/page.module.css';
 
 export default function ClientLogic({ children }) {
   const pathname = usePathname();

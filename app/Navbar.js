@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import habitRabbitLogo from "../public/habbit-rabbit-logo.png";
+import styles from './styles/page.module.css';
 
 const Navbar = () => {
   const { data: session } = useSession();

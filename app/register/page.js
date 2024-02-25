@@ -9,6 +9,7 @@ import githubLogo from "../../public/github-logo.png";
 import googleLogo from "../../public/google-logo.png";
 import Bunny from "../components/bunny";
 import alert from "../../public/alert-icon.png";
+import styles from "../styles/page.module.css";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -28,8 +29,8 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const name = e.target[0].value;
-    const email = e.target[1].value;
+    const name = e.target[0].value.toLowerCase();
+    const email = e.target[1].value.toLowerCase();
     const password = e.target[2].value;
     const habits = [];
     const days = {};
@@ -93,78 +94,78 @@ const Register = () => {
 
   return (
     sessionStatus !== "authenticated" && (
-      <div className="login-background">
-        <p className={`error ${error ? "error-visible" : ""}`}>
+      <div className={styles.login_background}>
+        <p className={`${styles.error} ${error ? styles.error_visible : ""}`}>
           {error && (
-            <Image src={alert} alt="Error" className="error-img"></Image>
+            <Image src={alert} alt="Error" className={styles.error_img}></Image>
           )}
           {error}
         </p>
         <Bunny />
-        <div className="login-box">
+        <div className={styles.login_box}>
           <h2>Start hopping</h2>
-          <div className="no-account-signup">
-            <p className="no-account">ALREADY HAVE AN ACCOUNT?&nbsp;</p>
-            <Link href="/login" className="signup">
+          <div className={styles.no_account_signup}>
+            <p className={styles.no_account}>ALREADY HAVE AN ACCOUNT?&nbsp;</p>
+            <Link href="/login" className={styles.signup}>
               LOG IN
             </Link>
           </div>
-          <div className="register">
-            <form onSubmit={handleSubmit} className="login-form">
+          <div className={styles.register}>
+            <form onSubmit={handleSubmit} className={styles.login_form}>
               <input
                 type="text"
                 placeholder="Name"
                 required
-                className="register-name"
+                className={styles.register_name}
               />
               <input
                 type="text"
                 placeholder="Email"
                 required
-                className="login-email"
+                className={styles.login_email}
               />
               <input
                 type="password"
                 placeholder="Password"
                 required
-                className="login-password"
+                className={styles.login_password}
               />
-              <button type="submit" className="login-button-plus-arrow">
-                <p className="login-button">Sign Up</p>
-                <Image src={arrow} alt="arrow" className="login-arrow" />
+              <button type="submit" className={styles.login_button_plus_arrow}>
+                <p className={styles.login_button}>Sign Up</p>
+                <Image src={arrow} alt="arrow" className={styles.login_arrow} />
               </button>
             </form>
-            <div className="break-plus-or">
-              <div className="break"></div>
-              <p className="break-or">OR</p>
-              <div className="break"></div>
+            <div className={styles.break_plus_or}>
+              <div className={styles.break}></div>
+              <p className={styles.break_or}>OR</p>
+              <div className={styles.break}></div>
             </div>
-            <div className="login-bottom">
+            <div className={styles.login_bottom}>
               <button
                 onClick={() => {
                   signIn("google");
                 }}
-                className="login-google-button"
+                className={styles.login_google_button}
               >
                 <Image
                   src={googleLogo}
                   alt="Google logo"
-                  className="image-google"
+                  className={styles.image_google}
                 />
-                <p className="login-google">Continue with Google</p>
+                <p className={styles.login_google}>Continue with Google</p>
               </button>
               <button
                 onClick={() => {
                   signIn("github");
                 }}
-                className="login-github-button"
+                className={styles.login_github_button}
               >
                 <Image
                   src={githubLogo}
                   alt="Github logo"
-                  className="image-github"
+                  className={styles.image_github}
                 />
-                <p className="login-github">Continue with Github</p>
+                <p className={styles.login_github}>Continue with Github</p>
               </button>
             </div>
           </div>

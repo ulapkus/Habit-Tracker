@@ -5,6 +5,7 @@ import Image from "next/image";
 import rabbitOne from "../../public/bunny-one.png";
 import stats from "../../public/blurred-stats.png";
 import { differenceInDays } from "date-fns";
+import styles from "../styles/page.module.css";
 
 export default function Stats() {
   const [dateCreated, setDateCreated] = useState();
@@ -31,19 +32,25 @@ export default function Stats() {
 
   return (
     <div>
-      <div className="stats-top">
-        <div className="stats-main">
-          <p className="days-tracked">
+      <div className={styles.stats_top}>
+        <div className={styles.stats_main}>
+          <p className={styles.days_tracked}>
             You&apos;ve been habit hoppin&apos; for {daysDifference} days
           </p>
-          <p className="insights">HERE ARE YOUR INSIGHTS</p>
+          <p className={styles.insights}>HERE ARE YOUR INSIGHTS</p>
         </div>
-        <div className="stats-rabbit-container">
-          <Image className="stats-rabbit" src={rabbitOne} alt="rabbit icon" />
-          <p className="stats-rabbit-comment">THIS PAGE IS COMING SOON!</p>
+        <div className={styles.stats_rabbit_container}>
+          <Image
+            className={styles.stats_rabbit}
+            src={rabbitOne}
+            alt="rabbit icon"
+          />
+          <p className={styles.stats_rabbit_comment}>
+            THIS PAGE IS COMING SOON!
+          </p>
         </div>
       </div>
-      <Image src={stats} alt="user statistics" className="stats-image" />
+      <Image src={stats} alt="user statistics" className={styles.stats_img} />
     </div>
   );
 }

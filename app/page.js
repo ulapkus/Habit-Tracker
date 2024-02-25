@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import arrow from "../public/arrow.png";
 import Bunny from "./components/bunny";
+import styles from './styles/page.module.css';
 
 export default function Dashboard() {
   const [displayedQuote, setDisplayedQuote] = useState("");
