@@ -62,8 +62,8 @@ const Login = () => {
 
   if (sessionStatus === "loading") {
     return (
-      <div className="loading-background">
-        <p className="loading">LOADING...</p>
+      <div className={styles.loading_background}>
+        <p className={styles.loading}>LOADING...</p>
       </div>
     );
   }

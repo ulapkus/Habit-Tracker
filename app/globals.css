@@ -17,36 +17,22 @@ button {
   font-family: inherit;
 }
 
-h2 {
-  font-size: 6vh;
-  color: #8bf1b5;
+p {
   padding: 0;
   margin: 0;
 }
 
-.quote-background {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding-top: 11vh;
-  height: 100%;
-  background-color: #1d4938;
-}
-
-.quote-box {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+thead {
   width: 100%;
-  padding: 0 34vw 0 7.5%;
-  font-size: 1vh;
+  margin: 0;
+  padding: 0;
 }
 
-.quote-welcome-user {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+table {
+  border-spacing: 0;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 h1 {
@@ -57,57 +43,11 @@ h1 {
   letter-spacing: 0.3vw;
 }
 
-.quote-user {
+h2 {
+  font-size: 6vh;
   color: #8bf1b5;
-  font-family: "Roboto Mono", monospace;
-  font-weight: 300;
-  font-size: 2vh;
-  letter-spacing: 0.2vw;
-  text-transform: uppercase;
-}
-
-.quote {
-  color: #8bf1b5;
-  font-size: 9vh;
-  width: 100%;
-  padding: 1.5vh 0 4.5vh 0;
-  line-height: 90%;
-}
-
-.author {
-  color: #8bf1b5;
-  font-size: 1.75vh;
-  padding: 0 0 0 2vw;
-  letter-spacing: 0.3vw;
-  font-weight: 300;
-  white-space: nowrap;
-  font-family: "Roboto Mono", monospace;
-}
-
-.quote-button-plus-arrow {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  border: 1.5px solid #ffa201;
-  text-align: center;
-  width: 14vw;
-  height: 5.5vh;
-  padding: 0 0 0 0;
-  background-color: #3f5530;
-  border-radius: 0.8vh;
-  text-decoration: none;
-}
-
-.quote-button {
-  color: #fffae5;
-  font-size: 2.5vh;
-  text-decoration: none;
-}
-
-.quote-arrow {
-  height: 1.75vh;
-  width: 1.75vh;
+  padding: 0;
+  margin: 0;
 }
 
 h3 {
@@ -116,11 +56,6 @@ h3 {
   margin: 0;
   font-size: 10vh;
   line-height: 95%;
-}
-
-p {
-  padding: 0;
-  margin: 0;
 }
 
 h4 {
@@ -133,63 +68,6 @@ h4 {
   margin: 0;
   padding: 0;
   line-height: 87%;
-}
-
-select:focus {
-  outline: none;
-}
-
-.add_more_week:hover,
-.add_more_month:hover {
-  background-color: #ffa201;
-  box-shadow: 0 0 30px rgba(255, 162, 1, 0.492);
-}
-
-.quote-button-plus-arrow:hover,
-.login-button-plus-arrow:hover,
-.submit-q:hover {
-  background-color: #ffa201;
-  text-shadow: none;
-}
-
-.loading-background {
-  height: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.loading {
-  font-size: 3vh;
-  color: #8bf1b5;
-  font-family: "Roboto Mono", monospace;
-  font-weight: 200;
-  letter-spacing: 0.4vw;
-  text-align: center;
-}
-
-/* ending */
-
-input:focus {
-  outline: none;
-}
-
-.layout-background {
-  height: calc(100% - 8.2vh);
-  width: 100%;
-}
-
-#myModal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  padding: 7.5% 7.5% 0 7.5%;
 }
 
 h5,
@@ -209,6 +87,27 @@ h5 {
 
 h6 {
   width: 100%;
+}
+
+select:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+#myModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  padding: 7.5% 7.5% 0 7.5%;
 }
 
 /* .dropdown-container {
@@ -231,123 +130,9 @@ h6 {
   display: block;
 } */
 
-
-.main-table-month {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 2.5vh 0 2.5vh 0;
-}
-
-#checkboxes-plus-submit {
-  display: flex;
-  flex-direction: column;
-  padding: 13vh 0 0 0;
-  gap: 10vh;
-}
-
-.checkboxes-plus-chart {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  height: 100%;
-  padding: 0 0 0 0;
-  margin: 0;
-}
-
-#checkbox-parent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 8vw;
-  height: 100%;
-}
-
-.habits {
-  width: 9vw;
-  font-size: 9vw;
-  padding: 0;
-}
-
 #newHabitId {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-}
-
-thead {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-table {
-  border-spacing: 0;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-/* navbar start */
-.nav-background {
-  padding: 3vh 0 1.5vh 0;
-}
-
-.nav-main {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 0 7.5% 0 7.5%;
-  height: 3.7vh;
-}
-
-.logo-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-end;
-  flex-grow: 1;
-  height: 100%;
-  width: auto;
-}
-
-.logo {
-  width: 10vw;
-  height: 100%;
-  background-image: url("https://i.ibb.co/RNt0YQv/Habbit-Rabbit-Logo.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.logo:hover {
-  background: url("https://i.ibb.co/qW8vcYB/Habit-Rabbit-Logo-Green.png");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  cursor: pointer;
-}
-
-.chart-and-stats {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 1vw;
-  height: 60%;
-}
-
-.nav-link {
-  color: #8aeeb3;
-  text-decoration: none;
-  padding: 1vh;
-  text-align: center;
-  font-weight: 300;
-  font-size: 1.75vh;
-  letter-spacing: 0.3vw;
-  font-family: "Roboto Mono", monospace;
 }

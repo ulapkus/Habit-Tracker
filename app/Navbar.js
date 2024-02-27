@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import habitRabbitLogo from "../public/habbit-rabbit-logo.png";
-import styles from './styles/page.module.css';
+import styles from "./styles/page.module.css";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -26,27 +26,31 @@ const Navbar = () => {
   }, [pathname]);
 
   return (
-    <div className="nav-background">
-      <div className="nav-main">
-        <div className="logo-div">
-          <Link href="/" className="logo"></Link>
+    <div className={styles.nav_background}>
+      <div className={styles.nav_main}>
+        <div className={styles.logo_div}>
+          <Link href="/" className={styles.logo}></Link>
         </div>
-        <div className="chart-and-stats">
-          <Link href="/about" className="nav-link" style={{ color: textColor }}>
+        <div className={styles.chart_and_stats}>
+          <Link
+            href="/about"
+            className={styles.nav_link}
+            style={{ color: textColor }}
+          >
             ABOUT
           </Link>
           {!session ? (
             <>
               <Link
                 href="/login"
-                className="nav-link"
+                className={styles.nav_link}
                 style={{ color: textColor }}
               >
                 LOGIN
               </Link>
               <Link
                 href="/register"
-                className="nav-link"
+                className={styles.nav_link}
                 style={{ color: textColor }}
               >
                 REGISTER
@@ -56,20 +60,20 @@ const Navbar = () => {
             <>
               <Link
                 href="/chart"
-                className="nav-link"
+                className={styles.nav_link}
                 style={{ color: textColor }}
               >
                 CHART
               </Link>
               <Link
                 href="/stats"
-                className="nav-link"
+                className={styles.nav_link}
                 style={{ color: textColor }}
               >
                 STATS
               </Link>
               <p
-                className="nav-link logout"
+                className={`${styles.nav_link} ${styles.logout}`}
                 onClick={() => {
                   signOut();
                 }}

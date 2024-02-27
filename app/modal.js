@@ -3,6 +3,7 @@ import { ModalContext } from "./chart/page";
 import Image from "next/image";
 import arrow from "../public/arrow.png";
 import alert from "../public/alert-icon.png";
+import styles from "./styles/page.module.css";
 
 export default function Child() {
   const { value } = React.useContext(ModalContext);
@@ -138,43 +139,55 @@ export default function Child() {
       {showModal && modalVisibility && (
         <div
           id="myModal"
+          className={styles.modal_container}
           style={{
             display: "block",
             backgroundImage: `url('/background-modal.png')`,
           }}
         >
-          <p className={`error ${errorMessage ? "error-visible" : ""}`}>
+          <p
+            className={`${styles.error} ${
+              errorMessage ? styles.error_visible : ""
+            }`}
+          >
             {errorMessage && (
-              <Image src={alert} alt="Error" className="error-img"></Image>
+              <Image
+                src={alert}
+                alt="Error"
+                className={styles.error_img}
+              ></Image>
             )}
             {errorMessage}
           </p>
-          <div className="modal-content">
-            <section className="question-main">
-              <div className="modal-text">
+          <div className={styles.modal_content}>
+            <section className={styles.question_main}>
+              <div className={styles.modal_text}>
                 <h5>{"Let's start you off with three habits to work on"}</h5>
-                <div className="input-boxes">
-                  <div className="modal-habit-input">
+                <div className={styles.input_boxes}>
+                  <div className={styles.modal_habit_input}>
                     {habitInputField.map((habitInput, i) => {
                       return (
-                        <div key={i} className="modal-habit">
+                        <div key={i} className={styles.modal_habit}>
                           <input
                             value={habitInput}
                             onChange={(e) => handleInputChange(e, i)}
                             placeholder="ENTER HABIT HERE..."
                             type="text"
-                            className="modal-question"
+                            className={styles.modal_question}
                           />
                         </div>
                       );
                     })}
                   </div>
-                  <div className="modal-color-input">
+                  <div className={styles.modal_color_input}>
                     {colorInputField.map((colorField, index) => {
                       return (
-                        <div key={index} className="modal-color-plus-button">
+                        <div
+                          key={index}
+                          className={styles.modal_color_plus_button}
+                        >
                           <select
-                            className="modal-color"
+                            className={styles.modal_color}
                             onChange={(e) => handleColorChange(e, index)}
                           >
                             <option value="">COLOR</option>
@@ -193,9 +206,9 @@ export default function Child() {
                 </div>
               </div>
             </section>
-            <button onClick={getInputValues} className="submit-q">
-              <p className="start-hoppin">Start hoppin&apos;</p>
-              <Image src={arrow} alt="arrow" className="arrow-q" />
+            <button onClick={getInputValues} className={styles.submit_q}>
+              <p className={styles.start_hoppin}>Start hoppin&apos;</p>
+              <Image src={arrow} alt="arrow" className={styles.arrow_q} />
             </button>
           </div>
         </div>

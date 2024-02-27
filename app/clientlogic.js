@@ -21,5 +21,5 @@ export default function ClientLogic({ children }) {
     document.body.style.backgroundPosition = "center";
   }, [pathname]);
 
-  return <div className="layout-background">{children}</div>;
+  return <div className={styles.layout_background}>{children}</div>;
 }

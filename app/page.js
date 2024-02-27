@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import arrow from "../public/arrow.png";
 import Bunny from "./components/bunny";
-import styles from './styles/page.module.css';
+import styles from "./styles/page.module.css";
 
 export default function Dashboard() {
   const [displayedQuote, setDisplayedQuote] = useState("");
@@ -120,22 +120,26 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="quote-background">
+    <div className={styles.quote_background}>
       <Bunny />
-      <div className="quote-box">
-        <div className="quote-welcome-user">
+      <div className={styles.quote_box}>
+        <div className={styles.quote_welcome_user}>
           <h1>WELCOME BACK,&nbsp;</h1>
           {!session ? null : (
-            <div className="quote-user"> {session.user?.name}</div>
+            <div className={styles.quote_user}> {session.user?.name}</div>
           )}
         </div>
-        <p className="quote">
+        <p className={styles.quote}>
           {displayedQuote}
-          <span className="author">-{displayedAuthor}</span>
+          <span className={styles.author}>-{displayedAuthor}</span>
         </p>
-        <Link href="/chart" className="quote-button-plus-arrow">
-          <p className="quote-button">Go to chart</p>
-          <Image className="quote-arrow" src={arrow} alt="habit rabbit logo" />
+        <Link href="/chart" className={styles.quote_button_plus_arrow}>
+          <p className={styles.quote_button}>Go to chart</p>
+          <Image
+            className={styles.quote_arrow}
+            src={arrow}
+            alt="habit rabbit logo"
+          />
         </Link>
       </div>
     </div>
