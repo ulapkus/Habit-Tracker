@@ -252,7 +252,7 @@
   font-size: 0.8vw;
 }
 
-.month_view_child {
+.month_view_child, .week_view_child {
   color: black;
 }
 

@@ -13,6 +13,7 @@ import styles from "../styles/page.module.css";
 
 const Login = () => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const { data: session, status: sessionStatus } = useSession();
 
@@ -46,21 +47,50 @@ const Login = () => {
       return;
     }
 
-    const res = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    });
+    try {
+      setIsLoading(true);
+      const res = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
 
-    if (res?.error) {
-      setError("INVALID EMAIL OR PASSWORD");
-      if (res?.url) router.replace("/");
-    } else {
-      setError("");
+      if (res?.error) {
+        setError("INVALID EMAIL OR PASSWORD");
+        if (res?.url) router.replace("/");
+      } else {
+        setError("");
+      }
+    } catch (error) {
+      setError("ERROR, TRY AGAIN");
+    } finally {
+      setIsLoading(false);
     }
   };
 
+  //   const res = await signIn("credentials", {
+  //     redirect: false,
+  //     email,
+  //     password,
+  //   });
+
+  //   if (res?.error) {
+  //     setError("INVALID EMAIL OR PASSWORD");
+  //     if (res?.url) router.replace("/");
+  //   } else {
+  //     setError("");
+  //   }
+  // };
+
   if (sessionStatus === "loading") {
+    return (
+      <div className={styles.loading_background}>
+        <p className={styles.loading}>LOADING...</p>
+      </div>
+    );
+  }
+
+  if (isLoading === true) {
     return (
       <div className={styles.loading_background}>
         <p className={styles.loading}>LOADING...</p>
@@ -81,7 +111,9 @@ const Login = () => {
         <div className={styles.login_box}>
           <h2>Log in</h2>
           <div className={styles.no_account_signup}>
-            <p className={styles.no_account}>DON&apos;T HAVE AN ACCOUNT?&nbsp;</p>
+            <p className={styles.no_account}>
+              DON&apos;T HAVE AN ACCOUNT?&nbsp;
+            </p>
             <Link href="/register" className={styles.signup}>
               SIGN UP
             </Link>
@@ -142,7 +174,6 @@ const Login = () => {
         </div>
       </div>
     )
-  
   );
 };
 

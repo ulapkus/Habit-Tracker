@@ -13,6 +13,7 @@ import styles from "../styles/page.module.css";
 
 const Register = () => {
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { data: session, status: sessionStatus } = useSession();
 
@@ -59,6 +60,7 @@ const Register = () => {
     }
 
     try {
+      setIsLoading(true);
       const res = await fetch("/api/register", {
         method: "POST",
         headers: {
@@ -83,13 +85,25 @@ const Register = () => {
       }
     } catch (error) {
       setError("ERROR, TRY AGAIN");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   if (sessionStatus === "loading") {
-    <div className="loading-background">
-      <p className="loading">LOADING...</p>
-    </div>;
+    return (
+      <div className={styles.loading_background}>
+        <p className={styles.loading}>LOADING...</p>
+      </div>
+    );
+  }
+
+  if (isLoading === true) {
+    return (
+      <div className={styles.loading_background}>
+        <p className={styles.loading}>LOADING...</p>
+      </div>
+    );
   }
 
   return (
