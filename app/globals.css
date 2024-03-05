@@ -87,6 +87,11 @@ h5 {
 
 h6 {
   width: 100%;
+  font-size: 4vw;
+  color: #fffae5;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 
 select:focus {

@@ -90,7 +90,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2.5vh 0 2.5vh 0;
+  margin: 4.5vh 0 2.5vh 0;
 }
 
 .week_header {
@@ -115,9 +115,15 @@
   width: 12vh;
   margin: 10px;
   font-family: "Roboto Mono", monospace;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.1vw;
   color: #fffae5;
+}
+
+.days:last-child {
+  border: 0.5px solid white;
+  border-radius: 16px;
 }
 
 .week_cell_row {
@@ -194,7 +200,7 @@
   align-items: flex-end;
   height: 100%;
   margin: 0;
-  padding: 0 1.8vw 0 0;
+  padding: 0 10px 0 0;
   gap: 1.7vh;
   width: 100%;
   text-align: center;
@@ -244,6 +250,10 @@
   font-size: 1.5vh;
   letter-spacing: 0.1vw;
   font-size: 0.8vw;
+}
+
+.month_view_child {
+  color: black;
 }
 
 .add_more_week_container {
@@ -329,36 +339,37 @@
   text-transform: uppercase;
   font-size: 0.7vw;
   text-align: center;
-  width: 2.5vw;
-  margin: 2.2px;
+  width: 2.4vw;
+  margin: 3px;
   border-radius: 5px;
   font-family: "Roboto Mono", monospace;
+  font-weight: 400;
   padding-top: 0.48vh;
   color: #fffae5;
 }
 
 .back:hover,
 .next:hover,
-.remove-container:hover,
+.remove_container:hover,
 .backMonth:hover,
 .nextMonth:hover,
-.login-github-button:hover,
-.login-google-button:hover,
-.github-button-container:hover,
-.quote-button-plus-arrow:hover,
-.week-cell:hover,
-.submit-q:hover,
-.question-x:hover,
-.add-more-week:hover,
-.add-more-month:hover,
-.month-cell:hover,
-.x-button-week:hover,
-.x-button-month:hover,
-.login-button-plus-arrow:hover,
-.login-button:hover,
-.week-view:hover,
-.month-view:hover,
-.nav-link:hover {
+.login_github_button:hover,
+.login_google_button:hover,
+.github_button_container:hover,
+.quote_button_plus_arrow:hover,
+.week_cell:hover,
+.submit_q:hover,
+.question_x:hover,
+.add_more_week:hover,
+.add_more_month:hover,
+.month_cell:hover,
+.x_button_week:hover,
+.x_button_month:hover,
+.login_button_plus_arrow:hover,
+.login_button:hover,
+.week_view:hover,
+.month_view:hover,
+.nav_link:hover {
   cursor: pointer;
 }
 
@@ -366,14 +377,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.month {
-  font-size: 4vw;
-  color: #fffae5;
-  margin: 0;
-  text-align: center;
+  align-items: center;
 }
 
 .add-habit-x-div-month {
@@ -391,15 +395,19 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 2.5vw;
-  width: 2.5vw;
+  height: 2.4vw;
+  width: 2.4vw;
   text-align: center;
   font-size: 1vw;
   padding: 5px;
-  margin: 2.2px;
+  margin: 3px;
   border-radius: 1.3vh;
   backdrop-filter: blur(9.7px);
   -webkit-backdrop-filter: blur(9.7px);
+}
+
+.month_cell:hover {
+  transform: scale(1.1);
 }
 
 .month_cell_habit {
@@ -407,8 +415,9 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 2.5vw;
+  height: 2.4vw;
   width: 8vw;
+  margin: 0 3px 0 0;
   text-align: center;
   font-family: "Roboto Mono", monospace;
   text-transform: uppercase;
@@ -507,7 +516,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-end;
   height: 100%;
   margin: 0 8vw 0 8vw;
   gap: 1.7vh;
@@ -548,7 +557,7 @@
 }
 
 .add_more_img_month {
-  height: 5vh;
+  height: 4vh;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -719,7 +728,6 @@
   height: 80%;
   width: 100%;
   padding: 0 0 0 0;
-  /* margin: 0 7.5% 0 7.5%; */
 }
 
 .register_name,

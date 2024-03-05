@@ -21,7 +21,7 @@ export default function Chart() {
   const [days, setDays] = useState({});
   const [colors, setColors] = useState({});
   const [weekCount, setWeekCount] = useState(-1);
-  const [view, setView] = useState("week");
+  const [view, setView] = useState("month");
   const [isDayClicked, setIsDayClicked] = useState(false);
   const [isSubmitClicked, setIsSubmitClicked] = useState(false);
   const [modalVisibility, setModalVisibility] = useState(true);
@@ -284,8 +284,12 @@ export default function Chart() {
                 onChange={handleChange}
               >
                 <select className={styles.month_view}>
-                  <option value="">WEEK</option>
-                  <option value="month">MONTH</option>
+                  <option className={styles.month_view_child} value="">
+                    WEEK
+                  </option>
+                  <option className={styles.month_view_child} value="month">
+                    MONTH
+                  </option>
                 </select>
               </div>
               <div className={styles.add_more_week_container}>
@@ -412,7 +416,7 @@ export default function Chart() {
                   onClick={previousMonth}
                 />
                 <div className={styles.month_and_year}>
-                  <h6 className={styles.month}>
+                  <h6>
                     {format(set(new Date(), { month: month }), "MMMM")} {year}
                   </h6>
                 </div>
