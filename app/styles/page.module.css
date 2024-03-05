@@ -252,7 +252,8 @@
   font-size: 0.8vw;
 }
 
-.month_view_child, .week_view_child {
+.month_view_child,
+.week_view_child {
   color: black;
 }
 
@@ -909,7 +910,7 @@
   padding: 0 5vw 0 5vw;
 }
 
-.modal_content {
+._content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -970,7 +971,7 @@
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.3px);
   -webkit-backdrop-filter: blur(3.3px);
-  width: 40%;
+  width: 50%;
 }
 
 .remove_container {
@@ -998,8 +999,21 @@
 }
 
 .modal_text_two {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2vh;
   width: 100%;
-  padding: 2vh 5.5vh 6.5vh 5.5vh;
+  padding: 1vh 5.5vh 6.5vh 5.5vh;
+}
+
+.modal_add_habit {
+  width: 100%;
+  font-size: 3vw;
+  color: #fffae5;
+  margin: 0;
+  padding: 0;
 }
 
 .modal_question {
@@ -1025,7 +1039,7 @@
 
 .modal_color {
   height: 6vh;
-  width: 8vw;
+  width: 7vw;
   font-size: 2vh;
   letter-spacing: 3px;
   border: none;
@@ -1040,12 +1054,13 @@
   letter-spacing: 3px;
   font-family: "Roboto Mono", monospace;
 }
-
+/* 
 .modal_color_plus_button {
   display: flex;
   flex-direction: column;
   gap: 0.5vw;
-}
+  border: 1px solid blue;
+} */
 
 .input_boxes {
   display: flex;

@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from "react";
 import { ModalContext } from "../chart/page";
 import Image from "next/image";
-import arrow from '../../public/arrow.png';
+import arrow from "../../public/arrow.png";
 import alert from "../../public/alert-icon.png";
-import styles from '../styles/page.module.css';
+import styles from "../styles/page.module.css";
 
 export default function Childtwo() {
   const { value2 } = React.useContext(ModalContext);
@@ -124,7 +124,11 @@ export default function Childtwo() {
             backgroundImage: `url('/background-modal.png')`,
           }}
         >
-          <p className={`error ${errorMessage ? "error-visible" : ""}`}>
+          <p
+            className={`${styles.error} ${
+              errorMessage ? styles.error_visible : ""
+            }`}
+          >
             {errorMessage && (
               <Image src={alert} alt="Error" className="error-img"></Image>
             )}
@@ -138,7 +142,7 @@ export default function Childtwo() {
                 </p>
               </div>
               <div className={styles.modal_text_two}>
-                <h6>Add a new habit</h6>
+                <p className={styles.modal_add_habit}>Add a new habit</p>
                 {habitInputField.map((inputField, i) => {
                   return (
                     <div key={i} className={styles.input_boxes}>
@@ -158,21 +162,21 @@ export default function Childtwo() {
                           <p>So is this</p>
                         </div>
                       </div> */}
-                      <div className={styles.modal_color_plus_button}>
-                        <select
-                          className={styles.modal_color}
-                          onChange={(event) => handleColorChange(event, i)}
-                        >
-                          <option value=""></option>
-                          <option value="#e74645">RED</option>
-                          <option value="#FF8466">ORANGE</option>
-                          <option value="#FFBD49">YELLOW</option>
-                          <option value="#93C574">GREEN</option>
-                          <option value="#3b4cc3">BLUE</option>
-                          <option value="#AA8AFA">PURPLE</option>
-                          <option value="#FF81C3">PINK</option>
-                        </select>
-                      </div>
+                      {/* <div className={styles.modal_color_plus_button}> */}
+                      <select
+                        className={styles.modal_color}
+                        onChange={(event) => handleColorChange(event, i)}
+                      >
+                        <option value=""></option>
+                        <option value="#e74645">RED</option>
+                        <option value="#FF8466">ORANGE</option>
+                        <option value="#FFBD49">YELLOW</option>
+                        <option value="#93C574">GREEN</option>
+                        <option value="#3b4cc3">BLUE</option>
+                        <option value="#AA8AFA">PURPLE</option>
+                        <option value="#FF81C3">PINK</option>
+                      </select>
+                      {/* </div> */}
                     </div>
                   );
                 })}

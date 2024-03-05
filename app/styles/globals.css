@@ -141,3 +141,7 @@ input:focus {
   justify-content: flex-start;
   align-items: center;
 }
+
+option {
+  color: black;
+}
