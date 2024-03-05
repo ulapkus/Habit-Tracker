@@ -1,6 +1,6 @@
-import Navbar from "./Navbar";
+// import Navbar from "./Navbar";
+import Navbar from "./navbar";
 
-// import Navbar from "./navbar";
 import "./globals.css";
 import { getServerSession } from "next-auth";
 import SessionProvider from "../utils/SessionProvider";
@@ -45,7 +45,6 @@ export default async function RootLayout({ children }) {
       <body>
         <SessionProvider session={session}>
           <ClientLogic>
-            
             <Navbar />
             {children}
           </ClientLogic>
