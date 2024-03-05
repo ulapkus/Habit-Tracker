@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { ModalContext } from "./chart/page";
+import { ModalContext } from "../chart/page";
 import Image from "next/image";
-import arrow from "../public/arrow.png";
-import alert from "../public/alert-icon.png";
-import styles from "./styles/page.module.css";
+import arrow from "../../public/arrow.png";
+import alert from "../../public/alert-icon.png";
+import styles from "../styles/page.module.css";
 
 export default function Child() {
   const { value } = React.useContext(ModalContext);

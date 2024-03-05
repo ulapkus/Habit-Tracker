@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState, createContext } from "react";
-import Child from "../modal";
-import Childtwo from "../addHabit";
+import Child from "../components/modal";
+import Childtwo from "../components/addHabit";
 import { format, addDays, set, getYear } from "date-fns";
 import Image from "next/image";
 import rabbitEars from "../../public/rabbit-ears.png";
@@ -436,7 +436,10 @@ export default function Chart() {
                     alt="rabbit ears"
                     className={styles.add_more_img_month}
                   />
-                  <p className={styles.add_more_month} onClick={() => addHabit()}>
+                  <p
+                    className={styles.add_more_month}
+                    onClick={() => addHabit()}
+                  >
                     NEW HABIT +
                   </p>
                 </div>

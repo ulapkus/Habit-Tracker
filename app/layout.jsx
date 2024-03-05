@@ -1,10 +1,10 @@
 // import Navbar from "./navbar";
-import Navbar from "./navbar";
+import Navbar from "./components/navbar";
 
 import "./globals.css";
 import { getServerSession } from "next-auth";
 import SessionProvider from "../utils/SessionProvider";
-import ClientLogic from "./clientlogic";
+import ClientLogic from "./components/clientlogic";
 import localFont from "next/font/local";
 
 const myFont = localFont({
