@@ -25,7 +25,7 @@ export default function Chart() {
   const [isDayClicked, setIsDayClicked] = useState(false);
   const [isSubmitClicked, setIsSubmitClicked] = useState(false);
   const [modalVisibility, setModalVisibility] = useState(true);
-  const [modalVisibilityNew, setModalVisibilityNew] = useState(true);
+  const [modalVisibilityNew, setModalVisibilityNew] = useState(false);
   const [month, setMonth] = useState(() => new Date().getMonth());
   const [year, setYear] = useState(() => getYear(new Date()));
   const [yearWeek, setYearWeek] = useState(() => getYear(new Date()));
