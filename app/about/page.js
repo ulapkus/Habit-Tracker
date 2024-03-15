@@ -38,7 +38,7 @@ export default function About() {
           Ever since I read &quot;The Power of Habit&quot; by Charles Duhigg in
           2020, I&apos;ve been on a habit-tracking train. As a result, I loved
           tracking my habits. But I could never find a habit tracker online that
-          suited my style and needs, which frusterated me. When I began learning
+          suited my style and needs, which frustrated me. When I began learning
           to code in 2022, I was determined to build my own habit tracker one
           day, exactly as I had envisioned it. Fast forward to 2024, and I find
           myself wrapping up this project. I love that I have a product exactly
@@ -56,7 +56,7 @@ export default function About() {
         </p>
         <p className={styles.about_p}>
           {
-            "I hope you enjoy looking back on your habit progress as much as I enjoyed creating this for you."
+            "I hope you enjoy looking back on your progress as much as I enjoyed creating this for you."
           }
         </p>
         <div className={styles.about_p}>
