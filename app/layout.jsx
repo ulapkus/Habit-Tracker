@@ -1,5 +1,5 @@
 import Navbar from "./components/navbar";
-
+import { Analytics } from "@vercel/analytics/react"
 import "./styles/globals.css";
 import { getServerSession } from "next-auth";
 import SessionProvider from "../utils/SessionProvider";
@@ -46,6 +46,7 @@ export default async function RootLayout({ children }) {
           <ClientLogic>
             <Navbar />
             {children}
+            <Analytics />
           </ClientLogic>
         </SessionProvider>
       </body>
