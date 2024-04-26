@@ -910,7 +910,7 @@
   padding: 0 5vw 0 5vw;
 }
 
-._content {
+.modal_content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1050,17 +1050,10 @@
   -webkit-backdrop-filter: blur(2.3px);
   color: #fffae5;
   font-size: 1.8vh;
-  padding-left: 1.5vw;
+  padding-left: 1vw;
   letter-spacing: 3px;
   font-family: "Roboto Mono", monospace;
 }
-/* 
-.modal_color_plus_button {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5vw;
-  border: 1px solid blue;
-} */
 
 .input_boxes {
   display: flex;
