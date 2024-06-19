@@ -11,7 +11,7 @@ body {
   background-color: #1d4938;
   overflow-y: scroll;
   overscroll-behavior-y: contain;
-/* overflow-x: hidden; */
+  /* overflow-x: hidden; */
 }
 
 button {
@@ -127,12 +127,24 @@ option {
   color: black;
 }
 
-
 @media (max-width: 600px) {
   h3 {
     padding: 0;
     margin: 0;
     font-size: 6vh;
     line-height: 95%;
-text-align: center;  }
+    text-align: center;
+  }
+
+  h4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fffae5;
+    letter-spacing: 3px;
+    font-size: 3vh;
+    margin: 0;
+    padding: 0;
+    line-height: 87%;
+  }
 }

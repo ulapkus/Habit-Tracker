@@ -37,7 +37,8 @@ const Navbar = () => {
           >
             ABOUT
           </Link>
-          {!session ? (
+          {/* put an exclamation mark in from of session!! */}
+          {session ? (
             <>
               <Link
                 href="/login"

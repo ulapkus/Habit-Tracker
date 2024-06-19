@@ -68,20 +68,6 @@ const Login = () => {
     }
   };
 
-  //   const res = await signIn("credentials", {
-  //     redirect: false,
-  //     email,
-  //     password,
-  //   });
-
-  //   if (res?.error) {
-  //     setError("INVALID EMAIL OR PASSWORD");
-  //     if (res?.url) router.replace("/");
-  //   } else {
-  //     setError("");
-  //   }
-  // };
-
   if (sessionStatus === "loading") {
     return (
       <div className={styles.loading_background}>
