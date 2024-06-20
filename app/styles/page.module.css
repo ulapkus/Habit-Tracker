@@ -1315,10 +1315,11 @@
     width: 100%;
   }
 
+  /*  */
   .back,
   .next {
-    height: 2.5vh;
-    width: 1vw;
+    height: 3vh;
+    width: 3vw;
     object-fit: contain;
   }
 
@@ -1456,15 +1457,17 @@
     width: 100%;
   }
 
+  /*  */
   .header_left_week {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     flex-grow: 1;
-    gap: 2vw;
+    gap: 4vw;
     padding: 0;
-    margin: 0 0 0 -2vw;
+    margin: 0 0 0 0;
+    width: 100%;
   }
 
   .header_right_week {
