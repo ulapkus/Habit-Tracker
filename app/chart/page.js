@@ -17,9 +17,9 @@ export const ColorContext = React.createContext();
 export const ModalContext = React.createContext();
 
 export default function Chart() {
-  const [habits, setHabits] = useState([]);
-  const [days, setDays] = useState({});
-  const [colors, setColors] = useState({});
+  const [habits, setHabits] = useState(["eat"]);
+  const [days, setDays] = useState({ eat: ["2024-6-12", "2024-6-15"] });
+  const [colors, setColors] = useState({eat: "#FF8466"});
   const [weekCount, setWeekCount] = useState(-1);
   const [view, setView] = useState("week");
   const [isDayClicked, setIsDayClicked] = useState(false);
