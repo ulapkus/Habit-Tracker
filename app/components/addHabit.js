@@ -19,8 +19,8 @@ export default function Childtwo() {
   const [modalVisibilityNew, setModalVisibilityNew] = value2;
   const [isSubmitClicked, setIsSubmitClicked] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [habitInputField, setHabitInputField] = useState([[]]);
-  const [colorInputField, setColorInputField] = useState([[]]);
+  const [habitInputField, setHabitInputField] = useState([""]);
+  const [colorInputField, setColorInputField] = useState([""]);
 
   const saveAddOrRemoveHabit = async () => {
     const daysCopy = days;
@@ -57,10 +57,15 @@ export default function Childtwo() {
   };
 
   const removeModal = () => {
-    setHabitInputField([[]]);
-    setColorInputField([[]]);
     setModalVisibilityNew(false);
   };
+
+  useEffect(() => {
+    if (modalVisibilityNew) {
+      setHabitInputField([""]);
+      setColorInputField([""]);
+    }
+  }, [modalVisibilityNew]);
 
   const submit = () => {
     const habitFilled = habitInputField.every((array) => array.length > 0);
@@ -154,15 +159,6 @@ export default function Childtwo() {
                           placeholder="ENTER HABIT HERE..."
                         />
                       </div>
-                      {/* <div className="modal-color">Hover me</div>
-                      <div class="dropdown-container">
-                        <div class="trigger">Hover me</div>
-                        <div class="dropdown-content">
-                          <p>This is the dropdown content</p>
-                          <p>So is this</p>
-                        </div>
-                      </div> */}
-                      {/* <div className={styles.modal_color_plus_button}> */}
                       <select
                         className={styles.modal_color}
                         onChange={(event) => handleColorChange(event, i)}
@@ -176,7 +172,6 @@ export default function Childtwo() {
                         <option value="#AA8AFA">PURPLE</option>
                         <option value="#FF81C3">PINK</option>
                       </select>
-                      {/* </div> */}
                     </div>
                   );
                 })}
