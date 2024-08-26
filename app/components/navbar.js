@@ -5,7 +5,7 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import styles from '../styles/page.module.css';
+import styles from "../styles/page.module.css";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -37,8 +37,7 @@ const Navbar = () => {
           >
             ABOUT
           </Link>
-          {/* put an exclamation mark in from of session!! */}
-          {session ? (
+          {!session ? (
             <>
               <Link
                 href="/login"
