@@ -19,7 +19,7 @@ export const ModalContext = React.createContext();
 export default function Chart() {
   const [habits, setHabits] = useState(["eat"]);
   const [days, setDays] = useState({ eat: ["2024-6-12", "2024-6-15"] });
-  const [colors, setColors] = useState({eat: "#FF8466"});
+  const [colors, setColors] = useState({ eat: "#FF8466" });
   const [weekCount, setWeekCount] = useState(-1);
   const [view, setView] = useState("week");
   const [isDayClicked, setIsDayClicked] = useState(false);
@@ -37,6 +37,8 @@ export default function Chart() {
     });
     return past7Days.sort((a, b) => a - b);
   });
+  const [isNewUser, setIsNewUser] = useState(true);
+  const [resetChildtwo, setResetChildtwo] = useState(false);
 
   async function fetchState() {
     try {
@@ -57,8 +59,15 @@ export default function Chart() {
     fetchState();
   }, []);
 
+  useEffect(() => {
+    if (isNewUser) {
+      setModalVisibility(true);
+    }
+  }, [isNewUser]);
+
   const addHabit = () => {
     setModalVisibilityNew(true);
+    setResetChildtwo(true);
   };
 
   const eraseHabit = (activity, i) => {
@@ -311,6 +320,8 @@ export default function Chart() {
                 value3: [days, setDays],
                 value4: [colors, setColors],
                 value5: [habits, setHabits],
+                value6: [isNewUser, setIsNewUser],
+                value7: [resetChildtwo, setResetChildtwo],
               }}
             >
               <Child />
@@ -460,6 +471,8 @@ export default function Chart() {
                   value3: [days, setDays],
                   value4: [colors, setColors],
                   value5: [habits, setHabits],
+                  value6: [isNewUser, setIsNewUser],
+                  value7: [resetChildtwo, setResetChildtwo],
                 }}
               >
                 <Child />
